@@ -8,7 +8,7 @@ import { AnimatedText } from './AnimatedText'
 
 export function Hero() {
   const { t } = useLanguage()
-  const [heroImage, setHeroImage] = useState<string>('/hero-profile.jpg')
+  const [heroImage, setHeroImage] = useState<string>('/hero-profile.jpg.png')
   const [showUpload, setShowUpload] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
 

@@ -12,7 +12,7 @@ export function About() {
   const { t, language } = useLanguage()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const [aboutImage, setAboutImage] = useState<string>('/hero-profile.jpg')
+  const [aboutImage, setAboutImage] = useState<string>('/hero-profile.jpg.png')
   const [showUpload, setShowUpload] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
 
