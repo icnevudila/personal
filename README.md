@@ -2,6 +2,8 @@
 
 A modern, responsive personal portfolio website built with Next.js 15, TypeScript, Tailwind CSS, and Framer Motion.
 
+**Latest:** Contact form configured with Resend API.
+
 ## Features
 
 - 🚀 **Next.js 15** with App Router
@@ -185,5 +187,6 @@ If you have any questions or need help, please open an issue on GitHub.
 ---
 
 Built with ❤️ using Next.js, TypeScript, and Tailwind CSS.
+
 
 
