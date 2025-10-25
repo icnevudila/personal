@@ -216,7 +216,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 flex justify-center lg:justify-start"
           >
-            <span className="text-[#f1f5f9]">ic<span className="text-[#F97316]">ne</span>vudila</span>
+            <span className="text-[#f1f5f9]"><span className="text-[#F97316]">ic</span>nevudila</span>
           </motion.h1>
 
           {/* Title */}

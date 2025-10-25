@@ -6,6 +6,7 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import { clsx } from 'clsx'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { LanguageSwitcher } from './LanguageSwitcher'
+import { Logo } from './Logo'
 
 export function Navbar() {
   const { t } = useLanguage()
@@ -51,14 +52,6 @@ export function Navbar() {
 
   const handleNavClick = (href: string) => {
     setIsOpen(false)
-    
-    // Blog için ayrı sayfaya git
-    if (href === '#blog') {
-      window.location.href = '/blog'
-      return
-    }
-    
-    // Diğer bölümler için smooth scroll
     const element = document.querySelector(href)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
@@ -88,10 +81,7 @@ export function Navbar() {
                 className="h-10 w-auto"
               />
             ) : (
-              <span className="text-xl font-bold">
-                <span className="text-primary-500">ic</span>
-                <span className="text-gray-300">nevudila</span>
-              </span>
+              <Logo variant="monogram" className="cursor-pointer" />
             )}
           </div>
 
