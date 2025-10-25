@@ -15,7 +15,7 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-2xl font-bold text-[#F97316] font-space-grotesk"
+          className="text-2xl font-bold text-[#f1f5f9] font-space-grotesk"
         >
           ic
         </motion.span>
@@ -45,12 +45,13 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
         transition={{ duration: 0.6 }}
         className="relative text-2xl font-bold font-space-grotesk tracking-tight"
       >
+        <span className="text-[#E2E8F0]">ic</span>
         <span className="text-[#F97316] inline-block relative">
-          ic
-          {/* Subtle glow on "ic" */}
-          <span className="absolute inset-0 text-[#F97316] blur-[2px] opacity-50">ic</span>
+          ne
+          {/* Subtle glow on "ne" */}
+          <span className="absolute inset-0 text-[#F97316] blur-[2px] opacity-50">ne</span>
         </span>
-        <span className="text-[#E2E8F0]">nevudila</span>
+        <span className="text-[#E2E8F0]">vudila</span>
       </motion.span>
     </div>
   )
