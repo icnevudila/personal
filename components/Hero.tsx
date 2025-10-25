@@ -8,7 +8,7 @@ import { AnimatedText } from './AnimatedText'
 
 export function Hero() {
   const { t } = useLanguage()
-  const [heroImage, setHeroImage] = useState<string>('/hero-profile.jpg.png')
+  const [heroImage, setHeroImage] = useState<string>('https://res.cloudinary.com/dqiwrytdx/image/upload/hero/hero-profile-1761406363151.jpg')
   const [showUpload, setShowUpload] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
 
