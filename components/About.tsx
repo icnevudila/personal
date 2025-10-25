@@ -124,9 +124,9 @@ export function About() {
             <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full" />
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center px-4">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start px-4">
             {/* Content */}
-            <motion.div variants={itemVariants} className="space-y-4 md:space-y-6">
+            <motion.div variants={itemVariants} className="space-y-4 md:space-y-6 flex flex-col justify-center">
               <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                 {t.about.description1}
               </p>
@@ -196,11 +196,11 @@ export function About() {
             {/* Image/Visual */}
             <motion.div 
               variants={itemVariants}
-              className="relative self-center flex items-center"
+              className="relative flex items-center justify-center"
               onMouseEnter={() => setShowUpload(true)}
               onMouseLeave={() => setShowUpload(false)}
             >
-              <div className="relative w-full">
+              <div className="relative w-full max-w-lg">
                 {/* Placeholder for profile image */}
                 <div className="w-full h-64 md:h-96 bg-gray-800 rounded-2xl flex items-center justify-center relative overflow-hidden">
                   {/* Glow Effect */}

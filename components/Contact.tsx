@@ -168,27 +168,6 @@ export function Contact() {
                 ))}
               </div>
 
-              {/* Social Links */}
-              <motion.div variants={itemVariants} className="pt-8">
-                <h4 className="text-lg font-semibold text-white mb-4">
-                  Beni Takip Edin
-                </h4>
-                <div className="flex space-x-4">
-                  {['LinkedIn', 'Email', 'Portfolio'].map((social) => (
-                    <motion.a
-                      key={social}
-                      href={social === 'Email' ? 'mailto:alidduvenci@gmail.com' : '#'}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-500 transition-colors"
-                    >
-                      <span className="text-sm font-medium text-gray-300 hover:text-white">
-                        {social[0]}
-                      </span>
-                    </motion.a>
-                  ))}
-                </div>
-              </motion.div>
             </motion.div>
 
             {/* Contact Form */}

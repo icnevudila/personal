@@ -59,7 +59,6 @@ export function Footer() {
     'Kaynaklar': [
       { name: 'Blog', href: '#blog' },
       { name: 'Portföy', href: '#projects' },
-      { name: isAdmin ? 'Admin Çıkış' : 'Admin Giriş', href: '/admin' },
       { name: 'Hizmetler', href: '#contact' },
     ],
     'Bağlantılar': [

@@ -6,12 +6,10 @@ import { Projects } from '@/components/Projects'
 import { Blog } from '@/components/Blog'
 import { Contact } from '@/components/Contact'
 import { QuoteButton } from '@/components/QuoteButton'
-import { CustomCursor } from '@/components/CustomCursor'
 
 export default function Home() {
   return (
     <>
-      <CustomCursor />
       <Hero />
       <About />
       <Education />
