@@ -21,6 +21,11 @@ export const metadata: Metadata = {
   keywords: ['web designer', 'UI/UX designer', 'business analyst', 'software support', 'graphic design', 'portfolio', 'frontend developer'],
   authors: [{ name: 'icnevudila' }],
   creator: 'icnevudila',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
