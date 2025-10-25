@@ -15,14 +15,28 @@ interface Project {
   featured: boolean
 }
 
+interface BlogPost {
+  title: string
+  excerpt: string
+  date: string
+  readTime: string
+  slug: string
+  category: string
+  featured?: boolean
+  content?: string
+  image?: string
+}
+
 function AdminPanel() {
   const { user, signOut } = useAuth()
   const [projects, setProjects] = useState<Project[]>([])
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
   const [editingId, setEditingId] = useState<number | null>(null)
   const [formData, setFormData] = useState<Partial<Project>>({})
   const [showAddForm, setShowAddForm] = useState(false)
   const [localStorageCount, setLocalStorageCount] = useState(0)
   const [heroImage, setHeroImage] = useState<string>('')
+  const [activeTab, setActiveTab] = useState<'projects' | 'blog'>('projects')
 
   useEffect(() => {
     // Load projects from localStorage or fallback to default
@@ -40,6 +54,17 @@ function AdminPanel() {
           setLocalStorageCount(data.projects.length)
           localStorage.setItem('projects', JSON.stringify(data.projects))
         })
+    }
+    
+    // Load blog posts from localStorage
+    const savedBlogPosts = localStorage.getItem('blogPosts')
+    if (savedBlogPosts) {
+      try {
+        const parsed = JSON.parse(savedBlogPosts)
+        setBlogPosts(parsed)
+      } catch (e) {
+        console.error('Error parsing blog posts:', e)
+      }
     }
     
     // Load hero image
@@ -116,7 +141,7 @@ function AdminPanel() {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h1 className="text-4xl font-bold mb-2">Admin Panel</h1>
-              <p className="text-gray-400">Portföy projelerini düzenleyin</p>
+              <p className="text-gray-400">Portföy ve blog içeriklerini yönetin</p>
               {user && (
                 <p className="text-sm text-gray-500 mt-1">
                   Giriş yapan: {user.email}
@@ -140,18 +165,54 @@ function AdminPanel() {
             </div>
           </div>
           
+          {/* Tabs */}
+          <div className="flex gap-2 mb-6 border-b border-gray-700">
+            <button
+              onClick={() => setActiveTab('projects')}
+              className={`px-6 py-3 font-medium transition-colors border-b-2 ${
+                activeTab === 'projects'
+                  ? 'border-primary-500 text-primary-500'
+                  : 'border-transparent text-gray-400 hover:text-gray-300'
+              }`}
+            >
+              📁 Projeler ({projects.length})
+            </button>
+            <button
+              onClick={() => setActiveTab('blog')}
+              className={`px-6 py-3 font-medium transition-colors border-b-2 ${
+                activeTab === 'blog'
+                  ? 'border-primary-500 text-primary-500'
+                  : 'border-transparent text-gray-400 hover:text-gray-300'
+              }`}
+            >
+              📝 Blog ({blogPosts.length})
+            </button>
+          </div>
+
           {/* Stats */}
           <div className="grid grid-cols-3 gap-4 mt-6">
             <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-              <div className="text-2xl font-bold text-white">{projects.length || 0}</div>
-              <div className="text-sm text-gray-400">Toplam Proje</div>
+              <div className="text-2xl font-bold text-white">
+                {activeTab === 'projects' ? projects.length : blogPosts.length}
+              </div>
+              <div className="text-sm text-gray-400">
+                {activeTab === 'projects' ? 'Toplam Proje' : 'Toplam Blog'}
+              </div>
             </div>
             <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-              <div className="text-2xl font-bold text-primary-500">{projects.filter(p => p.featured).length || 0}</div>
+              <div className="text-2xl font-bold text-primary-500">
+                {activeTab === 'projects' 
+                  ? projects.filter(p => p.featured).length 
+                  : blogPosts.filter(p => p.featured).length}
+              </div>
               <div className="text-sm text-gray-400">Öne Çıkan</div>
             </div>
             <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-              <div className="text-2xl font-bold text-green-500">{projects.filter(p => p.image && p.image.startsWith('data:')).length || 0}</div>
+              <div className="text-2xl font-bold text-green-500">
+                {activeTab === 'projects'
+                  ? projects.filter(p => p.image && p.image.startsWith('data:')).length
+                  : blogPosts.filter(p => p.image && p.image.startsWith('data:')).length}
+              </div>
               <div className="text-sm text-gray-400">Özel Görsel</div>
             </div>
           </div>
@@ -174,13 +235,16 @@ function AdminPanel() {
           </div>
         </motion.div>
 
-        {/* Hero Image Upload */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="mb-8 card"
-        >
-          <h2 className="text-2xl font-semibold mb-4">Hero Profil Görseli</h2>
+        {/* Content based on active tab */}
+        {activeTab === 'projects' ? (
+          <>
+            {/* Hero Image Upload */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-8 card"
+            >
+              <h2 className="text-2xl font-semibold mb-4">Hero Profil Görseli</h2>
           
           <div className="space-y-4">
             {/* Preview */}
@@ -484,6 +548,54 @@ function AdminPanel() {
             </button>
           </div>
         </motion.div>
+          </>
+        ) : (
+          <>
+            {/* Blog Posts */}
+            <div className="space-y-4">
+              {blogPosts.length === 0 ? (
+                <div className="text-center py-12 bg-gray-800 rounded-lg border border-gray-700">
+                  <p className="text-gray-400">Henüz blog yazısı yok</p>
+                </div>
+              ) : (
+                blogPosts.map((post, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="card flex items-start gap-4"
+                  >
+                    {/* Image Preview */}
+                    {post.image && (
+                      <div className="w-24 h-24 bg-gray-800 rounded-lg overflow-hidden flex-shrink-0 border border-gray-700">
+                        <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                      </div>
+                    )}
+                    
+                    <div className="flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        <h3 className="text-xl font-semibold">{post.title}</h3>
+                        {post.featured && (
+                          <span className="px-2 py-1 bg-primary-500/20 text-primary-400 rounded text-xs font-medium">
+                            ⭐ Öne Çıkan
+                          </span>
+                        )}
+                        <span className="px-2 py-1 bg-gray-700 rounded text-xs">
+                          {post.category}
+                        </span>
+                      </div>
+                      <p className="text-gray-400 text-sm mb-2 line-clamp-2">{post.excerpt}</p>
+                      <div className="flex items-center gap-4 text-xs text-gray-500">
+                        <span>{new Date(post.date).toLocaleDateString('tr-TR')}</span>
+                        <span>{post.readTime}</span>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))
+              )}
+            </div>
+          </>
+        )}
       </div>
     </div>
   )
