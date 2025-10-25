@@ -18,11 +18,11 @@ export function QuoteButton() {
       transition={{ delay: 1, duration: 0.5 }}
       onClick={scrollToContact}
       className="fixed bottom-6 right-6 z-40 bg-[#F97316]/80 hover:bg-[#F97316] backdrop-blur-sm text-white font-semibold px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2 group"
-      aria-label="Teklif Al"
+      aria-label="Mesaj Gönder"
     >
       <EnvelopeIcon className="w-5 h-5" />
-      <span className="hidden sm:inline">Teklif Al</span>
-      <span className="sm:hidden">Fiyat</span>
+      <span className="hidden sm:inline">Mesaj Gönder</span>
+      <span className="sm:hidden">Mesaj</span>
     </motion.button>
   )
 }
