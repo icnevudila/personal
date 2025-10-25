@@ -8,6 +8,36 @@
       "slug": "modern-araclar-tasarim-sureci",
       "category": "Design",
       "featured": true,
+      "image": "https://res.cloudinary.com/dqiwrytdx/image/upload/v1/blog/blog-modern-araclar-tasarim-sureci-1761406325897.jpg"
+    },
+    {
+      "title": "Minimalizm ve Duygusal Tasarım",
+      "excerpt": "Sade arayüzler tasarlarken kullanıcıların duygusal bağ kurabilmesi için dikkat edilmesi gerekenleri öğrenin.",
+      "date": "2024-01-10",
+      "readTime": "8 dk okuma",
+      "slug": "minimalizm-duygusal-tasarim",
+      "category": "Design",
+      "featured": true,
+      "image": ""
+    },
+    {
+      "title": "Renk Psikolojisi ve Web Tasarımı",
+      "excerpt": "Renklerin kullanıcı davranışları üzerindeki etkilerini ve web tasarımında nasıl kullanılacağını keşfedin.",
+      "date": "2024-01-05",
+      "readTime": "6 dk okuma",
+      "slug": "renk-psikolojisi-web-tasarimi",
+      "category": "Design",
+      "featured": false,
+      "image": ""
+    },
+    {
+      "title": "Responsive Tasarımın Modern Yaklaşımları",
+      "excerpt": "Mobil ve masaüstü cihazlarda kusursuz görünen tasarımlar için Tailwind CSS ve modern teknikleri keşfedin.",
+      "date": "2024-01-01",
+      "readTime": "10 dk okuma",
+      "slug": "responsive-tasarim-modern-yaklasimlar",
+      "category": "Development",
+      "featured": false,
       "image": ""
     }
   ]
