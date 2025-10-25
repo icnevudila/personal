@@ -13,13 +13,15 @@
   }
   
   body {
-    @apply bg-slate-900 text-[#94A3B8] font-manrope;
+    @apply bg-slate-900 text-[#94A3B8];
+    font-family: 'Manrope', sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
     line-height: 1.7;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-space-grotesk text-[#f1f5f9] font-semibold;
+    @apply text-[#f1f5f9] font-semibold;
+    font-family: 'Space Grotesk', sans-serif;
     letter-spacing: -0.02em;
   }
 

@@ -214,7 +214,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 flex justify-center lg:justify-start font-space-grotesk"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 flex justify-center lg:justify-start"
           >
             <span className="text-[#f1f5f9]">ic<span className="text-[#F97316]">ne</span>vudila</span>
           </motion.h1>
@@ -224,7 +224,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-2xl sm:text-3xl md:text-4xl text-[#f1f5f9] mb-8 flex justify-center lg:justify-start font-space-grotesk font-medium"
+            className="text-2xl sm:text-3xl md:text-4xl text-[#f1f5f9] mb-8 flex justify-center lg:justify-start font-medium"
           >
             {t.hero.title}
           </motion.h2>
