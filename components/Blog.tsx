@@ -7,6 +7,7 @@ import { CalendarIcon, ClockIcon, ArrowRightIcon, PencilIcon, TrashIcon, PlusIco
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
+import { uploadImageToSupabase } from '@/lib/supabase-storage'
 
 interface BlogPost {
   id?: number
@@ -371,16 +372,36 @@ Responsive tasarım sadece teknik bir gereklilik değil, kullanıcı deneyiminin
                             <input
                               type="file"
                               accept="image/*"
-                              onChange={(e) => {
+                              onChange={async (e) => {
                                 const file = e.target.files?.[0]
                                 if (file) {
                                   const reader = new FileReader()
-                                  reader.onloadend = () => {
+                                  reader.onloadend = async () => {
                                     const base64String = reader.result as string
-                                    const updatedPosts = [...blogPosts]
-                                    updatedPosts[blogPosts.indexOf(post)].image = base64String
-                                    setBlogPosts(updatedPosts)
-                                    localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
+                                    
+                                    console.log('📤 Uploading blog image to Supabase...')
+                                    const result = await uploadImageToSupabase(
+                                      base64String,
+                                      'blog',
+                                      `blog-${post.slug}-${Date.now()}`
+                                    )
+                                    
+                                    console.log('📥 Upload result:', result)
+                                    
+                                    if (result.success && result.url) {
+                                      const updatedPosts = [...blogPosts]
+                                      updatedPosts[blogPosts.indexOf(post)].image = result.url
+                                      setBlogPosts(updatedPosts)
+                                      localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
+                                      alert('Görsel Supabase\'e yüklendi ve herkese görünecek!')
+                                    } else {
+                                      console.error('❌ Upload failed:', result.error)
+                                      const updatedPosts = [...blogPosts]
+                                      updatedPosts[blogPosts.indexOf(post)].image = base64String
+                                      setBlogPosts(updatedPosts)
+                                      localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
+                                      alert('Görsel kaydedildi (sadece sizde görünecek)')
+                                    }
                                   }
                                   reader.readAsDataURL(file)
                                 }
