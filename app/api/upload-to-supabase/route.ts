@@ -3,9 +3,16 @@ import { supabase, isSupabaseConfigured } from '@/lib/supabase'
 
 export async function POST(request: Request) {
   try {
+    console.log('🔍 Checking Supabase configuration...')
+    console.log('🔑 NEXT_PUBLIC_SUPABASE_URL:', process.env.NEXT_PUBLIC_SUPABASE_URL ? 'Set' : 'Missing')
+    console.log('🔑 NEXT_PUBLIC_SUPABASE_ANON_KEY:', process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? 'Set' : 'Missing')
+    
     if (!isSupabaseConfigured()) {
+      console.error('❌ Supabase is not configured!')
       return NextResponse.json({ error: 'Supabase not configured' }, { status: 503 })
     }
+    
+    console.log('✅ Supabase is configured')
 
     const { imageData, folder, fileName } = await request.json()
     
