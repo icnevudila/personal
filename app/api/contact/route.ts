@@ -5,11 +5,14 @@ export async function POST(request: Request) {
   try {
     const { name, email, subject, message } = await request.json()
 
+    console.log('Contact form submission received:', { name, email, subject })
+    console.log('RESEND_API_KEY exists:', !!process.env.RESEND_API_KEY)
+
     // Resend API key kontrolü
     if (!process.env.RESEND_API_KEY) {
-      console.error('RESEND_API_KEY is not configured')
+      console.error('RESEND_API_KEY is not configured in environment variables')
       return NextResponse.json(
-        { success: false, error: 'Email service is not configured' },
+        { success: false, error: 'Email service is not configured. Please add RESEND_API_KEY to Vercel environment variables.' },
         { status: 500 }
       )
     }
