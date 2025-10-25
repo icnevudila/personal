@@ -100,7 +100,7 @@ export function Footer() {
                   <AnimatedText text="icnevudila" />
                 </h3>
                 <p className="text-gray-400 mb-6 leading-relaxed">
-                  Sade ve kullanıcı odaklı web tasarımları yapıyorum.
+                  Tasarımlar, AI ve insan işbirliğiyle.
                 </p>
                 <motion.button
                   onClick={scrollToTop}
