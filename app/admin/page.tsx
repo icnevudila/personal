@@ -6,6 +6,7 @@ import { PlusIcon, TrashIcon, CheckIcon, XMarkIcon, PhotoIcon, ArrowRightOnRecta
 import { AuthGuard } from './AuthGuard'
 import { useAuth } from '@/contexts/AuthContext'
 import { uploadImageToCloudinary } from '@/lib/cloudinary-storage'
+import { saveBlogPost } from '@/lib/blog-database'
 
 interface Project {
   id: number
@@ -949,6 +950,10 @@ function AdminPanel() {
                                     updatedPosts[index].image = result.url
                                     setBlogPosts(updatedPosts)
                                     localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
+                                    
+                                    // Save to Supabase Database (everyone can see)
+                                    await saveBlogPost(updatedPosts[index])
+                                    
                                     alert('Görsel Cloudinary\'e yüklendi ve herkese görünecek!')
                                   } else {
                                     console.error('❌ Upload failed:', result.error)
