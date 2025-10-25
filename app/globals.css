@@ -13,16 +13,17 @@
   }
   
   body {
-    @apply bg-slate-900 text-[#94A3B8];
-    font-family: 'Manrope', sans-serif;
+    @apply bg-[#0f172a] text-[#94A3B8];
+    font-family: 'Inter', sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
-    line-height: 1.7;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply text-[#f1f5f9] font-semibold;
+    @apply text-[#F1F5F9] font-semibold;
     font-family: 'Space Grotesk', sans-serif;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.02em;
   }
 
   html {
@@ -54,7 +55,7 @@
   }
 
   .section-padding {
-    @apply py-24 sm:py-32 lg:py-40;
+    @apply py-20 sm:py-24 lg:py-28;
   }
 
   .gradient-text {
