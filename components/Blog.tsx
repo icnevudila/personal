@@ -35,8 +35,8 @@ export function Blog() {
   const [showPasswordModal, setShowPasswordModal] = useState(false)
   const [password, setPassword] = useState('')
 
-  // Admin password - you can change this or move to environment variable
-  const ADMIN_PASSWORD = 'icnevudila2024'
+  // Admin password from environment variable
+  const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'icnevudila2024'
 
   useEffect(() => {
     const checkAdminMode = () => {

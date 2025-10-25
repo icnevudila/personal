@@ -26,8 +26,11 @@ export default function AdminLoginPage() {
     setError('')
     setIsLoading(true)
 
-    // Hardcoded admin credentials (TEMPORARY - Replace with real auth later)
-    if (email === 'admin@icnevudila.xyz' && password === 'admin123') {
+    // Admin credentials from environment variables
+    const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@icnevudila.xyz'
+    const adminPassword = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'admin123'
+    
+    if (email === adminEmail && password === adminPassword) {
       localStorage.setItem('adminMode', 'true')
       localStorage.setItem('adminEmail', email)
       // Use window.location for better compatibility

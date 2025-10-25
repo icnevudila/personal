@@ -10,7 +10,7 @@ export function Footer() {
   const [showPasswordModal, setShowPasswordModal] = useState(false)
   const [password, setPassword] = useState('')
   const [isAdmin, setIsAdmin] = useState(false)
-  const ADMIN_PASSWORD = 'icnevudila2024'
+  const ADMIN_PASSWORD = process.env.NEXT_PUBLIC_ADMIN_PASSWORD || 'icnevudila2024'
 
   // Check admin mode
   useEffect(() => {
