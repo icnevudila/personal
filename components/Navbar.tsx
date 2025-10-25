@@ -51,6 +51,14 @@ export function Navbar() {
 
   const handleNavClick = (href: string) => {
     setIsOpen(false)
+    
+    // Blog için ayrı sayfaya git
+    if (href === '#blog') {
+      window.location.href = '/blog'
+      return
+    }
+    
+    // Diğer bölümler için smooth scroll
     const element = document.querySelector(href)
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })

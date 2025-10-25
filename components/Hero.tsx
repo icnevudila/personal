@@ -76,10 +76,7 @@ export function Hero() {
   }
 
   const scrollToBlog = () => {
-    const element = document.querySelector('#blog')
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
-    }
+    window.location.href = '/blog'
   }
 
   return (
