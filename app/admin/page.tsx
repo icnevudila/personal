@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { PlusIcon, TrashIcon, CheckIcon, XMarkIcon, PhotoIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline'
 import { AuthGuard } from './AuthGuard'
 import { useAuth } from '@/contexts/AuthContext'
-import { uploadImageToSupabase } from '@/lib/supabase-storage'
+import { uploadImageToCloudinary } from '@/lib/cloudinary-storage'
 
 interface Project {
   id: number
@@ -312,8 +312,8 @@ function AdminPanel() {
                       reader.onloadend = async () => {
                         const imageData = reader.result as string
                         
-                        // Upload to Supabase
-                        const result = await uploadImageToSupabase(
+                        // Upload to Cloudinary
+                        const result = await uploadImageToCloudinary(
                           imageData,
                           'logo',
                           `site-logo-${Date.now()}`
@@ -322,7 +322,7 @@ function AdminPanel() {
                         if (result.success && result.url) {
                           setSiteLogo(result.url)
                           localStorage.setItem('siteLogo', result.url)
-                          alert('Logo Supabase\'e yüklendi ve herkese görünecek!')
+                          alert('Logo Cloudinary\'e yüklendi ve herkese görünecek!')
                         } else {
                           // Fallback to localStorage
                           setSiteLogo(imageData)
@@ -391,8 +391,8 @@ function AdminPanel() {
                       reader.onloadend = async () => {
                         const imageData = reader.result as string
                         
-                        // Upload to Supabase
-                        const result = await uploadImageToSupabase(
+                        // Upload to Cloudinary
+                        const result = await uploadImageToCloudinary(
                           imageData,
                           'logo',
                           `site-favicon-${Date.now()}`
@@ -401,7 +401,7 @@ function AdminPanel() {
                         if (result.success && result.url) {
                           setSiteFavicon(result.url)
                           localStorage.setItem('siteFavicon', result.url)
-                          alert('Favicon Supabase\'e yüklendi ve herkese görünecek!')
+                          alert('Favicon Cloudinary\'e yüklendi ve herkese görünecek!')
                         } else {
                           // Fallback to localStorage
                           setSiteFavicon(imageData)
@@ -470,8 +470,8 @@ function AdminPanel() {
                   reader.onloadend = async () => {
                     const imageData = reader.result as string
                     
-                    // Upload to Supabase
-                    const result = await uploadImageToSupabase(
+                    // Upload to Cloudinary
+                    const result = await uploadImageToCloudinary(
                       imageData,
                       'hero',
                       `hero-profile-${Date.now()}`
@@ -480,7 +480,7 @@ function AdminPanel() {
                     if (result.success && result.url) {
                       setHeroImage(result.url)
                       localStorage.setItem('heroImage', result.url)
-                      alert('Hero görseli Supabase\'e yüklendi ve herkese görünecek!')
+                      alert('Hero görseli Cloudinary\'e yüklendi ve herkese görünecek!')
                     } else {
                       // Fallback to localStorage
                       setHeroImage(imageData)
@@ -549,8 +549,8 @@ function AdminPanel() {
                   reader.onloadend = async () => {
                     const imageData = reader.result as string
                     
-                    console.log('📤 Uploading about image to Supabase...')
-                    const result = await uploadImageToSupabase(
+                    console.log('📤 Uploading about image to Cloudinary...')
+                    const result = await uploadImageToCloudinary(
                       imageData,
                       'hero',
                       `about-profile-${Date.now()}`
@@ -561,7 +561,7 @@ function AdminPanel() {
                     if (result.success && result.url) {
                       setAboutImage(result.url)
                       localStorage.setItem('aboutImage', result.url)
-                      alert('About görseli Supabase\'e yüklendi ve herkese görünecek!')
+                      alert('About görseli Cloudinary\'e yüklendi ve herkese görünecek!')
                     } else {
                       console.error('❌ Upload failed:', result.error)
                       setAboutImage(imageData)
@@ -804,8 +804,8 @@ function AdminPanel() {
                           reader.onloadend = async () => {
                             const base64String = reader.result as string
                             
-                            // Upload to Supabase
-                            const result = await uploadImageToSupabase(
+                            // Upload to Cloudinary
+                            const result = await uploadImageToCloudinary(
                               base64String,
                               'projects',
                               `project-${project.id}-${Date.now()}`
@@ -816,7 +816,7 @@ function AdminPanel() {
                                 p.id === project.id ? { ...p, image: result.url! } : p
                               )
                               saveProjects(updatedProjects)
-                              alert('Görsel Supabase\'e yüklendi ve herkese görünecek!')
+                              alert('Görsel Cloudinary\'e yüklendi ve herkese görünecek!')
                             } else {
                               // Fallback to localStorage
                               const updatedProjects = projects.map(p => 
@@ -934,9 +934,9 @@ function AdminPanel() {
                                 reader.onloadend = async () => {
                                   const base64String = reader.result as string
                                   
-                                  // Upload to Supabase
-                                  console.log('📤 Uploading blog image to Supabase...')
-                                  const result = await uploadImageToSupabase(
+                                  // Upload to Cloudinary
+                                  console.log('📤 Uploading blog image to Cloudinary...')
+                                  const result = await uploadImageToCloudinary(
                                     base64String,
                                     'blog',
                                     `blog-${post.slug}-${Date.now()}`
@@ -949,7 +949,7 @@ function AdminPanel() {
                                     updatedPosts[index].image = result.url
                                     setBlogPosts(updatedPosts)
                                     localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
-                                    alert('Görsel Supabase\'e yüklendi ve herkese görünecek!')
+                                    alert('Görsel Cloudinary\'e yüklendi ve herkese görünecek!')
                                   } else {
                                     console.error('❌ Upload failed:', result.error)
                                     // Fallback to localStorage
