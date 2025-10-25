@@ -1,0 +1,86 @@
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import { Navbar } from '@/components/Navbar'
+import { Footer } from '@/components/Footer'
+import StarRainBackground from '@/components/StarRainBackground'
+import { LanguageProvider } from '@/contexts/LanguageContext'
+
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+
+export const metadata: Metadata = {
+  title: {
+    default: 'icnevudila - AI-Assisted Web Designer',
+    template: '%s | icnevudila'
+  },
+  description: 'Designing calm, minimal, AI-inspired digital experiences. Specializing in web design, UI/UX, and AI-assisted creative workflows.',
+  keywords: ['web designer', 'UI/UX designer', 'business analyst', 'software support', 'graphic design', 'portfolio', 'frontend developer'],
+  authors: [{ name: 'icnevudila' }],
+  creator: 'icnevudila',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://icnevudila.com',
+    title: 'icnevudila - AI-Assisted Web Designer',
+    description: 'Designing calm, minimal, AI-inspired digital experiences. Specializing in web design, UI/UX, and AI-assisted creative workflows.',
+    siteName: 'icnevudila Portfolio',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'icnevudila - AI-Assisted Web Designer',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'icnevudila - AI-Assisted Web Designer',
+    description: 'Designing calm, minimal, AI-inspired digital experiences. Specializing in web design, UI/UX, and AI-assisted creative workflows.',
+    images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code',
+  },
+}
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  return (
+    <html lang="en" className={inter.variable}>
+      <body className={`${inter.className} antialiased`}>
+        <LanguageProvider>
+          <div className="min-h-screen bg-slate-900 relative">
+          {/* Global Star Rain Background */}
+          <StarRainBackground />
+            
+            <Navbar />
+            <main className="relative">
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </LanguageProvider>
+      </body>
+    </html>
+  )
+}
+

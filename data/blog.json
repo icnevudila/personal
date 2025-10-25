@@ -1,0 +1,41 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "Gürültülü Dünyada Tasarım Sadelği",
+      "slug": "gurultulu-dunyada-tasarim-sadeligi",
+      "excerpt": "Minimal tasarımın dijital gürültüyü nasıl kesip anlamlı bağlantılar kurduğunu keşfediyorum.",
+      "content": "Bugünün dijital manzarasında, sadelik en üst düzey sofistikasyondur. Kullanıcılar bilgi bombardımanına uğruyor ve temiz, odaklanmış tasarım bir sığınak haline geliyor.\n\nMinimalizm öğeleri kaldırmakla ilgili değil—sadece önemli olanları tutmakla ilgili. Her piksel bir amaca hizmet etmeli, her etkileşim kasıtlı hissettirmeli.\n\nAI araçları daha hızlı iterasyon yapmama ve daha fazla olasılık keşfetmeme yardımcı oluyor, ancak nihai karar her zaman insan zevkinden geliyor.",
+      "date": "2024-10-25",
+      "readTime": "5 dk okuma",
+      "category": "Tasarım",
+      "featured": true,
+      "image": "/portfolio/mindfolio_blog.png"
+    },
+    {
+      "id": 2,
+      "title": "Yaratıcılığı Hızlandırmak İçin AI Kullanımı",
+      "slug": "yaraticiligi-hizlandirmak-icin-ai",
+      "excerpt": "ChatGPT ve Midjourney gibi AI araçlarının insan sezgisini yerinden etmeden yaratıcı süreci nasıl geliştirdiği.",
+      "content": "AI yaratıcılığı değiştirmez—onu güçlendirir. ChatGPT gibi araçlar fikirlerimi ifade etmeme, Midjourney kavramları görselleştirmeme ve GitHub Copilot uygulamayı hızlandırmama yardımcı oluyor.\n\nAnahtar, AI'yı bir değiştirme değil, işbirlikçi olarak kullanmak. Rutin işleri halleder, benim duygusal ve estetik kararlara odaklanmama izin verir.\n\nİnsan zevki ile AI verimliliği arasındaki bu ortaklık yaratıcı işin geleceği.",
+      "date": "2024-10-20",
+      "readTime": "6 dk okuma",
+      "category": "AI",
+      "featured": true,
+      "image": "/portfolio/nova_finance.png"
+    },
+    {
+      "id": 3,
+      "title": "Renk Seçimleri Duyguları Nasıl Şekillendirir",
+      "slug": "renk-secimleri-duygulari-nasil-sekillendirir",
+      "excerpt": "Renk seçiminin arkasındaki psikolojiyi ve kullanıcı deneyimine etkisini anlamak.",
+      "content": "Renk görünür hale gelmiş duygudur. Sıcak turuncu (#F97316) sakin gri tonlarla birleşince enerji ile dinginlik arasında bir denge yaratır.\n\nHer renk kararı tasarımın duygusal hedefine hizmet etmeli. Turuncu dikkat çeker, gri istikrar sağlar ve birlikte modern, erişilebilir bir estetik oluştururlar.\n\nRenk psikolojisi sadece teori değil—kullanıcıların nasıl hissettiğini ve çalışmanızla nasıl etkileşime girdiğini dönüştüren pratik bir büyüdür.",
+      "date": "2024-10-15",
+      "readTime": "4 dk okuma",
+      "category": "Tasarım",
+      "featured": false,
+      "image": "/portfolio/luma_studio.png"
+    }
+  ]
+}
+
