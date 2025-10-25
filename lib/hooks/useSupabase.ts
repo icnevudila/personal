@@ -22,10 +22,6 @@ export function useSupabaseData<T>(
     async function fetchData() {
       try {
         setLoading(true)
-        if (!supabase) {
-          throw new Error('Supabase is not configured')
-        }
-        
         let query = supabase.from(table).select(options?.select || '*')
 
         if (options?.filter) {
@@ -61,7 +57,7 @@ export function useSupabaseInsert<T>(table: string) {
   const [error, setError] = useState<Error | null>(null)
 
   const insert = async (data: Partial<T>) => {
-    if (!isSupabaseConfigured() || !supabase) {
+    if (!isSupabaseConfigured()) {
       throw new Error('Supabase is not configured')
     }
 
@@ -90,7 +86,7 @@ export function useSupabaseUpdate<T>(table: string) {
   const [error, setError] = useState<Error | null>(null)
 
   const update = async (id: string | number, data: Partial<T>) => {
-    if (!isSupabaseConfigured() || !supabase) {
+    if (!isSupabaseConfigured()) {
       throw new Error('Supabase is not configured')
     }
 
@@ -120,7 +116,7 @@ export function useSupabaseDelete(table: string) {
   const [error, setError] = useState<Error | null>(null)
 
   const deleteRecord = async (id: string | number) => {
-    if (!isSupabaseConfigured() || !supabase) {
+    if (!isSupabaseConfigured()) {
       throw new Error('Supabase is not configured')
     }
 
