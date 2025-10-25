@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { PlusIcon, TrashIcon, CheckIcon, XMarkIcon, PhotoIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline'
 import { AuthGuard } from './AuthGuard'
 import { useAuth } from '@/contexts/AuthContext'
+import { uploadImageToSupabase } from '@/lib/supabase-storage'
 
 interface Project {
   id: number
@@ -262,15 +263,30 @@ function AdminPanel() {
             <input
               type="file"
               accept="image/*"
-              onChange={(e) => {
+              onChange={async (e) => {
                 const file = e.target.files?.[0]
                 if (file) {
                   const reader = new FileReader()
-                  reader.onloadend = () => {
+                  reader.onloadend = async () => {
                     const imageData = reader.result as string
-                    setHeroImage(imageData)
-                    localStorage.setItem('heroImage', imageData)
-                    alert('Hero görseli başarıyla kaydedildi!')
+                    
+                    // Upload to Supabase
+                    const result = await uploadImageToSupabase(
+                      imageData,
+                      'hero',
+                      `hero-profile-${Date.now()}`
+                    )
+                    
+                    if (result.success && result.url) {
+                      setHeroImage(result.url)
+                      localStorage.setItem('heroImage', result.url)
+                      alert('Hero görseli Supabase\'e yüklendi ve herkese görünecek!')
+                    } else {
+                      // Fallback to localStorage
+                      setHeroImage(imageData)
+                      localStorage.setItem('heroImage', imageData)
+                      alert('Hero görseli kaydedildi (sadece sizde görünecek)')
+                    }
                   }
                   reader.readAsDataURL(file)
                 }
@@ -476,7 +492,7 @@ function AdminPanel() {
               {/* Image Preview */}
               <div className="w-32 h-32 bg-gray-800 rounded-lg overflow-hidden flex-shrink-0 border border-gray-700 relative group">
                 {project.image ? (
-                  project.image.startsWith('data:') ? (
+                  (project.image.startsWith('data:') || project.image.startsWith('http')) ? (
                     <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-gray-500 bg-gray-900">
@@ -498,17 +514,34 @@ function AdminPanel() {
                     <input
                       type="file"
                       accept="image/*"
-                      onChange={(e) => {
+                      onChange={async (e) => {
                         const file = e.target.files?.[0]
                         if (file) {
                           const reader = new FileReader()
-                          reader.onloadend = () => {
+                          reader.onloadend = async () => {
                             const base64String = reader.result as string
-                            const updatedProjects = projects.map(p => 
-                              p.id === project.id ? { ...p, image: base64String } : p
+                            
+                            // Upload to Supabase
+                            const result = await uploadImageToSupabase(
+                              base64String,
+                              'projects',
+                              `project-${project.id}-${Date.now()}`
                             )
-                            saveProjects(updatedProjects)
-                            alert('Görsel yüklendi!')
+                            
+                            if (result.success && result.url) {
+                              const updatedProjects = projects.map(p => 
+                                p.id === project.id ? { ...p, image: result.url } : p
+                              )
+                              saveProjects(updatedProjects)
+                              alert('Görsel Supabase\'e yüklendi ve herkese görünecek!')
+                            } else {
+                              // Fallback to localStorage
+                              const updatedProjects = projects.map(p => 
+                                p.id === project.id ? { ...p, image: base64String } : p
+                              )
+                              saveProjects(updatedProjects)
+                              alert('Görsel kaydedildi (sadece sizde görünecek)')
+                            }
                           }
                           reader.readAsDataURL(file)
                         }
@@ -516,7 +549,7 @@ function AdminPanel() {
                       className="hidden"
                     />
                     <div className="px-3 py-1.5 bg-primary-500 hover:bg-primary-600 rounded text-xs text-white font-medium">
-                      {project.image && project.image.startsWith('data:') ? 'Değiştir' : 'Yükle'}
+                      {project.image ? 'Değiştir' : 'Yükle'}
                     </div>
                   </label>
                 </div>
@@ -611,17 +644,34 @@ function AdminPanel() {
                           <input
                             type="file"
                             accept="image/*"
-                            onChange={(e) => {
+                            onChange={async (e) => {
                               const file = e.target.files?.[0]
                               if (file) {
                                 const reader = new FileReader()
-                                reader.onloadend = () => {
+                                reader.onloadend = async () => {
                                   const base64String = reader.result as string
-                                  const updatedPosts = [...blogPosts]
-                                  updatedPosts[index].image = base64String
-                                  setBlogPosts(updatedPosts)
-                                  localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
-                                  alert('Görsel yüklendi!')
+                                  
+                                  // Upload to Supabase
+                                  const result = await uploadImageToSupabase(
+                                    base64String,
+                                    'blog',
+                                    `blog-${post.slug}-${Date.now()}`
+                                  )
+                                  
+                                  if (result.success && result.url) {
+                                    const updatedPosts = [...blogPosts]
+                                    updatedPosts[index].image = result.url
+                                    setBlogPosts(updatedPosts)
+                                    localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
+                                    alert('Görsel Supabase\'e yüklendi ve herkese görünecek!')
+                                  } else {
+                                    // Fallback to localStorage
+                                    const updatedPosts = [...blogPosts]
+                                    updatedPosts[index].image = base64String
+                                    setBlogPosts(updatedPosts)
+                                    localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
+                                    alert('Görsel kaydedildi (sadece sizde görünecek)')
+                                  }
                                 }
                                 reader.readAsDataURL(file)
                               }
