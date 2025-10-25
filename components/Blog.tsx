@@ -73,7 +73,7 @@ export function Blog() {
       slug: 'modern-araclar-tasarim-sureci',
       category: 'Design',
       featured: true,
-      image: '/hero-profile.jpg.png',
+      image: 'https://res.cloudinary.com/dqiwrytdx/image/upload/v1/blog/blog-modern-araclar-tasarim-sureci-1761406325897.jpg',
       content: `Web tasarımında modern araçlar giderek daha önemli bir rol oynuyor. ChatGPT, Midjourney ve Leonardo AI gibi araçlar sayesinde tasarım süreçlerini hızlandırabilir ve yaratıcılığımızı destekleyebiliriz.
 
 ## Modern Araçların Rolü
@@ -100,7 +100,7 @@ AI, tasarımcının yerini almıyor, aksine güçlendiriyor. Bu araçları doğr
       slug: 'minimalizm-duygusal-tasarim',
       category: 'Design',
       featured: true,
-      image: '/hero-profile.jpg.png',
+      image: 'https://res.cloudinary.com/dqiwrytdx/image/upload/v1/blog/blog-modern-araclar-tasarim-sureci-1761406325897.jpg',
       content: `Minimalist tasarım sadece boş alanlar ve az öğe demek değil. Kullanıcının duygusal tepkilerini düşünerek tasarlanmış bir yaklaşım.
 
 ## Minimalizmin Psikolojisi
@@ -127,7 +127,7 @@ Basitlik ve duygu arasında denge kurmak önemli. Her öğenin bir amacı olmal�
       slug: 'renk-psikolojisi-web-tasarim',
       category: 'Design',
       featured: false,
-      image: '/hero-profile.jpg.png',
+      image: 'https://res.cloudinary.com/dqiwrytdx/image/upload/v1/blog/blog-modern-araclar-tasarim-sureci-1761406325897.jpg',
       content: `Renkler, web sitelerinde kullanıcıların ilk izlenimini şekillendiren en güçlü araçlardan biridir. Turuncu vurgular güven ve sıcaklık hissi verirken, gri tonlar profesyonellik ve istikrar iletir.
 
 ## Renklerin Duygusal Etkileri
@@ -157,7 +157,7 @@ Renk seçimi rastgele olmamalı. Her rengin bir amacı ve mesajı olmalı.`,
       slug: 'responsive-tasarim-modern-yaklasimlar',
       category: 'Development',
       featured: false,
-      image: '/hero-profile.jpg.png',
+      image: 'https://res.cloudinary.com/dqiwrytdx/image/upload/v1/blog/blog-modern-araclar-tasarim-sureci-1761406325897.jpg',
       content: `Responsive tasarım artık bir lüks değil, gereklilik. Kullanıcılar farklı cihazlardan web sitelerinize erişiyor ve her birinde mükemmel bir deneyim bekliyorlar.
 
 ## Mobile-First Yaklaşım
