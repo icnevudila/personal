@@ -16,16 +16,18 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Cloudinary not configured' }, { status: 503 })
     }
     
-    // Upload to Cloudinary using unsigned upload
+    // Upload to Cloudinary using unsigned upload with base64
     const uploadFormData = new FormData()
-    uploadFormData.append('file', imageData)
-    uploadFormData.append('upload_preset', 'unsigned_portfolio') // Change this to your unsigned preset
+    uploadFormData.append('file', imageData) // Cloudinary accepts base64 directly
+    uploadFormData.append('upload_preset', 'unsigned_portfolio')
     uploadFormData.append('folder', folder)
     if (fileName) {
       uploadFormData.append('public_id', fileName)
     }
     
     console.log('📤 Uploading to Cloudinary...')
+    console.log('📁 Folder:', folder)
+    console.log('📝 FileName:', fileName)
     
     const cloudinaryResponse = await fetch(
       `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
