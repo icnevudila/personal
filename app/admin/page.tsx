@@ -809,7 +809,7 @@ function AdminPanel() {
                             
                             if (result.success && result.url) {
                               const updatedProjects = projects.map(p => 
-                                p.id === project.id ? { ...p, image: result.url } : p
+                                p.id === project.id ? { ...p, image: result.url! } : p
                               )
                               saveProjects(updatedProjects)
                               alert('Görsel Supabase\'e yüklendi ve herkese görünecek!')
