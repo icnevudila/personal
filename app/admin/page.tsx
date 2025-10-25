@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { PlusIcon, TrashIcon, CheckIcon, XMarkIcon, PhotoIcon } from '@heroicons/react/24/outline'
+import { PlusIcon, TrashIcon, CheckIcon, XMarkIcon, PhotoIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline'
+import { AuthGuard } from './AuthGuard'
+import { useAuth } from '@/contexts/AuthContext'
 
 interface Project {
   id: number
@@ -13,7 +15,8 @@ interface Project {
   featured: boolean
 }
 
-export default function AdminPage() {
+function AdminPanel() {
+  const { user, signOut } = useAuth()
   const [projects, setProjects] = useState<Project[]>([])
   const [editingId, setEditingId] = useState<number | null>(null)
   const [formData, setFormData] = useState<Partial<Project>>({})
@@ -114,13 +117,27 @@ export default function AdminPage() {
             <div>
               <h1 className="text-4xl font-bold mb-2">Admin Panel</h1>
               <p className="text-gray-400">Portföy projelerini düzenleyin</p>
+              {user && (
+                <p className="text-sm text-gray-500 mt-1">
+                  Giriş yapan: {user.email}
+                </p>
+              )}
             </div>
-            <a
-              href="/"
-              className="px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors text-sm font-medium flex items-center gap-2"
-            >
-              ← Ana Sayfaya Dön
-            </a>
+            <div className="flex items-center gap-2">
+              <a
+                href="/"
+                className="px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors text-sm font-medium flex items-center gap-2"
+              >
+                ← Ana Sayfaya Dön
+              </a>
+              <button
+                onClick={signOut}
+                className="px-4 py-2 bg-red-500 hover:bg-red-600 rounded-lg transition-colors text-sm font-medium flex items-center gap-2"
+              >
+                <ArrowRightOnRectangleIcon className="w-4 h-4" />
+                Çıkış Yap
+              </button>
+            </div>
           </div>
           
           {/* Stats */}
@@ -469,6 +486,14 @@ export default function AdminPage() {
         </motion.div>
       </div>
     </div>
+  )
+}
+
+export default function AdminPage() {
+  return (
+    <AuthGuard>
+      <AdminPanel />
+    </AuthGuard>
   )
 }
 

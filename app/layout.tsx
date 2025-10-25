@@ -5,6 +5,7 @@ import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import StarRainBackground from '@/components/StarRainBackground'
 import { LanguageProvider } from '@/contexts/LanguageContext'
+import { AuthProvider } from '@/contexts/AuthContext'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -72,20 +73,29 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className={`${inter.className} antialiased`}>
-        <LanguageProvider>
-          <div className="min-h-screen bg-slate-900 relative">
-          {/* Global Star Rain Background */}
-          <StarRainBackground />
-            
-            <Navbar />
-            <main className="relative">
-              {children}
-            </main>
-            <Footer />
-          </div>
-        </LanguageProvider>
+        <AuthProvider>
+          <LanguageProvider>
+            <div className="min-h-screen bg-slate-900 relative">
+            {/* Global Star Rain Background */}
+            <StarRainBackground />
+              
+              <AdminWrapper>
+                <Navbar />
+                <main className="relative">
+                  {children}
+                </main>
+                <Footer />
+              </AdminWrapper>
+            </div>
+          </LanguageProvider>
+        </AuthProvider>
       </body>
     </html>
   )
+}
+
+// Wrapper to conditionally render Navbar and Footer
+function AdminWrapper({ children }: { children: React.ReactNode }) {
+  return <>{children}</>
 }
 
