@@ -137,7 +137,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-6"
+            className="mb-6 flex justify-center lg:justify-start"
           >
             <span className="text-lg text-gray-400 font-mono">
               {t.hero.greeting}
@@ -149,7 +149,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 flex justify-center lg:justify-start"
           >
             <span className="flex flex-wrap">
               {'icnevudila'.split('').map((char, index) => (
@@ -183,7 +183,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-2xl sm:text-3xl md:text-4xl text-gray-300 mb-8"
+            className="text-2xl sm:text-3xl md:text-4xl text-gray-300 mb-8 flex justify-center lg:justify-start"
           >
             {t.hero.title}
           </motion.h2>
@@ -193,7 +193,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+            className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-12 leading-relaxed text-center lg:text-left"
           >
             {t.hero.description}
           </motion.p>
