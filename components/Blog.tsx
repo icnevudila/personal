@@ -315,9 +315,8 @@ Responsive tasarım sadece teknik bir gereklilik değil, kullanıcı deneyiminin
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-8 md:mb-16 px-4">
             <div className="flex flex-col md:flex-row items-center justify-center mb-4 md:mb-6 gap-4">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F1F5F9] leading-tight text-center">
-                <span className="text-[#F97316]">Blo</span>
-                <span className="text-[#F1F5F9]">gum</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-center">
+                <AnimatedText text="Blogum" />
             </h2>
               {isAdmin && (
                 <div className="flex gap-2 md:gap-3">
