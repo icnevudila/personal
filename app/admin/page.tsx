@@ -474,18 +474,15 @@ function AdminPanel() {
               className="card flex items-start justify-between gap-4"
             >
               {/* Image Preview */}
-              <div className="w-32 h-32 bg-gray-800 rounded-lg overflow-hidden flex-shrink-0 border border-gray-700">
+              <div className="w-32 h-32 bg-gray-800 rounded-lg overflow-hidden flex-shrink-0 border border-gray-700 relative group">
                 {project.image ? (
                   project.image.startsWith('data:') ? (
                     <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-500 bg-gray-900 relative group">
+                    <div className="w-full h-full flex items-center justify-center text-gray-500 bg-gray-900">
                       <div className="text-center">
                         <PhotoIcon className="w-10 h-10 mx-auto mb-1" />
                         <div className="text-xs text-gray-400">CSS Görsel</div>
-                      </div>
-                      <div className="absolute inset-0 bg-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                        <span className="text-xs text-orange-400 font-medium">Değiştirmek için düzenle</span>
                       </div>
                     </div>
                   )
@@ -494,6 +491,35 @@ function AdminPanel() {
                     <PhotoIcon className="w-10 h-10" />
                   </div>
                 )}
+                
+                {/* Upload Button */}
+                <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <label className="cursor-pointer">
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        const file = e.target.files?.[0]
+                        if (file) {
+                          const reader = new FileReader()
+                          reader.onloadend = () => {
+                            const base64String = reader.result as string
+                            const updatedProjects = projects.map(p => 
+                              p.id === project.id ? { ...p, image: base64String } : p
+                            )
+                            saveProjects(updatedProjects)
+                            alert('Görsel yüklendi!')
+                          }
+                          reader.readAsDataURL(file)
+                        }
+                      }}
+                      className="hidden"
+                    />
+                    <div className="px-3 py-1.5 bg-primary-500 hover:bg-primary-600 rounded text-xs text-white font-medium">
+                      {project.image && project.image.startsWith('data:') ? 'Değiştir' : 'Yükle'}
+                    </div>
+                  </label>
+                </div>
               </div>
               
               <div className="flex-1">
@@ -570,11 +596,44 @@ function AdminPanel() {
                     className="card flex items-start gap-4"
                   >
                     {/* Image Preview */}
-                    {post.image && (
-                      <div className="w-24 h-24 bg-gray-800 rounded-lg overflow-hidden flex-shrink-0 border border-gray-700">
+                    <div className="w-24 h-24 bg-gray-800 rounded-lg overflow-hidden flex-shrink-0 border border-gray-700 relative group">
+                      {post.image ? (
                         <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center text-gray-500">
+                          <PhotoIcon className="w-8 h-8" />
+                        </div>
+                      )}
+                      
+                      {/* Upload Button */}
+                      <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <label className="cursor-pointer">
+                          <input
+                            type="file"
+                            accept="image/*"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0]
+                              if (file) {
+                                const reader = new FileReader()
+                                reader.onloadend = () => {
+                                  const base64String = reader.result as string
+                                  const updatedPosts = [...blogPosts]
+                                  updatedPosts[index].image = base64String
+                                  setBlogPosts(updatedPosts)
+                                  localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
+                                  alert('Görsel yüklendi!')
+                                }
+                                reader.readAsDataURL(file)
+                              }
+                            }}
+                            className="hidden"
+                          />
+                          <div className="px-3 py-1.5 bg-primary-500 hover:bg-primary-600 rounded text-xs text-white font-medium">
+                            {post.image ? 'Değiştir' : 'Yükle'}
+                          </div>
+                        </label>
                       </div>
-                    )}
+                    </div>
                     
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
