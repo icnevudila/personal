@@ -127,32 +127,32 @@ export function About() {
           className="max-w-6xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+          <motion.div variants={itemVariants} className="text-center mb-8 md:mb-16 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight">
               <AnimatedText text={t.about.title} />
             </h2>
             <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full" />
           </motion.div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center px-4">
             {/* Content */}
-            <motion.div variants={itemVariants} className="space-y-6">
-              <p className="text-lg text-gray-300 leading-relaxed">
+            <motion.div variants={itemVariants} className="space-y-4 md:space-y-6">
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                 {t.about.description1}
               </p>
               
-              <p className="text-lg text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                 {t.about.description2}
               </p>
 
-              <p className="text-lg text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
                 {t.about.description3}
               </p>
 
               {/* Caption */}
               <motion.p 
                 variants={itemVariants}
-                className="text-center text-gray-400 italic mt-8 max-w-2xl mx-auto"
+                className="text-center text-gray-400 italic mt-6 md:mt-8 max-w-2xl mx-auto text-sm sm:text-base px-2"
               >
                 {language === 'tr' 
                   ? '"Deneyimle desteklenen, teknoloji ile güçlendirilen ve duyguyla yönlendirilen tasarım."'
@@ -163,7 +163,7 @@ export function About() {
               {/* Stats */}
               <motion.div 
                 variants={itemVariants}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-8 md:pt-12"
               >
                 {stats.map((stat, index) => (
                   <motion.div
@@ -175,22 +175,22 @@ export function About() {
                       scale: 1.02,
                       transition: { duration: 0.3 }
                     }}
-                    className="group cursor-pointer bg-gray-800/50 border border-gray-700 rounded-xl p-5 hover:border-primary-500/50 transition-all duration-300"
+                    className="group cursor-pointer bg-gray-800/50 border border-gray-700 rounded-xl p-4 md:p-5 hover:border-primary-500/50 transition-all duration-300"
                   >
                     {/* Icon */}
                     <motion.div
-                      className="mb-3"
+                      className="mb-2 md:mb-3"
                       whileHover={{ 
                         scale: 1.1,
                         rotate: [0, -5, 5, -5, 0],
                         transition: { duration: 0.3 }
                       }}
                     >
-                      <stat.icon className="w-10 h-10 text-primary-500 group-hover:text-primary-400 transition-colors" />
+                      <stat.icon className="w-8 h-8 md:w-10 md:h-10 text-primary-500 group-hover:text-primary-400 transition-colors" />
                     </motion.div>
                     
                     {/* Title */}
-                    <h4 className="text-lg font-semibold text-white mb-1.5 group-hover:text-primary-400 transition-colors">
+                    <h4 className="text-base md:text-lg font-semibold text-white mb-1 md:mb-1.5 group-hover:text-primary-400 transition-colors">
                       <AnimatedText text={stat.title} />
                     </h4>
                     
@@ -212,7 +212,7 @@ export function About() {
             >
               <div className="relative">
                 {/* Placeholder for profile image */}
-                <div className="w-full h-96 bg-gray-800 rounded-2xl flex items-center justify-center relative overflow-hidden">
+                <div className="w-full h-64 md:h-96 bg-gray-800 rounded-2xl flex items-center justify-center relative overflow-hidden">
                   {/* Glow Effect */}
                   <motion.div
                     className="absolute inset-0 rounded-2xl"

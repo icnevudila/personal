@@ -254,41 +254,43 @@ export function Projects() {
           className="max-w-7xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="mb-16">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-4xl sm:text-5xl font-bold">
+          <motion.div variants={itemVariants} className="mb-8 md:mb-16 px-4">
+            <div className="flex flex-col md:flex-row items-center justify-between mb-4 md:mb-6 gap-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-center md:text-left">
                 <AnimatedText text={t.projects.title} />
               </h2>
               {isAdmin && (
-                <div className="flex gap-3">
+                <div className="flex gap-2 md:gap-3">
                   <button
                     onClick={handleAdd}
-                    className="flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors"
+                    className="flex items-center gap-2 px-3 md:px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors text-sm md:text-base"
                   >
-                    <PlusIcon className="w-5 h-5" />
-                    {t.projects.addProject}
+                    <PlusIcon className="w-4 h-4 md:w-5 md:h-5" />
+                    <span className="hidden sm:inline">{t.projects.addProject}</span>
+                    <span className="sm:hidden">Ekle</span>
                   </button>
                   <button
                     onClick={() => {
                       setIsAdmin(false)
                       localStorage.setItem('adminMode', 'false')
                     }}
-                    className="px-4 py-2 rounded-lg transition-colors bg-green-500 hover:bg-green-600"
+                    className="px-3 md:px-4 py-2 rounded-lg transition-colors bg-green-500 hover:bg-green-600 text-sm md:text-base"
                   >
-                    {t.projects.adminModeOn}
+                    <span className="hidden sm:inline">{t.projects.adminModeOn}</span>
+                    <span className="sm:hidden">Çıkış</span>
                   </button>
                 </div>
               )}
             </div>
             <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full" />
-            <p className="text-lg text-gray-400 mt-6 max-w-2xl mx-auto text-center">
+            <p className="text-base sm:text-lg text-gray-400 mt-4 md:mt-6 max-w-2xl mx-auto text-center leading-relaxed">
               {t.projects.subtitle}
             </p>
           </motion.div>
 
           {/* Featured Projects */}
-          <motion.div variants={itemVariants} className="mb-16">
-            <h3 className="text-2xl font-semibold mb-8 text-center">
+          <motion.div variants={itemVariants} className="mb-8 md:mb-16 px-4">
+            <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8 text-center">
               <AnimatedText text={t.projects.featured} />
             </h3>
             <div className="grid lg:grid-cols-2 gap-8">

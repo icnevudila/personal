@@ -46,18 +46,18 @@ export function Education() {
           className="max-w-4xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+          <motion.div variants={itemVariants} className="text-center mb-8 md:mb-16 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 leading-tight">
               <AnimatedText text={t.education.title} />
             </h2>
             <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full" />
-            <p className="text-lg text-gray-400 mt-6 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-gray-400 mt-4 md:mt-6 max-w-2xl mx-auto px-2 leading-relaxed">
               {t.education.subtitle}
             </p>
           </motion.div>
 
           {/* Learning Section */}
-          <motion.div variants={itemVariants}>
+          <motion.div variants={itemVariants} className="px-4">
             <div className="card text-center relative overflow-hidden">
               {/* Background decoration */}
               <div className="absolute inset-0 opacity-10">
@@ -65,17 +65,17 @@ export function Education() {
                 <div className="absolute bottom-0 right-0 w-64 h-64 bg-accent-500 rounded-full blur-3xl" />
               </div>
               
-              <div className="relative z-10">
-                <BookOpenIcon className="w-16 h-16 text-primary-500 mx-auto mb-6" />
-                <h3 className="text-3xl font-bold text-white mb-4">
+              <div className="relative z-10 px-4 py-6 md:px-8 md:py-8">
+                <BookOpenIcon className="w-12 h-12 md:w-16 md:h-16 text-primary-500 mx-auto mb-4 md:mb-6" />
+                <h3 className="text-2xl sm:text-3xl font-bold text-white mb-3 md:mb-4 leading-tight px-2">
                   {t.education.mainTitle}
                 </h3>
-                <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-base sm:text-lg text-gray-300 mb-6 md:mb-8 max-w-2xl mx-auto leading-relaxed px-2">
                   {t.education.mainDescription}
                 </p>
                 
                 {/* Skills Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4 mb-6 md:mb-8 px-2">
                   {t.education.technologies.map((tech, index) => (
                     <motion.div
                       key={tech}
@@ -87,7 +87,7 @@ export function Education() {
                         rotate: [0, -2, 2, -2, 0],
                         transition: { duration: 0.3 }
                       }}
-                      className="bg-gray-800 border border-gray-700 rounded-xl p-4 hover:border-primary-500 hover:bg-primary-500/10 transition-all duration-300 cursor-pointer group relative overflow-hidden"
+                      className="bg-gray-800 border border-gray-700 rounded-xl p-3 md:p-4 hover:border-primary-500 hover:bg-primary-500/10 transition-all duration-300 cursor-pointer group relative overflow-hidden"
                     >
                       {/* Hover glow effect */}
                       <motion.div
@@ -111,7 +111,7 @@ export function Education() {
                         />
                       </motion.div>
                       
-                      <span className="text-white font-medium text-sm relative z-10 group-hover:text-primary-500 transition-colors">
+                      <span className="text-white font-medium text-xs sm:text-sm relative z-10 group-hover:text-primary-500 transition-colors break-words">
                         {tech}
                       </span>
                     </motion.div>
@@ -119,11 +119,11 @@ export function Education() {
                 </div>
                 
                 {/* Quote */}
-                <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
-                  <p className="text-gray-300 italic text-lg mb-2">
+                <div className="bg-gray-800/50 rounded-xl p-4 md:p-6 border border-gray-700 mx-2">
+                  <p className="text-gray-300 italic text-base sm:text-lg mb-2 leading-relaxed">
                     "{t.education.quote}"
                   </p>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-gray-500 text-xs sm:text-sm">
                     {t.education.dailyProgress}
                   </p>
                 </div>
