@@ -10,7 +10,7 @@ export function BuyMeACoffee() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       viewport={{ once: true }}
-      className="section-padding bg-[#1e293b]/30 border-y border-[#334155]/50"
+      className="section-padding"
     >
       <div className="container-custom">
         <div className="max-w-2xl mx-auto text-center">
@@ -22,24 +22,24 @@ export function BuyMeACoffee() {
             className="mb-6"
           >
             <h2 className="text-3xl font-bold text-[#F1F5F9] mb-4">
-              Destekle ☕️
+              Buy Me a Coffee ☕️
             </h2>
-            <p className="text-lg text-[#94A3B8] leading-relaxed">
-              Bir kahve, bir fikir. Her destek yeni bir pikseli güzelleştiriyor.
+            <p className="text-lg text-[#94A3B8] leading-relaxed mb-2">
+              Şimdilik kahve stoğu yeterli. Yapay zekâ da çay içiyor zaten. Link, ilk yorgunluk belirtilerinde aktif olacak. ☕️
+            </p>
+            <p className="text-sm text-[#64748B] italic">
+              Yakında: kahveyle desteklenen fikirler bölümü ☕️
             </p>
           </motion.div>
 
-          <motion.a
-            href="https://buymeacoffee.com/icnevudila"
-            target="_blank"
-            rel="noopener noreferrer"
+          <motion.div
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-[#F97316] hover:bg-[#F97316]/90 text-white font-semibold rounded-full shadow-lg hover:shadow-[0_0_24px_rgba(249,115,22,0.3)] transition-all duration-300"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-[#1e293b]/50 border-2 border-[#334155]/50 rounded-full cursor-not-allowed opacity-50"
+            title="Henüz kahve molasındayım ☕️"
           >
-            <BeakerIcon className="w-6 h-6" />
-            <span>Buy Me a Coffee</span>
-          </motion.a>
+            <BeakerIcon className="w-6 h-6 text-[#F97316]" />
+            <span className="text-[#94A3B8]">Buy Me a Coffee</span>
+          </motion.div>
         </div>
       </div>
     </motion.section>
