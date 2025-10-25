@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     const apiKey = process.env.CLOUDINARY_API_KEY
     const apiSecret = process.env.CLOUDINARY_API_SECRET
     
-    console.log('🔍 Cloudinary config check:')
+    console.log('✅ Cloudinary config check:')
     console.log('  - cloudName:', cloudName ? `Set (${cloudName.substring(0, 10)}...)` : 'MISSING')
     console.log('  - apiKey:', apiKey ? `Set (${apiKey.substring(0, 10)}...)` : 'MISSING')
     console.log('  - apiSecret:', apiSecret ? `Set (${apiSecret.substring(0, 10)}...)` : 'MISSING')
