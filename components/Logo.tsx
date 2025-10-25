@@ -15,7 +15,7 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="text-2xl font-bold text-[#f1f5f9] font-space-grotesk"
+          className="text-2xl font-bold text-[#F97316] font-space-grotesk"
         >
           ic
         </motion.span>
