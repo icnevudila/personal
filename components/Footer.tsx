@@ -210,6 +210,11 @@ export function Footer() {
                 <span>Next.js ile yapıldı</span>
               </div>
 
+              {/* Tagline */}
+              <div className="hidden md:block text-center text-gray-500 text-sm italic">
+                AI + İnsan işbirliğiyle tasarlanan sade fikirler
+              </div>
+
               {/* Social Links */}
               <div className="flex space-x-4">
                 {[
