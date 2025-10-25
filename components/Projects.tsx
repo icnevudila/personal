@@ -302,10 +302,26 @@ export function Projects() {
                 >
                   {/* Project Image */}
                   <div className="relative overflow-hidden rounded-lg mb-6 group/image-card">
-                    {project.image && project.image.startsWith('data:') ? (
-                      <img src={project.image} alt={project.title} className="w-full h-64 object-cover" />
-                    ) : (
-                      <ProjectImage title={project.title} className="h-64" />
+                    {project.image && (project.image.startsWith('data:') || project.image.startsWith('/')) ? (
+                      <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="w-full h-64 object-cover"
+                        onError={(e) => {
+                          // If image fails to load, show placeholder
+                          const target = e.target as HTMLImageElement
+                          target.style.display = 'none'
+                          const placeholder = target.parentElement?.querySelector('.project-placeholder')
+                          if (placeholder) {
+                            (placeholder as HTMLElement).style.display = 'block'
+                          }
+                        }}
+                      />
+                    ) : null}
+                    {(!project.image || (!project.image.startsWith('data:') && !project.image.startsWith('/'))) && (
+                      <div className="project-placeholder">
+                        <ProjectImage title={project.title} className="h-64" />
+                      </div>
                     )}
                     
                     {/* Image Upload Button - Admin Only */}
