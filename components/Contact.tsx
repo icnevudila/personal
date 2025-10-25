@@ -302,7 +302,7 @@ export function Contact() {
           className="mt-20 text-center"
         >
           <p className="text-2xl text-[#F1F5F9] mb-6">
-            Birlikte bir şey tasarlayalım mı?
+            Projeniz için hazırım
           </p>
           <motion.button
             onClick={() => {
@@ -315,7 +315,7 @@ export function Contact() {
             whileTap={{ scale: 0.95 }}
             className="px-8 py-4 border-2 border-[#F97316] text-[#F97316] hover:bg-[#F97316] hover:text-white font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(249,115,22,0.3)]"
           >
-            İletişime Geç
+            Proje Konuşalım
           </motion.button>
         </motion.div>
       </div>

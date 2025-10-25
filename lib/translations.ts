@@ -50,9 +50,9 @@ export const translations = {
     },
     contact: {
       title: 'İletişime Geçin',
-      subtitle: 'Aklınızda bir proje var mı veya işbirliği yapmak ister misiniz? Sizden haber almak isterim!',
+      subtitle: 'Projeniz için profesyonel bir çözüm mü arıyorsunuz? Size yardımcı olmaktan memnuniyet duyarım.',
       connect: 'Bağlanalım',
-      connectDescription: 'Yeni fırsatlar ve heyecan verici projelerle her zaman ilgileniyorum. Bir sorunuz olup olmadığına veya sadece merhaba demek istemese bile, size en kısa sürede geri dönmeye çalışacağım!',
+      connectDescription: 'Yeni projeler ve işbirliği fırsatlarıyla ilgileniyorum. Mesajınızı aldığımda en kısa sürede geri dönüş yapacağım.',
       name: 'Adınız',
       email: 'email@ornek.com',
       subject: 'Konu nedir?',
@@ -173,9 +173,9 @@ export const translations = {
     },
     contact: {
       title: 'Get In Touch',
-      subtitle: 'Have a project in mind or want to collaborate? I\'d love to hear from you!',
+      subtitle: 'Looking for a professional solution for your project? I\'d be happy to help.',
       connect: 'Let\'s Connect',
-      connectDescription: 'I\'m always interested in new opportunities and exciting projects. Whether you have a question or just want to say hello, I\'ll try to get back to you as soon as possible!',
+      connectDescription: 'I\'m interested in new projects and collaboration opportunities. I\'ll get back to you as soon as possible when I receive your message.',
       name: 'Your Name',
       email: 'email@example.com',
       subject: 'What\'s the subject?',
