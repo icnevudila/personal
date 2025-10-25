@@ -55,6 +55,8 @@ const config: Config = {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
+        'space-grotesk': ['Space Grotesk', 'sans-serif'],
+        manrope: ['Manrope', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-out',

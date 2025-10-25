@@ -75,9 +75,6 @@ export function Hero() {
     }
   }
 
-  const scrollToBlog = () => {
-    window.location.href = '/blog'
-  }
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -217,33 +214,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 flex justify-center lg:justify-start"
+            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 flex justify-center lg:justify-start font-space-grotesk"
           >
-            <span className="flex flex-wrap">
-              {'icnevudila'.split('').map((char, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ opacity: 0 }}
-                  animate={{ 
-                    opacity: 1,
-                    color: ['#fff', '#FF8C42', '#fff'],
-                  }}
-                  transition={{ 
-                    opacity: { duration: 0.5, delay: 0.1 + index * 0.08 },
-                    color: {
-                      duration: 4,
-                      delay: 0.1 + index * 0.08 + 1,
-                      ease: 'easeInOut',
-                      repeat: Infinity,
-                      repeatType: 'reverse'
-                    }
-                  }}
-                  className="inline-block"
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>
-              ))}
-            </span>
+            <span className="text-[#f1f5f9]">ic<span className="text-[#F97316]">ne</span>vudila</span>
           </motion.h1>
 
           {/* Title */}
@@ -251,7 +224,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-2xl sm:text-3xl md:text-4xl text-gray-300 mb-8 flex justify-center lg:justify-start"
+            className="text-2xl sm:text-3xl md:text-4xl text-[#f1f5f9] mb-8 flex justify-center lg:justify-start font-space-grotesk font-medium"
           >
             {t.hero.title}
           </motion.h2>
@@ -261,36 +234,26 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-12 leading-relaxed text-center lg:text-left"
+            className="text-lg sm:text-xl text-[#94A3B8] max-w-2xl mx-auto lg:mx-0 mb-12 leading-relaxed text-center lg:text-left"
           >
             {t.hero.description}
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            className="flex justify-center lg:justify-start"
           >
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               onClick={scrollToProjects}
-              className="btn-primary hover:shadow-[0_0_20px_rgba(249,115,22,0.3)] transition-all"
+              className="px-8 py-4 bg-[#F97316] hover:bg-[#ea6707] text-white font-semibold rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition-all duration-300 text-lg"
             >
-              {t.hero.ctaProjects}
-            </motion.button>
-            
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.97 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              onClick={scrollToBlog}
-              className="btn-secondary hover:shadow-[0_0_20px_rgba(249,115,22,0.2)] transition-all"
-            >
-              {t.hero.ctaBlog}
+              Projeni Başlat
             </motion.button>
           </motion.div>
 
