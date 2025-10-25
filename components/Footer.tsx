@@ -211,10 +211,17 @@ export function Footer() {
 
               {/* Social Links */}
               <div className="flex space-x-4">
-                {['GitHub', 'LinkedIn', 'Twitter', 'Dribbble'].map((social, index) => (
+                {[
+                  { name: 'GitHub', href: '#' },
+                  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/ali-düvenci' },
+                  { name: 'Twitter', href: '#' },
+                  { name: 'Dribbble', href: '#' }
+                ].map((social, index) => (
                   <motion.a
-                    key={social}
-                    href="#"
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     initial={{ opacity: 0, scale: 0.8 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     whileHover={{ scale: 1.1, y: -2 }}
@@ -223,7 +230,7 @@ export function Footer() {
                     className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-primary-500 transition-colors duration-300"
                   >
                     <span className="text-sm font-medium text-gray-300 hover:text-white">
-                      {social[0]}
+                      {social.name[0]}
                     </span>
                   </motion.a>
                 ))}
