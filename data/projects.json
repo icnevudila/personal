@@ -4,7 +4,7 @@
       "id": 1,
       "title": "Nova Finance Dashboard",
       "description": "Finansal verilerinizi akıllı analitik ile yönetin. Fintech dashboard konsepti ile gelir, gider ve kullanıcı takibi için tasarlanmış modern arayüz.",
-      "image": "/portfolio/nova_finance.png",
+      "image": "/portfolio/nova_finance.svg",
       "technologies": ["Fintech UI", "Data Visualization", "Figma", "Dashboard Design"],
       "featured": true
     },
@@ -44,7 +44,7 @@
       "id": 6,
       "title": "Mindfolio Blog",
       "description": "Modern blog platformu. İçerik üretimi ve tasarım dünyasındaki yenilikleri paylaşan minimalist blog arayüzü.",
-      "image": "/portfolio/mindfolio_blog.png",
+      "image": "/portfolio/mindfolio_blog.svg",
       "technologies": ["Blog Platform", "AI Content", "UI/UX Design", "Figma"],
       "featured": true
     },
@@ -68,7 +68,7 @@
       "id": 9,
       "title": "Luma Studio",
       "description": "Kreatif ajans ana sayfası konsepti. Portföy çalışmalarını modern ve etkileyici şekilde sergileyen temiz tasarım.",
-      "image": "/portfolio/luma_studio.png",
+      "image": "/portfolio/luma_studio.svg",
       "technologies": ["Creative Agency", "Web Design", "Next.js"],
       "featured": false
     },
