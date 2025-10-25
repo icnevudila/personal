@@ -307,18 +307,9 @@ export function Projects() {
                         src={project.image} 
                         alt={project.title} 
                         className="w-full h-64 object-cover"
-                        onError={(e) => {
-                          // If image fails to load, show placeholder
-                          const target = e.target as HTMLImageElement
-                          target.style.display = 'none'
-                          const placeholder = target.parentElement?.querySelector('.project-placeholder')
-                          if (placeholder) {
-                            (placeholder as HTMLElement).style.display = 'block'
-                          }
-                        }}
+                        loading="lazy"
                       />
-                    ) : null}
-                    {(!project.image || (!project.image.startsWith('data:') && !project.image.startsWith('/'))) && (
+                    ) : (
                       <div className="project-placeholder">
                         <ProjectImage title={project.title} className="h-64" />
                       </div>
