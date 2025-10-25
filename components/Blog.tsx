@@ -8,6 +8,7 @@ import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
 import { uploadImageToSupabase } from '@/lib/supabase-storage'
+import { getAllBlogPosts, saveBlogPost } from '@/lib/blog-database'
 
 interface BlogPost {
   id?: number
@@ -184,27 +185,24 @@ Responsive tasarım sadece teknik bir gereklilik değil, kullanıcı deneyiminin
   ])
 
   useEffect(() => {
-    // Try to load from localStorage first
-    const saved = localStorage.getItem('blogPosts')
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved)
-        setBlogPosts(parsed)
-      } catch (e) {
-        console.error('Error parsing blog posts:', e)
-      }
-    }
-    
-    // Also fetch from public JSON file (Cloudinary URLs for everyone)
-    fetch('/blog-data.json')
-      .then(res => res.json())
-      .then(data => {
-        if (data.blogPosts && data.blogPosts.length > 0) {
-          setBlogPosts(data.blogPosts)
-          localStorage.setItem('blogPosts', JSON.stringify(data.blogPosts))
+    // Load from Supabase Database (public, everyone can see)
+    getAllBlogPosts().then(posts => {
+      if (posts && posts.length > 0) {
+        setBlogPosts(posts)
+        localStorage.setItem('blogPosts', JSON.stringify(posts))
+      } else {
+        // Fallback to localStorage if database is empty
+        const saved = localStorage.getItem('blogPosts')
+        if (saved) {
+          try {
+            const parsed = JSON.parse(saved)
+            setBlogPosts(parsed)
+          } catch (e) {
+            console.error('Error parsing blog posts:', e)
+          }
         }
-      })
-      .catch(e => console.log('No blog-data.json file found'))
+      }
+    })
   }, [])
 
   const handleEdit = (post: BlogPost, index: number) => {
