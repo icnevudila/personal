@@ -9,7 +9,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
 
 export function About() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   const [aboutImage, setAboutImage] = useState<string>('')
@@ -125,9 +125,9 @@ export function About() {
                 variants={itemVariants}
                 className="text-center text-gray-400 italic mt-8 max-w-2xl mx-auto"
               >
-                {t.language === 'tr' 
-                  ? '"Deneyimle desteklenen, AI ile güçlendirilen ve duyguyla yönlendirilen tasarım."'
-                  : '"Design backed by experience, powered by AI, and guided by emotion."'
+                {language === 'tr' 
+                  ? '"Deneyimle desteklenen, teknoloji ile güçlendirilen ve duyguyla yönlendirilen tasarım."'
+                  : '"Design backed by experience, powered by technology, and guided by emotion."'
                 }
               </motion.p>
 
