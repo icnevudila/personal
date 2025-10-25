@@ -2,91 +2,57 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
-import { 
-  BriefcaseIcon, 
-  StarIcon, 
-  GlobeAltIcon, 
-  HeartIcon, 
-  SparklesIcon, 
-  EyeIcon 
-} from '@heroicons/react/24/outline'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
 
 interface StatCardProps {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
-  value: number
-  suffix: string
+  value: string
   label: string
   description: string
   delay: number
   isInView: boolean
 }
 
-function StatCard({ icon: Icon, value, suffix, label, description, delay, isInView }: StatCardProps) {
-  const [displayValue, setDisplayValue] = useState(0)
-  const [iconGlow, setIconGlow] = useState(false)
+function StatCard({ value, label, description, delay, isInView }: StatCardProps) {
+  const [isReducedMotion, setIsReducedMotion] = useState(false)
 
   useEffect(() => {
-    if (!isInView) return
-
-    const timer = setTimeout(() => {
-      let start = 0
-      const end = value
-      const duration = 2000
-      const increment = end / (duration / 16)
-
-      const interval = setInterval(() => {
-        start += increment
-        if (start >= end) {
-          setDisplayValue(end)
-          clearInterval(interval)
-        } else {
-          setDisplayValue(Math.floor(start))
-        }
-      }, 16)
-
-      return () => clearInterval(interval)
-    }, delay * 1000)
-
-    return () => clearTimeout(timer)
-  }, [isInView, value, delay])
-
-  useEffect(() => {
-    if (isInView) {
-      const timer = setTimeout(() => setIconGlow(true), delay * 1000 + 100)
-      return () => clearTimeout(timer)
-    }
-  }, [isInView, delay])
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setIsReducedMotion(mediaQuery.matches)
+    
+    const handleChange = (e: MediaQueryListEvent) => setIsReducedMotion(e.matches)
+    mediaQuery.addEventListener('change', handleChange)
+    
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-      transition={{ duration: 0.6, delay, ease: 'easeOut' }}
-      className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-orange-500/30 transition-all duration-300 group"
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+      transition={isReducedMotion ? { duration: 0 } : { duration: 0.5, delay, ease: 'easeOut' }}
+      whileHover={isReducedMotion ? {} : { scale: 1.03 }}
+      className="group relative bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-orange-500/30 transition-all duration-300 hover:shadow-[0_0_20px_rgba(249,115,22,0.1)]"
     >
-      <div className="flex flex-col items-center text-center space-y-4">
-        {/* Icon */}
-        <div className="relative">
-          <div 
-            className={`absolute inset-0 bg-orange-500/20 rounded-full blur-xl transition-opacity duration-500 ${
-              iconGlow ? 'opacity-100' : 'opacity-0'
-            }`}
-          />
-          <div className="relative bg-gray-700/50 p-4 rounded-full group-hover:bg-gray-700 transition-colors duration-300">
-            <Icon className="w-8 h-8 text-orange-500" />
-          </div>
-        </div>
+      {/* Value */}
+      <div className="mb-3">
+        <h3 className="text-4xl sm:text-5xl font-bold text-[#F97316] tabular-nums">
+          {value}
+        </h3>
+      </div>
 
-        {/* Value */}
-        <div className="space-y-1">
-          <div className="text-4xl sm:text-5xl font-bold text-white tabular-nums">
-            {displayValue.toFixed(displayValue % 1 !== 0 ? 1 : 0)}{suffix}
-          </div>
-          <div className="text-lg font-semibold text-white">{label}</div>
-          <div className="text-sm text-gray-400">{description}</div>
-        </div>
+      {/* Label */}
+      <div className="mb-2">
+        <p className="text-base sm:text-lg font-semibold text-[#E5E7EB]">
+          {label}
+        </p>
+      </div>
+
+      {/* Description */}
+      <div>
+        <p className="text-sm text-[#94A3B8] leading-relaxed">
+          {description}
+        </p>
       </div>
     </motion.article>
   )
@@ -99,101 +65,64 @@ export function Skills() {
 
   const stats = [
     {
-      icon: BriefcaseIcon,
-      value: 26,
-      suffix: '+',
-      label: t.skills.stats.projectsCompleted,
-      description: t.skills.stats.projectsCompletedDesc
+      value: '26+',
+      label: 'Tamamlanan Proje',
+      description: 'Kahveyle desteklenen üretkenlik rekoru ☕'
     },
     {
-      icon: StarIcon,
-      value: 4.9,
-      suffix: '/5',
-      label: t.skills.stats.clientSatisfaction,
-      description: t.skills.stats.clientSatisfactionDesc
+      value: '8',
+      label: 'İş Yapılan Ülke',
+      description: 'Figma menüleri artık 3 dilde düşünülüyor 🌍'
     },
     {
-      icon: GlobeAltIcon,
-      value: 8,
-      suffix: '',
-      label: t.skills.stats.countries,
-      description: t.skills.stats.countriesDesc
+      value: '4.9★',
+      label: 'Müşteri Memnuniyeti',
+      description: 'AI bile onayladı 🤖'
     },
     {
-      icon: HeartIcon,
-      value: 320,
-      suffix: '+',
-      label: t.skills.stats.positiveFeedback,
-      description: t.skills.stats.positiveFeedbackDesc
+      value: '320+',
+      label: 'Tasarım Revizyonu',
+      description: 'Her "biraz daha sağa alalım" isteği kayıtlarda 🎯'
     },
     {
-      icon: SparklesIcon,
-      value: 40,
-      suffix: '%',
-      label: t.skills.stats.aiTimeSaved,
-      description: t.skills.stats.aiTimeSavedDesc
+      value: '∞',
+      label: 'Yaratıcı Fikir',
+      description: 'Bitmeyen deneme–yanılma döngüsü 💡'
     },
     {
-      icon: EyeIcon,
-      value: 15.2,
-      suffix: 'K+',
-      label: t.skills.stats.websiteViews,
-      description: t.skills.stats.websiteViewsDesc
+      value: '2.7K',
+      label: 'Harcanan Kod Saati',
+      description: 'Ama hâlâ console.log kullanıyorum 🧠'
     },
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: 'easeOut',
-      },
-    },
-  }
-
   return (
-    <section id="skills" className="section-padding bg-gray-800/30" aria-labelledby="skills-title">
+    <section id="skills" className="section-padding bg-[#0f172a]" aria-labelledby="skills-title">
       <div className="container-custom">
         <motion.div
           ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.6 }}
           className="max-w-6xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 id="skills-title" className="text-4xl sm:text-5xl font-bold mb-6">
+          <div className="text-center mb-12 md:mb-16 px-4">
+            <h2 id="skills-title" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-[#E5E7EB]">
               <AnimatedText text={t.skills.title} />
             </h2>
-            <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full" />
-            <p className="text-lg text-gray-400 mt-6 max-w-2xl mx-auto">
+            <div className="w-24 h-1 bg-[#F97316] mx-auto rounded-full" />
+            <p className="text-base sm:text-lg text-[#94A3B8] mt-4 md:mt-6 max-w-2xl mx-auto">
               {t.skills.subtitle}
             </p>
-          </motion.div>
+          </div>
 
-          {/* Stats Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {/* Stats Grid - Desktop 3x2, Tablet 2x3, Mobile 1 column */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
             {stats.map((stat, index) => (
               <StatCard
                 key={stat.label}
-                icon={stat.icon}
                 value={stat.value}
-                suffix={stat.suffix}
                 label={stat.label}
                 description={stat.description}
                 delay={index * 0.1}
