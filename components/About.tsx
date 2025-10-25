@@ -33,17 +33,46 @@ export function About() {
     return () => clearInterval(interval)
   }, [])
 
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
-    if (file) {
-      const reader = new FileReader()
-      reader.onloadend = () => {
-        const base64String = reader.result as string
+    if (!file) return
+
+    const reader = new FileReader()
+    reader.onloadend = async () => {
+      const base64String = reader.result as string
+      
+      try {
+        // Cloudinary'ye yükle
+        const response = await fetch('/api/upload-image', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            imageData: base64String,
+            section: 'about'
+          })
+        })
+
+        const data = await response.json()
+        
+        if (data.success) {
+          setAboutImage(data.url)
+          localStorage.setItem('aboutImage', data.url)
+          alert('Fotoğraf başarıyla yüklendi ve herkese görünecek!')
+        } else {
+          // Fallback: localStorage kullan
+          setAboutImage(base64String)
+          localStorage.setItem('aboutImage', base64String)
+          alert('Fotoğraf kaydedildi (sadece sizde görünecek)')
+        }
+      } catch (error) {
+        console.error('Upload error:', error)
+        // Fallback: localStorage kullan
         setAboutImage(base64String)
         localStorage.setItem('aboutImage', base64String)
+        alert('Fotoğraf kaydedildi (sadece sizde görünecek)')
       }
-      reader.readAsDataURL(file)
     }
+    reader.readAsDataURL(file)
   }
 
   const containerVariants = {

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowDownIcon } from '@heroicons/react/24/outline'
+import { ArrowDownIcon, PhotoIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
@@ -9,13 +9,64 @@ import { AnimatedText } from './AnimatedText'
 export function Hero() {
   const { t } = useLanguage()
   const [heroImage, setHeroImage] = useState<string>('/hero-profile.jpg')
+  const [showUpload, setShowUpload] = useState(false)
+  const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
     const savedHeroImage = localStorage.getItem('heroImage')
     if (savedHeroImage) {
       setHeroImage(savedHeroImage)
     }
+    
+    const adminMode = localStorage.getItem('adminMode')
+    setIsAdmin(adminMode === 'true')
+    
+    const interval = setInterval(() => {
+      const adminMode = localStorage.getItem('adminMode')
+      setIsAdmin(adminMode === 'true')
+    }, 1000)
+    
+    return () => clearInterval(interval)
   }, [])
+
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    const reader = new FileReader()
+    reader.onloadend = async () => {
+      const base64String = reader.result as string
+      
+      try {
+        const response = await fetch('/api/upload-image', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            imageData: base64String,
+            section: 'hero'
+          })
+        })
+
+        const data = await response.json()
+        
+        if (data.success) {
+          setHeroImage(data.url)
+          localStorage.setItem('heroImage', data.url)
+          alert('Fotoğraf başarıyla yüklendi ve herkese görünecek!')
+        } else {
+          setHeroImage(base64String)
+          localStorage.setItem('heroImage', base64String)
+          alert('Fotoğraf kaydedildi (sadece sizde görünecek)')
+        }
+      } catch (error) {
+        console.error('Upload error:', error)
+        setHeroImage(base64String)
+        localStorage.setItem('heroImage', base64String)
+        alert('Fotoğraf kaydedildi (sadece sizde görünecek)')
+      }
+    }
+    reader.readAsDataURL(file)
+  }
 
   const scrollToProjects = () => {
     const element = document.querySelector('#projects')
@@ -100,7 +151,7 @@ export function Hero() {
                 />
                 
                 {/* Profile Image Container */}
-                <div className="absolute inset-0 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden">
+                <div className="absolute inset-0 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden group/profile">
                   {/* Profile Image */}
                   <div className="w-full h-full bg-primary-500/30 flex items-center justify-center relative">
                     {heroImage ? (
@@ -113,6 +164,26 @@ export function Hero() {
                       <span className="text-6xl sm:text-7xl lg:text-8xl font-bold text-primary-500">ic</span>
                     )}
                   </div>
+                  
+                  {/* Upload Button - Admin Only */}
+                  {isAdmin && (
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover/profile:opacity-100 transition-opacity duration-300 flex items-center justify-center z-30 rounded-full">
+                      <label className="cursor-pointer z-40">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handleImageUpload}
+                          className="hidden"
+                        />
+                        <div className="flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors">
+                          <PhotoIcon className="w-5 h-5 text-white" />
+                          <span className="text-white font-medium">
+                            {heroImage && heroImage.startsWith('data:') ? 'Değiştir' : 'Görsel Yükle'}
+                          </span>
+                        </div>
+                      </label>
+                    </div>
+                  )}
                 </div>
               </div>
 
