@@ -39,6 +39,7 @@ function AdminPanel() {
   const [heroImage, setHeroImage] = useState<string>('')
   const [aboutImage, setAboutImage] = useState<string>('')
   const [siteLogo, setSiteLogo] = useState<string>('')
+  const [siteFavicon, setSiteFavicon] = useState<string>('')
   const [activeTab, setActiveTab] = useState<'projects' | 'blog' | 'settings'>('projects')
 
   useEffect(() => {
@@ -92,6 +93,13 @@ function AdminPanel() {
     if (savedLogo) {
       console.log('🖼️ Loaded site logo:', savedLogo.substring(0, 50) + '...')
       setSiteLogo(savedLogo)
+    }
+    
+    // Load site favicon
+    const savedFavicon = localStorage.getItem('siteFavicon')
+    if (savedFavicon) {
+      console.log('🖼️ Loaded site favicon:', savedFavicon.substring(0, 50) + '...')
+      setSiteFavicon(savedFavicon)
     }
   }, [])
 
@@ -343,6 +351,85 @@ function AdminPanel() {
                     className="text-red-400 hover:text-red-300 text-sm mx-auto block"
                   >
                     Logoyu Sil
+                  </button>
+                )}
+              </div>
+            </motion.div>
+
+            {/* Site Favicon Upload */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-8 card"
+            >
+              <h2 className="text-2xl font-semibold mb-4">Site Favicon</h2>
+              
+              <p className="text-sm text-gray-400 mb-4">
+                Bu favicon tarayıcı sekmesinde görünür (32x32 px önerilir)
+              </p>
+          
+              <div className="space-y-4">
+                {/* Preview */}
+                {siteFavicon && (
+                  <div className="relative w-16 h-16 bg-gray-800 rounded-lg overflow-hidden border-4 border-gray-700 mx-auto flex items-center justify-center">
+                    <img src={siteFavicon} alt="Favicon" className="w-full h-full object-contain" />
+                  </div>
+                )}
+                
+                {/* Upload */}
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0]
+                    if (file) {
+                      const reader = new FileReader()
+                      reader.onloadend = async () => {
+                        const imageData = reader.result as string
+                        
+                        // Upload to Supabase
+                        const result = await uploadImageToSupabase(
+                          imageData,
+                          'logo',
+                          `site-favicon-${Date.now()}`
+                        )
+                        
+                        if (result.success && result.url) {
+                          setSiteFavicon(result.url)
+                          localStorage.setItem('siteFavicon', result.url)
+                          alert('Favicon Supabase\'e yüklendi ve herkese görünecek!')
+                        } else {
+                          // Fallback to localStorage
+                          setSiteFavicon(imageData)
+                          localStorage.setItem('siteFavicon', imageData)
+                          alert('Favicon kaydedildi (sadece sizde görünecek)')
+                        }
+                      }
+                      reader.readAsDataURL(file)
+                    }
+                  }}
+                  className="hidden"
+                  id="favicon-upload"
+                />
+                
+                <label
+                  htmlFor="favicon-upload"
+                  className="flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg cursor-pointer transition-colors text-white font-medium mx-auto w-fit"
+                >
+                  <PhotoIcon className="w-5 h-5" />
+                  {siteFavicon ? 'Favicon\'u Değiştir' : 'Favicon Yükle'}
+                </label>
+                
+                {siteFavicon && (
+                  <button
+                    onClick={() => {
+                      setSiteFavicon('')
+                      localStorage.removeItem('siteFavicon')
+                      alert('Favicon silindi!')
+                    }}
+                    className="text-red-400 hover:text-red-300 text-sm mx-auto block"
+                  >
+                    Favicon'u Sil
                   </button>
                 )}
               </div>

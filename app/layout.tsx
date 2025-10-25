@@ -6,6 +6,7 @@ import { Footer } from '@/components/Footer'
 import StarRainBackground from '@/components/StarRainBackground'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import { AuthProvider } from '@/contexts/AuthContext'
+import { Favicon } from '@/components/Favicon'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -73,6 +74,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className={`${inter.className} antialiased`}>
+        <Favicon />
         <AuthProvider>
           <LanguageProvider>
             <div className="min-h-screen bg-slate-900 relative">
