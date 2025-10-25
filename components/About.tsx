@@ -7,6 +7,7 @@ import { PhotoIcon } from '@heroicons/react/24/outline'
 import { BriefcaseIcon, SparklesIcon, HeartIcon, CpuChipIcon } from '@heroicons/react/24/outline'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
+import { uploadImageToSupabase } from '@/lib/supabase-storage'
 
 export function About() {
   const { t, language } = useLanguage()
@@ -41,32 +42,21 @@ export function About() {
     reader.onloadend = async () => {
       const base64String = reader.result as string
       
-      try {
-        // Cloudinary'ye yükle
-        const response = await fetch('/api/upload-image', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            imageData: base64String,
-            section: 'about'
-          })
-        })
-
-        const data = await response.json()
-        
-        if (data.success) {
-          setAboutImage(data.url)
-          localStorage.setItem('aboutImage', data.url)
-          alert('Fotoğraf başarıyla yüklendi ve herkese görünecek!')
-        } else {
-          // Fallback: localStorage kullan
-          setAboutImage(base64String)
-          localStorage.setItem('aboutImage', base64String)
-          alert('Fotoğraf kaydedildi (sadece sizde görünecek)')
-        }
-      } catch (error) {
-        console.error('Upload error:', error)
-        // Fallback: localStorage kullan
+      console.log('📤 Uploading about image to Supabase...')
+      const result = await uploadImageToSupabase(
+        base64String,
+        'hero',
+        `about-profile-${Date.now()}`
+      )
+      
+      console.log('📥 Upload result:', result)
+      
+      if (result.success && result.url) {
+        setAboutImage(result.url)
+        localStorage.setItem('aboutImage', result.url)
+        alert('About görseli Supabase\'e yüklendi ve herkese görünecek!')
+      } else {
+        console.error('❌ Upload failed:', result.error)
         setAboutImage(base64String)
         localStorage.setItem('aboutImage', base64String)
         alert('Fotoğraf kaydedildi (sadece sizde görünecek)')

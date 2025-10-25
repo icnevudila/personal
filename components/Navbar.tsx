@@ -9,6 +9,7 @@ import { LanguageSwitcher } from './LanguageSwitcher'
 
 export function Navbar() {
   const { t } = useLanguage()
+  const [logoUrl, setLogoUrl] = useState<string>('')
   
   const navItems = [
     { name: t.nav.home, href: '#home' },
@@ -20,6 +21,24 @@ export function Navbar() {
   ]
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    // Load logo from localStorage
+    const savedLogo = localStorage.getItem('siteLogo')
+    if (savedLogo) {
+      setLogoUrl(savedLogo)
+    }
+    
+    // Check for updates every second
+    const interval = setInterval(() => {
+      const updatedLogo = localStorage.getItem('siteLogo')
+      if (updatedLogo && updatedLogo !== logoUrl) {
+        setLogoUrl(updatedLogo)
+      }
+    }, 1000)
+    
+    return () => clearInterval(interval)
+  }, [logoUrl])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -52,9 +71,20 @@ export function Navbar() {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
-          {/* Logo - Removed */}
+          {/* Logo */}
           <div className="flex-shrink-0">
-            {/* Logo removed as requested */}
+            {logoUrl ? (
+              <img 
+                src={logoUrl} 
+                alt="icnevudila" 
+                className="h-10 w-auto"
+              />
+            ) : (
+              <span className="text-xl font-bold">
+                <span className="text-primary-500">ic</span>
+                <span className="text-gray-300">nevudila</span>
+              </span>
+            )}
           </div>
 
           {/* Desktop Navigation */}

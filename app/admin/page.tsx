@@ -37,7 +37,9 @@ function AdminPanel() {
   const [showAddForm, setShowAddForm] = useState(false)
   const [localStorageCount, setLocalStorageCount] = useState(0)
   const [heroImage, setHeroImage] = useState<string>('')
-  const [activeTab, setActiveTab] = useState<'projects' | 'blog'>('projects')
+  const [aboutImage, setAboutImage] = useState<string>('')
+  const [siteLogo, setSiteLogo] = useState<string>('')
+  const [activeTab, setActiveTab] = useState<'projects' | 'blog' | 'settings'>('projects')
 
   useEffect(() => {
     // Load projects from localStorage or fallback to default
@@ -76,6 +78,20 @@ function AdminPanel() {
     if (savedHeroImage) {
       console.log('🖼️ Loaded hero image:', savedHeroImage.substring(0, 50) + '...')
       setHeroImage(savedHeroImage)
+    }
+    
+    // Load about image
+    const savedAboutImage = localStorage.getItem('aboutImage')
+    if (savedAboutImage) {
+      console.log('🖼️ Loaded about image:', savedAboutImage.substring(0, 50) + '...')
+      setAboutImage(savedAboutImage)
+    }
+    
+    // Load site logo
+    const savedLogo = localStorage.getItem('siteLogo')
+    if (savedLogo) {
+      console.log('🖼️ Loaded site logo:', savedLogo.substring(0, 50) + '...')
+      setSiteLogo(savedLogo)
     }
   }, [])
 
@@ -192,6 +208,16 @@ function AdminPanel() {
             >
               📝 Blog ({blogPosts.length})
             </button>
+            <button
+              onClick={() => setActiveTab('settings')}
+              className={`px-6 py-3 font-medium transition-colors border-b-2 ${
+                activeTab === 'settings'
+                  ? 'border-primary-500 text-primary-500'
+                  : 'border-transparent text-gray-400 hover:text-gray-300'
+              }`}
+            >
+              ⚙️ Logo & Images
+            </button>
           </div>
 
           {/* Stats */}
@@ -241,8 +267,87 @@ function AdminPanel() {
         </motion.div>
 
         {/* Content based on active tab */}
-        {activeTab === 'projects' ? (
+        {activeTab === 'settings' ? (
           <>
+            {/* Site Logo Upload */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-8 card"
+            >
+              <h2 className="text-2xl font-semibold mb-4">Site Logosu</h2>
+              
+              <p className="text-sm text-gray-400 mb-4">
+                Bu logo navbar'da görünür
+              </p>
+          
+              <div className="space-y-4">
+                {/* Preview */}
+                {siteLogo && (
+                  <div className="relative w-32 h-32 bg-gray-800 rounded-lg overflow-hidden border-4 border-gray-700 mx-auto flex items-center justify-center">
+                    <img src={siteLogo} alt="Logo" className="max-w-full max-h-full object-contain" />
+                  </div>
+                )}
+                
+                {/* Upload */}
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={async (e) => {
+                    const file = e.target.files?.[0]
+                    if (file) {
+                      const reader = new FileReader()
+                      reader.onloadend = async () => {
+                        const imageData = reader.result as string
+                        
+                        // Upload to Supabase
+                        const result = await uploadImageToSupabase(
+                          imageData,
+                          'logo',
+                          `site-logo-${Date.now()}`
+                        )
+                        
+                        if (result.success && result.url) {
+                          setSiteLogo(result.url)
+                          localStorage.setItem('siteLogo', result.url)
+                          alert('Logo Supabase\'e yüklendi ve herkese görünecek!')
+                        } else {
+                          // Fallback to localStorage
+                          setSiteLogo(imageData)
+                          localStorage.setItem('siteLogo', imageData)
+                          alert('Logo kaydedildi (sadece sizde görünecek)')
+                        }
+                      }
+                      reader.readAsDataURL(file)
+                    }
+                  }}
+                  className="hidden"
+                  id="logo-upload"
+                />
+                
+                <label
+                  htmlFor="logo-upload"
+                  className="flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg cursor-pointer transition-colors text-white font-medium mx-auto w-fit"
+                >
+                  <PhotoIcon className="w-5 h-5" />
+                  {siteLogo ? 'Logoyu Değiştir' : 'Logo Yükle'}
+                </label>
+                
+                {siteLogo && (
+                  <button
+                    onClick={() => {
+                      setSiteLogo('')
+                      localStorage.removeItem('siteLogo')
+                      alert('Logo silindi!')
+                    }}
+                    className="text-red-400 hover:text-red-300 text-sm mx-auto block"
+                  >
+                    Logoyu Sil
+                  </button>
+                )}
+              </div>
+            </motion.div>
+
             {/* Hero Image Upload */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -250,6 +355,10 @@ function AdminPanel() {
               className="mb-8 card"
             >
               <h2 className="text-2xl font-semibold mb-4">Hero Profil Görseli</h2>
+              
+              <p className="text-sm text-gray-400 mb-4">
+                Bu görsel Hero bölümünde görünür
+              </p>
           
           <div className="space-y-4">
             {/* Preview */}
@@ -318,8 +427,91 @@ function AdminPanel() {
           </div>
         </motion.div>
 
-        {/* Add Button */}
-        {!showAddForm && !editingId && (
+        {/* About Image Upload */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-8 card"
+        >
+          <h2 className="text-2xl font-semibold mb-4">About Profil Görseli</h2>
+          
+          <p className="text-sm text-gray-400 mb-4">
+            Bu görsel About bölümünde görünür
+          </p>
+      
+          <div className="space-y-4">
+            {/* Preview */}
+            {aboutImage && (
+              <div className="relative w-64 h-64 bg-gray-800 rounded-lg overflow-hidden border-4 border-gray-700 mx-auto">
+                <img src={aboutImage} alt="About" className="w-full h-full object-cover" />
+              </div>
+            )}
+            
+            {/* Upload */}
+            <input
+              type="file"
+              accept="image/*"
+              onChange={async (e) => {
+                const file = e.target.files?.[0]
+                if (file) {
+                  const reader = new FileReader()
+                  reader.onloadend = async () => {
+                    const imageData = reader.result as string
+                    
+                    console.log('📤 Uploading about image to Supabase...')
+                    const result = await uploadImageToSupabase(
+                      imageData,
+                      'hero',
+                      `about-profile-${Date.now()}`
+                    )
+                    
+                    console.log('📥 Upload result:', result)
+                    
+                    if (result.success && result.url) {
+                      setAboutImage(result.url)
+                      localStorage.setItem('aboutImage', result.url)
+                      alert('About görseli Supabase\'e yüklendi ve herkese görünecek!')
+                    } else {
+                      console.error('❌ Upload failed:', result.error)
+                      setAboutImage(imageData)
+                      localStorage.setItem('aboutImage', imageData)
+                      alert('About görseli kaydedildi (sadece sizde görünecek)')
+                    }
+                  }
+                  reader.readAsDataURL(file)
+                }
+              }}
+              className="hidden"
+              id="about-image-upload"
+            />
+            
+            <label
+              htmlFor="about-image-upload"
+              className="flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg cursor-pointer transition-colors text-white font-medium mx-auto w-fit"
+            >
+              <PhotoIcon className="w-5 h-5" />
+              {aboutImage ? 'Görseli Değiştir' : 'About Görseli Yükle'}
+            </label>
+            
+            {aboutImage && (
+              <button
+                onClick={() => {
+                  setAboutImage('')
+                  localStorage.removeItem('aboutImage')
+                  alert('About görseli silindi!')
+                }}
+                className="text-red-400 hover:text-red-300 text-sm"
+              >
+                Görseli Sil
+              </button>
+            )}
+          </div>
+        </motion.div>
+          </>
+        ) : activeTab === 'projects' ? (
+          <>
+            {/* Add Button */}
+            {!showAddForm && !editingId && (
           <motion.button
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

@@ -1,30 +1,144 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import { 
+  BriefcaseIcon, 
+  StarIcon, 
+  GlobeAltIcon, 
+  HeartIcon, 
+  SparklesIcon, 
+  EyeIcon 
+} from '@heroicons/react/24/outline'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
+
+interface StatCardProps {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>
+  value: number
+  suffix: string
+  label: string
+  description: string
+  delay: number
+  isInView: boolean
+}
+
+function StatCard({ icon: Icon, value, suffix, label, description, delay, isInView }: StatCardProps) {
+  const [displayValue, setDisplayValue] = useState(0)
+  const [iconGlow, setIconGlow] = useState(false)
+
+  useEffect(() => {
+    if (!isInView) return
+
+    const timer = setTimeout(() => {
+      let start = 0
+      const end = value
+      const duration = 2000
+      const increment = end / (duration / 16)
+
+      const interval = setInterval(() => {
+        start += increment
+        if (start >= end) {
+          setDisplayValue(end)
+          clearInterval(interval)
+        } else {
+          setDisplayValue(Math.floor(start))
+        }
+      }, 16)
+
+      return () => clearInterval(interval)
+    }, delay * 1000)
+
+    return () => clearTimeout(timer)
+  }, [isInView, value, delay])
+
+  useEffect(() => {
+    if (isInView) {
+      const timer = setTimeout(() => setIconGlow(true), delay * 1000 + 100)
+      return () => clearTimeout(timer)
+    }
+  }, [isInView, delay])
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      transition={{ duration: 0.6, delay, ease: 'easeOut' }}
+      className="bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-orange-500/30 transition-all duration-300 group"
+    >
+      <div className="flex flex-col items-center text-center space-y-4">
+        {/* Icon */}
+        <div className="relative">
+          <div 
+            className={`absolute inset-0 bg-orange-500/20 rounded-full blur-xl transition-opacity duration-500 ${
+              iconGlow ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+          <div className="relative bg-gray-700/50 p-4 rounded-full group-hover:bg-gray-700 transition-colors duration-300">
+            <Icon className="w-8 h-8 text-orange-500" />
+          </div>
+        </div>
+
+        {/* Value */}
+        <div className="space-y-1">
+          <div className="text-4xl sm:text-5xl font-bold text-white tabular-nums">
+            {displayValue.toFixed(displayValue % 1 !== 0 ? 1 : 0)}{suffix}
+          </div>
+          <div className="text-lg font-semibold text-white">{label}</div>
+          <div className="text-sm text-gray-400">{description}</div>
+        </div>
+      </div>
+    </motion.article>
+  )
+}
 
 export function Skills() {
   const { t } = useLanguage()
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
-  const skillCategories = [
+  const stats = [
     {
-      title: t.skills.category1,
-      skills: t.skills.designSkills.map((name, index) => ({
-        name,
-        level: [95, 95, 90, 90, 85, 95][index],
-      })),
+      icon: BriefcaseIcon,
+      value: 26,
+      suffix: '+',
+      label: t.skills.stats.projectsCompleted,
+      description: t.skills.stats.projectsCompletedDesc
     },
     {
-      title: t.skills.category2,
-      skills: t.skills.aiTools.map((name, index) => ({
-        name,
-        level: [95, 90, 85, 95, 90, 95][index],
-      })),
+      icon: StarIcon,
+      value: 4.9,
+      suffix: '/5',
+      label: t.skills.stats.clientSatisfaction,
+      description: t.skills.stats.clientSatisfactionDesc
+    },
+    {
+      icon: GlobeAltIcon,
+      value: 8,
+      suffix: '',
+      label: t.skills.stats.countries,
+      description: t.skills.stats.countriesDesc
+    },
+    {
+      icon: HeartIcon,
+      value: 320,
+      suffix: '+',
+      label: t.skills.stats.positiveFeedback,
+      description: t.skills.stats.positiveFeedbackDesc
+    },
+    {
+      icon: SparklesIcon,
+      value: 40,
+      suffix: '%',
+      label: t.skills.stats.aiTimeSaved,
+      description: t.skills.stats.aiTimeSavedDesc
+    },
+    {
+      icon: EyeIcon,
+      value: 15.2,
+      suffix: 'K+',
+      label: t.skills.stats.websiteViews,
+      description: t.skills.stats.websiteViewsDesc
     },
   ]
 
@@ -52,7 +166,7 @@ export function Skills() {
   }
 
   return (
-    <section id="skills" className="section-padding bg-gray-800/30">
+    <section id="skills" className="section-padding bg-gray-800/30" aria-labelledby="skills-title">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -63,95 +177,30 @@ export function Skills() {
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+            <h2 id="skills-title" className="text-4xl sm:text-5xl font-bold mb-6">
               <AnimatedText text={t.skills.title} />
             </h2>
-            <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full" />
+            <div className="w-24 h-1 bg-orange-500 mx-auto rounded-full" />
             <p className="text-lg text-gray-400 mt-6 max-w-2xl mx-auto">
               {t.skills.subtitle}
             </p>
           </motion.div>
 
-          {/* Skills Grid */}
-          <div className="grid lg:grid-cols-2 gap-8">
-            {skillCategories.map((category, categoryIndex) => (
-              <motion.div
-                key={category.title}
-                variants={itemVariants}
-                className="card card-hover"
-              >
-                <h3 className="text-xl font-semibold text-white mb-6 text-center">
-                  {category.title}
-                </h3>
-                
-                <div className="space-y-4">
-                  {category.skills.map((skill, skillIndex) => (
-                    <motion.div
-                      key={skill.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                      transition={{ 
-                        duration: 0.6, 
-                        delay: 0.3 + categoryIndex * 0.2 + skillIndex * 0.1 
-                      }}
-                      className="space-y-2"
-                    >
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-300 font-medium">
-                          {skill.name}
-                        </span>
-                        <span className="text-primary-500 font-semibold">
-                          {skill.level}%
-                        </span>
-                      </div>
-                      
-                      <div className="w-full bg-gray-700 rounded-full h-2">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                          transition={{ 
-                            duration: 1.2, 
-                            delay: 0.5 + categoryIndex * 0.2 + skillIndex * 0.1,
-                            ease: 'easeOut'
-                          }}
-                          className="h-2 bg-primary-500 rounded-full"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {stats.map((stat, index) => (
+              <StatCard
+                key={stat.label}
+                icon={stat.icon}
+                value={stat.value}
+                suffix={stat.suffix}
+                label={stat.label}
+                description={stat.description}
+                delay={index * 0.1}
+                isInView={isInView}
+              />
             ))}
           </div>
-
-          {/* Additional Skills */}
-          <motion.div variants={itemVariants} className="mt-16">
-            <div className="card text-center">
-              <h3 className="text-2xl font-semibold mb-6">
-                <AnimatedText text="Ek Beceriler" />
-              </h3>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-                {[
-                  'Görsel Hikaye Anlatımı',
-                  'Duygusal Tasarım',
-                  'Minimalist Estetik',
-                  'Kullanıcı Odaklı Düşünce',
-                  'Yaratıcı Problem Çözme',
-                  'İş Akışı Optimizasyonu',
-                ].map((skill) => (
-                  <motion.div
-                    key={skill}
-                    whileHover={{ scale: 1.05 }}
-                    className="p-3 bg-gray-700 rounded-lg hover:bg-primary-500 hover:text-white transition-all duration-300 cursor-default"
-                  >
-                    <span className="text-sm font-medium text-gray-300 hover:text-white">
-                      {skill}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
