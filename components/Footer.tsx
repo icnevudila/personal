@@ -62,8 +62,8 @@ export function Footer() {
       { name: 'Hizmetler', href: '#contact' },
     ],
     'Bağlantılar': [
-      { name: 'GitHub', href: '#' },
-      { name: 'LinkedIn', href: '#' },
+      { name: 'GitHub', href: 'https://github.com/icnevudila' },
+      { name: 'LinkedIn', href: 'https://www.linkedin.com/in/ali-düvenci' },
       { name: 'Twitter', href: 'https://twitter.com/icnevudila' },
       { name: 'E-posta', href: 'mailto:icnevudila@gmail.com' },
     ],
@@ -144,6 +144,8 @@ export function Footer() {
                             handleNavClick(link.href)
                           }
                         }}
+                        target={link.href.startsWith('http') ? '_blank' : undefined}
+                        rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                         className="text-gray-400 hover:text-white transition-colors duration-200 block"
                       >
                         {link.name}
