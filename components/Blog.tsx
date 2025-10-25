@@ -314,9 +314,10 @@ Responsive tasarım sadece teknik bir gereklilik değil, kullanıcı deneyiminin
         >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-8 md:mb-16 px-4">
-            <div className="flex flex-col md:flex-row items-center justify-between mb-4 md:mb-6 gap-4">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
-                {t.blog.title}
+            <div className="flex flex-col md:flex-row items-center justify-center mb-4 md:mb-6 gap-4">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#F1F5F9] leading-tight text-center">
+                <span className="text-[#F97316]">Blo</span>
+                <span className="text-[#F1F5F9]">gum</span>
             </h2>
               {isAdmin && (
                 <div className="flex gap-2 md:gap-3">
@@ -341,7 +342,7 @@ Responsive tasarım sadece teknik bir gereklilik değil, kullanıcı deneyiminin
                 </div>
               )}
             </div>
-            <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full" />
+            <div className="w-24 h-1 bg-[#F97316] mx-auto rounded-full" />
             <p className="text-base sm:text-lg text-gray-400 mt-4 md:mt-6 max-w-2xl mx-auto leading-relaxed">
               {t.blog.subtitle}
             </p>
