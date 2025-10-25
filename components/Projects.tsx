@@ -132,16 +132,6 @@ export function Projects() {
       featured: false,
     },
     {
-      id: 5,
-      title: 'Mindfolio Blog',
-      description: 'Temiz tipografi ve okuma deneyimi ile AI destekli içerik platformu. İçerik üreticileri ve tüketicileri için tasarlandı.',
-      image: '/portfolio/blog.jpg',
-      technologies: ['Web Design', 'Content Strategy', 'Typography', 'Next.js'],
-      liveUrl: '#',
-      githubUrl: '#',
-      featured: false,
-    },
-    {
       id: 6,
       title: 'Pixen E-Commerce Concept',
       description: 'Ürün vitrinine odaklanan minimal online mağaza tasarımı. Alışveriş deneyimini artıran temiz düzenler.',
