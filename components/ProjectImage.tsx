@@ -305,7 +305,7 @@ export function ProjectImage({ title, className = '' }: ProjectImageProps) {
           <div className="h-14 bg-white border-b border-gray-200 flex items-center px-6 justify-between">
             <div className="h-6 w-52 bg-gray-900 rounded"></div>
             <div className="flex gap-6">
-              {['Ana Sayfa', 'Kategoriler', 'Yapay Zeka', 'Tasarım', 'Hakkında'].map((item, i) => (
+              {['Ana Sayfa', 'Kategoriler', 'Teknoloji', 'Tasarım', 'Hakkında'].map((item, i) => (
                 <div key={i} className="h-3 w-16 bg-gray-300 rounded"></div>
               ))}
             </div>

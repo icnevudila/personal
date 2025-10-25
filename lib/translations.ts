@@ -11,14 +11,14 @@ export const translations = {
     hero: {
       greeting: 'Merhaba, ben',
       name: 'icnevudila',
-      title: 'Yapay zekâ ile desteklenen, sade ve kullanıcı odaklı web tasarımları yapıyorum.',
+      title: 'Sade ve kullanıcı odaklı web tasarımları yapıyorum.',
       description: 'Modern UI/UX prensiplerini AI araçlarıyla birleştirerek sakin, insan odaklı web siteleri tasarlıyorum. Sezgisel düzenler, duygusal renk dengesi ve görsel hikaye anlatan tasarım sistemleri üzerinde odaklanıyorum. Tasarımın basit, sakin ve zeki hissettirmesi gerektiğine inanıyorum — teknolojiyle güçlendirilmiş ama lezzetle yönlendirilmiş.',
       ctaProjects: 'Projelerimi Gör',
       ctaBlog: 'Bloga Göz At',
     },
     about: {
       title: 'Hakkımda',
-      description1: 'Yaratıcı düşünceyi ve yapay zekâyı birleştirerek sade, etkileyici arayüzler tasarlıyorum. Tasarımın teknolojiyle birleştiği yerde, kullanıcıların kendini rahat hissedeceği deneyimler yaratmak benim için öncelik.',
+      description1: 'Yaratıcı düşünceyi teknolojiyle birleştirerek sade, etkileyici arayüzler tasarlıyorum. Tasarımın teknolojiyle birleştiği yerde, kullanıcıların kendini rahat hissedeceği deneyimler yaratmak benim için öncelik.',
       description2: 'ChatGPT, Midjourney, GitHub Copilot, Figma AI ve diğer AI araçlarını kullanarak sezgisel düzenler, duygusal renk dengesi ve görsel hikaye anlatan tasarım sistemleri oluşturuyorum. Tasarımın basit, sakin ve zeki hissettirmesi gerektiğine inanıyorum.',
       description3: 'Teknolojiyle güçlendirilmiş ama lezzetle yönlendirilmiş tasarımlar yapıyorum. AI araçları yaratıcı sürecimi hızlandırıyor ve daha etkili iş akışları optimize ediyorum.',
       stats: {
@@ -43,7 +43,7 @@ export const translations = {
     },
     blog: {
       title: 'Blogum',
-      subtitle: 'Tasarım, yapay zekâ araçları ve minimal dijital deneyimler hakkında düşünceler',
+      subtitle: 'Tasarım, modern teknolojiler ve minimal dijital deneyimler hakkında düşünceler',
       readMore: 'Devamını Oku',
       addPost: 'Yeni Yazı',
       adminModeOn: 'Admin Modu: Açık',
@@ -137,7 +137,7 @@ export const translations = {
         experience: 'Experience',
         experienceSubtitle: 'Years in Design',
         aiSkills: 'AI Skills',
-        aiSkillsSubtitle: 'AI-Assisted Design',
+        aiSkillsSubtitle: 'Modern Design',
         design: 'Design',
         designSubtitle: 'Purpose & Emotion',
       },
@@ -173,7 +173,7 @@ export const translations = {
     },
     skills: {
       title: 'Skills',
-      subtitle: 'Modern design principles with AI-assisted creative workflows',
+      subtitle: 'Modern design principles with innovative creative workflows',
       category1: 'Design Skills',
       category2: 'AI Tools',
       additional: 'Additional Skills',

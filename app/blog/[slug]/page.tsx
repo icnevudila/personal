@@ -39,13 +39,13 @@ export default function BlogPostPage() {
       // Fallback to default posts
       const defaultPosts = [
         {
-          title: 'Yapay Zekâ ile Tasarım Sürecini Hızlandırmak',
-          excerpt: 'AI araçlarını kullanarak web tasarımında zaman kazanmanın ve yaratıcı süreçleri optimize etmenin yollarını keşfedin.',
-          content: `Web tasarımında yapay zekâ araçları giderek daha önemli bir rol oynuyor. ChatGPT, Midjourney ve Leonardo AI gibi araçlar sayesinde tasarım süreçlerini hızlandırabilir ve yaratıcılığımızı destekleyebiliriz.
+          title: 'Modern Araçlarla Tasarım Sürecini Hızlandırmak',
+          excerpt: 'Güncel araçları kullanarak web tasarımında zaman kazanmanın ve yaratıcı süreçleri optimize etmenin yollarını keşfedin.',
+          content: `Web tasarımında modern araçlar giderek daha önemli bir rol oynuyor. ChatGPT, Midjourney ve Leonardo AI gibi araçlar sayesinde tasarım süreçlerini hızlandırabilir ve yaratıcılığımızı destekleyebiliriz.
 
-## AI Araçlarının Rolü
+## Modern Araçların Rolü
 
-Yapay zekâ, tasarımcıların tekrarlayan görevlerini azaltarak odaklanmalarını gereken alanlara yönlendiriyor. Örneğin, renk paletleri oluşturma, layout önerileri alma ve tipografi seçimi gibi konularda AI'dan destek alabiliriz.
+Modern araçlar, tasarımcıların tekrarlayan görevlerini azaltarak odaklanmalarını gereken alanlara yönlendiriyor. Örneğin, renk paletleri oluşturma, layout önerileri alma ve tipografi seçimi gibi konularda bu araçlardan destek alabiliriz.
 
 ## Pratik Örnekler
 

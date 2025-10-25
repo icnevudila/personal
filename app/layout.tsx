@@ -14,10 +14,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'icnevudila - AI-Assisted Web Designer',
+    default: 'icnevudila - Creative Web Designer',
     template: '%s | icnevudila'
   },
-  description: 'Designing calm, minimal, AI-inspired digital experiences. Specializing in web design, UI/UX, and AI-assisted creative workflows.',
+  description: 'Designing calm, minimal, modern digital experiences. Specializing in web design, UI/UX, and creative workflows.',
   keywords: ['web designer', 'UI/UX designer', 'business analyst', 'software support', 'graphic design', 'portfolio', 'frontend developer'],
   authors: [{ name: 'icnevudila' }],
   creator: 'icnevudila',
@@ -25,22 +25,22 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://icnevudila.com',
-    title: 'icnevudila - AI-Assisted Web Designer',
-    description: 'Designing calm, minimal, AI-inspired digital experiences. Specializing in web design, UI/UX, and AI-assisted creative workflows.',
+    title: 'icnevudila - Creative Web Designer',
+    description: 'Designing calm, minimal, modern digital experiences. Specializing in web design, UI/UX, and creative workflows.',
     siteName: 'icnevudila Portfolio',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'icnevudila - AI-Assisted Web Designer',
+        alt: 'icnevudila - Creative Web Designer',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'icnevudila - AI-Assisted Web Designer',
-    description: 'Designing calm, minimal, AI-inspired digital experiences. Specializing in web design, UI/UX, and AI-assisted creative workflows.',
+    title: 'icnevudila - Creative Web Designer',
+    description: 'Designing calm, minimal, modern digital experiences. Specializing in web design, UI/UX, and creative workflows.',
     images: ['/og-image.jpg'],
   },
   robots: {

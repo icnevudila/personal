@@ -35,7 +35,7 @@
     {
       "id": 5,
       "title": "NeuraBoard",
-      "description": "Yapay zekâ optimizasyon kontrol paneli. Model hiperparametrelerini ve eğitim süreçlerini yönetmek için tasarlandı.",
+      "description": "Optimizasyon kontrol paneli. Model hiperparametrelerini ve eğitim süreçlerini yönetmek için tasarlandı.",
       "image": "/portfolio/neuraboard.png",
       "technologies": ["AI Optimization", "Dashboard Design", "Figma"],
       "featured": false
@@ -43,7 +43,7 @@
     {
       "id": 6,
       "title": "Mindfolio Blog",
-      "description": "Yapay zekâ destekli blog platformu. AI ile içerik üretimi ve tasarım dünyasındaki yenilikleri paylaşan minimalist blog arayüzü.",
+      "description": "Modern blog platformu. İçerik üretimi ve tasarım dünyasındaki yenilikleri paylaşan minimalist blog arayüzü.",
       "image": "/portfolio/mindfolio_blog.png",
       "technologies": ["Blog Platform", "AI Content", "UI/UX Design", "Figma"],
       "featured": true

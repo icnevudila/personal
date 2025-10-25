@@ -101,7 +101,7 @@ export function Footer() {
                   <AnimatedText text="icnevudila" />
                 </h3>
                 <p className="text-gray-400 mb-6 leading-relaxed">
-                  Yapay zekâ ile desteklenen, sade ve kullanıcı odaklı web tasarımları yapıyorum.
+                  Sade ve kullanıcı odaklı web tasarımları yapıyorum.
                 </p>
                 <motion.button
                   onClick={scrollToTop}
@@ -199,14 +199,14 @@ export function Footer() {
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
               {/* Copyright */}
               <div className="flex items-center space-x-2 text-gray-400">
-                <span>© {currentYear} icnevudila. Yapay zekâ ile</span>
+                <span>© {currentYear} icnevudila.</span>
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 >
                   <HeartIcon className="w-4 h-4 text-red-500" />
                 </motion.div>
-                <span>ve Next.js ile yapıldı</span>
+                <span>Next.js ile yapıldı</span>
               </div>
 
               {/* Social Links */}
