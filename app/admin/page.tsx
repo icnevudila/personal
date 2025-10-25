@@ -652,11 +652,14 @@ function AdminPanel() {
                                   const base64String = reader.result as string
                                   
                                   // Upload to Supabase
+                                  console.log('📤 Uploading blog image to Supabase...')
                                   const result = await uploadImageToSupabase(
                                     base64String,
                                     'blog',
                                     `blog-${post.slug}-${Date.now()}`
                                   )
+                                  
+                                  console.log('📥 Upload result:', result)
                                   
                                   if (result.success && result.url) {
                                     const updatedPosts = [...blogPosts]
@@ -665,6 +668,7 @@ function AdminPanel() {
                                     localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
                                     alert('Görsel Supabase\'e yüklendi ve herkese görünecek!')
                                   } else {
+                                    console.error('❌ Upload failed:', result.error)
                                     // Fallback to localStorage
                                     const updatedPosts = [...blogPosts]
                                     updatedPosts[index].image = base64String
