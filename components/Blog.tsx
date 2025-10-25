@@ -184,6 +184,7 @@ Responsive tasarım sadece teknik bir gereklilik değil, kullanıcı deneyiminin
   ])
 
   useEffect(() => {
+    // Try to load from localStorage first
     const saved = localStorage.getItem('blogPosts')
     if (saved) {
       try {
@@ -193,6 +194,17 @@ Responsive tasarım sadece teknik bir gereklilik değil, kullanıcı deneyiminin
         console.error('Error parsing blog posts:', e)
       }
     }
+    
+    // Also fetch from public JSON file (Cloudinary URLs for everyone)
+    fetch('/blog-data.json')
+      .then(res => res.json())
+      .then(data => {
+        if (data.blogPosts && data.blogPosts.length > 0) {
+          setBlogPosts(data.blogPosts)
+          localStorage.setItem('blogPosts', JSON.stringify(data.blogPosts))
+        }
+      })
+      .catch(e => console.log('No blog-data.json file found'))
   }, [])
 
   const handleEdit = (post: BlogPost, index: number) => {
