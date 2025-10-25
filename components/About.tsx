@@ -196,11 +196,11 @@ export function About() {
             {/* Image/Visual */}
             <motion.div 
               variants={itemVariants}
-              className="relative self-center"
+              className="relative self-center flex items-center"
               onMouseEnter={() => setShowUpload(true)}
               onMouseLeave={() => setShowUpload(false)}
             >
-              <div className="relative">
+              <div className="relative w-full">
                 {/* Placeholder for profile image */}
                 <div className="w-full h-64 md:h-96 bg-gray-800 rounded-2xl flex items-center justify-center relative overflow-hidden">
                   {/* Glow Effect */}
