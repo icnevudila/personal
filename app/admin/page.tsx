@@ -49,7 +49,7 @@ function AdminPanel() {
       setLocalStorageCount(parsed.length)
     } else {
       // Fetch from data file on first load
-      fetch('/data/projects.json')
+      fetch('/data-projects.json')
         .then(res => res.json())
         .then(data => {
           console.log('📊 Loaded projects from file:', data.projects)

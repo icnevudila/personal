@@ -71,7 +71,7 @@ export function Projects() {
       } catch (e) {
         console.error('Error parsing projects:', e)
         // Fetch from data file on error
-        fetch('/data/projects.json')
+        fetch('/data-projects.json')
           .then(res => res.json())
           .then(data => {
             setProjects(data.projects)
@@ -80,7 +80,7 @@ export function Projects() {
       }
     } else {
       // Fetch from data file on first load
-      fetch('/data/projects.json')
+      fetch('/data-projects.json')
         .then(res => res.json())
         .then(data => {
           setProjects(data.projects)
@@ -95,7 +95,7 @@ export function Projects() {
       id: 1,
       title: 'Nova Finance Dashboard',
       description: 'Kullanıcı deneyimi ve veri görselleştirmeye odaklanan temiz bir fintech dashboard UI tasarımı. Net hiyerarşi ile minimalist yaklaşım.',
-      image: '/api/placeholder/600/400',
+      image: '/portfolio/nova finance.jpg',
       technologies: ['UI/UX Design', 'Figma', 'Prototyping', 'Design System'],
       liveUrl: '#',
       githubUrl: '#',
@@ -105,7 +105,7 @@ export function Projects() {
       id: 2,
       title: 'Luma Studio Portfolio',
       description: 'Cesur görseller ve akıcı animasyonlarla yaratıcı ajans landing sayfası. Şık ve modern estetikle portföy çalışmalarını sergiliyor.',
-      image: '/api/placeholder/600/400',
+      image: '/portfolio/luma.jpg',
       technologies: ['Web Design', 'Next.js', 'Framer Motion', 'Tailwind CSS'],
       liveUrl: '#',
       githubUrl: '#',
@@ -115,7 +115,7 @@ export function Projects() {
       id: 3,
       title: 'Orangedesk CRM',
       description: 'Sezgisel iş akışı tasarımı ile startup\'lar için zarif CRM dashboard. Verimliliği ve kullanım kolaylığını vurgulayan temiz arayüz.',
-      image: '/api/placeholder/600/400',
+      image: '/portfolio/Phoenix_10_A_minimalist_creative_workspace_scene_viewed_from_a_3.jpg',
       technologies: ['UI Design', 'Figma', 'User Research', 'Wireframing'],
       liveUrl: '#',
       githubUrl: '#',
@@ -125,7 +125,7 @@ export function Projects() {
       id: 4,
       title: 'HealLink Medical Portal',
       description: 'Kullanıcı dostu arayüzle modern sağlık randevu sistemi. Erişilebilirlik ve sağlık iş akışlarında verimlilik için tasarlandı.',
-      image: '/api/placeholder/600/400',
+      image: '/portfolio/blog.jpg',
       technologies: ['UX Design', 'Prototyping', 'Healthcare UI', 'Figma'],
       liveUrl: '#',
       githubUrl: '#',
@@ -135,7 +135,7 @@ export function Projects() {
       id: 5,
       title: 'Mindfolio Blog',
       description: 'Temiz tipografi ve okuma deneyimi ile AI destekli içerik platformu. İçerik üreticileri ve tüketicileri için tasarlandı.',
-      image: '/api/placeholder/600/400',
+      image: '/portfolio/blog.jpg',
       technologies: ['Web Design', 'Content Strategy', 'Typography', 'Next.js'],
       liveUrl: '#',
       githubUrl: '#',
@@ -145,7 +145,7 @@ export function Projects() {
       id: 6,
       title: 'Pixen E-Commerce Concept',
       description: 'Ürün vitrinine odaklanan minimal online mağaza tasarımı. Alışveriş deneyimini artıran temiz düzenler.',
-      image: '/api/placeholder/600/400',
+      image: '/portfolio/luma.jpg',
       technologies: ['E-Commerce Design', 'UI/UX', 'Mobile-First', 'Figma'],
       liveUrl: '#',
       githubUrl: '#',

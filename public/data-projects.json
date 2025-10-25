@@ -1,0 +1,101 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Nova Finance Dashboard",
+      "description": "Finansal verilerinizi akıllı analitik ile yönetin. Fintech dashboard konsepti ile gelir, gider ve kullanıcı takibi için tasarlanmış modern arayüz.",
+      "image": "/portfolio/nova finance.jpg",
+      "technologies": ["Fintech UI", "Data Visualization", "Figma", "Dashboard Design"],
+      "featured": true
+    },
+    {
+      "id": 2,
+      "title": "Aurora Analytics",
+      "description": "Modern AI analiz paneli. Gerçek zamanlı veri görselleştirme ve makine öğrenimi içgörüleri için temiz, sezgisel arayüz.",
+      "image": "/portfolio/auraroa.jpg",
+      "technologies": ["AI Dashboard", "Data Visualization", "Figma", "Design System"],
+      "featured": true
+    },
+    {
+      "id": 3,
+      "title": "Cortex Dashboard",
+      "description": "Makine öğrenimi izleme ekranı. Model performansı ve tahminlerin anlık takibi için optimize edilmiş minimalist tasarım.",
+      "image": "/portfolio/Phoenix_10_A_minimalist_creative_workspace_scene_viewed_from_a_3.jpg",
+      "technologies": ["ML Monitoring", "UI/UX Design", "Figma", "Prototyping"],
+      "featured": true
+    },
+    {
+      "id": 4,
+      "title": "VisionFlow UI",
+      "description": "Görsel veri işleme yönetim paneli. Karmaşık görüntü analiz işlemlerini sade bir arayüzde sunuyor.",
+      "image": "/portfolio/mindflolio.jpg",
+      "technologies": ["Computer Vision UI", "Workflow Design", "Figma"],
+      "featured": false
+    },
+    {
+      "id": 5,
+      "title": "NeuraBoard",
+      "description": "Optimizasyon kontrol paneli. Model hiperparametrelerini ve eğitim süreçlerini yönetmek için tasarlandı.",
+      "image": "/portfolio/Phoenix_10_A_minimalist_creative_workspace_scene_viewed_from_a_3.jpg",
+      "technologies": ["AI Optimization", "Dashboard Design", "Figma"],
+      "featured": false
+    },
+    {
+      "id": 6,
+      "title": "Mindfolio Blog",
+      "description": "Modern blog platformu. İçerik üretimi ve tasarım dünyasındaki yenilikleri paylaşan minimalist blog arayüzü.",
+      "image": "/portfolio/blog.jpg",
+      "technologies": ["Blog Platform", "AI Content", "UI/UX Design", "Figma"],
+      "featured": true
+    },
+    {
+      "id": 7,
+      "title": "Promptly AI Tools",
+      "description": "Prompts yönetim platformu. AI prompt'ları düzenlemek, test etmek ve optimize etmek için sezgisel araçlar.",
+      "image": "/portfolio/luma.jpg",
+      "technologies": ["Prompt Engineering", "UI Design", "Figma"],
+      "featured": false
+    },
+    {
+      "id": 8,
+      "title": "Omnia Insight",
+      "description": "Gerçek zamanlı analiz arayüzü. Büyük veri setlerini anlık olarak görselleştiren performans odaklı tasarım.",
+      "image": "/portfolio/auraroa.jpg",
+      "technologies": ["Real-time Analytics", "UI/UX", "Figma"],
+      "featured": false
+    },
+    {
+      "id": 9,
+      "title": "Luma Studio",
+      "description": "Kreatif ajans ana sayfası konsepti. Portföy çalışmalarını modern ve etkileyici şekilde sergileyen temiz tasarım.",
+      "image": "/portfolio/luma.jpg",
+      "technologies": ["Creative Agency", "Web Design", "Next.js"],
+      "featured": false
+    },
+    {
+      "id": 10,
+      "title": "HealLink Medical Portal",
+      "description": "Hasta yönetim arayüzü konsepti. Sağlık verilerini düzenli ve güvenli şekilde sunan kullanıcı dostu panel.",
+      "image": "/portfolio/blog.jpg",
+      "technologies": ["Healthcare UI", "UX Design", "Figma"],
+      "featured": false
+    },
+    {
+      "id": 11,
+      "title": "DataScape",
+      "description": "AI destekli veri görselleştirme paneli. Karmaşık veri setlerini anlaşılır grafiklere dönüştüren sezgisel arayüz.",
+      "image": "/portfolio/Phoenix_10_A_minimalist_creative_workspace_scene_viewed_from_a_3.jpg",
+      "technologies": ["Data Visualization", "AI Tools", "Figma"],
+      "featured": false
+    },
+    {
+      "id": 12,
+      "title": "Mimosa Store",
+      "description": "Minimal e-ticaret vitrini. Ürün gösterimine odaklanan sade ve profesyonel online mağaza tasarımı.",
+      "image": "/portfolio/luma.jpg",
+      "technologies": ["E-Commerce", "UI/UX", "Figma"],
+      "featured": false
+    }
+  ]
+}
+
