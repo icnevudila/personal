@@ -196,7 +196,7 @@ export function About() {
             {/* Image/Visual */}
             <motion.div 
               variants={itemVariants}
-              className="relative"
+              className="relative self-center"
               onMouseEnter={() => setShowUpload(true)}
               onMouseLeave={() => setShowUpload(false)}
             >
