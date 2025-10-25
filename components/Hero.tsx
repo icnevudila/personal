@@ -8,7 +8,7 @@ import { AnimatedText } from './AnimatedText'
 
 export function Hero() {
   const { t } = useLanguage()
-  const [heroImage, setHeroImage] = useState<string>('')
+  const [heroImage, setHeroImage] = useState<string>('/hero-profile.jpg')
 
   useEffect(() => {
     const savedHeroImage = localStorage.getItem('heroImage')
@@ -101,9 +101,8 @@ export function Hero() {
                 
                 {/* Profile Image Container */}
                 <div className="absolute inset-0 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden">
-                  {/* You can replace this with your own image by uploading to /public/hero-profile.jpg */}
+                  {/* Profile Image */}
                   <div className="w-full h-full bg-primary-500/30 flex items-center justify-center relative">
-                    {/* Custom Image from localStorage */}
                     {heroImage ? (
                       <img 
                         src={heroImage} 
