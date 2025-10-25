@@ -529,8 +529,8 @@ function AdminPanel() {
           <div className="space-y-4">
             {/* Preview */}
             {aboutImage && (
-              <div className="relative w-64 h-64 bg-gray-800 rounded-lg overflow-hidden border-4 border-gray-700 mx-auto">
-                <img src={aboutImage} alt="About" className="w-full h-full object-cover" />
+              <div className="relative w-full max-w-md mx-auto bg-gray-800 rounded-lg overflow-hidden border-4 border-gray-700">
+                <img src={aboutImage} alt="About" className="w-full h-auto object-cover" />
               </div>
             )}
             
