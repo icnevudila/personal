@@ -81,7 +81,7 @@ export function Navbar() {
                 className="h-10 w-auto"
               />
             ) : (
-              <Logo variant="monogram" className="cursor-pointer" />
+              <Logo variant="full" className="cursor-pointer" />
             )}
           </div>
 

@@ -292,6 +292,32 @@ export function Contact() {
             </motion.div>
           </div>
         </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-20 text-center"
+        >
+          <p className="text-2xl text-[#F1F5F9] mb-6">
+            Birlikte bir şey tasarlayalım mı?
+          </p>
+          <motion.button
+            onClick={() => {
+              const formElement = document.querySelector('form')
+              if (formElement) {
+                formElement.scrollIntoView({ behavior: 'smooth' })
+              }
+            }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-4 border-2 border-[#F97316] text-[#F97316] hover:bg-[#F97316] hover:text-white font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(249,115,22,0.3)]"
+          >
+            İletişime Geç
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   )

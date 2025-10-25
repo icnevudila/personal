@@ -6,18 +6,20 @@ import { Projects } from '@/components/Projects'
 import { Blog } from '@/components/Blog'
 import { Contact } from '@/components/Contact'
 import { QuoteButton } from '@/components/QuoteButton'
-import { Intro } from '@/components/Intro'
+import { Testimonials } from '@/components/Testimonials'
+import { BuyMeACoffee } from '@/components/BuyMeACoffee'
 
 export default function Home() {
   return (
     <>
-      <Intro />
       <Hero />
       <About />
       <Education />
       <Skills />
       <Projects />
       <Blog />
+      <Testimonials />
+      <BuyMeACoffee />
       <Contact />
       <QuoteButton />
     </>

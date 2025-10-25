@@ -43,7 +43,7 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="relative text-2xl font-bold font-space-grotesk tracking-tight"
+        className="relative text-xl font-bold font-space-grotesk tracking-tight"
       >
         <span className="text-[#E2E8F0]">ic</span>
         <span className="text-[#F97316] inline-block relative">

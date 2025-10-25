@@ -16,11 +16,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'icnevudila - Creative Web Designer',
+    default: 'icnevudila — Yaratıcı Web Tasarım ve AI Odaklı Portföy',
     template: '%s | icnevudila'
   },
-  description: 'Designing calm, minimal, modern digital experiences. Specializing in web design, UI/UX, and creative workflows.',
-  keywords: ['web designer', 'UI/UX designer', 'business analyst', 'software support', 'graphic design', 'portfolio', 'frontend developer'],
+  description: 'Sade, zekice ve insana yakın tasarımlar. AI ve insan işbirliğiyle yaratılan modern dijital deneyimler.',
+  keywords: ['web tasarım', 'UI/UX tasarım', 'yazılım destek', 'grafik tasarım', 'portföy', 'frontend developer', 'AI tasarım', 'yaratıcı stüdyo'],
   authors: [{ name: 'icnevudila' }],
   creator: 'icnevudila',
   viewport: {
@@ -30,10 +30,10 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    locale: 'en_US',
-    url: 'https://icnevudila.com',
-    title: 'icnevudila - Creative Web Designer',
-    description: 'Designing calm, minimal, modern digital experiences. Specializing in web design, UI/UX, and creative workflows.',
+    locale: 'tr_TR',
+    url: 'https://icnevudila.xyz',
+    title: 'icnevudila — Yaratıcı Web Tasarım ve AI Odaklı Portföy',
+    description: 'Sade, zekice ve insana yakın tasarımlar. AI ve insan işbirliğiyle yaratılan modern dijital deneyimler.',
     siteName: 'icnevudila Portfolio',
     images: [
       {
@@ -46,8 +46,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'icnevudila - Creative Web Designer',
-    description: 'Designing calm, minimal, modern digital experiences. Specializing in web design, UI/UX, and creative workflows.',
+    title: 'icnevudila — Yaratıcı Web Tasarım ve AI Odaklı Portföy',
+    description: 'Sade, zekice ve insana yakın tasarımlar.',
     images: ['/og-image.jpg'],
   },
   robots: {
