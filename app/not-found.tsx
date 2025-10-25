@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { CoffeeIcon } from '@heroicons/react/24/outline'
+import { BeakerIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 
 export default function NotFound() {
@@ -18,7 +18,7 @@ export default function NotFound() {
           transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
           className="mb-8 inline-block"
         >
-          <CoffeeIcon className="w-24 h-24 text-[#F97316] mx-auto" />
+          <BeakerIcon className="w-24 h-24 text-[#F97316] mx-auto" />
         </motion.div>
 
         <h1 className="text-6xl font-bold text-[#F1F5F9] mb-4">404</h1>

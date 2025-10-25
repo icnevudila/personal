@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { CoffeeIcon } from '@heroicons/react/24/outline'
+import { BeakerIcon } from '@heroicons/react/24/outline'
 
 export function BuyMeACoffee() {
   return (
@@ -37,7 +37,7 @@ export function BuyMeACoffee() {
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-3 px-8 py-4 bg-[#F97316] hover:bg-[#F97316]/90 text-white font-semibold rounded-full shadow-lg hover:shadow-[0_0_24px_rgba(249,115,22,0.3)] transition-all duration-300"
           >
-            <CoffeeIcon className="w-6 h-6" />
+            <BeakerIcon className="w-6 h-6" />
             <span>Buy Me a Coffee</span>
           </motion.a>
         </div>
