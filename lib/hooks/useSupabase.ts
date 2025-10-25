@@ -37,7 +37,7 @@ export function useSupabaseData<T>(
         const { data, error } = await query
 
         if (error) throw error
-        setData(data || [])
+        setData((data as T[]) || [])
       } catch (err) {
         setError(err as Error)
         console.error('Supabase fetch error:', err)
