@@ -1,18 +1,27 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 
 export function AuthGuard({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuth()
   const router = useRouter()
+  const [isLocalAdmin, setIsLocalAdmin] = useState(false)
 
   useEffect(() => {
-    if (!loading && !user) {
+    // Check localStorage for admin mode
+    const adminMode = localStorage.getItem('adminMode')
+    if (adminMode === 'true') {
+      setIsLocalAdmin(true)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!loading && !user && !isLocalAdmin) {
       router.push('/admin/login')
     }
-  }, [user, loading, router])
+  }, [user, loading, isLocalAdmin, router])
 
   if (loading) {
     return (
@@ -25,7 +34,7 @@ export function AuthGuard({ children }: { children: React.ReactNode }) {
     )
   }
 
-  if (!user) {
+  if (!user && !isLocalAdmin) {
     return null
   }
 

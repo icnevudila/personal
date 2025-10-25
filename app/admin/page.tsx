@@ -185,7 +185,11 @@ function AdminPanel() {
                 ← Ana Sayfaya Dön
               </a>
               <button
-                onClick={signOut}
+                onClick={() => {
+                  localStorage.removeItem('adminMode')
+                  localStorage.removeItem('adminEmail')
+                  signOut()
+                }}
                 className="px-4 py-2 bg-red-500 hover:bg-red-600 rounded-lg transition-colors text-sm font-medium flex items-center gap-2"
               >
                 <ArrowRightOnRectangleIcon className="w-4 h-4" />

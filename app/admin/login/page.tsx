@@ -27,6 +27,14 @@ export default function AdminLoginPage() {
     setIsLoading(true)
 
     try {
+      // Hardcoded admin credentials (TEMPORARY - Replace with real auth later)
+      if (email === 'admin@icnevudila.xyz' && password === 'admin123') {
+        localStorage.setItem('adminMode', 'true')
+        localStorage.setItem('adminEmail', email)
+        router.push('/admin')
+        return
+      }
+
       const { error } = await signIn(email, password)
       
       if (error) {
