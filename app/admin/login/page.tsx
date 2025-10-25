@@ -30,8 +30,8 @@ export default function AdminLoginPage() {
     if (email === 'admin@icnevudila.xyz' && password === 'admin123') {
       localStorage.setItem('adminMode', 'true')
       localStorage.setItem('adminEmail', email)
-      router.push('/admin')
-      setIsLoading(false)
+      // Use window.location for better compatibility
+      window.location.href = '/admin'
       return
     }
 
