@@ -1,6 +1,6 @@
 export async function uploadImageToSupabase(
   imageData: string,
-  folder: 'blog' | 'projects' | 'hero',
+  folder: 'blog' | 'projects' | 'hero' | 'logo',
   fileName?: string
 ): Promise<{ success: boolean; url?: string; error?: string }> {
   try {
