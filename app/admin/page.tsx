@@ -43,6 +43,7 @@ function AdminPanel() {
     const saved = localStorage.getItem('projects')
     if (saved) {
       const parsed = JSON.parse(saved)
+      console.log('📊 Loaded projects from localStorage:', parsed)
       setProjects(parsed)
       setLocalStorageCount(parsed.length)
     } else {
@@ -50,6 +51,7 @@ function AdminPanel() {
       fetch('/data/projects.json')
         .then(res => res.json())
         .then(data => {
+          console.log('📊 Loaded projects from file:', data.projects)
           setProjects(data.projects)
           setLocalStorageCount(data.projects.length)
           localStorage.setItem('projects', JSON.stringify(data.projects))
@@ -61,6 +63,7 @@ function AdminPanel() {
     if (savedBlogPosts) {
       try {
         const parsed = JSON.parse(savedBlogPosts)
+        console.log('📝 Loaded blog posts from localStorage:', parsed)
         setBlogPosts(parsed)
       } catch (e) {
         console.error('Error parsing blog posts:', e)
@@ -70,6 +73,7 @@ function AdminPanel() {
     // Load hero image
     const savedHeroImage = localStorage.getItem('heroImage')
     if (savedHeroImage) {
+      console.log('🖼️ Loaded hero image:', savedHeroImage.substring(0, 50) + '...')
       setHeroImage(savedHeroImage)
     }
   }, [])
