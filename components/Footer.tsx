@@ -212,7 +212,7 @@ export function Footer() {
               {/* Social Links */}
               <div className="flex space-x-4">
                 {[
-                  { name: 'GitHub', href: '#' },
+                  { name: 'GitHub', href: 'https://github.com/icnevudila' },
                   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/ali-düvenci' },
                   { name: 'Twitter', href: '#' },
                   { name: 'Dribbble', href: '#' }
