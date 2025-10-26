@@ -468,12 +468,12 @@ Bu yolculukta başarılar dileriz! 🚀`,
                           e.currentTarget.src = getCategoryImage(post.category)
                         }}
                         style={{ 
-                          opacity: '1 !important',
-                          visibility: 'visible !important',
-                          display: 'block !important',
-                          background: 'transparent !important',
-                          backgroundColor: 'transparent !important',
-                          backgroundImage: 'none !important'
+                          opacity: 1,
+                          visibility: 'visible',
+                          display: 'block',
+                          background: 'transparent',
+                          backgroundColor: 'transparent',
+                          backgroundImage: 'none'
                         }}
                       />
                       {/* Gradient Overlay */}
