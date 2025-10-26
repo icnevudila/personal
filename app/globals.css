@@ -897,4 +897,103 @@ html[data-theme="light"] {
   [data-theme="light"] {
     background: #ffffff !important;
   }
+
+  /* BLOG IMAGES - Force visibility in both modes */
+  img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    background: transparent !important;
+  }
+
+  /* Blog card images specifically */
+  .blog-card img,
+  [class*="blog"] img,
+  article img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    background: transparent !important;
+  }
+
+  /* Light mode blog images - SUPER SPECIFIC */
+  [data-theme="light"] img,
+  html[data-theme="light"] img,
+  [data-theme="light"] article img,
+  html[data-theme="light"] article img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    background: transparent !important;
+  }
+
+  /* OVERRIDE ANY HIDING RULES */
+  * img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+
+  /* LIGHT MODE SPECIFIC IMAGE RULES */
+  [data-theme="light"] * {
+    background-color: transparent !important;
+  }
+
+  [data-theme="light"] img,
+  [data-theme="light"] * img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  /* FORCE ALL IMAGES IN LIGHT MODE */
+  html[data-theme="light"] img,
+  html[data-theme="light"] * img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+}
+
+/* EXTRA LIGHT MODE IMAGE RULES - OUTSIDE MEDIA QUERY */
+[data-theme="light"] img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+html[data-theme="light"] img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* BLOG SPECIFIC LIGHT MODE */
+[data-theme="light"] article img,
+html[data-theme="light"] article img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* NUCLEAR OPTION - OVERRIDE EVERYTHING */
+* img {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
 }

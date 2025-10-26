@@ -195,7 +195,20 @@ export function Navbar() {
             onClick={handleMobileMenuClose}
           >
             <div className="absolute top-16 left-0 right-0 bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50 shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <div className="px-6 pt-6 pb-8 space-y-3">
+              {/* Close Button */}
+              <div className="flex justify-end p-4">
+                <motion.button
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.2 }}
+                  onClick={handleMobileMenuClose}
+                  className="text-gray-400 hover:text-white transition-colors duration-200 p-2 rounded-full hover:bg-gray-800/50"
+                  aria-label="Close menu"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </motion.button>
+              </div>
+              <div className="px-6 pb-8 space-y-3">
                 {navItems.map((item, index) => (
                   <motion.div
                     key={item.name}

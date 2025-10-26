@@ -142,7 +142,7 @@ export function About() {
               {/* Caption */}
               <motion.p 
                 variants={itemVariants}
-                className="text-center text-black dark:text-gray-400 italic mt-6 md:mt-8 max-w-2xl mx-auto text-sm sm:text-base px-2"
+                className="text-center text-black dark:text-gray-400 italic mt-6 md:mt-8 max-w-2xl mx-auto text-sm sm:text-base px-4 leading-relaxed"
               >
                 {language === 'tr' 
                   ? '"Deneyimle desteklenen, teknoloji ile güçlendirilen ve duyguyla yönlendirilen tasarım."'
@@ -153,7 +153,7 @@ export function About() {
               {/* Stats */}
               <motion.div 
                 variants={itemVariants}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-8 md:pt-12"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 pt-8 md:pt-12 max-w-4xl mx-auto"
               >
                 {stats.map((stat, index) => (
                   <motion.div

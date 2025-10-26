@@ -130,7 +130,7 @@ export function Hero() {
 
 
   return (
-    <section ref={heroRef} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={heroRef} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-0">
       {/* Background */}
       <motion.div 
         style={{ y, opacity, scale }}
@@ -152,14 +152,14 @@ export function Hero() {
       </motion.div>
 
       {/* Content */}
-      <div className="container-custom relative z-10">
+      <div className="container-custom relative z-10 pt-4 md:pt-0">
         <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
           {/* Left Side - Profile Visual */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="order-2 lg:order-1 flex justify-center lg:justify-start"
+            className="order-2 lg:order-1 flex flex-col items-center lg:items-start"
           >
             <div className="relative">
                             {/* Profile Circle */}
@@ -217,6 +217,24 @@ export function Hero() {
                 className="absolute -bottom-4 -left-4 w-20 h-20 bg-accent-500/30 rounded-full blur-xl"
               />
             </div>
+
+            {/* Mobile Scroll Indicator - Below Photo */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="lg:hidden mt-8 flex justify-center"
+            >
+              <motion.button
+                onClick={scrollToContact}
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Scroll down"
+              >
+                <ArrowDownIcon className="h-8 w-8" />
+              </motion.button>
+            </motion.div>
           </motion.div>
 
           {/* Right Side - Text Content */}
@@ -288,12 +306,12 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Desktop Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+          className="hidden lg:block absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <motion.button
             onClick={scrollToContact}

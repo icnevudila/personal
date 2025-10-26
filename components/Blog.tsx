@@ -460,10 +460,21 @@ Bu yolculukta başarılar dileriz! 🚀`,
                     {/* Top Zone - Image Header */}
                     <div className="h-40 relative overflow-hidden">
                       <img 
-                        src={getCategoryImage(post.category)}
+                        src={post.image || getCategoryImage(post.category)}
                         alt={post.title}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover opacity-100"
                         loading="lazy"
+                        onError={(e) => {
+                          e.currentTarget.src = getCategoryImage(post.category)
+                        }}
+                        style={{ 
+                          opacity: '1 !important',
+                          visibility: 'visible !important',
+                          display: 'block !important',
+                          background: 'transparent !important',
+                          backgroundColor: 'transparent !important',
+                          backgroundImage: 'none !important'
+                        }}
                       />
                       {/* Gradient Overlay */}
                       <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-black/40"></div>
