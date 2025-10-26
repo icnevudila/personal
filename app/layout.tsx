@@ -111,9 +111,9 @@ export default function RootLayout({
         
         {/* PWA Manifest */}
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#F97316" />
+        <meta name="theme-color" content="#151515" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         
         {/* Service Worker Registration */}
         <script dangerouslySetInnerHTML={{

@@ -50,12 +50,12 @@ function SkillCard({ icon: Icon, title, description, delay, isInView }: SkillCar
       </div>
       
       {/* Title */}
-      <h3 className="text-lg sm:text-xl font-bold text-black dark:text-[#E5E7EB] mb-2 group-hover:text-[#F97316] transition-colors" style={{color: '#000000'}}>
+      <h3 className="text-lg sm:text-xl font-bold text-gray-300 mb-2 group-hover:text-[#F97316] transition-colors">
         {title}
       </h3>
       
       {/* Description */}
-      <p className="text-sm text-black dark:text-[#94A3B8] leading-relaxed" style={{color: '#000000'}}>
+      <p className="text-sm text-gray-400 leading-relaxed">
         {description}
       </p>
     </motion.article>
@@ -68,38 +68,15 @@ export function Skills() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   useEffect(() => {
-    const applyColors = () => {
-      const isLightMode = document.documentElement.getAttribute('data-theme') === 'light'
-      
-      if (isLightMode) {
-        setTimeout(() => {
-          const skillsCards = document.querySelectorAll('#skills h3, #skills p')
-          skillsCards.forEach(el => {
-            (el as HTMLElement).style.setProperty('color', '#000000', 'important')
-          })
-        }, 100)
-      } else {
-        // Dark mode - remove inline styles to let CSS classes work
-        setTimeout(() => {
-          const skillsCards = document.querySelectorAll('#skills h3, #skills p')
-          skillsCards.forEach(el => {
-            (el as HTMLElement).style.removeProperty('color')
-          })
-        }, 100)
-      }
+    // Clean up any existing inline styles
+    const cleanup = () => {
+      const skillsCards = document.querySelectorAll('#skills h3, #skills p')
+      skillsCards.forEach(el => {
+        (el as HTMLElement).style.removeProperty('color')
+      })
     }
 
-    // Apply colors immediately
-    applyColors()
-
-    // Listen for theme changes
-    const observer = new MutationObserver(applyColors)
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ['data-theme']
-    })
-
-    return () => observer.disconnect()
+    cleanup()
   }, [])
 
 

@@ -473,25 +473,17 @@ Bu yolculukta başarılar dileriz! 🚀`,
                   className="group cursor-pointer h-full"
                 >
                   {/* Card Container */}
-                  <div className="relative h-full bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)] flex flex-col">
+                  <div className="relative h-full bg-white dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 border border-gray-200 dark:border-transparent rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)] flex flex-col">
                     
                     {/* Top Zone - Image Header */}
                     <div className="h-40 relative overflow-hidden">
                       <img 
                         src={post.image || getCategoryImage(post.category)}
                         alt={post.title}
-                        className="w-full h-full object-cover opacity-100"
+                        className="w-full h-full object-cover"
                         loading="lazy"
                         onError={(e) => {
                           e.currentTarget.src = getCategoryImage(post.category)
-                        }}
-                        style={{ 
-                          opacity: 1,
-                          visibility: 'visible',
-                          display: 'block',
-                          background: 'transparent',
-                          backgroundColor: 'transparent',
-                          backgroundImage: 'none'
                         }}
                       />
                       {/* Gradient Overlay */}
@@ -506,15 +498,15 @@ Bu yolculukta başarılar dileriz! 🚀`,
 
                     {/* Middle Zone - Text Block */}
                     <div className="p-6 flex-1 flex flex-col">
-                    <h4 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors">
+                    <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-primary-400 dark:group-hover:text-primary-400 transition-colors">
                       {post.title}
                     </h4>
-                    <p className="text-gray-400 mb-4 leading-relaxed">
+                    <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
                       {post.excerpt}
                     </p>
                     
                     {/* Post Meta */}
-                    <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                    <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-500 mb-4">
                       <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-1">
                           <CalendarIcon className="w-4 h-4" />
@@ -554,25 +546,17 @@ Bu yolculukta başarılar dileriz! 🚀`,
                     className="group cursor-pointer h-full"
                   >
                     {/* Card Container */}
-                    <div className="relative h-full bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)] flex flex-col">
+                    <div className="relative h-full bg-white dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 border border-gray-200 dark:border-transparent rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)] flex flex-col">
                       
                       {/* Top Zone - Image Header */}
                       <div className="h-40 relative overflow-hidden">
                         <img 
                           src={post.image || getCategoryImage(post.category)}
                           alt={post.title}
-                          className="w-full h-full object-cover opacity-100"
+                          className="w-full h-full object-cover"
                           loading="lazy"
                           onError={(e) => {
                             e.currentTarget.src = getCategoryImage(post.category)
-                          }}
-                          style={{ 
-                            opacity: 1,
-                            visibility: 'visible',
-                            display: 'block',
-                            background: 'transparent',
-                            backgroundColor: 'transparent',
-                            backgroundImage: 'none'
                           }}
                         />
                         {/* Gradient Overlay */}
@@ -587,10 +571,10 @@ Bu yolculukta başarılar dileriz! 🚀`,
 
                       {/* Middle Zone - Text Block */}
                       <div className="p-6 flex-1 flex flex-col">
-                      <h4 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors">
+                      <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 group-hover:text-primary-400 dark:group-hover:text-primary-400 transition-colors">
                         {post.title}
                       </h4>
-                      <p className="text-gray-400 mb-4 leading-relaxed">
+                      <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
                         {post.excerpt}
                       </p>
                       

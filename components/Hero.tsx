@@ -260,32 +260,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg sm:text-xl text-black dark:text-[#94A3B8] max-w-2xl mx-auto lg:mx-0 mb-12 leading-relaxed text-center lg:text-left"
+            className="text-lg sm:text-xl text-gray-700 dark:text-[#94A3B8] max-w-2xl mx-auto lg:mx-0 leading-relaxed text-center lg:text-left font-medium"
           >
             {t.hero.description}
           </motion.p>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex justify-center lg:justify-start"
-          >
-            <motion.button
-              whileHover={{ 
-                scale: 1.02, 
-                y: -2,
-                boxShadow: "0 0 30px rgba(249,115,22,0.4), 0 8px 25px rgba(0,0,0,0.15)"
-              }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              onClick={scrollToContact}
-              className="px-8 py-4 bg-[#F97316] hover:bg-[#ea6707] text-white font-semibold rounded-lg shadow-lg transition-all duration-300 text-lg"
-            >
-              {t.hero.ctaButton}
-            </motion.button>
-          </motion.div>
 
           </div>
         </div>
