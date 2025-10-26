@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://yourname.com
+
+# Sitemaps
+Sitemap: https://yourname.com/sitemap.xml

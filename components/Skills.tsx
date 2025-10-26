@@ -40,7 +40,7 @@ function SkillCard({ icon: Icon, title, description, delay, isInView }: SkillCar
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={isReducedMotion ? { duration: 0 } : { duration: 0.5, delay, ease: 'easeOut' }}
       whileHover={isReducedMotion ? {} : { scale: 1.03 }}
-      className="group relative bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-[#F97316]/40 transition-all duration-300 hover:shadow-[0_0_20px_rgba(249,115,22,0.15)]"
+      className="group relative bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-[#F97316]/40 transition-all duration-300 ease-out hover:shadow-[0_0_20px_rgba(249,115,22,0.10)]"
     >
       {/* Icon */}
       <div className="mb-4">

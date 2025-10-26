@@ -38,7 +38,7 @@ html[data-theme="light"] {
   
   /* Fast transitions for interactive elements */
   button, a, input, select, textarea {
-    transition: all 0.2s ease;
+    transition: all 0.3s ease-out;
   }
 }
 
@@ -324,6 +324,15 @@ html[data-theme="light"] {
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px; /* Navbar height offset */
+  }
+
+  /* Warm, trustworthy, story-driven enhancements */
+  * {
+    accent-color: #F97316;
+  }
+
+  h1:hover, h2:hover, h3:hover {
+    text-shadow: 0 0 8px rgba(249, 115, 22, 0.25);
   }
 
   /* Custom scrollbar */

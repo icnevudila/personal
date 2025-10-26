@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { HeartIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { AnimatedText } from './AnimatedText'
 import { useLanguage } from '@/contexts/LanguageContext'
 
@@ -66,7 +67,6 @@ export function Footer() {
     [t.footer.connections]: [
       { name: t.footer.github, href: 'https://github.com/icnevudila' },
       { name: t.footer.linkedin, href: 'https://www.linkedin.com/in/ali-düvenci' },
-      { name: t.footer.twitter, href: 'https://twitter.com/icnevudila' },
       { name: 'Instagram', href: 'https://instagram.com/icnevudila' },
       { name: 'Telegram', href: 'https://t.me/icnevudila' },
       { name: t.footer.email, href: 'mailto:icnevudila@gmail.com' },
@@ -206,15 +206,20 @@ export function Footer() {
           >
             <div className="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
               {/* Left Section - Copyright */}
-              <div className="flex items-center space-x-2 text-gray-400">
-                <span>© {currentYear} <span className="inline-block text-black dark:text-white">ic<span className="!text-[#F97316]">ne</span>vudila</span>.</span>
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                >
-                  <HeartIcon className="w-4 h-4 text-red-600" />
-                </motion.div>
-                <span>{t.footer.madeWith}</span>
+              <div className="flex flex-col space-y-2 text-gray-400">
+                <div className="flex items-center space-x-2">
+                  <span>© {currentYear} <span className="inline-block text-black dark:text-white">ic<span className="!text-[#F97316] dark:!text-[#F97316]">ne</span>vudila</span>.</span>
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                  >
+                    <HeartIcon className="w-4 h-4 text-red-600" />
+                  </motion.div>
+                  <span>{t.footer.madeWith}</span>
+                </div>
+                <p className="text-xs text-gray-500 italic">
+                  {t.footer.copyrightNote}
+                </p>
               </div>
 
               {/* Center Section - Tagline */}
@@ -236,11 +241,6 @@ export function Footer() {
                     icon: 'L'
                   },
                   { 
-                    name: 'Twitter', 
-                    href: process.env.NEXT_PUBLIC_TWITTER_URL || '#',
-                    icon: 'T'
-                  },
-                  { 
                     name: 'Dribbble', 
                     href: process.env.NEXT_PUBLIC_DRIBBBLE_URL || '#',
                     icon: 'D'
@@ -256,7 +256,7 @@ export function Footer() {
                     whileHover={{ scale: 1.1, y: -2 }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[#F97316] transition-colors duration-300"
+                    className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-orange-400 transition-colors duration-300 ease-out"
                   >
                     <span className="text-sm font-medium text-gray-300 hover:text-white">
                       {social.icon}
@@ -267,15 +267,15 @@ export function Footer() {
 
               {/* Additional Links */}
               <div className="flex space-x-6 text-sm">
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">
                   {t.footer.privacyPolicy}
-                </a>
-                <a href="#" className="text-gray-400 hover:text-white transition-colors">
+                </Link>
+                <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">
                   {t.footer.termsOfUse}
-                </a>
-                <a href="/sitemap.xml" target="_blank" className="text-gray-400 hover:text-white transition-colors">
+                </Link>
+                <Link href="/sitemap-page" className="text-gray-400 hover:text-white transition-colors">
                   {t.footer.sitemap}
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>

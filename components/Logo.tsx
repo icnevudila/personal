@@ -46,7 +46,7 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
         className="relative text-xl font-bold font-space-grotesk tracking-tight"
       >
         <span className="!text-black dark:!text-white">ic</span>
-        <span className="!text-[#F97316] inline-block relative">
+        <span className="!text-[#F97316] dark:!text-[#F97316] inline-block relative">
           ne
         </span>
         <span className="!text-black dark:!text-white">vudila</span>

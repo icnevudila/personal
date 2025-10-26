@@ -496,9 +496,9 @@ Bu yolculukta başarılar dileriz! 🚀`,
 
                     {/* Middle Zone - Text Block */}
                     <div className="p-6 flex-1 flex flex-col">
-                    <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                      {post.title}
-                    </h4>
+                      <h4 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">
+                        {post.title}
+                      </h4>
                     <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
                       {post.excerpt}
                     </p>
@@ -566,7 +566,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
 
                       {/* Middle Zone - Text Block */}
                       <div className="p-6 flex-1 flex flex-col">
-                      <h4 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                      <h4 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">
                         {post.title}
                       </h4>
                       <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">

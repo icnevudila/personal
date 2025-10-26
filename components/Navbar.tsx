@@ -120,14 +120,9 @@ export function Navbar() {
     >
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0">
-            <Logo variant="full" className="cursor-pointer" />
-          </div>
-
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8">
-            <div className="flex items-baseline space-x-8">
+          <div className="hidden md:flex items-center gap-8 w-full">
+            <div className="flex items-baseline space-x-8 flex-1">
               {navItems.map((item) => (
                 isHomePage ? (
                   <button
@@ -153,9 +148,15 @@ export function Navbar() {
                 )
               ))}
             </div>
-            <ThemeToggle />
-            <LanguageSwitcher />
             
+            {/* Right side - Logo and Controls */}
+            <div className="flex items-center gap-4">
+              <span className="text-lg font-bold text-white hidden lg:block">
+                ic<span className="text-orange-500">ne</span>vudila
+              </span>
+              <ThemeToggle />
+              <LanguageSwitcher />
+            </div>
           </div>
 
           {/* Mobile menu button */}
@@ -243,6 +244,7 @@ export function Navbar() {
                     )}
                   </motion.div>
                 ))}
+                
                 <div className="pt-6 border-t border-gray-700/50 mt-6">
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex-1" onClick={handleMobileMenuClose}>

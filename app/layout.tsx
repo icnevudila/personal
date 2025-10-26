@@ -54,13 +54,6 @@ export const metadata: Metadata = {
       },
     ],
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'icnevudila — Portföy',
-    description: 'Sade, zekice ve insana yakın tasarımlar.',
-    images: ['/og-image.jpg'],
-    creator: '@icnevudila',
-  },
   robots: {
     index: true,
     follow: true,

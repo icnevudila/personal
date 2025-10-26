@@ -228,9 +228,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="mb-6 flex justify-center lg:justify-start"
+            className="mb-2 flex justify-center lg:justify-start"
           >
-            <span className="text-lg text-gray-400 font-mono">
+            <span className="text-base text-gray-400">
               {t.hero.greeting}
             </span>
           </motion.div>
@@ -240,9 +240,24 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 flex justify-center lg:justify-start"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 flex justify-center lg:justify-start relative inline-block"
           >
-            <span className="text-black dark:text-[#f1f5f9]">ic<span className="text-[#F97316]">ne</span>vudila</span>
+            <motion.span
+              animate={{
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+              }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                ease: 'linear',
+              }}
+              style={{
+                backgroundSize: '200% 100%',
+                backgroundImage: 'linear-gradient(90deg, transparent 0%, rgba(249, 115, 22, 0.03) 50%, transparent 100%)',
+              }}
+              className="absolute inset-0 blur-xl pointer-events-none"
+            />
+            <span className="relative text-black dark:text-[#f1f5f9]">ic<span className="text-[#F97316]">ne</span>vudila</span>
           </motion.h1>
 
           {/* Title */}
@@ -260,7 +275,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg sm:text-xl text-gray-700 dark:text-[#94A3B8] max-w-2xl mx-auto lg:mx-0 leading-relaxed text-center lg:text-left font-medium"
+            className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed text-center lg:text-left font-medium"
           >
             {t.hero.description}
           </motion.p>

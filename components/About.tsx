@@ -165,7 +165,7 @@ export function About() {
                       scale: 1.02,
                       transition: { duration: 0.3 }
                     }}
-                    className="group cursor-pointer bg-gray-800/50 border border-gray-700 rounded-xl p-4 md:p-5 hover:border-[#F97316]/50 transition-all duration-300"
+                    className="group cursor-pointer bg-gray-800/50 border border-gray-700 rounded-xl p-4 md:p-5 hover:border-[#F97316]/50 hover:shadow-lg hover:shadow-orange-400/20 transition-all ease-out duration-300"
                   >
                     {/* Icon */}
                     <motion.div

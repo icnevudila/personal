@@ -1,0 +1,27 @@
+warning: in the working copy of 'lib/translations.ts', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/lib/translations.ts b/lib/translations.ts[m
+[1mindex fbee0a0..0903b85 100644[m
+[1m--- a/lib/translations.ts[m
+[1m+++ b/lib/translations.ts[m
+[36m@@ -11,17 +11,17 @@[m [mexport const translations = {[m
+     hero: {[m
+       greeting: 'Merhaba, ben',[m
+       name: 'icnevudila',[m
+[31m-      title: 'Sade ve kullanıcı odaklı web tasarımları yapıyorum.',[m
+[31m-      description: 'Modern UI/UX prensiplerini kullanarak sakin, insan odaklı web siteleri tasarlıyorum. Sezgisel düzenler, dengeli renk kullanımı ve görsel hikaye anlatan tasarım sistemleri üzerinde odaklanıyorum. Tasarımın minimal, kullanıcı dostu ve estetik olması gerektiğine inanıyorum.',[m
+[32m+[m[32m      title: 'Sade ve kullanıcı odaklı web tasarımlarıyla çalışıyorum.',[m
+[32m+[m[32m      description: 'Modern UI/UX prensiplerini kullanarak sakin, insan odaklı web deneyimleri oluşturuyorum. Sezgisel düzenler, dengeli renk kullanımı ve görsel hikaye anlatan tasarım sistemleri geliştiriyorum. Tasarımın minimal, kullanıcı dostu ve estetik olması gerektiğine inanıyorum.',[m
+       ctaProjects: 'Projelerimi Gör',[m
+       ctaBlog: 'Bloga Göz At',[m
+       ctaButton: 'Projeni Başlat',[m
+     },[m
+     about: {[m
+       title: 'Hakkımda',[m
+[31m-      description1: 'Yaratıcı düşünceyi teknolojiyle birleştirerek sade, etkileyici arayüzler tasarlıyorum. Tasarımın teknolojiyle birleştiği yerde, kullanıcıların kendini rahat hissedeceği deneyimler yaratmak benim için öncelik.',[m
+[32m+[m[32m      description1: 'Yaratıcı düşünceyi teknolojiyle birleştirerek sade, etkileyici arayüzler geliştiriyorum. Tasarımın teknolojiyle birleştiği noktada, kullanıcıların kendini rahat hissettiği deneyimler üretmeye odaklanıyorum.',[m
+       description2: 'ChatGPT, Midjourney, GitHub Copilot, Figma AI ve diğer AI araçlarını kullanarak sezgisel düzenler, duygusal renk dengesi ve görsel hikaye anlatan tasarım sistemleri oluşturuyorum. Tasarımın basit, sakin ve zeki hissettirmesi gerektiğine inanıyorum.',[m
+[31m-      description3: 'Teknolojiyle güçlendirilmiş ama lezzetle yönlendirilmiş tasarımlar yapıyorum. AI araçları yaratıcı sürecimi hızlandırıyor ve daha etkili iş akışları optimize ediyorum.',[m
+[32m+[m[32m      description3: 'Teknolojiyle güçlendirilmiş ama lezzetle yönlendirilmiş tasarımlarla ilgileniyorum. AI araçları yaratıcı sürecime katkı sağlıyor ve daha etkili çalışma akışları oluşturmama yardımcı oluyor.',[m
+       stats: {[m
+         years: 'Yıl Deneyim',[m
+         projects: 'Tamamlanan Proje',[m

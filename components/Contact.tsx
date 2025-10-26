@@ -88,12 +88,6 @@ export function Contact() {
       value: '@icnevudila',
       href: 'https://t.me/icnevudila',
     },
-    {
-      icon: MapPinIcon,
-      label: 'Location',
-      value: 'Turkey',
-      href: '#',
-    },
   ]
 
   const containerVariants = {
@@ -278,9 +272,15 @@ export function Contact() {
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400 text-center"
+                      className="p-4 bg-green-500/20 border border-green-500/30 rounded-lg text-green-400"
                     >
-                      {t.contact.success}
+                      <div className="flex items-center justify-center gap-2 mb-2">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                        <span>{t.contact.success}</span>
+                      </div>
+                      <p className="text-sm text-green-300 text-center">{t.contact.successNote}</p>
                     </motion.div>
                   )}
 
@@ -310,19 +310,16 @@ export function Contact() {
           <p className="text-2xl text-[#F1F5F9] mb-6">
             {t.contact.readyForProject}
           </p>
-          <motion.button
-            onClick={() => {
-              const formElement = document.querySelector('form')
-              if (formElement) {
-                formElement.scrollIntoView({ behavior: 'smooth' })
-              }
-            }}
+          <motion.a
+            href="https://wa.me/905453651319"
+            target="_blank"
+            rel="noopener noreferrer"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 border-2 border-[#F97316] text-[#F97316] hover:bg-[#F97316] hover:text-white font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(249,115,22,0.3)]"
+            className="inline-block px-8 py-4 border-2 border-[#F97316] text-[#F97316] hover:bg-[#F97316] hover:text-white font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(249,115,22,0.3)]"
           >
-            {t.contact.letsTalkProject}
-          </motion.button>
+            Görüşme Ayarla
+          </motion.a>
         </motion.div>
       </div>
     </section>
