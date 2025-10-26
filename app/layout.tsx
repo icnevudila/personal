@@ -178,7 +178,7 @@ export default function RootLayout({
                 <StarRainBackground />
                 
                 <AdminWrapper>
-                  <GoogleAnalytics />
+                  {/* <GoogleAnalytics /> */}
                   <PerformanceMonitor />
                   <Navbar />
                   <main className="relative">

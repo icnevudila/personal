@@ -42,7 +42,7 @@ export const translations = {
       addProject: 'Yeni Proje',
     },
     portfolio: {
-      title: 'Portfolio Siteleri',
+      title: 'Portfolyo Siteleri',
       subtitle: 'Farklı sektörlerden yaratıcı projeler. Her biri kendine özgü hikayesi olan tasarım deneyimleri.',
       viewButton: 'Siteyi Görüntüle',
       allCategories: 'Tümü',
