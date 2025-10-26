@@ -207,7 +207,7 @@ export function Footer() {
             <div className="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
               {/* Left Section - Copyright */}
               <div className="flex items-center space-x-2 text-gray-400">
-                <span>© {currentYear} <span className="inline-block">ic<span className="text-orange-600 dark:text-orange-500">ne</span>vudila</span>.</span>
+                <span>© {currentYear} <span className="inline-block text-black dark:text-white">ic<span className="!text-[#F97316]">ne</span>vudila</span>.</span>
                 <motion.div
                   animate={{ scale: [1, 1.2, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}

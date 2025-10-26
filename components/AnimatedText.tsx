@@ -16,10 +16,10 @@ export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextPr
         let colorClass = ''
         if (text === 'icnevudila') {
           // i=0, c=1, n=2, e=3, v=4...
-          if (index === 2 || index === 3) { // "ne" kısmı
-            colorClass = '!text-[#F97316] dark:!text-orange-500'
-          } else {
-            colorClass = 'text-black dark:text-gray-300'
+          if (index === 2 || index === 3) { // "ne" kısmı - turuncu
+            colorClass = '!text-[#F97316] dark:!text-[#F97316]'
+          } else { // "icvudila" kısmı - siyah/beyaz
+            colorClass = '!text-black dark:!text-white'
           }
         }
         

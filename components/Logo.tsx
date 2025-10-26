@@ -45,11 +45,11 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
         transition={{ duration: 0.6 }}
         className="relative text-xl font-bold font-space-grotesk tracking-tight"
       >
-        <span className="text-gray-900 dark:text-[#E2E8F0]">ic</span>
-        <span className="text-orange-600 dark:text-[#F97316] inline-block relative">
+        <span className="!text-black dark:!text-white">ic</span>
+        <span className="!text-[#F97316] inline-block relative">
           ne
         </span>
-        <span className="text-gray-900 dark:text-[#E2E8F0]">vudila</span>
+        <span className="!text-black dark:!text-white">vudila</span>
       </motion.span>
     </div>
   )
