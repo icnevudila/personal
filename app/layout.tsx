@@ -169,7 +169,7 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <Favicon />
-        <ThemeProvider>
+        {/* <ThemeProvider> */}
           <AuthProvider>
             <LanguageProvider>
               <div className="min-h-screen bg-[#151515] relative">
@@ -187,7 +187,7 @@ export default function RootLayout({
               </div>
             </LanguageProvider>
           </AuthProvider>
-        </ThemeProvider>
+        {/* </ThemeProvider> */}
       </body>
     </html>
   )
