@@ -67,6 +67,8 @@ export function Footer() {
       { name: t.footer.github, href: 'https://github.com/icnevudila' },
       { name: t.footer.linkedin, href: 'https://www.linkedin.com/in/ali-düvenci' },
       { name: t.footer.twitter, href: 'https://twitter.com/icnevudila' },
+      { name: 'Instagram', href: 'https://instagram.com/icnevudila' },
+      { name: 'Telegram', href: 'https://t.me/icnevudila' },
       { name: t.footer.email, href: 'mailto:icnevudila@gmail.com' },
     ],
   }
@@ -202,8 +204,8 @@ export function Footer() {
             viewport={{ once: true }}
             className="border-t border-gray-700/50 pt-8"
           >
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              {/* Copyright */}
+            <div className="flex flex-col lg:flex-row justify-between items-center space-y-6 lg:space-y-0">
+              {/* Left Section - Copyright */}
               <div className="flex items-center space-x-2 text-gray-400">
                 <span>© {currentYear} icnevudila.</span>
                 <motion.div
@@ -215,13 +217,13 @@ export function Footer() {
                 <span>{t.footer.madeWith}</span>
               </div>
 
-              {/* Tagline */}
-              <div className="hidden md:block text-center text-gray-500 text-sm italic">
+              {/* Center Section - Tagline */}
+              <div className="text-center text-gray-500 text-sm italic max-w-md">
                 {t.footer.tagline}
               </div>
 
-              {/* Social Links */}
-              <div className="flex space-x-4">
+              {/* Right Section - Social Links */}
+              <div className="flex space-x-3">
                 {[
                   { 
                     name: 'GitHub', 

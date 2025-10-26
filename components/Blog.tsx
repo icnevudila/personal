@@ -444,8 +444,8 @@ Bu yolculukta başarılar dileriz! 🚀`,
             <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8">
               <AnimatedText text={t.blog.featured} />
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-              {blogPosts.slice(0, 4).map((post, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+              {blogPosts.slice(0, 6).map((post, index) => (
                 <motion.article
                   key={post.slug}
                   initial={{ opacity: 0, y: 20 }}

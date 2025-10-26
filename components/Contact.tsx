@@ -6,7 +6,7 @@ import React, { useRef, useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { EnvelopeIcon, PhoneIcon, MapPinIcon, PaperAirplaneIcon } from '@heroicons/react/24/outline'
+import { EnvelopeIcon, PhoneIcon, MapPinIcon, PaperAirplaneIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
 // EmailJS kaldırıldı, Netlify Forms kullanılıyor
@@ -79,8 +79,14 @@ export function Contact() {
     {
       icon: PhoneIcon,
       label: 'Phone',
-      value: 'İstek üzerine',
-      href: '#',
+      value: '0545 365 13 19',
+      href: 'tel:+905453651319',
+    },
+    {
+      icon: ChatBubbleLeftRightIcon,
+      label: 'Telegram',
+      value: '@icnevudila',
+      href: 'https://t.me/icnevudila',
     },
     {
       icon: MapPinIcon,
