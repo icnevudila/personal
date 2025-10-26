@@ -305,6 +305,7 @@ export function Hero() {
             <ArrowDownIcon className="h-8 w-8" />
           </motion.button>
         </motion.div>
+
       </div>
     </section>
   )

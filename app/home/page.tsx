@@ -6,7 +6,6 @@ import { PortfolioSites } from '@/components/PortfolioSites'
 import { Blog } from '@/components/Blog'
 import { Contact } from '@/components/Contact'
 import { QuoteButton } from '@/components/QuoteButton'
-import { BuyMeACoffee } from '@/components/BuyMeACoffee'
 
 export default function HomePage() {
   return (
@@ -17,7 +16,6 @@ export default function HomePage() {
       <Skills />
       <PortfolioSites />
       <Blog isHomePage={true} />
-      <BuyMeACoffee />
       <Contact />
       <QuoteButton />
     </div>

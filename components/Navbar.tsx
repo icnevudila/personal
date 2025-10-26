@@ -159,6 +159,7 @@ export function Navbar() {
             </div>
             <ThemeToggle />
             <LanguageSwitcher />
+            
           </div>
 
           {/* Mobile menu button */}
@@ -173,36 +174,8 @@ export function Navbar() {
               {isOpen ? (
                 <XMarkIcon className="h-6 w-6" />
               ) : (
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8">
-                  <defs>
-                    <style>
-                      {`
-                        .steam-1 {
-                          animation: steam 2s ease-in-out infinite;
-                        }
-                        .steam-2 {
-                          animation: steam 2s ease-in-out infinite 0.5s;
-                        }
-                        .steam-3 {
-                          animation: steam 2s ease-in-out infinite 1s;
-                        }
-                        @keyframes steam {
-                          0%, 100% { opacity: 0; transform: translateY(0px); }
-                          50% { opacity: 1; transform: translateY(-4px); }
-                        }
-                      `}
-                    </style>
-                  </defs>
-                  {/* Kahve fincanı - daha büyük */}
-                  <path d="M8 10C8 8.9 8.9 8 10 8H22C23.1 8 24 8.9 24 10V18C24 19.1 23.1 20 22 20H10C8.9 20 8 19.1 8 18V10Z" fill="currentColor"/>
-                  {/* Fincan sapı - daha büyük */}
-                  <path d="M24 14H28C28.6 14 29 14.4 29 15C29 15.6 28.6 16 28 16H24V14Z" fill="currentColor"/>
-                  {/* Kahve yüzeyi - daha büyük */}
-                  <path d="M10 10H22V12H10V10Z" fill="#8B4513"/>
-                  {/* Animasyonlu Buhar */}
-                  <path d="M12 6C12 6 13 5 14 6C15 7 14 8 14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" className="steam-1"/>
-                  <path d="M16 5C16 5 17 4 18 5C19 6 18 7 18 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" className="steam-2"/>
-                  <path d="M20 6C20 6 21 5 22 6C23 7 22 8 22 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" className="steam-3"/>
+                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
             </button>
