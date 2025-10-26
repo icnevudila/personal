@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 import { clsx } from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -35,6 +35,7 @@ export function Navbar() {
   ]
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
 
   useEffect(() => {
     // Load logo from localStorage
@@ -55,37 +56,62 @@ export function Navbar() {
   }, [logoUrl])
 
   useEffect(() => {
+    let lastScrollTop = 0
+    
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
+      const currentScrollY = window.scrollY
+      
+      // Scroll pozisyonunu kontrol et
+      setScrolled(currentScrollY > 20)
+      
+      // Scroll yönünü kontrol et
+      const scrollDifference = currentScrollY - lastScrollTop
+      
+      if (scrollDifference > 10 && currentScrollY > 100 && !isOpen) {
+        // Aşağı kaydırıyor ve 100px'den fazla scroll yapmış ve mobil menü kapalı
+        setIsVisible(false)
+      } else if (scrollDifference < -10 || currentScrollY <= 100) {
+        // Yukarı kaydırıyor veya üstte
+        setIsVisible(true)
+      }
+      
+      lastScrollTop = currentScrollY
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [isOpen])
 
   const handleMobileMenuClose = () => {
     setIsOpen(false)
   }
 
-  const handleNavClick = (href: string) => {
-    if (isHomePage && href.startsWith('#')) {
-      // Ana sayfada # linkleri için scroll
-      const element = document.querySelector(href)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
+  const handleNavClick = async (href: string) => {
+    if (href.startsWith('#')) {
+      // Diğer sayfalardan ana sayfa bölümlerine git
+      if (!isHomePage) {
+        // Ana sayfaya yönlendir ve sonra scroll yap
+        window.location.href = `/${href}`
+        return
+      } else {
+        // Ana sayfada # linkleri için scroll
+        setTimeout(() => {
+          const element = document.querySelector(href)
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+          }
+        }, 100)
       }
     }
     setIsOpen(false)
   }
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
+    <nav
       className={clsx(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        'bg-transparent'
+        'fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out',
+        'bg-transparent',
+        isVisible ? 'translate-y-0' : '-translate-y-full'
       )}
     >
       <div className="container-custom">
@@ -136,19 +162,50 @@ export function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white p-2"
+          <div className="md:hidden relative z-50">
+            <button
+              onClick={() => {
+                setIsOpen(!isOpen)
+              }}
+              className="text-white hover:text-orange-400 p-2 transition-colors bg-transparent min-w-[40px] min-h-[40px] flex items-center justify-center"
               aria-label="Toggle menu"
             >
               {isOpen ? (
                 <XMarkIcon className="h-6 w-6" />
               ) : (
-                <Bars3Icon className="h-6 w-6" />
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="h-8 w-8">
+                  <defs>
+                    <style>
+                      {`
+                        .steam-1 {
+                          animation: steam 2s ease-in-out infinite;
+                        }
+                        .steam-2 {
+                          animation: steam 2s ease-in-out infinite 0.5s;
+                        }
+                        .steam-3 {
+                          animation: steam 2s ease-in-out infinite 1s;
+                        }
+                        @keyframes steam {
+                          0%, 100% { opacity: 0; transform: translateY(0px); }
+                          50% { opacity: 1; transform: translateY(-4px); }
+                        }
+                      `}
+                    </style>
+                  </defs>
+                  {/* Kahve fincanı - daha büyük */}
+                  <path d="M8 10C8 8.9 8.9 8 10 8H22C23.1 8 24 8.9 24 10V18C24 19.1 23.1 20 22 20H10C8.9 20 8 19.1 8 18V10Z" fill="currentColor"/>
+                  {/* Fincan sapı - daha büyük */}
+                  <path d="M24 14H28C28.6 14 29 14.4 29 15C29 15.6 28.6 16 28 16H24V14Z" fill="currentColor"/>
+                  {/* Kahve yüzeyi - daha büyük */}
+                  <path d="M10 10H22V12H10V10Z" fill="#8B4513"/>
+                  {/* Animasyonlu Buhar */}
+                  <path d="M12 6C12 6 13 5 14 6C15 7 14 8 14 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" className="steam-1"/>
+                  <path d="M16 5C16 5 17 4 18 5C19 6 18 7 18 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" className="steam-2"/>
+                  <path d="M20 6C20 6 21 5 22 6C23 7 22 8 22 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" className="steam-3"/>
+                </svg>
               )}
-            </motion.button>
+            </button>
           </div>
         </div>
       </div>
@@ -157,52 +214,57 @@ export function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="fixed inset-0 md:hidden bg-black/60 backdrop-blur-sm z-50"
+            onClick={handleMobileMenuClose}
           >
-            <div className="px-2 pt-2 pb-3 space-y-1">
-              {navItems.map((item, index) => (
-                <motion.div
-                  key={item.name}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  {isHomePage ? (
-                    <button
-                      onClick={() => handleNavClick(item.href)}
-                      className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200"
-                    >
-                      {item.name}
-                    </button>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      prefetch={true}
-                      onClick={handleMobileMenuClose}
-                      className="text-gray-300 hover:text-white block px-3 py-2 text-base font-medium w-full text-left transition-colors duration-200"
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-                </motion.div>
-              ))}
-              <div className="px-3 py-2 flex items-center justify-between gap-4">
-                <div className="flex-1" onClick={handleMobileMenuClose}>
-                  <ThemeToggle />
-                </div>
-                <div className="flex-1" onClick={handleMobileMenuClose}>
-                  <LanguageSwitcher />
+            <div className="absolute top-16 left-0 right-0 bg-gray-900/95 backdrop-blur-md border-t border-gray-700/50 shadow-2xl" onClick={(e) => e.stopPropagation()}>
+              <div className="px-6 pt-6 pb-8 space-y-3">
+                {navItems.map((item, index) => (
+                  <motion.div
+                    key={item.name}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    {isHomePage ? (
+                      <button
+                        onClick={() => handleNavClick(item.href)}
+                        className="text-white hover:text-orange-400 block px-4 py-3 text-lg font-medium w-full text-left transition-colors duration-200 rounded-lg hover:bg-gray-800/50"
+                      >
+                        {item.name}
+                      </button>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        prefetch={true}
+                        onClick={handleMobileMenuClose}
+                        className="text-white hover:text-orange-400 block px-4 py-3 text-lg font-medium w-full text-left transition-colors duration-200 rounded-lg hover:bg-gray-800/50"
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </motion.div>
+                ))}
+                <div className="pt-6 border-t border-gray-700/50 mt-6">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex-1" onClick={handleMobileMenuClose}>
+                      <ThemeToggle />
+                    </div>
+                    <div className="flex-1" onClick={handleMobileMenuClose}>
+                      <LanguageSwitcher />
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </nav>
   )
 }
 

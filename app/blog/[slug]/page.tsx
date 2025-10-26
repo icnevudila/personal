@@ -219,33 +219,33 @@ Bu yolculukta başarılar dileriz! 🚀`,
           {/* Header */}
           <header className="mb-12">
             <div className="mb-6">
-              <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium border ${getCategoryColor(post.category)}`}>
-                {post.category}
+              <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium border ${post ? getCategoryColor(post.category) : 'border-gray-600 text-gray-400'}`}>
+                {post?.category || 'Uncategorized'}
               </span>
             </div>
             
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              {post.title}
+              {post?.title || 'Loading...'}
             </h1>
             
             <p className="text-xl text-gray-300 mb-8 leading-relaxed">
-              {post.excerpt}
+              {post?.excerpt || 'Loading...'}
             </p>
             
             <div className="flex items-center gap-6 text-gray-400">
               <div className="flex items-center gap-2">
                 <CalendarIcon className="w-5 h-5" />
-                <span>{new Date(post.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                <span>{post?.date ? new Date(post.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Loading...'}</span>
               </div>
               <div className="flex items-center gap-2">
                 <ClockIcon className="w-5 h-5" />
-                <span>{post.readTime}</span>
+                <span>{post?.readTime || 'Loading...'}</span>
               </div>
             </div>
           </header>
 
           {/* Featured Image */}
-          {post.image && (
+          {post?.image && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -268,7 +268,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
             className="prose prose-invert prose-lg max-w-none"
           >
             <div className="text-gray-300 leading-relaxed whitespace-pre-line">
-              {post.content}
+              {post?.content || 'Loading...'}
             </div>
           </motion.div>
 

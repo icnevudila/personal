@@ -4,7 +4,7 @@ export const translations = {
       home: 'Ana Sayfa',
       about: 'Hakkımda',
       skills: 'Yetenekler',
-      portfolio: 'Portföy',
+      portfolio: 'Portfolyo',
       blog: 'Blog',
       contact: 'İletişim',
     },
@@ -15,6 +15,7 @@ export const translations = {
       description: 'Modern UI/UX prensiplerini kullanarak sakin, insan odaklı web siteleri tasarlıyorum. Sezgisel düzenler, dengeli renk kullanımı ve görsel hikaye anlatan tasarım sistemleri üzerinde odaklanıyorum. Tasarımın minimal, kullanıcı dostu ve estetik olması gerektiğine inanıyorum.',
       ctaProjects: 'Projelerimi Gör',
       ctaBlog: 'Bloga Göz At',
+      ctaButton: 'Projeni Başlat',
     },
     about: {
       title: 'Hakkımda',
@@ -42,7 +43,7 @@ export const translations = {
       addProject: 'Yeni Proje',
     },
     portfolio: {
-      title: 'Portfolyo Siteleri',
+      title: 'Portfolyo',
       subtitle: 'Farklı sektörlerden yaratıcı projeler. Her biri kendine özgü hikayesi olan tasarım deneyimleri.',
       viewButton: 'Siteyi Görüntüle',
       allCategories: 'Tümü',
@@ -251,6 +252,7 @@ export const translations = {
       description: 'I use modern UI/UX principles to create calm, human-centered websites. I focus on intuitive layouts, balanced color schemes, and visual storytelling design systems. I believe design should be minimal, user-friendly, and aesthetically pleasing.',
       ctaProjects: 'View My Work',
       ctaBlog: 'Read My Blog',
+      ctaButton: 'Start Your Project',
     },
     about: {
       title: 'About Me',
@@ -277,15 +279,8 @@ export const translations = {
       adminModeOn: 'Admin Mode: On',
       addProject: 'New Project',
     },
-    blog: {
-      title: 'My Blog',
-      subtitle: 'Thoughts on design, AI tools, and minimal digital experiences',
-      readMore: 'Read More',
-      addPost: 'New Post',
-      adminModeOn: 'Admin Mode: On',
-    },
     portfolio: {
-      title: 'Portfolio Sites',
+      title: 'Portfolio',
       subtitle: 'Creative projects from different sectors. Each one is a design experience with its own unique story.',
       viewButton: 'View Site',
       allCategories: 'All',

@@ -7,7 +7,6 @@ import { LanguageProvider } from '@/contexts/LanguageContext'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import { Favicon } from '@/components/Favicon'
-import { PerformanceMonitor } from '@/components/PerformanceMonitor'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -105,35 +104,16 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         
+        {/* Favicon */}
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" href="/favicon.png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        
         {/* PWA Manifest */}
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#F97316" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        
-        {/* Critical CSS inline */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            body { 
-              font-family: 'Inter', sans-serif; 
-              font-display: swap;
-              background: linear-gradient(135deg, #151515 0%, #0f172a 50%, #1e293b 100%);
-              color: #94A3B8;
-            }
-            [data-theme="light"] body {
-              background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
-              color: #1e293b !important;
-            }
-            [data-theme="light"] html {
-              background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
-            }
-            [data-theme="light"] * {
-              background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
-            }
-            .loading { opacity: 0; }
-            .loaded { opacity: 1; transition: opacity 0.3s ease; }
-          `
-        }} />
         
         {/* Service Worker Registration */}
         <script dangerouslySetInnerHTML={{
@@ -148,7 +128,6 @@ export default function RootLayout({
           <AuthProvider>
             <LanguageProvider>
               <div className="min-h-screen relative">
-                {/* <PerformanceMonitor /> */}
                 <Navbar />
                 <main className="relative">
                   {children}

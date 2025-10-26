@@ -80,6 +80,9 @@ export function Footer() {
       const element = document.querySelector(href)
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' })
+      } else {
+        // Eğer ana sayfada değilsek ana sayfaya yönlendir
+        window.location.href = `/${href}`
       }
     }
   }
@@ -220,10 +223,26 @@ export function Footer() {
               {/* Social Links */}
               <div className="flex space-x-4">
                 {[
-                  { name: 'GitHub', href: 'https://github.com/icnevudila' },
-                  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/ali-düvenci' },
-                  { name: 'Twitter', href: '#' },
-                  { name: 'Dribbble', href: '#' }
+                  { 
+                    name: 'GitHub', 
+                    href: process.env.NEXT_PUBLIC_GITHUB_URL || 'https://github.com/icnevudila',
+                    icon: 'G'
+                  },
+                  { 
+                    name: 'LinkedIn', 
+                    href: process.env.NEXT_PUBLIC_LINKEDIN_URL || 'https://www.linkedin.com/in/ali-düvenci',
+                    icon: 'L'
+                  },
+                  { 
+                    name: 'Twitter', 
+                    href: process.env.NEXT_PUBLIC_TWITTER_URL || '#',
+                    icon: 'T'
+                  },
+                  { 
+                    name: 'Dribbble', 
+                    href: process.env.NEXT_PUBLIC_DRIBBBLE_URL || '#',
+                    icon: 'D'
+                  }
                 ].map((social, index) => (
                   <motion.a
                     key={social.name}
@@ -238,7 +257,7 @@ export function Footer() {
                     className="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-[#F97316] transition-colors duration-300"
                   >
                     <span className="text-sm font-medium text-gray-300 hover:text-white">
-                      {social.name[0]}
+                      {social.icon}
                     </span>
                   </motion.a>
                 ))}

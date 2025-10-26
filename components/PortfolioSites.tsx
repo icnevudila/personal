@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowTopRightOnSquareIcon, EyeIcon } from '@heroicons/react/24/outline'
+import { ArrowTopRightOnSquareIcon, EyeIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { useRouter } from 'next/navigation'
 
 interface PortfolioSite {
   id: string
@@ -20,11 +20,13 @@ interface PortfolioSite {
 
 export function PortfolioSites() {
   const { t } = useLanguage()
-  const router = useRouter()
   const [portfolioSites, setPortfolioSites] = useState<PortfolioSite[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [isLoading, setIsLoading] = useState(true)
   const [hoveredSite, setHoveredSite] = useState<string | null>(null)
+  const [showPreviewModal, setShowPreviewModal] = useState(false)
+  const [selectedPreviewUrl, setSelectedPreviewUrl] = useState('')
+  const [selectedPreviewTitle, setSelectedPreviewTitle] = useState('')
 
   // Emotional taglines for each category
   const getEmotionalTagline = (category: string) => {
@@ -192,9 +194,36 @@ export function PortfolioSites() {
 
   const featuredSites = portfolioSites.filter(site => site.featured)
 
-  const openSiteView = (siteId: string) => {
-    router.push(`/portfolio/${siteId}`)
+  const openPreviewModal = (url: string, title: string) => {
+    setSelectedPreviewUrl(url)
+    setSelectedPreviewTitle(title)
+    setShowPreviewModal(true)
+    document.body.style.overflow = 'hidden'
   }
+
+  const closePreviewModal = () => {
+    setShowPreviewModal(false)
+    setSelectedPreviewUrl('')
+    setSelectedPreviewTitle('')
+    document.body.style.overflow = ''
+  }
+
+  // Handle ESC key to close modal
+  useEffect(() => {
+    if (!showPreviewModal) return
+    
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setShowPreviewModal(false)
+        setSelectedPreviewUrl('')
+        setSelectedPreviewTitle('')
+        document.body.style.overflow = ''
+      }
+    }
+    
+    document.addEventListener('keydown', handleEsc)
+    return () => document.removeEventListener('keydown', handleEsc)
+  }, [showPreviewModal])
 
 
   if (isLoading) {
@@ -226,7 +255,6 @@ export function PortfolioSites() {
         >
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-white">
             <span className="text-white">{t.portfolio.title}</span>
-            <span className="text-white"> {t.portfolio.sites}</span>
           </h2>
           <div className="w-24 h-1 bg-[#F97316] mx-auto rounded-full" />
           <p className="text-base sm:text-lg text-[#94A3B8] mt-4 md:mt-6 max-w-2xl mx-auto">
@@ -296,7 +324,7 @@ export function PortfolioSites() {
               {/* Gradient Underline Glow */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#F97316]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               {/* Live Preview */}
-              <div className="h-48 bg-gradient-to-br from-gray-700 to-gray-800 overflow-hidden relative flex-shrink-0" style={{ overflow: 'hidden' }}>
+              <div className="h-48 bg-gray-100 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-800 overflow-hidden relative flex-shrink-0" style={{ overflow: 'hidden' }}>
                 <iframe
                   src={site.url}
                   className="w-full h-full scale-50 origin-top-left pointer-events-none"
@@ -314,7 +342,7 @@ export function PortfolioSites() {
                   scrolling="no"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-white/60 dark:from-black/20 to-transparent"></div>
                 <div className="absolute top-2 right-2 bg-[#F97316] text-white text-xs px-2 py-1 rounded">
                   {t.portfolio?.livePreview || "Live Preview"}
                 </div>
@@ -376,7 +404,7 @@ export function PortfolioSites() {
                 {/* Action Button - Always at bottom */}
                 <div className="mt-auto">
                         <motion.button
-                          onClick={() => openSiteView(site.id)}
+                          onClick={() => openPreviewModal(site.url, site.title)}
                           whileHover={{ scale: 1.01, y: -1 }}
                           whileTap={{ scale: 0.99 }}
                           className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-br from-[#F97316] via-[#ea6707] to-[#d45a05] p-[1px] shadow-lg hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] transition-all duration-300"
@@ -466,7 +494,48 @@ export function PortfolioSites() {
         >
           designed by icnevudila
         </motion.p>
-      </motion.div>
-    </section>
+             </motion.div>
+       {showPreviewModal && typeof document !== 'undefined' && createPortal(
+         <AnimatePresence>
+                       <div 
+              className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center"
+              onClick={closePreviewModal}
+            >
+                <div 
+                   className="w-[90vw] max-w-6xl max-h-[90vh] bg-[#0F172A] rounded-2xl shadow-2xl flex flex-col overflow-hidden"
+                   style={{ 
+                     backdropFilter: 'blur(10px)'
+                   }}
+                   onClick={(e) => e.stopPropagation()}
+                 >
+                             {/* Header */}
+               <div className="flex items-center justify-between p-4 border-b border-gray-700 flex-shrink-0">
+                 <div>
+                   <h3 className="text-xl font-bold text-white">{selectedPreviewTitle}</h3>
+                 </div>
+                 <button
+                   onClick={closePreviewModal}
+                   className="p-2 rounded-full hover:bg-gray-700 text-[#94A3B8] hover:text-white transition-colors"
+                   aria-label="Kapat"
+                 >
+                   <XMarkIcon className="w-6 h-6" />
+                 </button>
+               </div>
+              
+              {/* Content */}
+              <div className="flex-1 p-4 overflow-y-auto overflow-x-hidden">
+                <iframe
+                  src={selectedPreviewUrl}
+                  title={selectedPreviewTitle}
+                  className="w-full h-full min-h-[500px] border-0 rounded-lg"
+                  sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+                />
+                                                           </div>
+                </div>
+               </div>
+             </AnimatePresence>
+        , document.body
+       )}
+      </section>
   )
 }

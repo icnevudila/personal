@@ -8,6 +8,9 @@ export function QuoteButton() {
     const element = document.querySelector('#contact')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      // Eğer ana sayfada değilsek ana sayfaya yönlendir
+      window.location.href = '/#contact'
     }
   }
 

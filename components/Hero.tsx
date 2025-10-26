@@ -118,10 +118,13 @@ export function Hero() {
     reader.readAsDataURL(file)
   }
 
-  const scrollToProjects = () => {
-    const element = document.querySelector('#projects')
+  const scrollToContact = () => {
+    const element = document.querySelector('#contact')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
+    } else {
+      // Eğer ana sayfada değilsek ana sayfaya yönlendir
+      window.location.href = '/#contact'
     }
   }
 
@@ -159,40 +162,10 @@ export function Hero() {
             className="order-2 lg:order-1 flex justify-center lg:justify-start"
           >
             <div className="relative">
-              {/* Profile Circle */}
+                            {/* Profile Circle */}
               <div className="relative w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96">
-                {/* Outer Ring */}
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                  className="absolute inset-0 rounded-full border-4 border-[#F97316] p-1"
-                  style={{
-                    mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                    maskComposite: 'exclude',
-                    WebkitMaskComposite: 'xor',
-                  }}
-                />
-                
-                {/* Glow Effect */}
-                <motion.div
-                  className="absolute inset-0 rounded-full z-10"
-                  style={{
-                    pointerEvents: 'none',
-                    background: 'radial-gradient(circle at 50% 50%, rgba(255,140,66,0.3) 0%, transparent 70%)',
-                  }}
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.3, 0.6, 0.3],
-                  }}
-                  transition={{
-                    duration: 3,
-                    ease: 'easeInOut',
-                    repeat: Infinity,
-                  }}
-                />
-                
-                {/* Profile Image Container */}
+                 
+                 {/* Profile Image Container */}
                 <div className="absolute inset-0 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden group/profile">
                   {/* Profile Image */}
                   <div className="w-full h-full bg-[#F97316]/30 flex items-center justify-center relative">
@@ -305,10 +278,10 @@ export function Hero() {
               }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              onClick={scrollToProjects}
+              onClick={scrollToContact}
               className="px-8 py-4 bg-[#F97316] hover:bg-[#ea6707] text-white font-semibold rounded-lg shadow-lg transition-all duration-300 text-lg"
             >
-              Projeni Başlat
+              {t.hero.ctaButton}
             </motion.button>
           </motion.div>
 
@@ -323,7 +296,7 @@ export function Hero() {
           className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
         >
           <motion.button
-            onClick={scrollToProjects}
+            onClick={scrollToContact}
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
             className="text-gray-400 hover:text-white transition-colors"
