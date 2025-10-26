@@ -17,7 +17,7 @@ export function Navbar() {
     { name: t.nav.home, href: '#home' },
     { name: t.nav.about, href: '#about' },
     { name: t.nav.skills, href: '#skills' },
-          { name: 'Portfolyo', href: '#portfolio' },
+    { name: t.nav.portfolio, href: '#portfolio' },
     { name: t.nav.blog, href: '#blog' },
     { name: t.nav.contact, href: '#contact' },
   ]

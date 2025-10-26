@@ -9,7 +9,6 @@ import { AuthProvider } from '@/contexts/AuthContext'
 import { ThemeProvider } from '@/contexts/ThemeContext'
 import { Favicon } from '@/components/Favicon'
 import { PerformanceMonitor } from '@/components/PerformanceMonitor'
-import { GoogleAnalytics } from '@/components/GoogleAnalytics'
 
 const inter = Inter({ 
   subsets: ['latin'],
@@ -178,8 +177,7 @@ export default function RootLayout({
                 <StarRainBackground />
                 
                 <AdminWrapper>
-                  {/* <GoogleAnalytics /> */}
-                  <PerformanceMonitor />
+                  {/* <PerformanceMonitor /> */}
                   <Navbar />
                   <main className="relative">
                     {children}
