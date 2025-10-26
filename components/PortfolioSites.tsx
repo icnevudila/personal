@@ -19,7 +19,7 @@ interface PortfolioSite {
 }
 
 export function PortfolioSites() {
-  const { t } = useLanguage()
+  const { t, language } = useLanguage()
   const [portfolioSites, setPortfolioSites] = useState<PortfolioSite[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [isLoading, setIsLoading] = useState(true)
@@ -284,7 +284,7 @@ export function PortfolioSites() {
             >
               {category === 'all' 
                 ? (t.portfolio?.allCategories || 'Tümü')
-                : (t.portfolio?.categories?.[category] || category)
+                : (t.portfolio?.categories?.[category as keyof typeof t.portfolio.categories] || category)
               }
             </motion.button>
           ))}
@@ -365,7 +365,7 @@ export function PortfolioSites() {
                     <p className="text-xs text-[#94A3B8] leading-relaxed line-clamp-2 mb-2">
                       {typeof site.description === 'string' 
                         ? site.description 
-                        : site.description[t.language as 'tr' | 'en'] || site.description.tr
+                        : site.description[language as 'tr' | 'en'] || site.description.tr
                       }
                     </p>
                     {/* Emotional Tagline */}
@@ -376,7 +376,7 @@ export function PortfolioSites() {
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-1 mb-3">
-                    {(typeof site.tags === 'string' ? site.tags : site.tags[t.language as 'tr' | 'en'] || site.tags.tr).slice(0, 3).map((tag) => (
+                    {(typeof site.tags === 'string' ? site.tags : (site.tags as { tr: string[]; en: string[] })[language as 'tr' | 'en'] || (site.tags as { tr: string[]; en: string[] }).tr).slice(0, 3).map((tag) => (
                       <span
                         key={tag}
                         className="px-2 py-1 bg-gray-700/50 text-gray-300 text-xs rounded"
