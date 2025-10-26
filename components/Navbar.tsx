@@ -122,15 +122,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            {logoUrl ? (
-              <img 
-                src={logoUrl} 
-                alt="icnevudila" 
-                className="h-10 w-auto"
-              />
-            ) : (
-              <Logo variant="full" className="cursor-pointer" />
-            )}
+            <Logo variant="full" className="cursor-pointer" />
           </div>
 
           {/* Desktop Navigation */}
