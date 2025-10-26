@@ -444,8 +444,8 @@ Bu yolculukta başarılar dileriz! 🚀`,
             <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8">
               <AnimatedText text={t.blog.featured} />
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-              {blogPosts.map((post, index) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+              {blogPosts.slice(0, 4).map((post, index) => (
                 <motion.article
                   key={post.slug}
                   initial={{ opacity: 0, y: 20 }}
@@ -455,7 +455,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
                   className="group cursor-pointer h-full"
                 >
                   {/* Card Container */}
-                  <div className="relative h-full bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)]">
+                  <div className="relative h-full bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)] flex flex-col">
                     
                     {/* Top Zone - Image Header */}
                     <div className="h-40 relative overflow-hidden">
@@ -476,7 +476,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
                     </div>
 
                     {/* Middle Zone - Text Block */}
-                    <div className="p-6">
+                    <div className="p-6 flex-1 flex flex-col">
                     <h4 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors">
                       {post.title}
                     </h4>
@@ -499,7 +499,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
                     </div>
 
                     {/* Read More */}
-                    <Link href={`/blog/${post.slug}`} className="flex items-center text-primary-500 font-medium group-hover:text-primary-400 transition-colors">
+                    <Link href={`/blog/${post.slug}`} className="flex items-center text-primary-500 font-medium group-hover:text-primary-400 transition-colors mt-auto">
                       <span>{t.blog.readMore}</span>
                       <ArrowRightIcon className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Link>
