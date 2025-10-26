@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { ArrowDownIcon, PhotoIcon } from '@heroicons/react/24/outline'
+import { PhotoIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
@@ -218,23 +218,7 @@ export function Hero() {
               />
             </div>
 
-            {/* Mobile Scroll Indicator - Below Photo */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="lg:hidden mt-8 flex justify-center"
-            >
-              <motion.button
-                onClick={scrollToContact}
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Scroll down"
-              >
-                <ArrowDownIcon className="h-8 w-8" />
-              </motion.button>
-            </motion.div>
+
           </motion.div>
 
           {/* Right Side - Text Content */}
@@ -306,23 +290,7 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Desktop Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="hidden lg:block absolute bottom-10 left-1/2 transform -translate-x-1/2"
-        >
-          <motion.button
-            onClick={scrollToContact}
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="text-gray-400 hover:text-white transition-colors"
-            aria-label="Scroll down"
-          >
-            <ArrowDownIcon className="h-8 w-8" />
-          </motion.button>
-        </motion.div>
+
 
       </div>
     </section>

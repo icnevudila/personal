@@ -204,22 +204,39 @@ Bu yolculukta başarılar dileriz! 🚀`,
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
 
   useEffect(() => {
-    // Always use generated posts for now (100 posts with 60 published)
-    const generatedPosts = generateBlogPosts()
-    setAllBlogPosts(generatedPosts)
-    
-    // Ana sayfada sadece 3 yazı göster, blog sayfasında hepsini göster
-    if (isHomePage) {
-      setBlogPosts(generatedPosts.filter(post => post.published !== false).slice(0, 3))
-    } else {
-      setBlogPosts(generatedPosts.filter(post => post.published !== false))
+    // Load blog posts from JSON file
+    const loadBlogPosts = async () => {
+      try {
+        const response = await fetch('/data/blog.json')
+        const data = await response.json()
+        const jsonPosts = data.posts || []
+        
+        setAllBlogPosts(jsonPosts)
+        
+        // Ana sayfada sadece featured yazıları göster, blog sayfasında hepsini göster
+        if (isHomePage) {
+          setBlogPosts(jsonPosts.filter(post => post.featured).slice(0, 4))
+        } else {
+          setBlogPosts(jsonPosts)
+        }
+        
+        console.log('JSON posts loaded:', jsonPosts.length)
+        console.log('Featured posts:', jsonPosts.filter(post => post.featured).length)
+      } catch (error) {
+        console.error('Error loading blog posts:', error)
+        // Fallback to generated posts
+        const generatedPosts = generateBlogPosts()
+        setAllBlogPosts(generatedPosts)
+        
+        if (isHomePage) {
+          setBlogPosts(generatedPosts.filter(post => post.published !== false).slice(0, 4))
+        } else {
+          setBlogPosts(generatedPosts.filter(post => post.published !== false))
+        }
+      }
     }
     
-    // Save to localStorage
-    localStorage.setItem('blogPosts', JSON.stringify(generatedPosts))
-    
-    console.log('Generated posts:', generatedPosts.length)
-    console.log('Published posts:', generatedPosts.filter(post => post.published !== false).length)
+    loadBlogPosts()
   }, [isHomePage])
 
   const handleEdit = (post: BlogPost, index: number) => {
@@ -439,13 +456,14 @@ Bu yolculukta başarılar dileriz! 🚀`,
             </p>
           </motion.div>
 
-          {/* Featured Posts */}
-          <motion.div variants={itemVariants} className="mb-8 md:mb-16 px-4">
-            <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8">
-              <AnimatedText text={t.blog.featured} />
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
-              {blogPosts.slice(0, 6).map((post, index) => (
+          {/* Blog Posts */}
+          {isHomePage ? (
+            <motion.div variants={itemVariants} className="mb-8 md:mb-16 px-4">
+              <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8">
+                <AnimatedText text={t.blog.featured} />
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                {blogPosts.filter(post => post.featured).slice(0, 4).map((post, index) => (
                 <motion.article
                   key={post.slug}
                   initial={{ opacity: 0, y: 20 }}
@@ -520,6 +538,117 @@ Bu yolculukta başarılar dileriz! 🚀`,
               ))}
             </div>
           </motion.div>
+          ) : (
+            <motion.div variants={itemVariants} className="mb-8 md:mb-16 px-4">
+              <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8">
+                <AnimatedText text={t.blog.allPosts} />
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                {currentPosts.map((post, index) => (
+                  <motion.article
+                    key={post.slug}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    whileHover={{ scale: 1.01 }}
+                    className="group cursor-pointer h-full"
+                  >
+                    {/* Card Container */}
+                    <div className="relative h-full bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)] flex flex-col">
+                      
+                      {/* Top Zone - Image Header */}
+                      <div className="h-40 relative overflow-hidden">
+                        <img 
+                          src={post.image || getCategoryImage(post.category)}
+                          alt={post.title}
+                          className="w-full h-full object-cover opacity-100"
+                          loading="lazy"
+                          onError={(e) => {
+                            e.currentTarget.src = getCategoryImage(post.category)
+                          }}
+                          style={{ 
+                            opacity: 1,
+                            visibility: 'visible',
+                            display: 'block',
+                            background: 'transparent',
+                            backgroundColor: 'transparent',
+                            backgroundImage: 'none'
+                          }}
+                        />
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-black/40"></div>
+                        {/* Category Badge */}
+                        <div className="absolute top-4 left-4">
+                          <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/10 backdrop-blur-sm text-white border border-white/20">
+                            {getCategoryIcon(post.category)} {post.category}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Middle Zone - Text Block */}
+                      <div className="p-6 flex-1 flex flex-col">
+                      <h4 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors">
+                        {post.title}
+                      </h4>
+                      <p className="text-gray-400 mb-4 leading-relaxed">
+                        {post.excerpt}
+                      </p>
+                      
+                      {/* Post Meta */}
+                      <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
+                        <div className="flex items-center space-x-4">
+                          <div className="flex items-center space-x-1">
+                            <CalendarIcon className="w-4 h-4" />
+                            <span>{new Date(post.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <ClockIcon className="w-4 h-4" />
+                            <span>{post.readTime}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Read More */}
+                      <Link href={`/blog/${post.slug}`} className="flex items-center text-primary-500 font-medium group-hover:text-primary-400 transition-colors mt-auto">
+                        <span>{t.blog.readMore}</span>
+                        <ArrowRightIcon className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </div>
+                  </div>
+                </motion.article>
+                ))}
+              </div>
+              {totalPages > 1 && (
+                <div className="flex justify-center mt-12">
+                  <nav className="inline-flex -space-x-px rounded-md shadow-sm">
+                    <button
+                      onClick={() => handlePageChange(currentPage - 1)}
+                      disabled={currentPage === 1}
+                      className="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      Previous
+                    </button>
+                    {Array.from({ length: totalPages }, (_, i) => (
+                      <button
+                        key={i + 1}
+                        onClick={() => handlePageChange(i + 1)}
+                        className={`px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${currentPage === i + 1 ? 'z-10 bg-primary-500 text-white border-primary-500' : ''}`}
+                      >
+                        {i + 1}
+                      </button>
+                    ))}
+                    <button
+                      onClick={() => handlePageChange(currentPage + 1)}
+                      disabled={currentPage === totalPages}
+                      className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                    >
+                      Next
+                    </button>
+                  </nav>
+                </div>
+              )}
+            </motion.div>
+          )}
 
           {/* View All Posts Button - Only on Homepage */}
           {isHomePage && (
@@ -551,7 +680,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
                   whileTap={{ scale: 0.95 }}
                   className="btn-secondary"
                 >
-                  Bloga Dön
+                  Ana Sayfaya Dön
                 </motion.button>
               </Link>
             </motion.div>
