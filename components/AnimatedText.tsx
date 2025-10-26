@@ -15,8 +15,9 @@ export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextPr
         // "ne" kısmını turuncu yap
         let colorClass = ''
         if (text === 'icnevudila') {
-          if (index >= 2 && index <= 3) { // "ne" kısmı (index 2 ve 3)
-            colorClass = 'text-[#F97316] dark:text-orange-500'
+          // i=0, c=1, n=2, e=3, v=4...
+          if (index === 2 || index === 3) { // "ne" kısmı
+            colorClass = '!text-[#F97316] dark:!text-orange-500'
           } else {
             colorClass = 'text-black dark:text-gray-300'
           }
