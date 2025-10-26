@@ -31,13 +31,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     // Theme değiştiğinde localStorage'a kaydet ve document attribute'unu güncelle
     localStorage.setItem('theme', theme)
     document.documentElement.setAttribute('data-theme', theme)
-    console.log('Theme applied:', theme, 'Data attribute:', document.documentElement.getAttribute('data-theme'))
   }, [theme])
 
   const toggleTheme = () => {
     setTheme(prev => {
       const newTheme = prev === 'light' ? 'dark' : 'light'
-      console.log('Theme changing from', prev, 'to', newTheme)
       return newTheme
     })
   }

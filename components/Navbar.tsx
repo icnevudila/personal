@@ -7,12 +7,16 @@ import { clsx } from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useTheme } from '@/contexts/ThemeContext'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { Logo } from './Logo'
 import { ThemeToggle } from './ThemeToggle'
+import Lottie from 'lottie-react'
+import coffeeAnimation from '../Brewing Coffee.json'
 
 export function Navbar() {
   const { t } = useLanguage()
+  const { theme } = useTheme()
   const pathname = usePathname()
   const [logoUrl, setLogoUrl] = useState<string>('')
   
@@ -174,9 +178,21 @@ export function Navbar() {
               {isOpen ? (
                 <XMarkIcon className="h-6 w-6" />
               ) : (
-                <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
+                <div className="h-10 w-10 flex items-center justify-center relative">
+                  <div 
+                    className={clsx(
+                      "relative",
+                      theme === 'dark' && 'brightness-0 invert'
+                    )}
+                  >
+                    <Lottie 
+                      animationData={coffeeAnimation} 
+                      loop={true}
+                      autoplay={true}
+                      style={{ width: 40, height: 40 }}
+                    />
+                  </div>
+                </div>
               )}
             </button>
           </div>

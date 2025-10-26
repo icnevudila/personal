@@ -137,7 +137,7 @@ export function Hero() {
         className="absolute inset-0"
       >
         
-        {/* Single subtle accent */}
+        {/* Single subtle accent - Hidden on mobile */}
         <motion.div
           animate={{
             opacity: [0.03, 0.06, 0.03],
@@ -147,7 +147,7 @@ export function Hero() {
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-[#F97316] rounded-full blur-3xl"
+          className="hidden md:block absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-[#F97316] rounded-full blur-3xl"
         />
       </motion.div>
 
