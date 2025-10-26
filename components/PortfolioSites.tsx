@@ -459,7 +459,7 @@ export function PortfolioSites() {
                   <p className="text-sm text-[#94A3B8] mb-3">
                     {typeof site.description === 'string' 
                     ? site.description 
-                    : site.description[t.language as 'tr' | 'en'] || site.description.tr
+                    : site.description[language as 'tr' | 'en'] || site.description.tr
                   }
                   </p>
                   <Link
