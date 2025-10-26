@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
-import StarRainBackground from '@/components/StarRainBackground'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 import { AuthProvider } from '@/contexts/AuthContext'
 import { ThemeProvider } from '@/contexts/ThemeContext'
@@ -118,8 +117,18 @@ export default function RootLayout({
             body { 
               font-family: 'Inter', sans-serif; 
               font-display: swap;
-              background: #151515;
+              background: linear-gradient(135deg, #151515 0%, #0f172a 50%, #1e293b 100%);
               color: #94A3B8;
+            }
+            [data-theme="light"] body {
+              background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
+              color: #1e293b !important;
+            }
+            [data-theme="light"] html {
+              background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
+            }
+            [data-theme="light"] * {
+              background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
             }
             .loading { opacity: 0; }
             .loaded { opacity: 1; transition: opacity 0.3s ease; }
@@ -129,17 +138,7 @@ export default function RootLayout({
         {/* Service Worker Registration */}
         <script dangerouslySetInnerHTML={{
           __html: `
-            if ('serviceWorker' in navigator) {
-              window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js')
-                  .then(function(registration) {
-                    console.log('SW registered: ', registration);
-                  })
-                  .catch(function(registrationError) {
-                    console.log('SW registration failed: ', registrationError);
-                  });
-              });
-            }
+            // Service worker disabled for development
           `
         }} />
       </head>
@@ -148,10 +147,7 @@ export default function RootLayout({
         <ThemeProvider>
           <AuthProvider>
             <LanguageProvider>
-              <div className="min-h-screen bg-[#151515] relative">
-                {/* Global Star Rain Background */}
-                <StarRainBackground />
-                
+              <div className="min-h-screen relative">
                 {/* <PerformanceMonitor /> */}
                 <Navbar />
                 <main className="relative">

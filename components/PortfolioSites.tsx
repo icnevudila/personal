@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowTopRightOnSquareIcon, EyeIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { ArrowTopRightOnSquareIcon, EyeIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useRouter } from 'next/navigation'
 
 interface PortfolioSite {
   id: string
@@ -19,12 +20,10 @@ interface PortfolioSite {
 
 export function PortfolioSites() {
   const { t } = useLanguage()
+  const router = useRouter()
   const [portfolioSites, setPortfolioSites] = useState<PortfolioSite[]>([])
   const [selectedCategory, setSelectedCategory] = useState<string>('all')
   const [isLoading, setIsLoading] = useState(true)
-  const [showPreviewModal, setShowPreviewModal] = useState(false)
-  const [selectedPreviewUrl, setSelectedPreviewUrl] = useState('')
-  const [selectedPreviewTitle, setSelectedPreviewTitle] = useState('')
   const [hoveredSite, setHoveredSite] = useState<string | null>(null)
 
   // Emotional taglines for each category
@@ -193,23 +192,14 @@ export function PortfolioSites() {
 
   const featuredSites = portfolioSites.filter(site => site.featured)
 
-  const openPreviewModal = (url: string, title: string) => {
-    setSelectedPreviewUrl(url)
-    setSelectedPreviewTitle(title)
-    setShowPreviewModal(true)
-    document.body.style.overflow = 'hidden'
+  const openSiteView = (siteId: string) => {
+    router.push(`/portfolio/${siteId}`)
   }
 
-  const closePreviewModal = () => {
-    setShowPreviewModal(false)
-    setSelectedPreviewUrl('')
-    setSelectedPreviewTitle('')
-    document.body.style.overflow = ''
-  }
 
   if (isLoading) {
     return (
-      <section className="section-padding bg-[#151515]">
+      <section className="section-padding">
         <div className="container-custom">
           <div className="text-center">
             <div className="animate-pulse">
@@ -224,38 +214,6 @@ export function PortfolioSites() {
 
   return (
     <section id="portfolio" className="section-padding relative overflow-hidden content-visibility-auto">
-      {/* Ambient Light Animation */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[rgba(249,115,22,0.02)] via-transparent to-[rgba(15,23,42,1)] pointer-events-none" />
-      
-      {/* Floating Light Orbs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-radial from-[rgba(249,115,22,0.05)] to-transparent rounded-full blur-3xl"
-          animate={{
-            x: [0, 50, 0],
-            y: [0, -30, 0],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-gradient-radial from-[rgba(59,130,246,0.03)] to-transparent rounded-full blur-3xl"
-          animate={{
-            x: [0, -40, 0],
-            y: [0, 40, 0],
-            scale: [1, 0.9, 1],
-          }}
-          transition={{
-            duration: 25,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-      </div>
 
       <div className="container-custom relative z-10">
         {/* Header */}
@@ -264,13 +222,14 @@ export function PortfolioSites() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16 px-4"
         >
-                  <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mb-6">
-                    <span className="text-[#F97316]">{t.portfolio.title}</span>
-                    <span className="text-[#f1f5f9]"> {t.portfolio.sites}</span>
-                  </h2>
-          <p className="text-lg text-[#94A3B8] max-w-2xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-white">
+            <span className="text-white">{t.portfolio.title}</span>
+            <span className="text-white"> {t.portfolio.sites}</span>
+          </h2>
+          <div className="w-24 h-1 bg-[#F97316] mx-auto rounded-full" />
+          <p className="text-base sm:text-lg text-[#94A3B8] mt-4 md:mt-6 max-w-2xl mx-auto">
             {t.portfolio?.subtitle || "Farklı sektörlerden yaratıcı projeler. Her biri kendine özgü hikayesi olan tasarım deneyimleri."}
           </p>
         </motion.div>
@@ -417,7 +376,7 @@ export function PortfolioSites() {
                 {/* Action Button - Always at bottom */}
                 <div className="mt-auto">
                         <motion.button
-                          onClick={() => openPreviewModal(site.url, site.title)}
+                          onClick={() => openSiteView(site.id)}
                           whileHover={{ scale: 1.01, y: -1 }}
                           whileTap={{ scale: 0.99 }}
                           className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-br from-[#F97316] via-[#ea6707] to-[#d45a05] p-[1px] shadow-lg hover:shadow-[0_0_25px_rgba(249,115,22,0.4)] transition-all duration-300"
@@ -508,43 +467,6 @@ export function PortfolioSites() {
           designed by icnevudila
         </motion.p>
       </motion.div>
-      <AnimatePresence>
-        {showPreviewModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-            onClick={closePreviewModal}
-          >
-            <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              transition={{ duration: 0.3 }}
-                      className="relative w-full h-full max-w-6xl max-h-[90vh] bg-[#151515] rounded-lg shadow-2xl flex flex-col"
-              onClick={e => e.stopPropagation()}
-            >
-              <div className="flex items-center justify-between p-4 border-b border-gray-700">
-                <h3 className="text-lg font-bold text-[#F1F5F9]">{selectedPreviewTitle} Önizlemesi</h3>
-                <button
-                  onClick={closePreviewModal}
-                  className="p-2 rounded-full hover:bg-gray-700 text-[#94A3B8] hover:text-white transition-colors"
-                  aria-label="Kapat"
-                >
-                  <XMarkIcon className="w-6 h-6" />
-                </button>
-              </div>
-              <iframe
-                src={selectedPreviewUrl}
-                title={selectedPreviewTitle}
-                className="flex-grow w-full h-full border-0 rounded-b-lg"
-                sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   )
 }

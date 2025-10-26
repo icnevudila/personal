@@ -107,7 +107,7 @@ export function About() {
   ]
 
   return (
-    <section id="about" className="section-padding bg-[#151515]">
+    <section id="about" className="section-padding">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -203,36 +203,11 @@ export function About() {
               <div className="relative w-full max-w-lg">
                 {/* Placeholder for profile image */}
                 <div className="w-full h-64 md:h-96 bg-gray-800 rounded-2xl flex items-center justify-center relative overflow-hidden">
-                  {/* Glow Effect */}
-                  <motion.div
-                    className="absolute inset-0 rounded-2xl"
-                    style={{
-                      pointerEvents: 'none',
-                      background: 'radial-gradient(circle at 50% 50%, rgba(255,140,66,0.2) 0%, transparent 70%)',
-                    }}
-                    animate={{
-                      scale: [1, 1.15, 1],
-                      opacity: [0.2, 0.5, 0.2],
-                    }}
-                    transition={{
-                      duration: 3,
-                      ease: 'easeInOut',
-                      repeat: Infinity,
-                    }}
-                  />
                   {/* Uploaded Image */}
                   {aboutImage ? (
                     <img src={aboutImage} alt="About" className="w-full h-full object-cover" />
                   ) : (
                     <>
-                      {/* Animated background pattern */}
-                      <div className="absolute inset-0 opacity-10">
-                        <div className="w-full h-full" style={{
-                          backgroundImage: 'radial-gradient(circle at 3px 3px, rgba(249,115,22,0.2) 1px, transparent 0)',
-                          backgroundSize: '50px 50px'
-                        }} />
-                      </div>
-                      
                       <div className="text-center relative z-10">
                         <div className="w-32 h-32 bg-[#F97316] rounded-full mx-auto mb-4 flex items-center justify-center">
                           <span className="text-4xl font-bold text-white">ic</span>

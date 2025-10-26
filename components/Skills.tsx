@@ -75,7 +75,7 @@ export function Skills() {
         setTimeout(() => {
           const skillsCards = document.querySelectorAll('#skills h3, #skills p')
           skillsCards.forEach(el => {
-            el.style.setProperty('color', '#000000', 'important')
+            (el as HTMLElement).style.setProperty('color', '#000000', 'important')
           })
         }, 100)
       } else {
@@ -83,7 +83,7 @@ export function Skills() {
         setTimeout(() => {
           const skillsCards = document.querySelectorAll('#skills h3, #skills p')
           skillsCards.forEach(el => {
-            el.style.removeProperty('color')
+            (el as HTMLElement).style.removeProperty('color')
           })
         }, 100)
       }
@@ -118,7 +118,7 @@ export function Skills() {
   }))
 
   return (
-    <section id="skills" className="section-padding bg-[#151515]" aria-labelledby="skills-title">
+    <section id="skills" className="section-padding" aria-labelledby="skills-title">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -129,7 +129,7 @@ export function Skills() {
         >
           {/* Section Header */}
           <div className="text-center mb-12 md:mb-16 px-4">
-            <h2 id="skills-title" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-[#E5E7EB]">
+            <h2 id="skills-title" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-[#F97316]">
               <AnimatedText text={t.skills.title} />
             </h2>
             <div className="w-24 h-1 bg-[#F97316] mx-auto rounded-full" />

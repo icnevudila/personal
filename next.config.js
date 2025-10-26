@@ -17,11 +17,29 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion', '@heroicons/react'],
     // optimizeCss: true, // Temporarily disabled due to critters error
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
   },
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
+  swcMinify: true,
+  // Preload and prefetch optimizations
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: '/api/:path*',
+      },
+    ]
+  },
   // PWA support
   async headers() {
     return [
@@ -40,6 +58,15 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-DNS-Prefetch-Control',
+            value: 'on',
           },
         ],
       },

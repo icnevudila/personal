@@ -1,6 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* IMMEDIATE LIGHT MODE OVERRIDE - Highest Priority */
+[data-theme="light"] {
+  background: #ffffff !important;
+}
+
+html[data-theme="light"] {
+  background: #ffffff !important;
+}
 
 /* Critical CSS - Above the fold styles */
 @layer base {
@@ -20,11 +34,6 @@
   --primary-shadow: rgba(255, 215, 0, 0.4);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
-
 @layer base {
   * {
     @apply border-gray-600;
@@ -38,15 +47,28 @@
     letter-spacing: 0.02em;
   }
 
-  /* Light mode styles */
+  /* Light mode styles - ULTRA STRONG OVERRIDE */
   [data-theme="light"] {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-    color: #1e293b;
+    background: #ffffff !important;
+    color: #1e293b !important;
   }
 
   [data-theme="light"] body {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
-    color: #1e293b;
+    background: #ffffff !important;
+    color: #1e293b !important;
+  }
+
+  [data-theme="light"] html {
+    background: #ffffff !important;
+  }
+
+  /* Force all backgrounds to be white in light mode */
+  [data-theme="light"] .min-h-screen,
+  [data-theme="light"] .section-padding,
+  [data-theme="light"] section,
+  [data-theme="light"] div,
+  [data-theme="light"] main {
+    background: #ffffff !important;
   }
 
   [data-theme="light"] h1, 
@@ -59,15 +81,15 @@
   }
 
   [data-theme="light"] .bg-\[#0a0f1a\] {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+    background: #ffffff !important;
   }
 
   [data-theme="light"] .bg-gradient-to-br {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+    background: #ffffff !important;
   }
 
   [data-theme="light"] .bg-slate-900 {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+    background: #ffffff !important;
   }
 
   [data-theme="light"] .text-\[#94A3B8\] {
@@ -201,20 +223,33 @@
 
   /* Specific background overrides for light mode */
   [data-theme="light"] .min-h-screen {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
   }
 
   [data-theme="light"] .section-padding {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
   }
 
   [data-theme="light"] .bg-gradient-to-br.from-\[#0a0f1a\].via-\[#0f172a\].to-\[#1e293b\] {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
   }
 
-  /* Force override all dark backgrounds in light mode */
+  /* NUCLEAR OPTION - Force all backgrounds in light mode */
   [data-theme="light"] * {
     background-color: transparent !important;
+  }
+
+  /* ULTIMATE OVERRIDE - Force white gradient everywhere */
+  html[data-theme="light"] * {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
+  }
+
+  /* SPECIFIC OVERRIDES for problematic elements */
+  [data-theme="light"] .bg-gradient-to-br,
+  [data-theme="light"] .bg-gradient-to-r,
+  [data-theme="light"] .bg-gradient-to-t,
+  [data-theme="light"] .bg-gradient-to-l {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
   }
 
 
@@ -226,7 +261,7 @@
   [data-theme="light"] .min-h-screen,
   [data-theme="light"] .section-padding,
   [data-theme="light"] section {
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #f1f3f4 100%) !important;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -671,7 +706,8 @@
   [data-theme="light"] #projects h2,
   [data-theme="light"] #blog h2,
   [data-theme="light"] #education h2,
-  [data-theme="light"] #contact h2 {
+  [data-theme="light"] #contact h2,
+  [data-theme="light"] #portfolio h2 {
     color: #F97316 !important;
   }
 
@@ -797,20 +833,19 @@
     aspect-ratio: var(--aspect-ratio, 16/9);
   }
 
-  /* Smooth Scrolling */
-  html {
-    scroll-behavior: smooth;
+  /* FINAL NUCLEAR OPTION - Override everything in light mode only */
+  html[data-theme="light"] body,
+  html[data-theme="light"] html,
+  html[data-theme="light"] div,
+  html[data-theme="light"] section,
+  html[data-theme="light"] main,
+  html[data-theme="light"] .min-h-screen,
+  html[data-theme="light"] .section-padding {
+    background: #ffffff !important;
   }
-  
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
-    
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
+
+  /* ABSOLUTE FINAL OVERRIDE - Light mode only */
+  [data-theme="light"] {
+    background: #ffffff !important;
   }
 }

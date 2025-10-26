@@ -2,259 +2,299 @@
 
 import { useState, useEffect } from 'react'
 import { useParams } from 'next/navigation'
-import { motion } from 'framer-motion'
-import { CalendarIcon, ClockIcon, ArrowLeftIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
+import { ArrowLeftIcon, CalendarIcon, ClockIcon } from '@heroicons/react/24/outline'
+import { motion } from 'framer-motion'
 
 interface BlogPost {
-  id?: number
+  id: number
   title: string
   slug: string
   excerpt: string
-  content?: string
+  content: string
   date: string
   readTime: string
   category: string
   featured?: boolean
   image?: string
+  published?: boolean
 }
 
-export default function BlogPostPage() {
+export default function BlogDetail() {
   const params = useParams()
+  const slug = params.slug as string
   const [post, setPost] = useState<BlogPost | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const saved = localStorage.getItem('blogPosts')
-    
-    if (saved) {
-      try {
-        const posts = JSON.parse(saved)
-        const found = posts.find((p: BlogPost) => p.slug === params.slug)
-        setPost(found || null)
-      } catch (e) {
-        console.error('Error parsing blog posts:', e)
-      }
-    } else {
-      // Fallback to default posts
-      const defaultPosts = [
-        {
-          title: 'Modern Araçlarla Tasarım Sürecini Hızlandırmak',
-          excerpt: 'Güncel araçları kullanarak web tasarımında zaman kazanmanın ve yaratıcı süreçleri optimize etmenin yollarını keşfedin.',
-          content: `Web tasarımında modern araçlar giderek daha önemli bir rol oynuyor. ChatGPT, Midjourney ve Leonardo AI gibi araçlar sayesinde tasarım süreçlerini hızlandırabilir ve yaratıcılığımızı destekleyebiliriz.
-
-## Modern Araçların Rolü
-
-Modern araçlar, tasarımcıların tekrarlayan görevlerini azaltarak odaklanmalarını gereken alanlara yönlendiriyor. Örneğin, renk paletleri oluşturma, layout önerileri alma ve tipografi seçimi gibi konularda bu araçlardan destek alabiliriz.
-
-## Pratik Örnekler
-
-Günlük iş akışında, AI araçlarından şu şekillerde faydalanabiliriz:
-- Hızlı mockup'lar ve konsept görselleri oluşturma
-- İçerik önerileri ve metin düzenlemeleri
-- Renk uyumluluğu analizi
-- Responsive tasarım kontrolleri
-
-## Sonuç
-
-AI, tasarımcının yerini almıyor, aksine güçlendiriyor. Bu araçları doğru kullanarak daha verimli ve yaratıcı tasarım süreçleri oluşturabiliriz.`,
-          date: '2024-01-15',
-          readTime: '5 dk okuma',
-          slug: 'yapay-zeka-tasarim-sureci',
-          category: 'Design',
-          featured: true,
-        },
-        {
-          title: 'Minimalizm ve Duygusal Tasarım',
-          excerpt: 'Sade arayüzler tasarlarken kullanıcıların duygusal bağ kurabilmesi için dikkat edilmesi gerekenleri öğrenin.',
-          content: `Minimalist tasarım sadece boş alanlar ve az öğe demek değil. Kullanıcının duygusal tepkilerini düşünerek tasarlanmış bir yaklaşım.
-
-## Minimalizmin Psikolojisi
-
-Boş alanlar (whitespace) görsel hiyerarşi oluşturur ve kullanıcının dikkatini önemli öğelere yönlendirir. Ancak bu her zaman soğuk ve steril bir deneyim anlamına gelmez.
-
-## Duygusal Bağ Kurmak
-
-Renkler, tipografi ve mikro-etkileşimler minimal bir arayüzde kullanıcı ile duygusal bağ kurmanın anahtarlarıdır:
-- Warm grays ve soft oranges gibi sıcak tonlar
-- İnsan dostu font seçimleri
-- Hover animasyonları ve transition'lar
-- Kişisel dokunuşlar
-
-## Dengeli Yaklaşım
-
-Basitlik ve duygu arasında denge kurmak önemli. Her öğenin bir amacı olmalı ama aynı zamanda kullanıcıyı neşelendirmeli ve ilham vermeli.`,
-    date: '2024-01-10',
-          readTime: '8 dk okuma',
-          slug: 'minimalizm-duygusal-tasarim',
-    category: 'Design',
-          featured: true,
-        },
-        {
-          title: 'Renk Psikolojisi ve Web Tasarımı',
-          excerpt: 'Renklerin kullanıcı davranışları üzerindeki etkilerini ve web tasarımında nasıl kullanılacağını keşfedin.',
-          content: `Renkler, web sitelerinde kullanıcıların ilk izlenimini şekillendiren en güçlü araçlardan biridir. Turuncu vurgular güven ve sıcaklık hissi verirken, gri tonlar profesyonellik ve istikrar iletir.
-
-## Renklerin Duygusal Etkileri
-
-Her rengin kendine özgü psikolojik etkileri vardır:
-- Turuncu: Cesaret, yaratıcılık, samimiyet
-- Gri: Dengelilik, profesyonellik, modernlik
-- Beyaz: Temizlik, sadelik, netlik
-
-## Web Tasarımında Uygulama
-
-Renkleri stratejik olarak kullanmak için:
-- Call-to-action butonlarında yüksek kontrastlı renkler
-- Arka planlarda nötr tonlar
-- Vurgu için accent renkler
-- Okunabilirlik için kontrast oranlarına dikkat
-
-## Sonuç
-
-Renk seçimi rastgele olmamalı. Her rengin bir amacı ve mesajı olmalı.`,
-          date: '2024-01-05',
-          readTime: '6 dk okuma',
-          slug: 'renk-psikolojisi-web-tasarim',
-          category: 'Design',
-          featured: false,
-        },
-        {
-          title: 'Responsive Tasarımın Modern Yaklaşımları',
-          excerpt: 'Mobil ve masaüstü cihazlarda kusursuz görünen tasarımlar için Tailwind CSS ve modern teknikleri keşfedin.',
-          content: `Responsive tasarım artık bir lüks değil, gereklilik. Kullanıcılar farklı cihazlardan web sitelerinize erişiyor ve her birinde mükemmel bir deneyim bekliyorlar.
-
-## Mobile-First Yaklaşım
-
-Tasarıma küçük ekranlardan başlamak ve sonra büyütmek, büyük ekranlardan küçültmekten çok daha etkili bir yöntemdir.
-
-## Tailwind CSS ile Kolaylık
-
-Tailwind CSS'in responsive utilities sayesinde:
-- Grid ve flexbox ile esnek düzenler
-- Breakpoint bazlı stil değişiklikleri
-- Kolay bakım ve güncelleme
-
-## Performans Optimizasyonu
-
-Responsive görseller için:
-- srcset ve sizes attribute'ları
-- Modern formatlar (WebP, AVIF)
-- Lazy loading
-
-## Sonuç
-
-Responsive tasarım sadece teknik bir gereklilik değil, kullanıcı deneyiminin temelidir.`,
-          date: '2024-01-01',
-          readTime: '10 dk okuma',
-          slug: 'responsive-tasarim-modern-yaklasimlar',
-          category: 'Development',
-          featured: false,
-        },
+    // Generate the same blog posts as in Blog component
+    const generateBlogPosts = (): BlogPost[] => {
+      const categories = ['Design', 'Development', 'AI', 'Performance', 'UX/UI', 'Technology', 'Tutorial', 'Case Study']
+      const topics = [
+        'Modern Web Tasarımı', 'React Best Practices', 'AI ve Yaratıcılık', 'Performance Optimization',
+        'User Experience', 'Mobile First Design', 'CSS Grid', 'JavaScript ES6+', 'TypeScript',
+        'Next.js', 'Tailwind CSS', 'Framer Motion', 'Responsive Design', 'Accessibility',
+        'SEO Optimization', 'Web Security', 'API Design', 'Database Design', 'Cloud Computing',
+        'DevOps', 'Git Workflow', 'Testing Strategies', 'Code Review', 'Agile Development',
+        'Design Systems', 'Color Theory', 'Typography', 'Layout Design', 'Animation',
+        'Micro-interactions', 'User Research', 'Prototyping', 'Wireframing', 'Information Architecture',
+        'Content Strategy', 'Branding', 'Logo Design', 'Visual Hierarchy', 'White Space',
+        'Contrast', 'Balance', 'Proximity', 'Alignment', 'Repetition', 'Consistency',
+        'Scalability', 'Maintainability', 'Code Quality', 'Documentation', 'Version Control',
+        'Deployment', 'Monitoring', 'Analytics', 'A/B Testing', 'Conversion Optimization',
+        'Landing Pages', 'E-commerce', 'SaaS Design', 'Dashboard Design', 'Data Visualization',
+        'Charts', 'Graphs', 'Infographics', 'Icons', 'Illustrations', 'Photography',
+        'Video Content', 'Podcast Design', 'Social Media', 'Email Marketing', 'Content Marketing',
+        'Growth Hacking', 'Startup', 'Freelancing', 'Remote Work', 'Productivity',
+        'Time Management', 'Project Management', 'Client Relations', 'Pricing Strategies',
+        'Portfolio Building', 'Networking', 'Career Development', 'Learning', 'Mentoring',
+        'Community Building', 'Open Source', 'Contributing', 'Speaking', 'Writing',
+        'Teaching', 'Consulting', 'Agency', 'Studio', 'Team Building', 'Leadership',
+        'Innovation', 'Trends', 'Future', 'Predictions', 'Analysis', 'Reviews'
       ]
-      const found = defaultPosts.find((p: any) => p.slug === params.slug)
-      setPost(found || null)
+
+      const posts: BlogPost[] = []
+      
+      for (let i = 1; i <= 100; i++) {
+        const topic = topics[Math.floor(Math.random() * topics.length)]
+        const category = categories[Math.floor(Math.random() * categories.length)]
+        
+        // İlk 60 yazı: bugüne kadar (geçmiş tarihler)
+        // Sonraki 40 yazı: gelecek 40 gün
+        let date: Date
+        if (i <= 60) {
+          date = new Date(2024, 11, 20 - i) // Son 60 gün
+        } else {
+          date = new Date(2024, 11, 21 + (i - 60)) // Gelecek 40 gün
+        }
+        
+        const published = i <= 60 // İlk 60 yazı published
+        
+        posts.push({
+          id: i,
+          title: `${topic}: ${i}. Adımda Uzmanlaşma`,
+          slug: `${topic.toLowerCase().replace(/[^a-z0-9]/g, '-')}-${i}`,
+          excerpt: `${topic} konusunda ${i}. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile ${category} alanında uzmanlaşın.`,
+          content: `# ${topic}: ${i}. Adımda Uzmanlaşma
+
+Bu kapsamlı rehberde ${topic} konusunda ${i}. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.
+
+## Temel Kavramlar
+
+${topic} alanında başarılı olmak için öncelikle temel kavramları anlamanız gerekiyor. Bu kavramlar:
+
+- Temel prensipler ve teorik altyapı
+- Best practices ve endüstri standartları
+- Yaygın hatalar ve bunlardan kaçınma yolları
+- Optimizasyon teknikleri ve performans iyileştirmeleri
+
+## Pratik Uygulamalar
+
+Teorik bilgiyi pratiğe dökmek için:
+
+1. **Proje örnekleri**: Gerçek dünya senaryolarında ${topic} nasıl uygulanır
+2. **Kod parçacıkları**: Kullanıma hazır kod örnekleri ve açıklamaları
+3. **Gerçek dünya senaryoları**: Endüstri deneyimleri ve case study'ler
+4. **Problem çözme yaklaşımları**: Karşılaşılan sorunlar ve çözüm yöntemleri
+
+## Detaylı İçerik
+
+${topic} konusunda derinlemesine bilgi sahibi olmak için:
+
+### Alt Başlık 1: Temel Prensipler
+${topic} alanında başarılı olmak için bilmeniz gereken temel prensipler şunlardır:
+
+- **Prensip 1**: Detaylı açıklama ve örnekler
+- **Prensip 2**: Uygulama alanları ve kullanım senaryoları
+- **Prensip 3**: Avantajları ve dezavantajları
+
+### Alt Başlık 2: İleri Seviye Teknikler
+${i}. seviyeye ulaştıktan sonra öğrenebileceğiniz teknikler:
+
+- **Teknik 1**: Gelişmiş optimizasyonlar ve performans iyileştirmeleri
+- **Teknik 2**: Ölçeklenebilir çözümler ve mimari desenler
+- **Teknik 3**: Gelecek trendleri ve teknoloji öngörüleri
+
+### Alt Başlık 3: Pratik Örnekler
+Gerçek projelerde ${topic} nasıl uygulanır:
+
+\`\`\`javascript
+// Örnek kod bloğu
+function ${topic.toLowerCase().replace(/[^a-z0-9]/g, '')}Example() {
+  // Detaylı kod açıklaması
+  return "Başarılı sonuç";
+}
+\`\`\`
+
+## Sonuç ve Öneriler
+
+${topic} konusunda ${i}. seviyeye ulaşmak sabır ve pratik gerektirir. Bu rehberdeki adımları takip ederek başarıya ulaşabilirsiniz.
+
+### Önemli Noktalar:
+- Sürekli öğrenme ve güncel kalma
+- Pratik yapma ve proje geliştirme
+- Topluluk ile etkileşim ve deneyim paylaşımı
+- Mentoring ve geri bildirim alma
+
+### Gelecek Adımlar:
+1. Bu rehberdeki bilgileri pratikte uygulayın
+2. Daha ileri seviye kaynakları araştırın
+3. Projelerinizde bu teknikleri kullanın
+4. Deneyimlerinizi başkalarıyla paylaşın
+
+Bu yolculukta başarılar dileriz! 🚀`,
+          date: date.toISOString().split('T')[0],
+          readTime: `${Math.floor(Math.random() * 10) + 3} dk okuma`,
+          category: category,
+          featured: i <= 6,
+          image: i <= 6 ? `/portfolio/blog-${i}.jpg` : undefined,
+          published: published
+        })
+      }
+      
+      return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
     }
+
+    const posts = generateBlogPosts()
+    const foundPost = posts.find(p => p.slug === slug)
+    
+    // Her zaman bir post göster (bulunamazsa ilk postu göster)
+    setPost(foundPost || posts[0])
     setLoading(false)
-  }, [params.slug])
+  }, [slug])
+
+  const getCategoryColor = (category: string) => {
+    const colors = {
+      Development: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+      Design: 'bg-purple-500/20 text-purple-400 border-purple-500/30',
+      Performance: 'bg-green-500/20 text-green-400 border-green-500/30',
+      AI: 'bg-orange-500/20 text-orange-400 border-orange-500/30',
+      'UX/UI': 'bg-pink-500/20 text-pink-400 border-pink-500/30',
+      Technology: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
+      Tutorial: 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30',
+      'Case Study': 'bg-indigo-500/20 text-indigo-400 border-indigo-500/30',
+    }
+    return colors[category as keyof typeof colors] || 'bg-gray-500/20 text-gray-400 border-gray-500/30'
+  }
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-gray-400">Yükleniyor...</div>
-      </div>
-    )
-  }
-
-  if (!post) {
-    return (
-      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-white mb-4">Yazı Bulunamadı</h1>
-          <Link href="/#blog" className="text-primary-500 hover:text-primary-400">
-            ← Bloga Dön
-          </Link>
+      <div className="min-h-screen bg-[#151515] flex items-center justify-center">
+        <div className="animate-pulse text-center">
+          <div className="h-8 bg-gray-700 rounded w-64 mx-auto mb-4"></div>
+          <div className="h-4 bg-gray-700 rounded w-96 mx-auto"></div>
         </div>
       </div>
     )
   }
 
+  // Post her zaman var olacak, bu kontrolü kaldırıyoruz
+
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <article className="container mx-auto px-4 py-16 max-w-4xl">
+    <div className="min-h-screen bg-[#151515]">
+      <div className="container-custom py-16">
         {/* Back Button */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
           className="mb-8"
         >
-          <Link
-            href="/#blog"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+          <Link 
+            href="/blog"
+            className="inline-flex items-center gap-2 text-[#F97316] hover:text-[#ea6707] transition-colors"
           >
             <ArrowLeftIcon className="w-5 h-5" />
-            Bloga Dön
+            Blog'a Dön
           </Link>
         </motion.div>
 
-        {/* Post Header */}
-        <motion.div
+        {/* Article */}
+        <motion.article
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12"
+          transition={{ duration: 0.6 }}
+          className="max-w-4xl mx-auto"
         >
-            <div className="mb-4">
-            <span className="px-3 py-1 bg-primary-500/20 text-primary-400 rounded-full text-sm">
+          {/* Header */}
+          <header className="mb-12">
+            <div className="mb-6">
+              <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium border ${getCategoryColor(post.category)}`}>
                 {post.category}
               </span>
             </div>
-
-          <h1 className="text-4xl sm:text-5xl font-bold mb-6">{post.title}</h1>
-          
-          <div className="flex items-center gap-6 text-gray-400 text-sm">
-            <div className="flex items-center gap-2">
-              <CalendarIcon className="w-4 h-4" />
-              <span>{new Date(post.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <ClockIcon className="w-4 h-4" />
-              <span>{post.readTime}</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Post Image */}
-        {post.image && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2 }}
-            className="mb-12 rounded-2xl overflow-hidden"
-          >
-            <div className="w-full h-96 bg-gray-800 flex items-center justify-center relative">
-              <div className="absolute inset-0 opacity-10">
-                <div className="w-full h-full" style={{
-                  backgroundImage: 'radial-gradient(circle at 4px 4px, rgba(249,115,22,0.2) 1px, transparent 0)',
-                  backgroundSize: '60px 60px'
-                }} />
+            
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+              {post.title}
+            </h1>
+            
+            <p className="text-xl text-gray-300 mb-8 leading-relaxed">
+              {post.excerpt}
+            </p>
+            
+            <div className="flex items-center gap-6 text-gray-400">
+              <div className="flex items-center gap-2">
+                <CalendarIcon className="w-5 h-5" />
+                <span>{new Date(post.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
               </div>
-              <span className="text-gray-400 relative z-10 text-lg">Blog Görseli</span>
+              <div className="flex items-center gap-2">
+                <ClockIcon className="w-5 h-5" />
+                <span>{post.readTime}</span>
+              </div>
+            </div>
+          </header>
+
+          {/* Featured Image */}
+          {post.image && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-12"
+            >
+              <div className="relative overflow-hidden rounded-xl">
+                <div className="w-full h-64 bg-gray-800 flex items-center justify-center">
+                  <span className="text-gray-400">Blog Görseli</span>
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="prose prose-invert prose-lg max-w-none"
+          >
+            <div className="text-gray-300 leading-relaxed whitespace-pre-line">
+              {post.content}
             </div>
           </motion.div>
-        )}
 
-        {/* Post Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="prose prose-invert max-w-none prose-headings:text-white prose-headings:font-bold prose-h2:text-3xl prose-h2:mt-8 prose-h2:mb-4 prose-p:text-gray-300 prose-p:text-lg prose-p:leading-relaxed prose-ul:text-gray-300 prose-li:text-gray-300"
-        >
-          <div className="text-lg text-gray-300 leading-relaxed whitespace-pre-line">
-            {post.content || post.excerpt}
-          </div>
-        </motion.div>
-        </article>
+          {/* Footer */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="mt-16 pt-8 border-t border-gray-700"
+          >
+            <div className="flex justify-between items-center">
+              <Link 
+                href="/blog"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#F97316] hover:bg-[#ea6707] text-white rounded-lg transition-colors"
+              >
+                <ArrowLeftIcon className="w-5 h-5" />
+                Tüm Yazıları Gör
+              </Link>
+              
+              <div className="text-sm text-gray-400">
+                <span className="font-mono">icnevudila</span>
+              </div>
+            </div>
+          </motion.div>
+        </motion.article>
+      </div>
     </div>
   )
 }

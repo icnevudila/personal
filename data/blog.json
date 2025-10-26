@@ -2,40 +2,75 @@
   "posts": [
     {
       "id": 1,
-      "title": "Gürültülü Dünyada Tasarım Sadelği",
-      "slug": "gurultulu-dunyada-tasarim-sadeligi",
-      "excerpt": "Minimal tasarımın dijital gürültüyü nasıl kesip anlamlı bağlantılar kurduğunu keşfediyorum.",
-      "content": "Bugünün dijital manzarasında, sadelik en üst düzey sofistikasyondur. Kullanıcılar bilgi bombardımanına uğruyor ve temiz, odaklanmış tasarım bir sığınak haline geliyor.\n\nMinimalizm öğeleri kaldırmakla ilgili değil—sadece önemli olanları tutmakla ilgili. Her piksel bir amaca hizmet etmeli, her etkileşim kasıtlı hissettirmeli.\n\nAI araçları daha hızlı iterasyon yapmama ve daha fazla olasılık keşfetmeme yardımcı oluyor, ancak nihai karar her zaman insan zevkinden geliyor.",
-      "date": "2024-10-25",
+      "title": "Modern Web Tasarımı: 1. Adımda Uzmanlaşma",
+      "slug": "modern-web-tasarimi-1",
+      "excerpt": "Modern Web Tasarımı konusunda 1. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Design alanında uzmanlaşın.",
+      "content": "# Modern Web Tasarımı: 1. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Modern Web Tasarımı konusunda 1. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.\n\n## Temel Kavramlar\n\nModern Web Tasarımı alanında başarılı olmak için öncelikle temel kavramları anlamanız gerekiyor. Bu kavramlar:\n\n- Temel prensipler\n- Best practices\n- Yaygın hatalar\n- Optimizasyon teknikleri\n\n## Pratik Uygulamalar\n\nTeorik bilgiyi pratiğe dökmek için:\n\n1. Proje örnekleri\n2. Kod parçacıkları\n3. Gerçek dünya senaryoları\n4. Problem çözme yaklaşımları\n\n## İleri Seviye Teknikler\n\n1. seviyeye ulaştıktan sonra:\n\n- Gelişmiş optimizasyonlar\n- Performans iyileştirmeleri\n- Ölçeklenebilir çözümler\n- Gelecek trendleri\n\n## Sonuç\n\nModern Web Tasarımı konusunda 1. seviyeye ulaşmak sabır ve pratik gerektirir. Bu rehberdeki adımları takip ederek başarıya ulaşabilirsiniz.",
+      "date": "2024-12-20",
       "readTime": "5 dk okuma",
-      "category": "Tasarım",
+      "category": "Design",
       "featured": true,
-      "image": "/portfolio/mindfolio_blog.png"
+      "image": "/portfolio/blog-1.jpg"
     },
     {
       "id": 2,
-      "title": "Yaratıcılığı Hızlandırmak İçin AI Kullanımı",
-      "slug": "yaraticiligi-hizlandirmak-icin-ai",
-      "excerpt": "ChatGPT ve Midjourney gibi AI araçlarının insan sezgisini yerinden etmeden yaratıcı süreci nasıl geliştirdiği.",
-      "content": "AI yaratıcılığı değiştirmez—onu güçlendirir. ChatGPT gibi araçlar fikirlerimi ifade etmeme, Midjourney kavramları görselleştirmeme ve GitHub Copilot uygulamayı hızlandırmama yardımcı oluyor.\n\nAnahtar, AI'yı bir değiştirme değil, işbirlikçi olarak kullanmak. Rutin işleri halleder, benim duygusal ve estetik kararlara odaklanmama izin verir.\n\nİnsan zevki ile AI verimliliği arasındaki bu ortaklık yaratıcı işin geleceği.",
-      "date": "2024-10-20",
-      "readTime": "6 dk okuma",
-      "category": "AI",
+      "title": "React Best Practices: 2. Adımda Uzmanlaşma",
+      "slug": "react-best-practices-2",
+      "excerpt": "React Best Practices konusunda 2. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+      "content": "# React Best Practices: 2. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde React Best Practices konusunda 2. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.\n\n## Temel Kavramlar\n\nReact Best Practices alanında başarılı olmak için öncelikle temel kavramları anlamanız gerekiyor. Bu kavramlar:\n\n- Temel prensipler\n- Best practices\n- Yaygın hatalar\n- Optimizasyon teknikleri\n\n## Pratik Uygulamalar\n\nTeorik bilgiyi pratiğe dökmek için:\n\n1. Proje örnekleri\n2. Kod parçacıkları\n3. Gerçek dünya senaryoları\n4. Problem çözme yaklaşımları\n\n## İleri Seviye Teknikler\n\n2. seviyeye ulaştıktan sonra:\n\n- Gelişmiş optimizasyonlar\n- Performans iyileştirmeleri\n- Ölçeklenebilir çözümler\n- Gelecek trendleri\n\n## Sonuç\n\nReact Best Practices konusunda 2. seviyeye ulaşmak sabır ve pratik gerektirir. Bu rehberdeki adımları takip ederek başarıya ulaşabilirsiniz.",
+      "date": "2024-12-19",
+      "readTime": "7 dk okuma",
+      "category": "Development",
       "featured": true,
-      "image": "/portfolio/nova_finance.png"
+      "image": "/portfolio/blog-2.jpg"
     },
     {
       "id": 3,
-      "title": "Renk Seçimleri Duyguları Nasıl Şekillendirir",
-      "slug": "renk-secimleri-duygulari-nasil-sekillendirir",
-      "excerpt": "Renk seçiminin arkasındaki psikolojiyi ve kullanıcı deneyimine etkisini anlamak.",
-      "content": "Renk görünür hale gelmiş duygudur. Sıcak turuncu (#F97316) sakin gri tonlarla birleşince enerji ile dinginlik arasında bir denge yaratır.\n\nHer renk kararı tasarımın duygusal hedefine hizmet etmeli. Turuncu dikkat çeker, gri istikrar sağlar ve birlikte modern, erişilebilir bir estetik oluştururlar.\n\nRenk psikolojisi sadece teori değil—kullanıcıların nasıl hissettiğini ve çalışmanızla nasıl etkileşime girdiğini dönüştüren pratik bir büyüdür.",
-      "date": "2024-10-15",
-      "readTime": "4 dk okuma",
-      "category": "Tasarım",
-      "featured": false,
-      "image": "/portfolio/luma_studio.png"
+      "title": "AI ve Yaratıcılık: 3. Adımda Uzmanlaşma",
+      "slug": "ai-ve-yaraticilik-3",
+      "excerpt": "AI ve Yaratıcılık konusunda 3. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile AI alanında uzmanlaşın.",
+      "content": "# AI ve Yaratıcılık: 3. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde AI ve Yaratıcılık konusunda 3. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.\n\n## Temel Kavramlar\n\nAI ve Yaratıcılık alanında başarılı olmak için öncelikle temel kavramları anlamanız gerekiyor. Bu kavramlar:\n\n- Temel prensipler\n- Best practices\n- Yaygın hatalar\n- Optimizasyon teknikleri\n\n## Pratik Uygulamalar\n\nTeorik bilgiyi pratiğe dökmek için:\n\n1. Proje örnekleri\n2. Kod parçacıkları\n3. Gerçek dünya senaryoları\n4. Problem çözme yaklaşımları\n\n## İleri Seviye Teknikler\n\n3. seviyeye ulaştıktan sonra:\n\n- Gelişmiş optimizasyonlar\n- Performans iyileştirmeleri\n- Ölçeklenebilir çözümler\n- Gelecek trendleri\n\n## Sonuç\n\nAI ve Yaratıcılık konusunda 3. seviyeye ulaşmak sabır ve pratik gerektirir. Bu rehberdeki adımları takip ederek başarıya ulaşabilirsiniz.",
+      "date": "2024-12-18",
+      "readTime": "6 dk okuma",
+      "category": "AI",
+      "featured": true,
+      "image": "/portfolio/blog-3.jpg"
+    },
+    {
+      "id": 4,
+      "title": "Performance Optimization: 4. Adımda Uzmanlaşma",
+      "slug": "performance-optimization-4",
+      "excerpt": "Performance Optimization konusunda 4. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Performance alanında uzmanlaşın.",
+      "content": "# Performance Optimization: 4. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Performance Optimization konusunda 4. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.\n\n## Temel Kavramlar\n\nPerformance Optimization alanında başarılı olmak için öncelikle temel kavramları anlamanız gerekiyor. Bu kavramlar:\n\n- Temel prensipler\n- Best practices\n- Yaygın hatalar\n- Optimizasyon teknikleri\n\n## Pratik Uygulamalar\n\nTeorik bilgiyi pratiğe dökmek için:\n\n1. Proje örnekleri\n2. Kod parçacıkları\n3. Gerçek dünya senaryoları\n4. Problem çözme yaklaşımları\n\n## İleri Seviye Teknikler\n\n4. seviyeye ulaştıktan sonra:\n\n- Gelişmiş optimizasyonlar\n- Performans iyileştirmeleri\n- Ölçeklenebilir çözümler\n- Gelecek trendleri\n\n## Sonuç\n\nPerformance Optimization konusunda 4. seviyeye ulaşmak sabır ve pratik gerektirir. Bu rehberdeki adımları takip ederek başarıya ulaşabilirsiniz.",
+      "date": "2024-12-17",
+      "readTime": "8 dk okuma",
+      "category": "Performance",
+      "featured": true,
+      "image": "/portfolio/blog-4.jpg"
+    },
+    {
+      "id": 5,
+      "title": "User Experience: 5. Adımda Uzmanlaşma",
+      "slug": "user-experience-5",
+      "excerpt": "User Experience konusunda 5. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile UX/UI alanında uzmanlaşın.",
+      "content": "# User Experience: 5. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde User Experience konusunda 5. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.\n\n## Temel Kavramlar\n\nUser Experience alanında başarılı olmak için öncelikle temel kavramları anlamanız gerekiyor. Bu kavramlar:\n\n- Temel prensipler\n- Best practices\n- Yaygın hatalar\n- Optimizasyon teknikleri\n\n## Pratik Uygulamalar\n\nTeorik bilgiyi pratiğe dökmek için:\n\n1. Proje örnekleri\n2. Kod parçacıkları\n3. Gerçek dünya senaryoları\n4. Problem çözme yaklaşımları\n\n## İleri Seviye Teknikler\n\n5. seviyeye ulaştıktan sonra:\n\n- Gelişmiş optimizasyonlar\n- Performans iyileştirmeleri\n- Ölçeklenebilir çözümler\n- Gelecek trendleri\n\n## Sonuç\n\nUser Experience konusunda 5. seviyeye ulaşmak sabır ve pratik gerektirir. Bu rehberdeki adımları takip ederek başarıya ulaşabilirsiniz.",
+      "date": "2024-12-16",
+      "readTime": "9 dk okuma",
+      "category": "UX/UI",
+      "featured": true,
+      "image": "/portfolio/blog-5.jpg"
+    },
+    {
+      "id": 6,
+      "title": "Mobile First Design: 6. Adımda Uzmanlaşma",
+      "slug": "mobile-first-design-6",
+      "excerpt": "Mobile First Design konusunda 6. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Design alanında uzmanlaşın.",
+      "content": "# Mobile First Design: 6. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Mobile First Design konusunda 6. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.\n\n## Temel Kavramlar\n\nMobile First Design alanında başarılı olmak için öncelikle temel kavramları anlamanız gerekiyor. Bu kavramlar:\n\n- Temel prensipler\n- Best practices\n- Yaygın hatalar\n- Optimizasyon teknikleri\n\n## Pratik Uygulamalar\n\nTeorik bilgiyi pratiğe dökmek için:\n\n1. Proje örnekleri\n2. Kod parçacıkları\n3. Gerçek dünya senaryoları\n4. Problem çözme yaklaşımları\n\n## İleri Seviye Teknikler\n\n6. seviyeye ulaştıktan sonra:\n\n- Gelişmiş optimizasyonlar\n- Performans iyileştirmeleri\n- Ölçeklenebilir çözümler\n- Gelecek trendleri\n\n## Sonuç\n\nMobile First Design konusunda 6. seviyeye ulaşmak sabır ve pratik gerektirir. Bu rehberdeki adımları takip ederek başarıya ulaşabilirsiniz.",
+      "date": "2024-12-15",
+      "readTime": "7 dk okuma",
+      "category": "Design",
+      "featured": true,
+      "image": "/portfolio/blog-6.jpg"
     }
   ]
 }
-

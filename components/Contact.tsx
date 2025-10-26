@@ -124,12 +124,12 @@ export function Contact() {
           className="max-w-6xl mx-auto"
         >
           {/* Section Header */}
-          <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+          <motion.div variants={itemVariants} className="text-center mb-12 md:mb-16 px-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-[#E5E7EB]">
               {t.contact.title.split(' ')[0]} <span className="text-[#F97316]">{t.contact.title.split(' ')[1]}</span>
             </h2>
             <div className="w-24 h-1 bg-[#F97316] mx-auto rounded-full" />
-            <p className="text-lg text-gray-400 mt-6 max-w-2xl mx-auto">
+            <p className="text-base sm:text-lg text-[#94A3B8] mt-4 md:mt-6 max-w-2xl mx-auto">
               {t.contact.subtitle}
             </p>
           </motion.div>

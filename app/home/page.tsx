@@ -8,9 +8,9 @@ import { Contact } from '@/components/Contact'
 import { QuoteButton } from '@/components/QuoteButton'
 import { BuyMeACoffee } from '@/components/BuyMeACoffee'
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <>
+    <div className="min-h-screen">
       <Hero />
       <About />
       <Education />
@@ -20,9 +20,6 @@ export default function Home() {
       <BuyMeACoffee />
       <Contact />
       <QuoteButton />
-    </>
+    </div>
   )
 }
-
-
-

@@ -127,17 +127,12 @@ export function Hero() {
 
 
   return (
-    <section ref={heroRef} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#151515]">
+    <section ref={heroRef} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background */}
       <motion.div 
         style={{ y, opacity, scale }}
-        className="absolute inset-0 bg-[#151515]"
+        className="absolute inset-0"
       >
-        {/* Subtle texture */}
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)',
-          backgroundSize: '40px 40px'
-        }} />
         
         {/* Single subtle accent */}
         <motion.div
