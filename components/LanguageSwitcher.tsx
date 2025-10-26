@@ -12,23 +12,23 @@ export function LanguageSwitcher() {
   }
 
   return (
-    <div className="flex items-center gap-2 bg-gray-800 rounded-lg p-1">
+    <div className="flex items-center gap-1 bg-gray-800/50 rounded-lg p-1 backdrop-blur-sm border border-gray-700/30">
       <button
         onClick={() => handleLanguageChange('tr')}
-        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ${
           language === 'tr'
-            ? 'bg-primary-500 text-white'
-            : 'text-gray-400 hover:text-white'
+            ? 'bg-[#F97316] text-white shadow-lg'
+            : 'text-gray-300 hover:text-white hover:bg-gray-700/50'
         }`}
       >
         TR
       </button>
       <button
         onClick={() => handleLanguageChange('en')}
-        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+        className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all duration-200 ${
           language === 'en'
-            ? 'bg-primary-500 text-white'
-            : 'text-gray-400 hover:text-white'
+            ? 'bg-[#F97316] text-white shadow-lg'
+            : 'text-gray-300 hover:text-white hover:bg-gray-700/50'
         }`}
       >
         EN

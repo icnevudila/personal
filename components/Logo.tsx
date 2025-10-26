@@ -45,13 +45,11 @@ export function Logo({ variant = 'full', className = '' }: LogoProps) {
         transition={{ duration: 0.6 }}
         className="relative text-xl font-bold font-space-grotesk tracking-tight"
       >
-        <span className="text-[#E2E8F0]">ic</span>
-        <span className="text-[#F97316] inline-block relative">
+        <span className="text-black dark:text-[#E2E8F0]">ic</span>
+        <span className="text-[#F97316] inline-block relative" style={{color: '#F97316'}}>
           ne
-          {/* Subtle glow on "ne" */}
-          <span className="absolute inset-0 text-[#F97316] blur-[2px] opacity-50">ne</span>
         </span>
-        <span className="text-[#E2E8F0]">vudila</span>
+        <span className="text-black dark:text-[#E2E8F0]">vudila</span>
       </motion.span>
     </div>
   )

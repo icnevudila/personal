@@ -1,13 +1,63 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { ArrowDownIcon, PhotoIcon } from '@heroicons/react/24/outline'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
+import Image from 'next/image'
 
 export function Hero() {
   const { t } = useLanguage()
+  const heroRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  })
+  
+  // Scroll-reactive transforms
+  const y = useTransform(scrollYProgress, [0, 1], [0, -50])
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
+  
+  useEffect(() => {
+    const applyColors = () => {
+      const isLightMode = document.documentElement.getAttribute('data-theme') === 'light'
+      
+      const heroTitle = document.querySelector('h1 span') as HTMLElement
+      const heroNe = document.querySelector('h1 span span') as HTMLElement
+      
+      if (isLightMode) {
+        // Light mode: "ic" ve "vudila" siyah, "ne" turuncu
+        if (heroTitle) {
+          heroTitle.style.setProperty('color', '#000000', 'important')
+        }
+        if (heroNe) {
+          heroNe.style.setProperty('color', '#F97316', 'important')
+        }
+      } else {
+        // Dark mode: "ic" ve "vudila" beyaz, "ne" turuncu
+        if (heroTitle) {
+          heroTitle.style.setProperty('color', '#f1f5f9', 'important')
+        }
+        if (heroNe) {
+          heroNe.style.setProperty('color', '#F97316', 'important')
+        }
+      }
+    }
+
+    // Apply colors immediately
+    applyColors()
+
+    // Listen for theme changes
+    const observer = new MutationObserver(applyColors)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    })
+
+    return () => observer.disconnect()
+  }, [])
   const [heroImage, setHeroImage] = useState<string>('https://res.cloudinary.com/dqiwrytdx/image/upload/hero/hero-profile-1761406363151.jpg')
   const [showUpload, setShowUpload] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
@@ -77,9 +127,12 @@ export function Hero() {
 
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={heroRef} id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#151515]">
       {/* Background */}
-      <div className="absolute inset-0 bg-slate-900">
+      <motion.div 
+        style={{ y, opacity, scale }}
+        className="absolute inset-0 bg-[#151515]"
+      >
         {/* Subtle texture */}
         <div className="absolute inset-0 opacity-10" style={{
           backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0)',
@@ -96,9 +149,9 @@ export function Hero() {
             repeat: Infinity,
             ease: 'easeInOut',
           }}
-          className="absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-primary-500 rounded-full blur-3xl"
+          className="absolute top-1/3 left-1/3 w-[600px] h-[600px] bg-[#F97316] rounded-full blur-3xl"
         />
-      </div>
+      </motion.div>
 
       {/* Content */}
       <div className="container-custom relative z-10">
@@ -117,7 +170,7 @@ export function Hero() {
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                  className="absolute inset-0 rounded-full border-4 border-primary-500 p-1"
+                  className="absolute inset-0 rounded-full border-4 border-[#F97316] p-1"
                   style={{
                     mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
                     WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
@@ -147,15 +200,18 @@ export function Hero() {
                 {/* Profile Image Container */}
                 <div className="absolute inset-0 rounded-full bg-gray-800 flex items-center justify-center overflow-hidden group/profile">
                   {/* Profile Image */}
-                  <div className="w-full h-full bg-primary-500/30 flex items-center justify-center relative">
+                  <div className="w-full h-full bg-[#F97316]/30 flex items-center justify-center relative">
                     {heroImage ? (
-                      <img 
+                      <Image 
                         src={heroImage} 
                         alt="icnevudila" 
-                        className="w-full h-full object-cover"
+                        fill
+                        className="object-cover"
+                        priority
+                        sizes="(max-width: 768px) 200px, (max-width: 1200px) 300px, 400px"
                       />
                     ) : (
-                      <span className="text-6xl sm:text-7xl lg:text-8xl font-bold text-primary-500">ic</span>
+                      <span className="text-6xl sm:text-7xl lg:text-8xl font-bold text-[#F97316]">ic</span>
                     )}
                   </div>
                   
@@ -169,7 +225,7 @@ export function Hero() {
                           onChange={handleImageUpload}
                           className="hidden"
                         />
-                        <div className="flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors">
+                        <div className="flex items-center gap-2 px-4 py-2 bg-[#F97316] hover:bg-[#ea6707] rounded-lg transition-colors">
                           <PhotoIcon className="w-5 h-5 text-white" />
                           <span className="text-white font-medium">
                             {heroImage && heroImage.startsWith('data:') ? 'Değiştir' : 'Görsel Yükle'}
@@ -185,7 +241,7 @@ export function Hero() {
               <motion.div
                 animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -top-4 -right-4 w-16 h-16 bg-primary-500/30 rounded-full blur-xl"
+                className="absolute -top-4 -right-4 w-16 h-16 bg-[#F97316]/30 rounded-full blur-xl"
               />
               <motion.div
                 animate={{ y: [0, 15, 0], rotate: [0, -5, 0] }}
@@ -214,9 +270,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 flex justify-center lg:justify-start"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 flex justify-center lg:justify-start"
           >
-            <span className="text-[#f1f5f9]">ic<span className="text-[#F97316]">ne</span>vudila</span>
+            <span className="text-black dark:text-[#f1f5f9]">ic<span className="text-[#F97316]">ne</span>vudila</span>
           </motion.h1>
 
           {/* Title */}
@@ -224,7 +280,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-2xl sm:text-3xl md:text-4xl text-[#f1f5f9] mb-8 flex justify-center lg:justify-start font-medium"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#f1f5f9] mb-6 sm:mb-8 flex justify-center lg:justify-start font-medium"
           >
             {t.hero.title}
           </motion.h2>
@@ -234,7 +290,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg sm:text-xl text-[#94A3B8] max-w-2xl mx-auto lg:mx-0 mb-12 leading-relaxed text-center lg:text-left"
+            className="text-lg sm:text-xl text-black dark:text-[#94A3B8] max-w-2xl mx-auto lg:mx-0 mb-12 leading-relaxed text-center lg:text-left"
           >
             {t.hero.description}
           </motion.p>
@@ -247,11 +303,15 @@ export function Hero() {
             className="flex justify-center lg:justify-start"
           >
             <motion.button
-              whileHover={{ scale: 1.02, y: -2 }}
+              whileHover={{ 
+                scale: 1.02, 
+                y: -2,
+                boxShadow: "0 0 30px rgba(249,115,22,0.4), 0 8px 25px rgba(0,0,0,0.15)"
+              }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               onClick={scrollToProjects}
-              className="px-8 py-4 bg-[#F97316] hover:bg-[#ea6707] text-white font-semibold rounded-lg shadow-lg hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition-all duration-300 text-lg"
+              className="px-8 py-4 bg-[#F97316] hover:bg-[#ea6707] text-white font-semibold rounded-lg shadow-lg transition-all duration-300 text-lg"
             >
               Projeni Başlat
             </motion.button>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atelier Luna - Size Uygun Mekanlar</title>
+    <link rel="stylesheet" href="global.css">
+    <style>
+        /* Atelier Luna Specific Styles */
+        .hero {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 50%, #cbd5e1 100%);
+            color: #1e293b;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            animation: breathe 12s infinite ease-in-out;
+            z-index: 0;
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+            50% { transform: scale(1.1) rotate(2deg); opacity: 0.6; }
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(120, 113, 108, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
+            animation: texture-flow 8s ease-in-out infinite;
+        }
+        
+        @keyframes texture-flow {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+        
+        .hero-title {
+            background: linear-gradient(135deg, #f8fafc 0%, #78716c 50%, #F97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .texture-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(120, 113, 108, 0.03) 2px,
+                    rgba(120, 113, 108, 0.03) 4px
+                );
+            pointer-events: none;
+        }
+        
+        .about-section {
+            background: linear-gradient(135deg, rgba(120, 113, 108, 0.05) 0%, rgba(249, 115, 22, 0.02) 100%);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            position: relative;
+        }
+        
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 30%, rgba(120, 113, 108, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
+            border-radius: 24px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .service-card {
+            background: rgba(120, 113, 108, 0.05);
+            border: 1px solid rgba(120, 113, 108, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(120, 113, 108, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: #78716c;
+            box-shadow: 0 25px 50px rgba(120, 113, 108, 0.2);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #78716c, #F97316);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .curved-layout {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at 50% 0%, rgba(120, 113, 108, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        
+        .testimonial {
+            background: rgba(120, 113, 108, 0.05);
+            border-left: 4px solid #78716c;
+            padding: 3rem;
+            border-radius: 0 20px 20px 0;
+            margin: 4rem 0;
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: #78716c;
+            opacity: 0.3;
+            font-family: serif;
+        }
+        
+        .testimonial-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .testimonial-author {
+            color: #78716c;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, rgba(120, 113, 108, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%);
+            border-radius: 24px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(120, 113, 108, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
+            animation: texture-flow 4s ease-in-out infinite;
+        }
+        
+        .signature {
+            color: #F97316;
+        }
+        
+        @media (max-width: 768px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+            
+            .testimonial {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Size Uygun Mekanlar.</h1>
+                <p class="hero-subtitle">Doğal, yerinde, duygusal.</p>
+                <a href="#interiors" class="btn btn-primary">Mekanları İncele</a>
+            </div>
+        </div>
+        <div class="texture-overlay"></div>
+        <div class="curved-layout"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+        <div class="container">
+            <div class="about-section">
+                <div class="text-center" style="position: relative; z-index: 2;">
+                    <h2>Huzur veren evler — yaşam için tasarlandı.</h2>
+                    <p>Atelier Luna, kişiliğinizi yansıtan ve huzur ile refahı destekleyen iç mekanlar yaratır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="text-center mb-4">Yaklaşımımız</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏠</div>
+                    <h3>Doku Sergileme</h3>
+                    <p>Her mekanda sıcaklık ve derinlik yaratan doğal malzemeler ve dokunsal öğeler.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌙</div>
+                    <h3>Kıvrımlı Yerleşimler</h3>
+                    <p>Rahatlama sağlayan ve mekânlar arasında doğal hareket yaratan yumuşak, akıcı tasarımlar.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Yumuşak Aydınlatma</h3>
+                    <p>Atmosfer yaratan ve malzemelerin doğal güzelliğini artıran aydınlatma tasarımı.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="section">
+        <div class="container">
+            <div class="testimonial">
+                <p class="testimonial-text">"Atelier Luna evimizi bir yuva haline getirdi. Her oda artık bir sığınak gibi hissettiriyor."</p>
+                <p class="testimonial-author">— Maria & James Thompson, Ev Sahipleri</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="cta-section">
+                <h2>Sığınağınızı yaratmaya hazır mısınız?</h2>
+                <p>Gerçekten kim olduğunuzu yansıtan bir mekan tasarlayalım.</p>
+                <a href="#contact" class="btn btn-primary">Projenizi Başlatın</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="section" style="border-top: 1px solid rgba(120, 113, 108, 0.2);">
+        <div class="container text-center">
+            <p style="color: var(--text-muted);">© 2024 Atelier Luna. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- icnevudila Signature -->
+    <div class="signature" style="position: fixed; bottom: 24px; right: 24px; z-index: 1000; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.05em; color: #F97316; opacity: 0.7; cursor: pointer; transition: all 0.3s ease; text-decoration: none; user-select: none;" onmouseover="this.style.opacity='1'; this.style.textShadow='0 0 10px rgba(249, 115, 22, 0.4)'; this.style.transform='scale(1.05)'" onmouseout="this.style.opacity='0.7'; this.style.textShadow='none'; this.style.transform='scale(1)'" onclick="window.location.href='/portfolio'"         title="icnevudila tarafından tasarlandı">
+        icnevudila
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>

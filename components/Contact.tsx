@@ -126,9 +126,9 @@ export function Contact() {
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
-              {t.contact.title.split(' ')[0]} <span className="text-primary-500">{t.contact.title.split(' ')[1]}</span>
+              {t.contact.title.split(' ')[0]} <span className="text-[#F97316]">{t.contact.title.split(' ')[1]}</span>
             </h2>
-            <div className="w-24 h-1 bg-primary-500 mx-auto rounded-full" />
+            <div className="w-24 h-1 bg-[#F97316] mx-auto rounded-full" />
             <p className="text-lg text-gray-400 mt-6 max-w-2xl mx-auto">
               {t.contact.subtitle}
             </p>
@@ -157,8 +157,8 @@ export function Contact() {
                     transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                     className="flex items-center space-x-4 p-4 rounded-lg hover:bg-gray-800/50 transition-colors group"
                   >
-                    <div className="flex-shrink-0 w-12 h-12 bg-primary-500/20 rounded-lg flex items-center justify-center group-hover:bg-primary-500/30 transition-colors">
-                      <info.icon className="w-6 h-6 text-primary-500" />
+                    <div className="flex-shrink-0 w-12 h-12 bg-[#F97316]/20 rounded-lg flex items-center justify-center group-hover:bg-[#F97316]/30 transition-colors">
+                      <info.icon className="w-6 h-6 text-[#F97316]" />
                     </div>
                     <div>
                       <div className="text-sm text-gray-400">{info.label}</div>
@@ -187,7 +187,7 @@ export function Contact() {
                       {...register('name')}
                       type="text"
                       id="name"
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent transition-colors"
                       placeholder={t.contact.name}
                     />
                     {errors.name && (
@@ -204,7 +204,7 @@ export function Contact() {
                       {...register('email')}
                       type="email"
                       id="email"
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent transition-colors"
                       placeholder={t.contact.email}
                     />
                     {errors.email && (
@@ -221,7 +221,7 @@ export function Contact() {
                       {...register('subject')}
                       type="text"
                       id="subject"
-                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#F97316] focus:border-transparent transition-colors"
                       placeholder={t.contact.subject}
                     />
                     {errors.subject && (
@@ -302,7 +302,7 @@ export function Contact() {
           className="mt-20 text-center"
         >
           <p className="text-2xl text-[#F1F5F9] mb-6">
-            Projeniz için hazırım
+            {t.contact.readyForProject}
           </p>
           <motion.button
             onClick={() => {
@@ -315,7 +315,7 @@ export function Contact() {
             whileTap={{ scale: 0.95 }}
             className="px-8 py-4 border-2 border-[#F97316] text-[#F97316] hover:bg-[#F97316] hover:text-white font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(249,115,22,0.3)]"
           >
-            Proje Konuşalım
+            {t.contact.letsTalkProject}
           </motion.button>
         </motion.div>
       </div>

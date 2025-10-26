@@ -2,7 +2,7 @@ import { Hero } from '@/components/Hero'
 import { About } from '@/components/About'
 import { Education } from '@/components/Education'
 import { Skills } from '@/components/Skills'
-import { Projects } from '@/components/Projects'
+import { PortfolioSites } from '@/components/PortfolioSites'
 import { Blog } from '@/components/Blog'
 import { Contact } from '@/components/Contact'
 import { QuoteButton } from '@/components/QuoteButton'
@@ -15,7 +15,7 @@ export default function Home() {
       <About />
       <Education />
       <Skills />
-      <Projects />
+      <PortfolioSites />
       <Blog />
       <BuyMeACoffee />
       <Contact />

@@ -1,0 +1,122 @@
+[
+  {
+    "id": "atelier-luna",
+    "title": "Atelier Luna",
+    "description": "Size Uygun Mekanlar - Interior Design Studio",
+    "category": "Interior Design",
+    "image": "/portfolio/atelier-luna.jpg",
+    "url": "/portfolio/AtelierLuna.html",
+    "tags": ["Interior", "Design", "Studio"],
+    "featured": true
+  },
+  {
+    "id": "bloom-path",
+    "title": "BloomPath",
+    "description": "Wellness & Personal Growth Platform",
+    "category": "Wellness",
+    "image": "/portfolio/bloom-path.jpg",
+    "url": "/portfolio/BloomPath.html",
+    "tags": ["Wellness", "Growth", "Platform"],
+    "featured": true
+  },
+  {
+    "id": "brew-lab",
+    "title": "BrewLab",
+    "description": "Coffee Roasting & Brewing Experience",
+    "category": "Food & Beverage",
+    "image": "/portfolio/brew-lab.jpg",
+    "url": "/portfolio/BrewLab.html",
+    "tags": ["Coffee", "Roasting", "Experience"],
+    "featured": true
+  },
+  {
+    "id": "core-flow",
+    "title": "CoreFlow",
+    "description": "Fitness & Movement Studio",
+    "category": "Fitness",
+    "image": "/portfolio/core-flow.jpg",
+    "url": "/portfolio/CoreFlow.html",
+    "tags": ["Fitness", "Movement", "Studio"],
+    "featured": true
+  },
+  {
+    "id": "echo-verse",
+    "title": "EchoVerse",
+    "description": "Audio Production & Sound Design",
+    "category": "Audio",
+    "image": "/portfolio/echo-verse.jpg",
+    "url": "/portfolio/EchoVerse.html",
+    "tags": ["Audio", "Production", "Sound"],
+    "featured": true
+  },
+  {
+    "id": "elias-grey",
+    "title": "Elias Grey",
+    "description": "Photography & Visual Storytelling",
+    "category": "Photography",
+    "image": "/portfolio/elias-grey.jpg",
+    "url": "/portfolio/EliasGrey.html",
+    "tags": ["Photography", "Visual", "Storytelling"],
+    "featured": true
+  },
+  {
+    "id": "frame-haus",
+    "title": "FrameHaus",
+    "description": "Digital Art & Creative Agency",
+    "category": "Creative Agency",
+    "image": "/portfolio/frame-haus.jpg",
+    "url": "/portfolio/FrameHaus.html",
+    "tags": ["Digital Art", "Creative", "Agency"],
+    "featured": true
+  },
+  {
+    "id": "lume",
+    "title": "Lume",
+    "description": "Lighting Design & Installation",
+    "category": "Lighting",
+    "image": "/portfolio/lume.jpg",
+    "url": "/portfolio/Lume.html",
+    "tags": ["Lighting", "Design", "Installation"],
+    "featured": true
+  },
+  {
+    "id": "nova-ai",
+    "title": "Nova AI",
+    "description": "AI-Powered Business Solutions",
+    "category": "Technology",
+    "image": "/portfolio/nova-ai.jpg",
+    "url": "/portfolio/NovaAI.html",
+    "tags": ["AI", "Business", "Solutions"],
+    "featured": true
+  },
+  {
+    "id": "orbit",
+    "title": "Orbit",
+    "description": "Space Technology & Innovation",
+    "category": "Technology",
+    "image": "/portfolio/orbit.jpg",
+    "url": "/portfolio/Orbit.html",
+    "tags": ["Space", "Technology", "Innovation"],
+    "featured": true
+  },
+  {
+    "id": "thinkcore",
+    "title": "ThinkCore",
+    "description": "Business Intelligence Dashboard",
+    "category": "Dashboard",
+    "image": "/portfolio/thinkcore.jpg",
+    "url": "/portfolio/ThinkCore.html",
+    "tags": ["Business", "Intelligence", "Dashboard"],
+    "featured": true
+  },
+  {
+    "id": "thinkcore-dashboard",
+    "title": "ThinkCore Dashboard",
+    "description": "Advanced Analytics Interface",
+    "category": "Dashboard",
+    "image": "/portfolio/thinkcore-dashboard.jpg",
+    "url": "/portfolio/ThinkCore-Dashboard.html",
+    "tags": ["Analytics", "Interface", "Dashboard"],
+    "featured": false
+  }
+]

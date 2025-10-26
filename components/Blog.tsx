@@ -316,7 +316,7 @@ Responsive tasarım sadece teknik bir gereklilik değil, kullanıcı deneyiminin
           <motion.div variants={itemVariants} className="text-center mb-8 md:mb-16 px-4">
             <div className="flex flex-col md:flex-row items-center justify-center mb-4 md:mb-6 gap-4">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-center">
-                <AnimatedText text="Blogum" />
+                <AnimatedText text={t.blog.title} />
             </h2>
               {isAdmin && (
                 <div className="flex gap-2 md:gap-3">
@@ -350,7 +350,7 @@ Responsive tasarım sadece teknik bir gereklilik değil, kullanıcı deneyiminin
           {/* Featured Posts */}
           <motion.div variants={itemVariants} className="mb-8 md:mb-16 px-4">
             <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8">
-              <AnimatedText text="Öne Çıkan Yazılar" />
+              <AnimatedText text={t.blog.featured} />
             </h3>
             <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
               {blogPosts.filter(post => post.featured === true).map((post, index) => (

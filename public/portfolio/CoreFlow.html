@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoreFlow - Fitness Uygulaması</title>
+    <link rel="stylesheet" href="global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #ff4757; color: #ffffff; overflow-x: hidden; }
+        
+        /* Vertical Navigation */
+        .vertical-nav { position: fixed; right: 0; top: 0; height: 100vh; width: 80px; background: rgba(255, 71, 87, 0.95); backdrop-filter: blur(20px); z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+        .nav-item { color: #ffffff; text-decoration: none; font-weight: 500; writing-mode: vertical-rl; text-orientation: mixed; margin: 1rem 0; transition: all 0.3s ease; }
+        .nav-item:hover { color: #ffffff; transform: scale(1.1); }
+        
+        /* Vertical Hero */
+        .hero { min-height: 100vh; background: linear-gradient(135deg, #ff4757 0%, #ff6b7a 50%, #ff8a9b 100%); position: relative; display: flex; align-items: center; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%); animation: energyPulse 4s infinite ease-in-out; }
+        @keyframes energyPulse { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.1); } }
+        
+        .hero-content { max-width: 1000px; margin: 0 auto; padding: 0 2rem 0 4rem; text-align: center; position: relative; z-index: 2; }
+        .hero h1 { font-size: 5rem; font-weight: 700; margin-bottom: 2rem; animation: energyGlow 2s infinite ease-in-out; }
+        @keyframes energyGlow { 0%, 100% { text-shadow: 0 0 20px rgba(255,255,255,0.3); } 50% { text-shadow: 0 0 40px rgba(255,255,255,0.6); } }
+        .hero-subtitle { font-size: 1.5rem; margin-bottom: 3rem; opacity: 0.9; }
+        .cta-button { padding: 1.2rem 3rem; background: #ffffff; color: #ff4757; border: none; border-radius: 50px; font-weight: 600; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; }
+        .cta-button:hover { transform: translateY(-3px); box-shadow: 0 20px 40px rgba(255,255,255,0.3); }
+        
+        /* Fitness Stats */
+        .fitness-stats { display: flex; justify-content: center; gap: 4rem; margin-top: 4rem; }
+        .stat { text-align: center; }
+        .stat-number { display: block; font-size: 3rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 1rem; opacity: 0.8; }
+        
+        /* Vertical Features */
+        .features { padding: 8rem 0; background: linear-gradient(135deg, #ff6b7a 0%, #ff8a9b 100%); }
+        .features-container { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .feature-card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 2rem; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent); transition: left 0.5s; }
+        .feature-card:hover::before { left: 100%; }
+        .feature-card:hover { transform: translateY(-10px); background: rgba(255,255,255,0.2); }
+        .feature-icon { width: 80px; height: 80px; margin: 0 auto 2rem; background: rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .feature-card h3 { color: #ffffff; margin-bottom: 1.5rem; font-weight: 600; font-size: 1.5rem; }
+        .feature-card p { color: #ffffff; line-height: 1.6; font-size: 1.1rem; opacity: 0.9; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .fitness-stats { flex-direction: column; gap: 2rem; }
+            .vertical-nav { display: none; }
+            .hero-content { padding: 0 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="vertical-nav">
+        <a href="#" class="nav-item">Antrenmanlar</a>
+        <a href="#" class="nav-item">Beslenme</a>
+        <a href="#" class="nav-item">İlerleme</a>
+        <a href="#" class="nav-item">Profil</a>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Güçlü Başlangıçlar<br>Küçükten Başlar</h1>
+            <p class="hero-subtitle">Gerçek sonuçlar için tasarlanmış kişiselleştirilmiş fitness rutinleriyle vücudunuzu ve zihninizi dönüştürün.</p>
+            <button class="cta-button">Ücretsiz Deneme Başlat</button>
+            <div class="fitness-stats">
+                <div class="stat">
+                    <span class="stat-number">10K+</span>
+                    <span class="stat-label">Aktif Kullanıcı</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Antrenman</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">%95</span>
+                    <span class="stat-label">Başarı Oranı</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="features-container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💪</div>
+                    <h3>Kişiselleştirilmiş Antrenmanlar</h3>
+                    <p>Fitness seviyenize ve hedeflerinize göre uyarlanmış yapay zeka destekli rutinler.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>İlerleme Takibi</h3>
+                    <p>Detaylı analitik ve içgörülerle yolculuğunuzu izleyin.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🥗</div>
+                    <h3>Beslenme Planları</h3>
+                    <p>Fitness yolculuğunuzu desteklemek için tasarlanmış eksiksiz öğün planları.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <icnevudila-signature accent-color="#ffffff" tooltip-text="icnevudila tarafından tasarlandı - Fitness Uygulaması"></icnevudila-signature>
+    <script src="../components/Signature.jsx" defer></script>
+</body>
+</html>

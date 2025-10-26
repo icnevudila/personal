@@ -41,12 +41,26 @@ export const translations = {
       adminModeOn: 'Admin Modu: Açık',
       addProject: 'Yeni Proje',
     },
-    blog: {
-      title: 'Blogum',
-      subtitle: 'Tasarım, modern teknolojiler ve minimal dijital deneyimler hakkında düşünceler',
-      readMore: 'Devamını Oku',
-      addPost: 'Yeni Yazı',
-      adminModeOn: 'Admin Modu: Açık',
+    portfolio: {
+      title: 'Portfolio Siteleri',
+      subtitle: 'Farklı sektörlerden yaratıcı projeler. Her biri kendine özgü hikayesi olan tasarım deneyimleri.',
+      viewButton: 'Siteyi Görüntüle',
+      allCategories: 'Tümü',
+      featuredProjects: 'Öne Çıkan Projeler',
+      livePreview: 'Canlı Önizleme',
+      categories: {
+        all: 'Tümü',
+        'Interior Design': 'İç Mimarlık',
+        'Wellness': 'Sağlık',
+        'Food & Beverage': 'Yiyecek & İçecek',
+        'Fitness': 'Fitness',
+        'Audio': 'Ses',
+        'Photography': 'Fotoğrafçılık',
+        'Creative Agency': 'Yaratıcı Ajans',
+        'Lighting': 'Aydınlatma',
+        'Technology': 'Teknoloji',
+        'Dashboard': 'Dashboard'
+      }
     },
     contact: {
       title: 'İletişime Geçin',
@@ -61,10 +75,12 @@ export const translations = {
       sending: 'Gönderiliyor...',
       success: 'Mesaj başarıyla gönderildi! En kısa sürede size geri döneceğim.',
       error: 'Bir şeyler ters gitti. Lütfen daha sonra tekrar deneyin.',
+      readyForProject: 'Projeniz için hazırım',
+      letsTalkProject: 'Proje Konuşalım',
     },
     skills: {
       title: 'Yetenekler',
-      subtitle: 'Ölçülebilir yaratıcı ve AI destekli başarılar',
+      subtitle: 'Klasik listeden uzak, gerçek yaklaşım.',
       category1: 'Tasarım Becerileri',
       category2: 'AI Araçları',
       additional: 'Ek Beceriler',
@@ -98,6 +114,63 @@ export const translations = {
         'Figma AI',
         'AI Araç Optimizasyonu',
       ],
+      skillCards: [
+        {
+          title: 'Web Tasarımı',
+          description: 'Piksel piksel sabırlıyım.'
+        },
+        {
+          title: 'UI/UX',
+          description: 'Kullanıcıyı değil, deneyimi tasarlıyorum.'
+        },
+        {
+          title: 'Renk Seçimi',
+          description: 'Turuncu olmasa olmaz.'
+        },
+        {
+          title: 'AI Araçları',
+          description: 'Yapay zekâyı fazla ciddiye almıyorum, ama iyi anlaşıyoruz.'
+        },
+        {
+          title: 'Zaman Yönetimi',
+          description: 'Kahve bitmeden iş biter.'
+        },
+        {
+          title: 'İletişim',
+          description: '"Biraz daha sağa alabilir miyiz?" cümlesini sevgiyle karşılıyorum.'
+        }
+      ],
+    },
+    buyMeACoffee: {
+      title: 'Buy Me a Coffee ☕️',
+      description: 'Şimdilik kahve stoğu yeterli. Yapay zekâ da çay içiyor zaten. Link, ilk yorgunluk belirtilerinde aktif olacak. ☕️',
+      comingSoon: 'Yakında: kahveyle desteklenen fikirler bölümü ☕️',
+      button: 'Buy Me a Coffee',
+      tooltip: 'Henüz kahve molasındayım ☕️'
+    },
+    blog: {
+      title: 'Blogum',
+      subtitle: 'Tasarım, teknoloji ve yaratıcılık üzerine düşünceler',
+      featured: 'Öne Çıkan Yazılar',
+      recent: 'Son Yazılar',
+      readMore: 'Devamını Oku',
+      readTime: 'dakika okuma',
+      published: 'Yayınlandı',
+      category: 'Kategori',
+      tags: 'Etiketler',
+      noPosts: 'Henüz blog yazısı yok',
+      addPost: 'Yazı Ekle',
+      editPost: 'Yazıyı Düzenle',
+      deletePost: 'Yazıyı Sil',
+      savePost: 'Yazıyı Kaydet',
+      cancel: 'İptal',
+      titlePlaceholder: 'Yazı başlığı',
+      contentPlaceholder: 'Yazı içeriği...',
+      excerptPlaceholder: 'Kısa özet...',
+      slugPlaceholder: 'yazi-url-adresi',
+      authorPlaceholder: 'Yazar adı',
+      featuredLabel: 'Öne Çıkan',
+      featuredDesc: 'Ana sayfada göster'
     },
     education: {
       title: 'Sürekli Öğreniyorum',
@@ -121,6 +194,46 @@ export const translations = {
         'GitHub Copilot'
       ],
     },
+    footer: {
+      emailPlaceholder: 'E-posta adresiniz',
+      subscribe: 'Abone Ol',
+      backToTop: 'Başa Dön ↑',
+      password: 'Şifre',
+      newsletter: 'Bülten',
+      newsletterDesc: 'Yeni projeler ve blog yazılarından haberdar olun',
+      socialMedia: 'Sosyal Medya',
+      adminAccess: 'Admin Erişimi',
+      enterPassword: 'Şifre girin',
+      submit: 'Giriş Yap',
+      cancel: 'İptal',
+      quickLinks: 'Hızlı Linkler',
+      resources: 'Kaynaklar',
+      connections: 'Bağlantılar',
+      stayUpdated: 'Güncel Kalın',
+      aboutMe: 'Hakkımda',
+      skills: 'Yetenekler',
+      projects: 'Projeler',
+      contact: 'İletişim',
+      blog: 'Blog',
+      portfolio: 'Portföy',
+      services: 'Hizmetler',
+      github: 'GitHub',
+      linkedin: 'LinkedIn',
+      twitter: 'Twitter',
+      email: 'E-posta',
+      madeWith: 'Next.js ile yapıldı',
+      tagline: 'AI + İnsan işbirliğiyle tasarlanan sade fikirler',
+      privacyPolicy: 'Gizlilik Politikası',
+      termsOfUse: 'Kullanım Şartları',
+      sitemap: 'Site Haritası',
+      sendMessage: 'Mesaj Gönder',
+      brandDescription: 'Tasarımlar, AI ve insan işbirliğiyle.',
+      adminLogin: 'Admin Girişi',
+      adminLoginDesc: 'Lütfen admin şifresini girin:',
+      adminModeClosed: 'Admin Modu Kapatıldı!',
+      adminModeOpened: 'Admin Modu Açıldı!',
+      wrongPassword: 'Yanlış şifre!'
+    }
   },
   en: {
     nav: {
@@ -171,6 +284,27 @@ export const translations = {
       addPost: 'New Post',
       adminModeOn: 'Admin Mode: On',
     },
+    portfolio: {
+      title: 'Portfolio Sites',
+      subtitle: 'Creative projects from different sectors. Each one is a design experience with its own unique story.',
+      viewButton: 'View Site',
+      allCategories: 'All',
+      featuredProjects: 'Featured Projects',
+      livePreview: 'Live Preview',
+      categories: {
+        all: 'All',
+        'Interior Design': 'Interior Design',
+        'Wellness': 'Wellness',
+        'Food & Beverage': 'Food & Beverage',
+        'Fitness': 'Fitness',
+        'Audio': 'Audio',
+        'Photography': 'Photography',
+        'Creative Agency': 'Creative Agency',
+        'Lighting': 'Lighting',
+        'Technology': 'Technology',
+        'Dashboard': 'Dashboard'
+      }
+    },
     contact: {
       title: 'Get In Touch',
       subtitle: 'Looking for a professional solution for your project? I\'d be happy to help.',
@@ -184,6 +318,8 @@ export const translations = {
       sending: 'Sending...',
       success: 'Message sent successfully! I\'ll get back to you soon.',
       error: 'Something went wrong. Please try again later.',
+      readyForProject: 'Ready for your project',
+      letsTalkProject: 'Let\'s Talk Project',
     },
     skills: {
       title: 'Skills',
@@ -229,6 +365,63 @@ export const translations = {
         'Creative Problem Solving',
         'Workflow Optimization',
       ],
+      skillCards: [
+        {
+          title: 'Web Design',
+          description: 'Patient pixel by pixel.'
+        },
+        {
+          title: 'UI/UX',
+          description: 'I design the experience, not the user.'
+        },
+        {
+          title: 'Color Selection',
+          description: 'It wouldn\'t be complete without orange.'
+        },
+        {
+          title: 'AI Tools',
+          description: 'I don\'t take AI too seriously, but we get along well.'
+        },
+        {
+          title: 'Time Management',
+          description: 'Work finishes before the coffee runs out.'
+        },
+        {
+          title: 'Communication',
+          description: 'I lovingly welcome the phrase "Can we move it a little more to the right?"'
+        }
+      ],
+    },
+    buyMeACoffee: {
+      title: 'Buy Me a Coffee ☕️',
+      description: 'Coffee stock is sufficient for now. AI is drinking tea anyway. The link will be active at the first signs of fatigue. ☕️',
+      comingSoon: 'Coming soon: coffee-powered ideas section ☕️',
+      button: 'Buy Me a Coffee',
+      tooltip: 'Still on coffee break ☕️'
+    },
+    blog: {
+      title: 'My Blog',
+      subtitle: 'Thoughts on design, technology and creativity',
+      featured: 'Featured Posts',
+      recent: 'Recent Posts',
+      readMore: 'Read More',
+      readTime: 'min read',
+      published: 'Published',
+      category: 'Category',
+      tags: 'Tags',
+      noPosts: 'No blog posts yet',
+      addPost: 'Add Post',
+      editPost: 'Edit Post',
+      deletePost: 'Delete Post',
+      savePost: 'Save Post',
+      cancel: 'Cancel',
+      titlePlaceholder: 'Post title',
+      contentPlaceholder: 'Post content...',
+      excerptPlaceholder: 'Short excerpt...',
+      slugPlaceholder: 'post-url-address',
+      authorPlaceholder: 'Author name',
+      featuredLabel: 'Featured',
+      featuredDesc: 'Show on homepage'
     },
     education: {
       title: 'Always Learning',
@@ -252,6 +445,46 @@ export const translations = {
         'GitHub Copilot'
       ],
     },
+    footer: {
+      emailPlaceholder: 'Your email address',
+      subscribe: 'Subscribe',
+      backToTop: 'Back to Top ↑',
+      password: 'Password',
+      newsletter: 'Newsletter',
+      newsletterDesc: 'Stay updated with new projects and blog posts',
+      socialMedia: 'Social Media',
+      adminAccess: 'Admin Access',
+      enterPassword: 'Enter password',
+      submit: 'Login',
+      cancel: 'Cancel',
+      quickLinks: 'Quick Links',
+      resources: 'Resources',
+      connections: 'Connections',
+      stayUpdated: 'Stay Updated',
+      aboutMe: 'About Me',
+      skills: 'Skills',
+      projects: 'Projects',
+      contact: 'Contact',
+      blog: 'Blog',
+      portfolio: 'Portfolio',
+      services: 'Services',
+      github: 'GitHub',
+      linkedin: 'LinkedIn',
+      twitter: 'Twitter',
+      email: 'Email',
+      madeWith: 'Made with Next.js',
+      tagline: 'Simple ideas designed with AI + Human collaboration',
+      privacyPolicy: 'Privacy Policy',
+      termsOfUse: 'Terms of Use',
+      sitemap: 'Sitemap',
+      sendMessage: 'Send Message',
+      brandDescription: 'Designs with AI and human collaboration.',
+      adminLogin: 'Admin Login',
+      adminLoginDesc: 'Please enter admin password:',
+      adminModeClosed: 'Admin Mode Closed!',
+      adminModeOpened: 'Admin Mode Opened!',
+      wrongPassword: 'Wrong password!'
+    }
   },
 }
 

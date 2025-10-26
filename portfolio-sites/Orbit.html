@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orbit - Yaratıcı Tasarım Ajansı</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%); color: #ffffff; overflow-x: hidden; }
+        
+        /* Modern Navigation */
+        .asymmetric-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 107, 107, 0.95); backdrop-filter: blur(20px); padding: 1.5rem 0; transform: skewY(-1deg); box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 3rem; transform: skewY(1deg); }
+        .logo { font-family: 'Space Grotesk', sans-serif; font-size: 2rem; font-weight: 700; color: #ffffff; position: relative; text-shadow: 0 0 20px rgba(254, 202, 87, 0.5); }
+        .logo::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #feca57, #48dbfb); animation: logoGlow 2s infinite ease-in-out; border-radius: 2px; }
+        @keyframes logoGlow { 0%, 100% { opacity: 0.5; transform: scaleX(1); } 50% { opacity: 1; transform: scaleX(1.1); } }
+        .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+        .nav-link { color: #ffffff; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #feca57, #48dbfb); transition: width 0.3s ease; border-radius: 2px; }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link:hover { text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        
+        /* Hero Section */
+        .hero { min-height: 100vh; background: linear-gradient(135deg, #ff6b6b 0%, #feca57 50%, #48dbfb 100%); position: relative; display: flex; align-items: center; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%); animation: creativeFlow 10s ease-in-out infinite; }
+        @keyframes creativeFlow { 0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); } 50% { opacity: 0.8; transform: scale(1.1) rotate(2deg); } }
+        
+        .hero-content { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: 1.5fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 2; }
+        .hero-left h1 { font-family: 'Space Grotesk', sans-serif; font-size: 5rem; font-weight: 800; margin-bottom: 2rem; color: #ffffff; text-shadow: 0 0 30px rgba(255,255,255,0.3); animation: creativePulse 3s infinite ease-in-out; line-height: 1.1; }
+        @keyframes creativePulse { 0%, 100% { text-shadow: 0 0 30px rgba(255,255,255,0.3), 0 0 60px rgba(254,202,87,0.2); } 50% { text-shadow: 0 0 40px rgba(255,255,255,0.6), 0 0 80px rgba(254,202,87,0.4); } }
+        .hero-subtitle { font-size: 1.5rem; color: #ffffff; margin-bottom: 3rem; line-height: 1.7; opacity: 0.95; font-weight: 400; }
+        .cta-button { padding: 1.3rem 3.5rem; background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); border: 2px solid #ffffff; color: #ffffff; border-radius: 50px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .cta-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s; }
+        .cta-button:hover::before { left: 100%; }
+        .cta-button:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 20px 40px rgba(255,255,255,0.3), 0 0 30px rgba(254,202,87,0.5); border-color: #feca57; }
+        
+        /* Stats */
+        .creative-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 4rem; padding-top: 4rem; border-top: 2px solid rgba(255,255,255,0.2); }
+        .stat { text-align: center; }
+        .stat-number { display: block; font-family: 'Space Grotesk', sans-serif; font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff, #feca57); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; text-shadow: 0 0 20px rgba(254,202,87,0.3); }
+        .stat-label { font-size: 0.95rem; color: #ffffff; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.9; font-weight: 600; }
+        
+        /* Floating Shapes */
+        .hero-right { position: relative; height: 550px; }
+        .creative-visualization { position: relative; width: 100%; height: 100%; }
+        .floating-shape { position: absolute; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; animation: float 8s infinite ease-in-out; filter: blur(1px); }
+        .shape-1 { top: 10%; left: 20%; width: 120px; height: 120px; background: linear-gradient(135deg, rgba(255,255,255,0.4), rgba(254,202,87,0.3)); animation-delay: 0s; }
+        .shape-2 { top: 30%; right: 15%; width: 180px; height: 180px; background: linear-gradient(135deg, rgba(72,219,251,0.3), rgba(255,255,255,0.2)); animation-delay: 2s; }
+        .shape-3 { bottom: 20%; left: 35%; width: 100px; height: 100px; background: linear-gradient(135deg, rgba(254,202,87,0.4), rgba(255,107,107,0.3)); animation-delay: 4s; }
+        .shape-4 { top: 50%; right: 30%; width: 80px; height: 80px; background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(72,219,251,0.2)); animation-delay: 6s; }
+        @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); } 50% { transform: translateY(-30px) rotate(180deg) scale(1.1); } }
+        
+        /* Features */
+        .features { padding: 8rem 0; background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 100%); }
+        .features-grid { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
+        .feature-card { background: rgba(255,255,255,0.15); backdrop-filter: blur(20px); border: 2px solid rgba(255,255,255,0.2); border-radius: 25px; padding: 3.5rem; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.7s; }
+        .feature-card:hover::before { left: 100%; }
+        .feature-card:hover { transform: translateY(-15px) rotate(1deg); background: rgba(255,255,255,0.25); border-color: rgba(254,202,87,0.6); box-shadow: 0 25px 60px rgba(0,0,0,0.2), 0 0 40px rgba(254,202,87,0.3); }
+        .feature-icon { width: 90px; height: 90px; margin: 0 auto 2rem; background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(254,202,87,0.3)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .feature-card:hover .feature-icon { transform: rotate(360deg) scale(1.1); box-shadow: 0 15px 40px rgba(254,202,87,0.4); }
+        .feature-card h3 { color: #ffffff; margin-bottom: 1.5rem; font-weight: 700; font-size: 1.6rem; font-family: 'Space Grotesk', sans-serif; }
+        .feature-card p { color: #ffffff; line-height: 1.7; font-size: 1.1rem; opacity: 0.95; }
+        
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-left h1 { font-size: 4rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 2rem; }
+            .hero-content { padding: 0 2rem; gap: 2rem; }
+            .hero-left h1 { font-size: 3rem; }
+            .creative-stats { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+            .nav-links { gap: 1.5rem; }
+            .nav-link { font-size: 0.85rem; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="asymmetric-nav">
+        <div class="nav-container">
+            <div class="logo">ORBIT</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Projeler</a>
+                <a href="portfolio.html" class="nav-link">Portföy</a>
+                <a href="#" class="nav-link">Hizmetler</a>
+                <a href="#" class="nav-link">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <h1>Yerçekimiyle<br>Yönlendirilen<br>Fikirler</h1>
+                <p class="hero-subtitle">Yaratıcı yönetim sakin bir hassasiyetle buluşuyor. Hareket ve anlamı dengeleyen deneyimler yaratıyoruz.</p>
+                <button class="cta-button">Portföyü İncele</button>
+                <div class="creative-stats">
+                    <div class="stat">
+                        <span class="stat-number">250+</span>
+                        <span class="stat-label">Proje</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">18</span>
+                        <span class="stat-label">Yıl</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">%100</span>
+                        <span class="stat-label">Memnuniyet</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">35</span>
+                        <span class="stat-label">Ödül</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="creative-visualization">
+                    <div class="floating-shape shape-1"></div>
+                    <div class="floating-shape shape-2"></div>
+                    <div class="floating-shape shape-3"></div>
+                    <div class="floating-shape shape-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Marka Kimliği</h3>
+                <p>Ses getiren ve öne çıkan benzersiz görsel ve sözel kimlikler tasarlıyoruz.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Dijital Tasarım</h3>
+                <p>Hedef kitlenizle bağlantı kuran etkileyici dijital deneyimler yaratıyoruz.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎬</div>
+                <h3>Hareketli Grafikler</h3>
+                <p>Markalarınızı dinamik animasyonlar ve büyüleyici görsellerle hayata geçiriyoruz.</p>
+            </div>
+        </div>
+    </div>
+
+    <icnevudila-signature accent-color="#feca57" tooltip-text="Designed by icnevudila - Creative Agency"></icnevudila-signature>
+    <script src="../components/Signature.jsx" defer></script>
+</body>
+</html>

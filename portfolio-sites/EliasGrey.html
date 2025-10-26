@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elias Grey - Fotoğrafçılık</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #000000; color: #ffffff; overflow-x: hidden; }
+        
+        /* Split Navigation */
+        .split-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #1a1a1a; padding: 1.5rem 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 400; color: #ffffff; letter-spacing: 0.1em; }
+        .nav-links { display: flex; gap: 3rem; }
+        .nav-link { color: #a3a3a3; text-decoration: none; font-weight: 300; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s ease; }
+        .nav-link:hover { color: #ffffff; }
+        
+        /* Split Hero */
+        .hero { min-height: 100vh; background: linear-gradient(135deg, #000000 0%, #0a0a0a 50%, #1a1a1a 100%); position: relative; display: flex; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 40%); animation: lightDance 12s ease-in-out infinite; }
+        @keyframes lightDance { 0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); } 50% { opacity: 0.8; transform: scale(1.1) rotate(2deg); } }
+        
+        .hero-left { flex: 1; display: flex; align-items: center; padding: 0 4rem; position: relative; z-index: 2; }
+        .hero-right { flex: 1; background: #111; display: flex; align-items: center; justify-content: center; position: relative; }
+        
+        .hero-left h1 { font-family: 'Cinzel', serif; font-size: 5rem; font-weight: 400; margin-bottom: 2rem; color: #ffffff; letter-spacing: 0.1em; text-transform: uppercase; text-shadow: 0 0 20px rgba(255,255,255,0.3); animation: dramaticReveal 2.5s ease-out; }
+        @keyframes dramaticReveal { from { opacity: 0; transform: translateY(60px) scale(0.8); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .hero-subtitle { font-size: 1.1rem; color: #a3a3a3; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; margin: 1rem 0 3rem 0; animation: dramaticReveal 2.5s ease-out 0.4s both; }
+        .cta-button { padding: 1rem 2.5rem; background: transparent; border: 2px solid #ffffff; color: #ffffff; font-weight: 300; font-size: 1rem; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: all 0.5s ease; position: relative; overflow: hidden; }
+        .cta-button::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; transform: scaleX(0); transform-origin: left; transition: transform 0.5s ease; z-index: -1; }
+        .cta-button:hover::before { transform: scaleX(1); }
+        .cta-button:hover { color: #000000; transform: translateY(-3px); box-shadow: 0 15px 35px rgba(255,255,255,0.2); }
+        
+        /* Photo Grid */
+        .photo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; width: 100%; height: 100%; padding: 2rem; }
+        .photo-item { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; }
+        .photo-item:hover { transform: translateY(-5px); border-color: #ffffff; box-shadow: 0 10px 30px rgba(255,255,255,0.1); }
+        .photo-icon { width: 60px; height: 60px; margin: 0 auto 1rem; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .photo-item h4 { color: #ffffff; margin-bottom: 0.5rem; font-family: 'Cinzel', serif; font-size: 1rem; }
+        .photo-item p { color: #a3a3a3; font-size: 0.8rem; }
+        
+        .features { padding: 8rem 0; background: #0a0a0a; }
+        .features-grid { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
+        .feature-card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 3rem; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); transition: left 0.5s; }
+        .feature-card:hover::before { left: 100%; }
+        .feature-card:hover { transform: translateY(-8px); border-color: #ffffff; box-shadow: 0 20px 40px rgba(255,255,255,0.1); }
+        .feature-icon { width: 80px; height: 80px; margin: 0 auto 2rem; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; color: #ffffff; }
+        .feature-card h3 { color: #ffffff; margin-bottom: 1.5rem; font-weight: 400; font-size: 1.5rem; font-family: 'Cinzel', serif; }
+        .feature-card p { color: #a3a3a3; line-height: 1.6; font-size: 1.1rem; }
+        
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; }
+            .hero-left { padding: 2rem; }
+            .hero-left h1 { font-size: 3.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="split-nav">
+        <div class="nav-container">
+            <div class="logo">ELIAS GREY</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Portföy</a>
+                <a href="#" class="nav-link">Hakkımda</a>
+                <a href="#" class="nav-link">Hizmetler</a>
+                <a href="#" class="nav-link">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-left">
+            <h1>Hareket İçinde<br>Dinginlik</h1>
+            <p class="hero-subtitle">Modern gözler için sinematik kareler</p>
+            <button class="cta-button">Galeriyi İncele</button>
+        </div>
+        <div class="hero-right">
+            <div class="photo-grid">
+                <div class="photo-item">
+                    <div class="photo-icon">📸</div>
+                    <h4>Portreler</h4>
+                    <p>İnsan duyguları</p>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-icon">🌅</div>
+                    <h4>Manzaralar</h4>
+                    <p>Doğal güzellik</p>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-icon">🏙️</div>
+                    <h4>Kentsel</h4>
+                    <p>Şehir hayatı</p>
+                </div>
+                <div class="photo-item">
+                    <div class="photo-icon">🎭</div>
+                    <h4>Etkinlikler</h4>
+                    <p>Özel anlar</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">📸</div>
+                <h3>Full-Bleed Grid</h3>
+                <p>Sizi içine çeken, tüm tuvali dolduran sürükleyici görsel hikaye anlatımı.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Hover Aydınlatma</h3>
+                <p>Üzerine gelindiğinde görüntülerin hafifçe aydınlandığı, detayları ortaya çıkaran interaktif galeri deneyimi.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚫</div>
+                <h3>Monokrom Zarafet</h3>
+                <p>Siyah-beyaz fotoğrafçılığa odaklanma, doku, form ve duygusal derinliği vurgulama.</p>
+            </div>
+        </div>
+    </div>
+
+    <icnevudila-signature accent-color="#a3a3a3" tooltip-text="icnevudila tarafından tasarlandı - Fotoğrafçılık"></icnevudila-signature>
+    <script src="../components/Signature.jsx" defer></script>
+</body>
+</html>

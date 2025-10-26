@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BloomPath - Wellness & Sağlıklı Yaşam</title>
+    <link rel="stylesheet" href="global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #065f46 0%, #047857 50%, #10b981 100%); color: #ffffff; overflow-x: hidden; }
+        
+        /* Organic Navigation */
+        .organic-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(6, 95, 70, 0.95); backdrop-filter: blur(20px); padding: 1.5rem 0; box-shadow: 0 4px 20px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 3rem; }
+        .logo { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, #ffffff, #a7f3d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 0.05em; }
+        .nav-links { display: flex; gap: 3rem; align-items: center; }
+        .nav-link { color: #a7f3d0; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 3px; background: linear-gradient(90deg, #10b981, #34d399); border-radius: 3px; transition: width 0.3s ease; }
+        .nav-link:hover { color: #ffffff; }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* Organic Hero */
+        .hero { min-height: 100vh; background: linear-gradient(135deg, #065f46 0%, #047857 50%, #10b981 100%); position: relative; display: flex; align-items: center; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 30% 20%, rgba(16, 185, 129, 0.2) 0%, transparent 50%); animation: naturePulse 8s infinite ease-in-out; }
+        .hero::after { content: '🌿 🌱 🍃 🌾 🌳'; position: absolute; top: 10%; left: 5%; font-size: 3rem; opacity: 0.1; animation: float 6s infinite ease-in-out; }
+        @keyframes naturePulse { 0%, 100% { opacity: 0.3; transform: scale(1) rotate(0deg); } 50% { opacity: 0.8; transform: scale(1.1) rotate(2deg); } }
+        @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
+        
+        .hero-content { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 2; }
+        .hero-left h1 { font-family: 'Poppins', sans-serif; font-size: 5rem; font-weight: 800; margin-bottom: 2rem; background: linear-gradient(135deg, #ffffff, #a7f3d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.02em; line-height: 1.1; }
+        .hero-subtitle { font-size: 1.5rem; color: #a7f3d0; margin-bottom: 2.5rem; line-height: 1.7; font-weight: 400; }
+        .cta-button { padding: 1.3rem 3.5rem; background: linear-gradient(135deg, #10b981, #34d399); color: #ffffff; border: none; border-radius: 50px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4); }
+        .cta-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: left 0.5s; }
+        .cta-button:hover::before { left: 100%; }
+        .cta-button:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(16, 185, 129, 0.6); }
+        
+        /* Wellness Stats */
+        .wellness-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; padding-top: 3rem; border-top: 2px solid rgba(16, 185, 129, 0.3); }
+        .stat { text-align: center; }
+        .stat::before { content: '🌱'; position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 1.5rem; }
+        .stat { position: relative; }
+        .stat-number { display: block; font-family: 'Poppins', sans-serif; font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #ffffff, #a7f3d0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.9rem; color: #a7f3d0; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; }
+        
+        /* Organic Visualization */
+        .hero-right { position: relative; height: 550px; }
+        .wellness-visualization { position: relative; width: 100%; height: 100%; background: rgba(16, 185, 129, 0.1); border-radius: 30px; padding: 3rem; border: 3px solid rgba(16, 185, 129, 0.3); }
+        .nature-icon { position: absolute; width: 100px; height: 100px; background: linear-gradient(135deg, rgba(16, 185, 129, 0.3), rgba(52, 211, 153, 0.3)); border-radius: 50%; animation: natureFloat 5s infinite ease-in-out; display: flex; align-items: center; justify-content: center; font-size: 3rem; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3); }
+        .icon-1 { top: 15%; left: 15%; animation-delay: 0s; }
+        .icon-2 { top: 40%; right: 15%; animation-delay: 1.5s; }
+        .icon-3 { bottom: 25%; left: 50%; transform: translateX(-50%); animation-delay: 3s; }
+        @keyframes natureFloat { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(15deg); } }
+        
+        .features { padding: 8rem 0; background: linear-gradient(180deg, rgba(4, 120, 87, 0.9), rgba(6, 95, 70, 0.95)); position: relative; }
+        .features::before { content: '🌸 🌺 🌻 🌷'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 10rem; opacity: 0.03; z-index: 0; }
+        .features-grid { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; position: relative; z-index: 1; }
+        .feature-card { background: rgba(16, 185, 129, 0.15); border: 3px solid rgba(16, 185, 129, 0.3); border-radius: 25px; padding: 3.5rem; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.2), transparent); transition: left 0.8s; }
+        .feature-card:hover::before { left: 100%; }
+        .feature-card:hover { transform: translateY(-15px) scale(1.02); border-color: #34d399; box-shadow: 0 25px 60px rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.2); }
+        .feature-icon { width: 100px; height: 100px; margin: 0 auto 2rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(52, 211, 153, 0.4)); border: 3px solid rgba(16, 185, 129, 0.5); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; transition: all 0.3s ease; }
+        .feature-card:hover .feature-icon { transform: rotate(360deg) scale(1.1); border-color: #a7f3d0; }
+        .feature-card h3 { color: #ffffff; margin-bottom: 1.5rem; font-weight: 700; font-size: 1.6rem; font-family: 'Poppins', sans-serif; }
+        .feature-card p { color: #a7f3d0; line-height: 1.8; font-size: 1.1rem; }
+        
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-left h1 { font-size: 4rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 2rem; }
+            .hero-content { padding: 0 2rem; }
+            .hero-left h1 { font-size: 3rem; }
+            .wellness-stats { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+            .nav-links { gap: 2rem; }
+            .nav-link { font-size: 0.85rem; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="organic-nav">
+        <div class="nav-container">
+            <div class="logo">BLOOMPATH</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Programlar</a>
+                <a href="#" class="nav-link">Wellness</a>
+                <a href="#" class="nav-link">Topluluk</a>
+                <a href="#" class="nav-link">Hakkımızda</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <h1>Denge Buradan<br>Başlar</h1>
+                <p class="hero-subtitle">Zihin, beden ve ruhu beslemek için tasarlanmış bütünsel sağlık programları. Sağlıklı ve mutlu yaşamın kapılarını aralıyoruz.</p>
+                <button class="cta-button">Yolculuğa Başla</button>
+                <div class="wellness-stats">
+                    <div class="stat">
+                        <span class="stat-number">8K+</span>
+                        <span class="stat-label">Üye</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">150+</span>
+                        <span class="stat-label">Program</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">%99</span>
+                        <span class="stat-label">Memnuniyet</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="wellness-visualization">
+                    <div class="nature-icon icon-1">🌿</div>
+                    <div class="nature-icon icon-2">🌱</div>
+                    <div class="nature-icon icon-3">🍃</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧘</div>
+                <h3>Meditasyon & Yoga</h3>
+                <p>Zihinsel dengeyi ve iç huzuru bulmak için özel tasarlanmış meditasyon ve yoga programları.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🥗</div>
+                <h3>Beslenme Danışmanlığı</h3>
+                <p>Kişiselleştirilmiş beslenme planları ve sağlıklı yaşam koçluğu ile en iyi seni ol.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💆</div>
+                <h3>Terapi & Bakım</h3>
+                <p>Yorgunluğu at, kendini yenile. Profesyonel masaj ve tedavi yöntemleri ile kendini şımart.</p>
+            </div>
+        </div>
+    </div>
+
+    <icnevudila-signature accent-color="#10b981" tooltip-text="Designed by icnevudila - Wellness"></icnevudila-signature>
+    <script src="../components/Signature.jsx" defer></script>
+</body>
+</html>

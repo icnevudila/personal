@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lûme Studio - Moda Markası</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; color: #1e293b; overflow-x: hidden; }
+        
+        /* Minimal Navigation */
+        .minimal-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid #e2e8f0; padding: 1.5rem 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 300; color: #1e293b; letter-spacing: 0.1em; }
+        .nav-links { display: flex; gap: 3rem; }
+        .nav-link { color: #64748b; text-decoration: none; font-weight: 300; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s ease; }
+        .nav-link:hover { color: #1e293b; }
+        
+        /* Fashion Hero */
+        .hero { min-height: 100vh; background: linear-gradient(135deg, #ffffff 0%, #f8fafc 50%, #f1f5f9 100%); position: relative; display: flex; align-items: center; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent 48%, rgba(0,0,0,0.02) 49%, rgba(0,0,0,0.02) 51%, transparent 52%); animation: subtleFloat 15s ease-in-out infinite; }
+        @keyframes subtleFloat { 0%, 100% { opacity: 0.3; transform: translateY(0px); } 50% { opacity: 0.6; transform: translateY(-10px); } }
+        
+        .hero-content { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 2; }
+        .hero-left h1 { font-family: 'Playfair Display', serif; font-size: 4.5rem; font-weight: 300; margin-bottom: 2rem; color: #1e293b; letter-spacing: -0.02em; line-height: 1.1; animation: elegantFade 2s ease-out; }
+        @keyframes elegantFade { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-subtitle { font-size: 1.2rem; color: #64748b; font-weight: 300; letter-spacing: 0.05em; text-transform: uppercase; margin: 1rem 0 3rem 0; animation: elegantFade 2s ease-out 0.3s both; }
+        .cta-button { padding: 1rem 3rem; background: transparent; border: 1px solid #1e293b; color: #1e293b; font-weight: 400; font-size: 1rem; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .cta-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: #1e293b; transition: left 0.4s ease; z-index: -1; }
+        .cta-button:hover::before { left: 0; }
+        .cta-button:hover { color: white; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(30, 41, 59, 0.15); }
+        
+        /* Fashion Stats */
+        .fashion-stats { display: flex; gap: 3rem; margin-top: 4rem; }
+        .stat { text-align: center; }
+        .stat-number { display: block; font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 300; color: #1e293b; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.1em; }
+        
+        /* Fashion Visualization */
+        .hero-right { position: relative; height: 600px; }
+        .fashion-visualization { position: relative; width: 100%; height: 100%; background: #f8fafc; border-radius: 12px; padding: 2rem; }
+        .garment-display { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; height: 100%; }
+        .garment-item { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1.5rem; text-align: center; transition: all 0.3s ease; }
+        .garment-item:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .garment-icon { width: 60px; height: 60px; margin: 0 auto 1rem; background: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .garment-item h4 { color: #1e293b; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; font-size: 1rem; }
+        .garment-item p { color: #64748b; font-size: 0.8rem; }
+        
+        .features { padding: 8rem 0; background: #f8fafc; }
+        .features-grid { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; }
+        .feature-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 3rem; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(30, 41, 59, 0.05), transparent); transition: left 0.5s; }
+        .feature-card:hover::before { left: 100%; }
+        .feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .feature-icon { width: 80px; height: 80px; margin: 0 auto 2rem; background: #f1f5f9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; }
+        .feature-card h3 { color: #1e293b; margin-bottom: 1.5rem; font-weight: 400; font-size: 1.5rem; font-family: 'Playfair Display', serif; }
+        .feature-card p { color: #64748b; line-height: 1.6; font-size: 1.1rem; }
+        
+        @media (max-width: 768px) {
+            .hero-content { grid-template-columns: 1fr; gap: 2rem; }
+            .hero-left h1 { font-size: 3.5rem; }
+            .fashion-stats { flex-direction: column; gap: 2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="minimal-nav">
+        <div class="nav-container">
+            <div class="logo">LÛME</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Koleksiyon</a>
+                <a href="#" class="nav-link">Hakkımızda</a>
+                <a href="#" class="nav-link">Dergi</a>
+                <a href="#" class="nav-link">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <h1>Sessiz<br>Özgüven</h1>
+                <p class="hero-subtitle">Zamansız minimal tasarım</p>
+                <button class="cta-button">Lookbook İncele</button>
+                <div class="fashion-stats">
+                    <div class="stat">
+                        <span class="stat-number">25</span>
+                        <span class="stat-label">Parça</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">%100</span>
+                        <span class="stat-label">Sürdürülebilir</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Yıl</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="fashion-visualization">
+                    <div class="garment-display">
+                        <div class="garment-item">
+                            <div class="garment-icon">👗</div>
+                            <h4>Elbiseler</h4>
+                            <p>Şık silüetler</p>
+                        </div>
+                        <div class="garment-item">
+                            <div class="garment-icon">👔</div>
+                            <h4>Bluzlar</h4>
+                            <p>İnce detaylar</p>
+                        </div>
+                        <div class="garment-item">
+                            <div class="garment-icon">👖</div>
+                            <h4>Pantolonlar</h4>
+                            <p>Mükemmel uyum</p>
+                        </div>
+                        <div class="garment-item">
+                            <div class="garment-icon">🧥</div>
+                            <h4>Ceketler</h4>
+                            <p>Zamansız stil</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Editorial Layout</h3>
+                <p>Koleksiyonlarımızı sanatsal fotoğrafçılık ve düşünceli sunumla sergiliyoruz.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛍️</div>
+                <h3>E-Ticaret Hazır</h3>
+                <p>Sezgisel navigasyon ve detaylı ürün görünümleriyle sorunsuz alışveriş deneyimi.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌱</div>
+                <h3>Sürdürülebilir Kumaşlar</h3>
+                <p>Etik modaya bağlı olarak, her parça için sorumlu bir şekilde tedarik edilen malzemeler kullanıyoruz.</p>
+            </div>
+        </div>
+    </div>
+
+    <icnevudila-signature accent-color="#64748b" tooltip-text="icnevudila tarafından tasarlandı - Moda Markası"></icnevudila-signature>
+    <script src="../components/Signature.jsx" defer></script>
+</body>
+</html>

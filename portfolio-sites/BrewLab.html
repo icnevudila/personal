@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrewLab - Kahve Deneyimi</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #2d1810 0%, #4a2c1a 50%, #6b4423 100%); color: #f4f1eb; overflow-x: hidden; }
+        
+        /* Coffee Shop Navigation */
+        .coffee-nav { position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; background: rgba(45, 24, 16, 0.98); backdrop-filter: blur(20px); border-top: 2px solid #d2b48c; padding: 1.5rem 0; box-shadow: 0 -10px 30px rgba(0,0,0,0.3); }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: center; align-items: center; padding: 0 3rem; }
+        .nav-links { display: flex; gap: 4rem; }
+        .nav-link { color: #d2b48c; text-decoration: none; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; position: relative; }
+        .nav-link::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #d2b48c, #f4f1eb); transition: width 0.3s ease; border-radius: 2px; }
+        .nav-link:hover { color: #f4f1eb; text-shadow: 0 0 10px rgba(210, 180, 140, 0.5); }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* Hero Section */
+        .hero { min-height: 100vh; background: linear-gradient(135deg, #2d1810 0%, #4a2c1a 50%, #6b4423 100%); position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; padding-bottom: 100px; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(ellipse at 50% 30%, rgba(139, 69, 19, 0.4) 0%, transparent 60%); animation: coffeeSteam 8s ease-in-out infinite; }
+        .hero::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(0,0,0,0.03) 10px, rgba(0,0,0,0.03) 20px); pointer-events: none; }
+        @keyframes coffeeSteam { 0%, 100% { opacity: 0.4; transform: scale(1) rotate(0deg); } 50% { opacity: 0.8; transform: scale(1.05) rotate(1deg); } }
+        
+        .hero-content { text-align: center; position: relative; z-index: 2; max-width: 900px; padding: 0 3rem; }
+        
+        /* Coffee Logo */
+        .coffee-logo { margin-bottom: 3rem; animation: fadeIn 1s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .logo-icon { width: 100px; height: 100px; margin: 0 auto 1.5rem; background: linear-gradient(135deg, #8b4513, #a0522d, #cd853f); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3rem; color: #f4f1eb; box-shadow: 0 20px 50px rgba(139, 69, 19, 0.4), inset 0 10px 30px rgba(205, 133, 63, 0.3); animation: logoGlow 3s infinite ease-in-out; position: relative; }
+        .logo-icon::before { content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px; border-radius: 50%; background: linear-gradient(135deg, rgba(139, 69, 19, 0.3), rgba(205, 133, 63, 0.3)); filter: blur(10px); z-index: -1; }
+        @keyframes logoGlow { 0%, 100% { transform: scale(1) rotate(0deg); box-shadow: 0 20px 50px rgba(139, 69, 19, 0.4); } 50% { transform: scale(1.05) rotate(5deg); box-shadow: 0 25px 60px rgba(139, 69, 19, 0.6); } }
+        .logo-text { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #d2b48c, #f4f1eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: 0.15em; text-shadow: 0 0 20px rgba(210, 180, 140, 0.3); }
+        
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5.5rem; font-weight: 700; margin-bottom: 2rem; color: #f4f1eb; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); animation: warmGlow 2s ease-in-out infinite alternate; line-height: 1.2; }
+        @keyframes warmGlow { from { text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 30px rgba(139, 69, 19, 0.4); } to { text-shadow: 2px 2px 4px rgba(0,0,0,0.5), 0 0 40px rgba(139, 69, 19, 0.7); } }
+        .hero-subtitle { font-size: 1.6rem; color: #d2b48c; font-style: italic; margin-bottom: 3.5rem; animation: fadeInWarm 1.5s ease-out 0.3s both; font-weight: 400; }
+        @keyframes fadeInWarm { from { opacity: 0; transform: translateY(20px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .cta-button { padding: 1.4rem 4rem; background: linear-gradient(135deg, #8b4513 0%, #a0522d 50%, #cd853f 100%); border: 3px solid #d2b48c; border-radius: 50px; color: #f4f1eb; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.4s ease; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(139, 69, 19, 0.4); }
+        .cta-button::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent); transform: translateX(-100%); transition: transform 0.7s; }
+        .cta-button:hover::before { transform: translateX(100%); }
+        .cta-button:hover { transform: translateY(-5px) scale(1.05); box-shadow: 0 20px 50px rgba(139, 69, 19, 0.6), 0 0 40px rgba(210,180,140,0.4); border-color: #f4f1eb; }
+        
+        /* Stats */
+        .coffee-stats { display: flex; justify-content: center; gap: 6rem; margin-top: 5rem; padding-top: 4rem; border-top: 2px solid rgba(210, 180, 140, 0.2); }
+        .stat { text-align: center; }
+        .stat-number { display: block; font-family: 'Playfair Display', serif; font-size: 4rem; font-weight: 700; background: linear-gradient(135deg, #d2b48c, #f4f1eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; text-shadow: 0 0 20px rgba(210, 180, 140, 0.4); }
+        .stat-label { font-size: 1.1rem; color: #d2b48c; text-transform: uppercase; letter-spacing: 0.15em; opacity: 0.9; font-weight: 600; }
+        
+        /* Content Section */
+        .coffee-content { padding: 8rem 0; background: #3a2418; position: relative; }
+        .coffee-content::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px); pointer-events: none; }
+        .content-grid { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; position: relative; z-index: 1; }
+        .coffee-card { background: linear-gradient(135deg, #4a2c1a 0%, #6b4423 100%); border: 2px solid #8b4513; border-radius: 25px; padding: 3.5rem; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .coffee-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(210, 180, 140, 0.15), transparent); transition: left 0.8s; }
+        .coffee-card:hover::before { left: 100%; }
+        .coffee-card:hover { transform: translateY(-15px) scale(1.02); border-color: #d2b48c; box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 40px rgba(210,180,140,0.4); }
+        .coffee-icon { width: 100px; height: 100px; margin: 0 auto 2rem; background: rgba(210, 180, 140, 0.15); border: 3px solid #d2b48c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; transition: all 0.3s ease; }
+        .coffee-card:hover .coffee-icon { transform: rotate(360deg) scale(1.1); border-color: #f4f1eb; background: rgba(210, 180, 140, 0.25); }
+        .coffee-card h3 { font-family: 'Playfair Display', serif; color: #d2b48c; margin-bottom: 1.5rem; font-size: 2rem; font-weight: 700; }
+        .coffee-card p { color: #f4f1eb; line-height: 1.8; font-size: 1.1rem; opacity: 0.95; }
+        
+        /* Menu Section */
+        .menu-section { padding: 8rem 0; background: linear-gradient(180deg, #4a2c1a 0%, #3a2418 100%); position: relative; }
+        .menu-grid { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .menu-item { background: linear-gradient(135deg, #6b4423 0%, #8b4513 100%); border: 2px solid rgba(210, 180, 140, 0.2); border-radius: 20px; padding: 2.5rem; text-align: center; transition: all 0.3s ease; }
+        .menu-item:hover { transform: translateY(-10px) scale(1.05); border-color: #d2b48c; background: linear-gradient(135deg, #8b4513 0%, #cd853f 100%); box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 30px rgba(210,180,140,0.3); }
+        .menu-item h4 { color: #d2b48c; margin-bottom: 1rem; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; }
+        .menu-item p { color: #f4f1eb; font-size: 1rem; opacity: 0.9; }
+        
+        @media (max-width: 1024px) {
+            .hero-content { padding: 0 2rem; }
+            .coffee-stats { gap: 4rem; }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .hero-subtitle { font-size: 1.3rem; }
+            .coffee-stats { flex-direction: column; gap: 2rem; }
+            .coffee-nav { display: none; }
+            .nav-links { gap: 2rem; }
+            .content-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <div class="coffee-logo">
+                <div class="logo-icon">☕</div>
+                <div class="logo-text">BREWLAB</div>
+            </div>
+            
+            <h1>Sadece Kahve Değil<br>— Bir Ritüel</h1>
+            <p class="hero-subtitle">El ile kavrulmuş. Kalple yoğrulmuş.</p>
+            <button class="cta-button">Menüyü Keşfet</button>
+            
+            <div class="coffee-stats">
+                <div class="stat">
+                    <span class="stat-number">20</span>
+                    <span class="stat-label">Yıl</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">75+</span>
+                    <span class="stat-label">Karisim</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">%100</span>
+                    <span class="stat-label">Organik</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="coffee-content">
+        <div class="content-grid">
+            <div class="coffee-card">
+                <div class="coffee-icon">☕</div>
+                <h3>Özel Karışımlar</h3>
+                <p>Özenle hazırladığımız özel kahve karışımlarımızla benzersiz lezzet profillerini keşfedin.</p>
+            </div>
+            <div class="coffee-card">
+                <div class="coffee-icon">🌱</div>
+                <h3>Topluluk Hissi</h3>
+                <p>Sadece bir kahve dükkanı değil, BrewLab bağlantı ve paylaşılan anlar için bir buluşma yeridir.</p>
+            </div>
+            <div class="coffee-card">
+                <div class="coffee-icon">🌍</div>
+                <h3>Sürdürülebilir Kaynak</h3>
+                <p>Etik uygulamalara bağlıyız, çekirdeklerimizi sorumlu bir şekilde tedarik ederek üreticileri ve gezegeni destekliyoruz.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="menu-section">
+        <div class="menu-grid">
+            <div class="menu-item">
+                <h4>Espresso</h4>
+                <p>Zengin, cesur ve mükemmel dengeli</p>
+            </div>
+            <div class="menu-item">
+                <h4>Cappuccino</h4>
+                <p>Kremalı köpük ve imza karışımımız</p>
+            </div>
+            <div class="menu-item">
+                <h4>Latte</h4>
+                <p>Pürüzsüz ve kadifemsi, sanatsal sunum</p>
+            </div>
+            <div class="menu-item">
+                <h4>Cold Brew</h4>
+                <p>Ferahlatıcı ve doğal olarak tatlı</p>
+            </div>
+        </div>
+    </div>
+
+    <nav class="coffee-nav">
+        <div class="nav-container">
+            <div class="nav-links">
+                <a href="#" class="nav-link">Menü</a>
+                <a href="menu.html" class="nav-link">Hakkımızda</a>
+                <a href="#" class="nav-link">Şubeler</a>
+                <a href="#" class="nav-link">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <icnevudila-signature accent-color="#d2b48c" tooltip-text="Designed by icnevudila - Coffee Brand"></icnevudila-signature>
+    <script src="../components/Signature.jsx" defer></script>
+</body>
+</html>

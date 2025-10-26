@@ -7,6 +7,7 @@ import { clsx } from 'clsx'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { Logo } from './Logo'
+import { ThemeToggle } from './ThemeToggle'
 
 export function Navbar() {
   const { t } = useLanguage()
@@ -16,7 +17,7 @@ export function Navbar() {
     { name: t.nav.home, href: '#home' },
     { name: t.nav.about, href: '#about' },
     { name: t.nav.skills, href: '#skills' },
-    { name: t.nav.projects, href: '#projects' },
+          { name: 'Portfolyo', href: '#portfolio' },
     { name: t.nav.blog, href: '#blog' },
     { name: t.nav.contact, href: '#contact' },
   ]
@@ -58,6 +59,10 @@ export function Navbar() {
     }
   }
 
+  const handleMobileMenuClose = () => {
+    setIsOpen(false)
+  }
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -65,9 +70,7 @@ export function Navbar() {
       transition={{ duration: 0.6, ease: 'easeOut' }}
       className={clsx(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-        scrolled
-          ? 'bg-gray-900/95 backdrop-blur-md border-b border-gray-700/50'
-          : 'bg-transparent'
+        'bg-transparent'
       )}
     >
       <div className="container-custom">
@@ -94,12 +97,13 @@ export function Navbar() {
                   onClick={() => handleNavClick(item.href)}
                   className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-200 relative group"
                 >
-                  <span className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-primary-500 after:transition-all after:duration-300 group-hover:after:w-full">
+                  <span className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#F97316] after:transition-all after:duration-300 group-hover:after:w-full">
                     {item.name}
                   </span>
                 </button>
               ))}
             </div>
+            <ThemeToggle />
             <LanguageSwitcher />
           </div>
 
@@ -144,8 +148,13 @@ export function Navbar() {
                   {item.name}
                 </motion.button>
               ))}
-              <div className="px-3 py-2">
-                <LanguageSwitcher />
+              <div className="px-3 py-2 flex items-center justify-between gap-4">
+                <div className="flex-1" onClick={handleMobileMenuClose}>
+                  <ThemeToggle />
+                </div>
+                <div className="flex-1" onClick={handleMobileMenuClose}>
+                  <LanguageSwitcher />
+                </div>
               </div>
             </div>
           </motion.div>

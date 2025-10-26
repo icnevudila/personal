@@ -50,12 +50,12 @@ function SkillCard({ icon: Icon, title, description, delay, isInView }: SkillCar
       </div>
       
       {/* Title */}
-      <h3 className="text-lg sm:text-xl font-bold text-[#E5E7EB] mb-2 group-hover:text-[#F97316] transition-colors">
+      <h3 className="text-lg sm:text-xl font-bold text-black dark:text-[#E5E7EB] mb-2 group-hover:text-[#F97316] transition-colors" style={{color: '#000000'}}>
         {title}
       </h3>
       
       {/* Description */}
-      <p className="text-sm text-[#94A3B8] leading-relaxed">
+      <p className="text-sm text-black dark:text-[#94A3B8] leading-relaxed" style={{color: '#000000'}}>
         {description}
       </p>
     </motion.article>
@@ -67,41 +67,58 @@ export function Skills() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
 
-  const skills = [
-    {
-      icon: ComputerDesktopIcon,
-      title: 'Web Tasarımı',
-      description: 'Piksel piksel sabırlıyım.'
-    },
-    {
-      icon: PaintBrushIcon,
-      title: 'UI/UX',
-      description: 'Kullanıcıyı değil, deneyimi tasarlıyorum.'
-    },
-    {
-      icon: SwatchIcon,
-      title: 'Renk Seçimi',
-      description: 'Turuncu olmasa olmaz.'
-    },
-    {
-      icon: SparklesIcon,
-      title: 'AI Araçları',
-      description: 'Yapay zekâyı fazla ciddiye almıyorum, ama iyi anlaşıyoruz.'
-    },
-    {
-      icon: ClockIcon,
-      title: 'Zaman Yönetimi',
-      description: 'Kahve bitmeden iş biter.'
-    },
-    {
-      icon: ChatBubbleLeftRightIcon,
-      title: 'İletişim',
-      description: '"Biraz daha sağa alabilir miyiz?" cümlesini sevgiyle karşılıyorum.'
-    },
-  ]
+  useEffect(() => {
+    const applyColors = () => {
+      const isLightMode = document.documentElement.getAttribute('data-theme') === 'light'
+      
+      if (isLightMode) {
+        setTimeout(() => {
+          const skillsCards = document.querySelectorAll('#skills h3, #skills p')
+          skillsCards.forEach(el => {
+            el.style.setProperty('color', '#000000', 'important')
+          })
+        }, 100)
+      } else {
+        // Dark mode - remove inline styles to let CSS classes work
+        setTimeout(() => {
+          const skillsCards = document.querySelectorAll('#skills h3, #skills p')
+          skillsCards.forEach(el => {
+            el.style.removeProperty('color')
+          })
+        }, 100)
+      }
+    }
+
+    // Apply colors immediately
+    applyColors()
+
+    // Listen for theme changes
+    const observer = new MutationObserver(applyColors)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+
+  const skills = t.skills.skillCards.map((skill, index) => ({
+    icon: [
+      ComputerDesktopIcon,
+      PaintBrushIcon,
+      SwatchIcon,
+      SparklesIcon,
+      ClockIcon,
+      ChatBubbleLeftRightIcon
+    ][index],
+    title: skill.title,
+    description: skill.description,
+    delay: index * 0.1
+  }))
 
   return (
-    <section id="skills" className="section-padding bg-[#0f172a]" aria-labelledby="skills-title">
+    <section id="skills" className="section-padding bg-[#151515]" aria-labelledby="skills-title">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -113,11 +130,11 @@ export function Skills() {
           {/* Section Header */}
           <div className="text-center mb-12 md:mb-16 px-4">
             <h2 id="skills-title" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 md:mb-6 text-[#E5E7EB]">
-              <AnimatedText text="Yetenekler" />
+              <AnimatedText text={t.skills.title} />
             </h2>
             <div className="w-24 h-1 bg-[#F97316] mx-auto rounded-full" />
             <p className="text-base sm:text-lg text-[#94A3B8] mt-4 md:mt-6 max-w-2xl mx-auto">
-              Klasik listeden uzak, gerçek yaklaşım.
+              {t.skills.subtitle}
             </p>
           </div>
 
@@ -138,7 +155,7 @@ export function Skills() {
           {/* Footer text */}
           <div className="text-center mt-12">
             <p className="text-sm text-[#94A3B8] italic">
-              Yetenek listesi güncellenmeye devam ediyor… tıpkı kahve stoğum gibi. ☕
+              
             </p>
           </div>
         </motion.div>

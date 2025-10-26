@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaAI - Teknoloji Startup</title>
+    <link rel="stylesheet" href="global.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #4f46e5 100%); color: #ffffff; overflow-x: hidden; }
+        
+        /* Futuristic Navigation */
+        .futuristic-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(30, 27, 75, 0.95); backdrop-filter: blur(20px); padding: 1.5rem 0; border-bottom: 2px solid #6366f1; }
+        .nav-container { max-width: 1400px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 3rem; }
+        .logo { font-family: 'Rajdhani', sans-serif; font-size: 2rem; font-weight: 800; color: #ffffff; position: relative; text-transform: uppercase; letter-spacing: 0.15em; }
+        .logo::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, #6366f1, #ec4899, #6366f1); animation: neonGlow 2s infinite ease-in-out; }
+        @keyframes neonGlow { 0%, 100% { opacity: 0.5; filter: blur(5px); } 50% { opacity: 1; filter: blur(10px); } }
+        .nav-links { display: flex; gap: 3rem; align-items: center; }
+        .nav-link { color: #a5b4fc; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: all 0.3s ease; position: relative; text-transform: uppercase; letter-spacing: 0.05em; }
+        .nav-link::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #6366f1, #ec4899); transition: width 0.3s ease; }
+        .nav-link:hover { color: #ffffff; text-shadow: 0 0 10px rgba(99, 102, 241, 0.5); }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* Futuristic Hero */
+        .hero { min-height: 100vh; background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #4f46e5 100%); position: relative; display: flex; align-items: center; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 70% 30%, rgba(99, 102, 241, 0.2) 0%, transparent 50%); animation: startupPulse 6s infinite ease-in-out; }
+        .hero::after { content: ''; position: absolute; top: 0; right: 0; width: 50%; height: 100%; background: repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(236, 72, 153, 0.03) 2px, rgba(236, 72, 153, 0.03) 4px); }
+        @keyframes startupPulse { 0%, 100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.05); } }
+        
+        .hero-content { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; align-items: center; position: relative; z-index: 2; }
+        .hero-left h1 { font-family: 'Rajdhani', sans-serif; font-size: 5rem; font-weight: 800; margin-bottom: 2rem; background: linear-gradient(135deg, #ffffff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: -0.03em; line-height: 1.1; text-transform: uppercase; }
+        .hero-subtitle { font-size: 1.5rem; color: #a5b4fc; margin-bottom: 2.5rem; line-height: 1.7; font-weight: 400; }
+        .cta-button { padding: 1.3rem 3.5rem; background: linear-gradient(135deg, #6366f1, #ec4899); color: #ffffff; border: none; border-radius: 0; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; position: relative; overflow: hidden; text-transform: uppercase; letter-spacing: 0.1em; box-shadow: 0 0 30px rgba(99, 102, 241, 0.4); }
+        .cta-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent); transition: left 0.5s; }
+        .cta-button:hover::before { left: 100%; }
+        .cta-button:hover { transform: translateY(-5px); box-shadow: 0 20px 50px rgba(236, 72, 153, 0.6); }
+        
+        /* Startup Stats */
+        .startup-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 4rem; padding-top: 3rem; border-top: 2px solid rgba(99, 102, 241, 0.3); }
+        .stat { text-align: center; position: relative; }
+        .stat::before { content: '⚡'; position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 1.5rem; }
+        .stat-number { display: block; font-family: 'Rajdhani', sans-serif; font-size: 3.5rem; font-weight: 800; background: linear-gradient(135deg, #6366f1, #ec4899); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.85rem; color: #a5b4fc; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 600; }
+        
+        /* Tech Visualization */
+        .hero-right { position: relative; height: 550px; }
+        .startup-visualization { position: relative; width: 100%; height: 100%; background: rgba(99, 102, 241, 0.05); border: 3px solid rgba(99, 102, 241, 0.3); border-radius: 20px; padding: 3rem; }
+        .tech-icon { position: absolute; width: 100px; height: 100px; background: linear-gradient(135deg, rgba(99, 102, 241, 0.3), rgba(236, 72, 153, 0.3)); border: 3px solid rgba(99, 102, 241, 0.5); border-radius: 15px; animation: techFloat 4s infinite ease-in-out; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); }
+        .icon-1 { top: 15%; left: 20%; animation-delay: 0s; }
+        .icon-2 { top: 45%; right: 15%; animation-delay: 1.3s; }
+        .icon-3 { bottom: 20%; left: 50%; transform: translateX(-50%); animation-delay: 2.6s; }
+        @keyframes techFloat { 0%, 100% { transform: translateY(0px) scale(1); box-shadow: 0 0 30px rgba(99, 102, 241, 0.3); } 50% { transform: translateY(-20px) scale(1.1); box-shadow: 0 0 50px rgba(236, 72, 153, 0.5); } }
+        
+        .features { padding: 8rem 0; background: linear-gradient(180deg, rgba(30, 27, 75, 0.9), rgba(55, 48, 163, 0.9)); position: relative; }
+        .features::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(99, 102, 241, 0.03) 2px, rgba(99, 102, 241, 0.03) 4px); }
+        .features-grid { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; position: relative; z-index: 1; }
+        .feature-card { background: rgba(99, 102, 241, 0.1); border: 3px solid rgba(99, 102, 241, 0.3); border-radius: 20px; padding: 3.5rem; text-align: center; transition: all 0.4s ease; position: relative; overflow: hidden; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.2), transparent); transition: left 0.8s; }
+        .feature-card:hover::before { left: 100%; }
+        .feature-card:hover { transform: translateY(-15px) scale(1.02); border-color: #ec4899; box-shadow: 0 25px 60px rgba(236, 72, 153, 0.4); background: rgba(99, 102, 241, 0.15); }
+        .feature-icon { width: 100px; height: 100px; margin: 0 auto 2rem; background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(236, 72, 153, 0.4)); border: 3px solid rgba(99, 102, 241, 0.6); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(99, 102, 241, 0.3); }
+        .feature-card:hover .feature-icon { transform: rotate(360deg) scale(1.1); border-color: #ec4899; box-shadow: 0 0 40px rgba(236, 72, 153, 0.6); }
+        .feature-card h3 { color: #ffffff; margin-bottom: 1.5rem; font-weight: 700; font-size: 1.6rem; font-family: 'Rajdhani', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; }
+        .feature-card p { color: #a5b4fc; line-height: 1.7; font-size: 1.1rem; }
+        
+        @media (max-width: 1024px) {
+            .hero-content { grid-template-columns: 1fr; gap: 3rem; }
+            .hero-left h1 { font-size: 4rem; }
+        }
+        @media (max-width: 768px) {
+            .nav-container { padding: 0 2rem; }
+            .hero-content { padding: 0 2rem; }
+            .hero-left h1 { font-size: 3rem; }
+            .startup-stats { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+            .nav-links { gap: 2rem; }
+            .nav-link { font-size: 0.8rem; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="futuristic-nav">
+        <div class="nav-container">
+            <div class="logo">NOVAAI</div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">Ürün</a>
+                <a href="#" class="nav-link">Çözümler</a>
+                <a href="#" class="nav-link">Fiyatlandırma</a>
+                <a href="#" class="nav-link">İletişim</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-left">
+                <h1>Gelecek Daha<br>Akıllı Çalışır</h1>
+                <p class="hero-subtitle">İşletmelerin çalışma ve büyüme biçimini dönüştüren devrim niteliğinde yapay zeka çözümleri.</p>
+                <button class="cta-button">Hemen Başla</button>
+                <div class="startup-stats">
+                    <div class="stat">
+                        <span class="stat-number">₺5M+</span>
+                        <span class="stat-label">Fonlama</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Müşteri</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">%99.9</span>
+                        <span class="stat-label">Uptime</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+                <div class="startup-visualization">
+                    <div class="tech-icon icon-1">🤖</div>
+                    <div class="tech-icon icon-2">⚡</div>
+                    <div class="tech-icon icon-3">🧠</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="features">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>Akıllı Otomasyon</h3>
+                <p>Yapay zeka destekli otomasyon ile iş süreçlerinizi optimize edin ve verimliliği artırın.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Veri Analitiği</h3>
+                <p>Gelişmiş analitik ve makine öğrenmesi ile verilerinizden değerli içgörüler elde edin.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔮</div>
+                <h3>Öngörücü Modelleme</h3>
+                <p>Geleceği tahmin eden modeller ile iş kararlarınızı veriye dayalı hale getirin.</p>
+            </div>
+        </div>
+    </div>
+
+    <icnevudila-signature accent-color="#6366f1" tooltip-text="Designed by icnevudila - Tech Startup"></icnevudila-signature>
+    <script src="../components/Signature.jsx" defer></script>
+</body>
+</html>

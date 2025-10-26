@@ -429,7 +429,7 @@ export function Projects() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-2">Öne Çıkan</label>
+                <label className="block text-sm font-medium mb-2">{t.projects.featured}</label>
                 <input
                   type="checkbox"
                   checked={editForm.featured || false}

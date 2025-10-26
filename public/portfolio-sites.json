@@ -1,0 +1,210 @@
+[
+  {
+    "id": "outreach-one",
+    "title": "Outreach One",
+    "description": {
+      "tr": "AI Destekli Erişim Yönetimi Platformu",
+      "en": "AI-Powered Outreach Management Platform"
+    },
+    "category": "Technology",
+    "image": "/portfolio/outreach-one.jpg",
+    "url": "/portfolio/outreach-one.html",
+    "tags": {
+      "tr": ["AI", "Erişim", "Platform", "Dashboard"],
+      "en": ["AI", "Outreach", "Platform", "Dashboard"]
+    },
+    "featured": true
+  },
+  {
+    "id": "atelier-luna",
+    "title": "Atelier Luna",
+    "description": {
+      "tr": "Size Uygun Mekanlar - İç Mimarlık Stüdyosu",
+      "en": "Spaces That Suit You - Interior Design Studio"
+    },
+    "category": "Interior Design",
+    "image": "/hero-profile.jpg",
+    "url": "/portfolio/atelier-luna",
+    "tags": {
+      "tr": ["İç Mimarlık", "Tasarım", "Stüdyo"],
+      "en": ["Interior", "Design", "Studio"]
+    },
+    "featured": true
+  },
+  {
+    "id": "bloom-path",
+    "title": "BloomPath",
+    "description": {
+      "tr": "Sağlık ve Kişisel Gelişim Platformu",
+      "en": "Wellness & Personal Growth Platform"
+    },
+    "category": "Wellness",
+    "image": "/portfolio/auraroa.jpg",
+    "url": "/portfolio/BloomPath.html",
+    "tags": {
+      "tr": ["Sağlık", "Gelişim", "Platform"],
+      "en": ["Wellness", "Growth", "Platform"]
+    },
+    "featured": true
+  },
+  {
+    "id": "brew-lab",
+    "title": "BrewLab",
+    "description": {
+      "tr": "Kahve Kavurma ve Demleme Deneyimi",
+      "en": "Coffee Roasting & Brewing Experience"
+    },
+    "category": "Food & Beverage",
+    "image": "/portfolio/luma.jpg",
+    "url": "/portfolio/BrewLab.html",
+    "tags": {
+      "tr": ["Kahve", "Kavurma", "Deneyim"],
+      "en": ["Coffee", "Roasting", "Experience"]
+    },
+    "featured": true
+  },
+  {
+    "id": "core-flow",
+    "title": "CoreFlow",
+    "description": {
+      "tr": "Fitness ve Hareket Stüdyosu",
+      "en": "Fitness & Movement Studio"
+    },
+    "category": "Fitness",
+    "image": "/portfolio/mindflolio.jpg",
+    "url": "/portfolio/CoreFlow.html",
+    "tags": {
+      "tr": ["Fitness", "Hareket", "Stüdyo"],
+      "en": ["Fitness", "Movement", "Studio"]
+    },
+    "featured": true
+  },
+  {
+    "id": "echo-verse",
+    "title": "EchoVerse",
+    "description": {
+      "tr": "Ses Prodüksiyonu ve Ses Tasarımı",
+      "en": "Audio Production & Sound Design"
+    },
+    "category": "Audio",
+    "image": "/portfolio/hero-profile.jpg.png",
+    "url": "/portfolio/EchoVerse.html",
+    "tags": {
+      "tr": ["Ses", "Prodüksiyon", "Tasarım"],
+      "en": ["Audio", "Production", "Sound"]
+    },
+    "featured": true
+  },
+  {
+    "id": "elias-grey",
+    "title": "Elias Grey",
+    "description": {
+      "tr": "Fotoğrafçılık ve Görsel Hikaye Anlatımı",
+      "en": "Photography & Visual Storytelling"
+    },
+    "category": "Photography",
+    "image": "/portfolio/blog.jpg",
+    "url": "/portfolio/EliasGrey.html",
+    "tags": {
+      "tr": ["Fotoğrafçılık", "Görsel", "Hikaye"],
+      "en": ["Photography", "Visual", "Storytelling"]
+    },
+    "featured": true
+  },
+  {
+    "id": "frame-haus",
+    "title": "FrameHaus",
+    "description": {
+      "tr": "Dijital Sanat ve Yaratıcı Ajans",
+      "en": "Digital Art & Creative Agency"
+    },
+    "category": "Creative Agency",
+    "image": "/portfolio/Phoenix_10_A_minimalist_creative_workspace_scene_viewed_from_a_3.jpg",
+    "url": "/portfolio/FrameHaus.html",
+    "tags": {
+      "tr": ["Dijital Sanat", "Yaratıcı", "Ajans"],
+      "en": ["Digital Art", "Creative", "Agency"]
+    },
+    "featured": true
+  },
+  {
+    "id": "lume",
+    "title": "Lume",
+    "description": {
+      "tr": "Aydınlatma Tasarımı ve Kurulum",
+      "en": "Lighting Design & Installation"
+    },
+    "category": "Lighting",
+    "image": "/portfolio/nova finance.jpg",
+    "url": "/portfolio/Lume.html",
+    "tags": {
+      "tr": ["Aydınlatma", "Tasarım", "Kurulum"],
+      "en": ["Lighting", "Design", "Installation"]
+    },
+    "featured": true
+  },
+  {
+    "id": "nova-ai",
+    "title": "Nova AI",
+    "description": {
+      "tr": "AI Destekli İş Çözümleri",
+      "en": "AI-Powered Business Solutions"
+    },
+    "category": "Technology",
+    "image": "/portfolio/luma.jpg",
+    "url": "/portfolio/NovaAI.html",
+    "tags": {
+      "tr": ["AI", "İş", "Çözümler"],
+      "en": ["AI", "Business", "Solutions"]
+    },
+    "featured": true
+  },
+  {
+    "id": "orbit",
+    "title": "Orbit",
+    "description": {
+      "tr": "Uzay Teknolojisi ve İnovasyon",
+      "en": "Space Technology & Innovation"
+    },
+    "category": "Technology",
+    "image": "/portfolio/auraroa.jpg",
+    "url": "/portfolio/Orbit.html",
+    "tags": {
+      "tr": ["Uzay", "Teknoloji", "İnovasyon"],
+      "en": ["Space", "Technology", "Innovation"]
+    },
+    "featured": true
+  },
+  {
+    "id": "thinkcore",
+    "title": "ThinkCore",
+    "description": {
+      "tr": "İş Zekası Dashboard",
+      "en": "Business Intelligence Dashboard"
+    },
+    "category": "Dashboard",
+    "image": "/portfolio/mindflolio.jpg",
+    "url": "/portfolio/ThinkCore.html",
+    "tags": {
+      "tr": ["İş", "Zeka", "Dashboard"],
+      "en": ["Business", "Intelligence", "Dashboard"]
+    },
+    "featured": true
+  },
+  {
+    "id": "thinkcore-dashboard",
+    "title": "ThinkCore Dashboard",
+    "description": {
+      "tr": "Gelişmiş Analitik Arayüz",
+      "en": "Advanced Analytics Interface"
+    },
+    "category": "Dashboard",
+    "image": "/portfolio/blog.jpg",
+    "url": "/portfolio/ThinkCore-Dashboard.html",
+    "tags": {
+      "tr": ["Analitik", "Arayüz", "Dashboard"],
+      "en": ["Analytics", "Interface", "Dashboard"]
+    },
+    "featured": false
+  }
+]
