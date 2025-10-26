@@ -271,7 +271,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
     const updatedPosts = [...allBlogPosts]
     updatedPosts[index].published = !updatedPosts[index].published
     setAllBlogPosts(updatedPosts)
-    setBlogPosts(updatedPosts.filter(post => post.published !== false))
+    setBlogPosts(updatedPosts.filter((post: BlogPost) => post.published !== false))
     
     // Save to localStorage
     localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
