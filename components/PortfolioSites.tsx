@@ -324,7 +324,7 @@ export function PortfolioSites() {
               {/* Gradient Underline Glow */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#F97316]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               {/* Live Preview */}
-              <div className="h-48 bg-gray-100 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-800 overflow-hidden relative flex-shrink-0" style={{ overflow: 'hidden' }}>
+              <div className="h-48 bg-gray-200 dark:bg-gradient-to-br dark:from-gray-700 dark:to-gray-800 overflow-hidden relative flex-shrink-0" style={{ overflow: 'hidden' }}>
                 <iframe
                   src={site.url}
                   className="w-full h-full scale-50 origin-top-left pointer-events-none"
@@ -336,7 +336,13 @@ export function PortfolioSites() {
                     transformOrigin: 'top left',
                     overflow: 'hidden',
                     scrollbarWidth: 'none',
-                    msOverflowStyle: 'none'
+                    msOverflowStyle: 'none',
+                    opacity: '1 !important',
+                    visibility: 'visible !important',
+                    display: 'block !important',
+                    background: 'white !important',
+                    zIndex: '10 !important',
+                    position: 'relative !important'
                   }}
                   sandbox="allow-scripts allow-same-origin"
                   scrolling="no"
@@ -451,12 +457,12 @@ export function PortfolioSites() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   viewport={{ once: true }}
-                  className="group relative bg-gray-800/30 backdrop-blur-sm rounded-lg p-4 border border-gray-700/30 hover:border-[#F97316]/30 transition-all duration-300 hover:shadow-[0_0_15px_rgba(249,115,22,0.1)]"
+                  className="group relative bg-gray-800/30 dark:bg-gray-800/30 bg-white/90 dark:backdrop-blur-sm rounded-lg p-4 border border-gray-700/30 dark:border-gray-700/30 border-gray-400 dark:hover:border-[#F97316]/30 hover:border-[#F97316]/50 transition-all duration-300 hover:shadow-[0_0_15px_rgba(249,115,22,0.1)] shadow-lg"
                 >
-                  <h4 className="font-semibold text-[#E5E7EB] group-hover:text-[#F97316] transition-colors mb-2">
+                  <h4 className="font-semibold text-[#E5E7EB] dark:text-[#E5E7EB] text-gray-800 dark:group-hover:text-[#F97316] group-hover:text-[#F97316] transition-colors mb-2">
                     {site.title}
                   </h4>
-                  <p className="text-sm text-[#94A3B8] mb-3">
+                  <p className="text-sm text-[#94A3B8] dark:text-[#94A3B8] text-gray-600 mb-3">
                     {typeof site.description === 'string' 
                     ? site.description 
                     : site.description[language as 'tr' | 'en'] || site.description.tr
@@ -466,7 +472,7 @@ export function PortfolioSites() {
                     href={site.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#F97316] text-sm font-medium hover:underline"
+                    className="text-[#F97316] dark:text-[#F97316] text-orange-600 dark:text-sm text-sm font-medium hover:underline"
                   >
                     Görüntüle →
                   </Link>

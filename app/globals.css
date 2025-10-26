@@ -45,6 +45,7 @@ html[data-theme="light"] {
     font-feature-settings: "rlig" 1, "calt" 1;
     line-height: 1.6;
     letter-spacing: 0.02em;
+    background: #151515 !important;
   }
 
   /* Light mode styles - ULTRA STRONG OVERRIDE */
@@ -843,6 +844,54 @@ html[data-theme="light"] {
   html[data-theme="light"] .section-padding {
     background: #ffffff !important;
   }
+
+  /* PORTFOLIO SITES LIGHT MODE OVERRIDE */
+  [data-theme="light"] .group.relative {
+    background: white !important;
+    border: 1px solid #d1d5db !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  [data-theme="light"] .group.relative h4 {
+    color: #1f2937 !important;
+  }
+  
+  [data-theme="light"] .group.relative p {
+    color: #4b5563 !important;
+  }
+  
+  /* IFRAME PROTECTION - Prevent light mode from hiding iframes */
+  [data-theme="light"] iframe {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    background: white !important;
+    z-index: 10 !important;
+    position: relative !important;
+  }
+  
+  [data-theme="light"] .h-48 iframe {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    position: relative !important;
+  }
+  
+  /* FORCE IFRAME VISIBILITY IN LIGHT MODE */
+  html[data-theme="light"] iframe {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+    background: white !important;
+  }
+  
+  /* OVERRIDE ALL LIGHT MODE RULES FOR IFRAMES */
+  [data-theme="light"] * iframe {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+  
 
   /* ABSOLUTE FINAL OVERRIDE - Light mode only */
   [data-theme="light"] {

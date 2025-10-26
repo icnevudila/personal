@@ -103,13 +103,14 @@ export function Blog({ isHomePage = false }: BlogProps) {
       const topic = topics[Math.floor(Math.random() * topics.length)]
       const category = categories[Math.floor(Math.random() * categories.length)]
       
-      // İlk 60 yazı: bugüne kadar (geçmiş tarihler)
+      // İlk 60 yazı: bugünden başlayarak geçmişe
       // Sonraki 40 yazı: gelecek 40 gün
       let date: Date
+      const today = new Date()
       if (i <= 60) {
-        date = new Date(2024, 11, 20 - i + 1) // Bugünden başlayarak geçmişe
+        date = new Date(today.getTime() - (i - 1) * 24 * 60 * 60 * 1000) // Bugünden başlayarak geçmişe
       } else {
-        date = new Date(2024, 11, 21 + (i - 60)) // Gelecek 40 gün
+        date = new Date(today.getTime() + (i - 60) * 24 * 60 * 60 * 1000) // Gelecek günler
       }
       
       const published = i <= 60 // İlk 60 yazı published
@@ -207,9 +208,9 @@ Bu yolculukta başarılar dileriz! 🚀`,
     const generatedPosts = generateBlogPosts()
     setAllBlogPosts(generatedPosts)
     
-    // Ana sayfada sadece 3-4 yazı göster, blog sayfasında hepsini göster
+    // Ana sayfada sadece 3 yazı göster, blog sayfasında hepsini göster
     if (isHomePage) {
-      setBlogPosts(generatedPosts.filter(post => post.published !== false).slice(0, 4))
+      setBlogPosts(generatedPosts.filter(post => post.published !== false).slice(0, 3))
     } else {
       setBlogPosts(generatedPosts.filter(post => post.published !== false))
     }
@@ -354,6 +355,20 @@ Bu yolculukta başarılar dileriz! 🚀`,
     return gradients[category as keyof typeof gradients] || 'rgba(107,114,128,0.3)'
   }
 
+  const getCategoryImage = (category: string) => {
+    const images = {
+      Development: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=160&fit=crop&crop=center',
+      Design: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=400&h=160&fit=crop&crop=center',
+      Performance: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=160&fit=crop&crop=center',
+      AI: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=160&fit=crop&crop=center',
+      'UX/UI': 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=160&fit=crop&crop=center',
+      Technology: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=160&fit=crop&crop=center',
+      Tutorial: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=160&fit=crop&crop=center',
+      'Case Study': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=160&fit=crop&crop=center',
+    }
+    return images[category as keyof typeof images] || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=160&fit=crop&crop=center'
+  }
+
   const getCategoryIcon = (category: string) => {
     const icons = {
       Development: '💻',
@@ -429,24 +444,39 @@ Bu yolculukta başarılar dileriz! 🚀`,
             <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8">
               <AnimatedText text={t.blog.featured} />
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
               {blogPosts.map((post, index) => (
                 <motion.article
                   key={post.slug}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-                  transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
-                  className="card card-hover group cursor-pointer h-full"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.01 }}
+                  className="group cursor-pointer h-full"
                 >
-                  {/* Sadece kategori badge */}
-                  <div className="mb-3">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getCategoryColor(post.category)}`}>
-                      {post.category}
-                    </span>
-                  </div>
+                  {/* Card Container */}
+                  <div className="relative h-full bg-gradient-to-b from-slate-800 to-slate-900 rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)]">
+                    
+                    {/* Top Zone - Image Header */}
+                    <div className="h-40 relative overflow-hidden">
+                      <img 
+                        src={getCategoryImage(post.category)}
+                        alt={post.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-black/20 to-black/40"></div>
+                      {/* Category Badge */}
+                      <div className="absolute top-4 left-4">
+                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/10 backdrop-blur-sm text-white border border-white/20">
+                          {getCategoryIcon(post.category)} {post.category}
+                        </span>
+                      </div>
+                    </div>
 
-                  {/* Post Content */}
-                  <div className="p-3">
+                    {/* Middle Zone - Text Block */}
+                    <div className="p-6">
                     <h4 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-400 transition-colors">
                       {post.title}
                     </h4>
@@ -474,7 +504,8 @@ Bu yolculukta başarılar dileriz! 🚀`,
                       <ArrowRightIcon className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
-                </motion.article>
+                </div>
+              </motion.article>
               ))}
             </div>
           </motion.div>
@@ -579,6 +610,11 @@ Bu yolculukta başarılar dileriz! 🚀`,
                   <option value="Development">Development</option>
                   <option value="Design">Design</option>
                   <option value="Performance">Performance</option>
+                  <option value="AI">AI</option>
+                  <option value="UX/UI">UX/UI</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Tutorial">Tutorial</option>
+                  <option value="Case Study">Case Study</option>
                 </select>
               </div>
 
@@ -668,6 +704,11 @@ Bu yolculukta başarılar dileriz! 🚀`,
                   <option value="Development">Development</option>
                   <option value="Design">Design</option>
                   <option value="Performance">Performance</option>
+                  <option value="AI">AI</option>
+                  <option value="UX/UI">UX/UI</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Tutorial">Tutorial</option>
+                  <option value="Case Study">Case Study</option>
                 </select>
               </div>
 
