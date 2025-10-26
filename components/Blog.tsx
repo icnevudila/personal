@@ -215,13 +215,13 @@ Bu yolculukta başarılar dileriz! 🚀`,
         
         // Ana sayfada sadece featured yazıları göster, blog sayfasında hepsini göster
         if (isHomePage) {
-          setBlogPosts(jsonPosts.filter(post => post.featured).slice(0, 4))
+          setBlogPosts(jsonPosts.filter((post: BlogPost) => post.featured).slice(0, 4))
         } else {
           setBlogPosts(jsonPosts)
         }
         
         console.log('JSON posts loaded:', jsonPosts.length)
-        console.log('Featured posts:', jsonPosts.filter(post => post.featured).length)
+        console.log('Featured posts:', jsonPosts.filter((post: BlogPost) => post.featured).length)
       } catch (error) {
         console.error('Error loading blog posts:', error)
         // Fallback to generated posts
@@ -229,9 +229,9 @@ Bu yolculukta başarılar dileriz! 🚀`,
         setAllBlogPosts(generatedPosts)
         
         if (isHomePage) {
-          setBlogPosts(generatedPosts.filter(post => post.published !== false).slice(0, 4))
+          setBlogPosts(generatedPosts.filter((post: BlogPost) => post.published !== false).slice(0, 4))
         } else {
-          setBlogPosts(generatedPosts.filter(post => post.published !== false))
+          setBlogPosts(generatedPosts.filter((post: BlogPost) => post.published !== false))
         }
       }
     }
@@ -463,7 +463,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
                 <AnimatedText text={t.blog.featured} />
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                {blogPosts.filter(post => post.featured).slice(0, 4).map((post, index) => (
+                {blogPosts.filter((post: BlogPost) => post.featured).slice(0, 4).map((post, index) => (
                 <motion.article
                   key={post.slug}
                   initial={{ opacity: 0, y: 20 }}
