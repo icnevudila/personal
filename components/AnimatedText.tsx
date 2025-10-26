@@ -16,9 +16,9 @@ export function AnimatedText({ text, className = '', delay = 0 }: AnimatedTextPr
         let colorClass = ''
         if (text === 'icnevudila') {
           if (index >= 2 && index <= 3) { // "ne" kısmı (index 2 ve 3)
-            colorClass = 'text-orange-600 dark:text-orange-500'
+            colorClass = 'text-[#F97316] dark:text-orange-500'
           } else {
-            colorClass = 'text-gray-900 dark:text-gray-300'
+            colorClass = 'text-black dark:text-gray-300'
           }
         }
         

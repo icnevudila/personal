@@ -16,10 +16,10 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: 'icnevudila — Yaratıcı Web Tasarım ve AI Odaklı Portföy',
+    default: 'icnevudila — Portföy',
     template: '%s | icnevudila'
   },
-  description: 'Sade, zekice ve insana yakın tasarımlar. AI ve insan işbirliğiyle yaratılan modern dijital deneyimler. UI/UX tasarım, web geliştirme ve yaratıcı çözümler.',
+  description: 'Sade, zekice ve insana yakın tasarımlar. Modern dijital deneyimler. UI/UX tasarım, web geliştirme ve yaratıcı çözümler.',
   keywords: ['web tasarım', 'UI/UX tasarım', 'yazılım destek', 'grafik tasarım', 'portföy', 'frontend developer', 'AI tasarım', 'yaratıcı stüdyo', 'modern web', 'responsive tasarım', 'Next.js', 'React', 'TypeScript'],
   authors: [{ name: 'icnevudila', url: 'https://icnevudila.xyz' }],
   creator: 'icnevudila',
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'tr_TR',
     url: 'https://icnevudila.xyz',
-    title: 'icnevudila — Yaratıcı Web Tasarım ve AI Odaklı Portföy',
-    description: 'Sade, zekice ve insana yakın tasarımlar. AI ve insan işbirliğiyle yaratılan modern dijital deneyimler.',
+    title: 'icnevudila — Portföy',
+    description: 'Sade, zekice ve insana yakın tasarımlar. Modern dijital deneyimler.',
     siteName: 'icnevudila Portfolio',
     images: [
       {
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'icnevudila — Yaratıcı Web Tasarım ve AI Odaklı Portföy',
+    title: 'icnevudila — Portföy',
     description: 'Sade, zekice ve insana yakın tasarımlar.',
     images: ['/og-image.jpg'],
     creator: '@icnevudila',

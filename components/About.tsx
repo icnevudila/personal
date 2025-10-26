@@ -127,15 +127,15 @@ export function About() {
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start px-4">
             {/* Content */}
             <motion.div variants={itemVariants} className="space-y-4 md:space-y-6 flex flex-col justify-center">
-              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-900 dark:text-white leading-relaxed">
                 {t.about.description1}
               </p>
               
-              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-900 dark:text-white leading-relaxed">
                 {t.about.description2}
               </p>
 
-              <p className="text-base sm:text-lg text-gray-300 leading-relaxed">
+              <p className="text-base sm:text-lg text-gray-900 dark:text-white leading-relaxed">
                 {t.about.description3}
               </p>
 
