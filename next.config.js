@@ -16,7 +16,7 @@ const nextConfig = {
   },
   experimental: {
     optimizePackageImports: ['framer-motion', '@heroicons/react'],
-    optimizeCss: true,
+    // optimizeCss: true, // Temporarily disabled due to critters error
   },
   // Performance optimizations
   compress: true,

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>icnevudila - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #151515;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+        
+        .hero h1 .orange {
+            color: #F97316;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #ccc;
+            max-width: 600px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #F97316;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            margin: 10px;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #ea580c;
+        }
+        
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .section p {
+            font-size: 1.2rem;
+            color: #ccc;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>
+            <span>ic</span>
+            <span class="orange">ne</span>
+            <span>vudila</span>
+        </h1>
+        <p>Sade ve kullanıcı odaklı web tasarımları yapıyorum.</p>
+        <div>
+            <a href="#about" class="btn">Hakkımda</a>
+            <a href="#projects" class="btn">Projelerim</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <h2>Hakkımda</h2>
+        <p>Modern UI/UX prensiplerini kullanarak sakin, insan odaklı web siteleri tasarlıyorum. Sezgisel düzenler, dengeli renk kullanımı ve görsel hikaye anlatan tasarım sistemleri üzerinde odaklanıyorum.</p>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2>Projelerim</h2>
+        <p>React, Next.js, TypeScript ve modern web teknolojileri kullanarak geliştirdiğim projeler.</p>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <h2>İletişim</h2>
+        <p>Projeleriniz için benimle iletişime geçin.</p>
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="mailto:contact@icnevudila.com" class="btn">E-posta Gönder</a>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -23,30 +23,6 @@ export const metadata: Metadata = {
   },
   description: 'Sade, zekice ve insana yakın tasarımlar. AI ve insan işbirliğiyle yaratılan modern dijital deneyimler. UI/UX tasarım, web geliştirme ve yaratıcı çözümler.',
   keywords: ['web tasarım', 'UI/UX tasarım', 'yazılım destek', 'grafik tasarım', 'portföy', 'frontend developer', 'AI tasarım', 'yaratıcı stüdyo', 'modern web', 'responsive tasarım', 'Next.js', 'React', 'TypeScript'],
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'tr_TR',
-    url: 'https://icnevudila.xyz',
-    title: 'icnevudila — Yaratıcı Web Tasarım ve AI Odaklı Portföy',
-    description: 'Sade, zekice ve insana yakın tasarımlar. AI ve insan işbirliğiyle yaratılan modern dijital deneyimler.',
-    siteName: 'icnevudila',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'icnevudila — Yaratıcı Web Tasarım ve AI Odaklı Portföy',
-    description: 'Sade, zekice ve insana yakın tasarımlar. AI ve insan işbirliğiyle yaratılan modern dijital deneyimler.',
-  },
   authors: [{ name: 'icnevudila', url: 'https://icnevudila.xyz' }],
   creator: 'icnevudila',
   publisher: 'icnevudila',
@@ -169,31 +145,24 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} antialiased`}>
         <Favicon />
-        {/* <ThemeProvider> */}
+        <ThemeProvider>
           <AuthProvider>
             <LanguageProvider>
               <div className="min-h-screen bg-[#151515] relative">
                 {/* Global Star Rain Background */}
                 <StarRainBackground />
                 
-                <AdminWrapper>
-                  {/* <PerformanceMonitor /> */}
-                  <Navbar />
-                  <main className="relative">
-                    {children}
-                  </main>
-                  <Footer />
-                </AdminWrapper>
+                {/* <PerformanceMonitor /> */}
+                <Navbar />
+                <main className="relative">
+                  {children}
+                </main>
+                <Footer />
               </div>
             </LanguageProvider>
           </AuthProvider>
-        {/* </ThemeProvider> */}
+        </ThemeProvider>
       </body>
     </html>
   )
-}
-
-// Wrapper to conditionally render Navbar and Footer
-function AdminWrapper({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
 }
