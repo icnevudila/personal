@@ -337,12 +337,12 @@ export function PortfolioSites() {
                     overflow: 'hidden',
                     scrollbarWidth: 'none',
                     msOverflowStyle: 'none',
-                    opacity: '1 !important',
-                    visibility: 'visible !important',
-                    display: 'block !important',
-                    background: 'white !important',
-                    zIndex: '10 !important',
-                    position: 'relative !important'
+                    opacity: '1',
+                    visibility: 'visible',
+                    display: 'block',
+                    background: 'white',
+                    zIndex: 10,
+                    position: 'relative'
                   }}
                   sandbox="allow-scripts allow-same-origin"
                   scrolling="no"
