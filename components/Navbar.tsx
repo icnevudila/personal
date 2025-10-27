@@ -11,6 +11,7 @@ import { useTheme } from '@/contexts/ThemeContext'
 import { LanguageSwitcher } from './LanguageSwitcher'
 import { Logo } from './Logo'
 import { ThemeToggle } from './ThemeToggle'
+import { LofiPlayer } from './LofiPlayer'
 import Lottie from 'lottie-react'
 import coffeeAnimation from '../Brewing Coffee.json'
 
@@ -156,6 +157,7 @@ export function Navbar() {
               <span className="text-lg font-bold text-white hidden lg:block">
                 ic<span className="text-orange-500">ne</span>vudila
               </span>
+              <LofiPlayer />
               <ThemeToggle />
               <LanguageSwitcher />
             </div>
