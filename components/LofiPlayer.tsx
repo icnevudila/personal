@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 
 const lofiStations = [
   { id: 1, title: 'Lofi Hip Hop Radio', youtubeId: 'jfKfPfyJRdk' },
@@ -20,6 +21,17 @@ export function LofiPlayer() {
   }
 
   const currentYoutubeId = lofiStations[currentStation].youtubeId
+
+  const barVariants = {
+    animate: {
+      scaleY: [1, 1.8, 1],
+      transition: {
+        duration: 1.2,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      },
+    },
+  }
 
   return (
     <>
@@ -42,26 +54,40 @@ export function LofiPlayer() {
         />
       )}
 
-      {/* Play/Pause Button - Right Triangle */}
-      <button
+      {/* Mini Lofi Player */}
+      <div 
+        className="relative flex items-center gap-2 cursor-pointer select-none text-xs text-gray-400 hover:text-orange-400 transition-all duration-500 px-2 py-1 rounded-lg hover:bg-gray-800/20"
         onClick={togglePlay}
-        className="relative group w-8 h-8 flex items-center justify-center"
-        aria-label={isPlaying ? 'Pause' : 'Play'}
       >
-        {isPlaying ? (
-          // Pause icon
-          <div className="flex gap-1 items-center">
-            <div className="w-1 h-3 bg-orange-500 rounded-sm"></div>
-            <div className="w-1 h-3 bg-orange-500 rounded-sm"></div>
-          </div>
-        ) : (
-          // Play icon - Right triangle
-          <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[10px] border-l-orange-500 group-hover:border-l-orange-400 ml-1 transition-colors"></div>
-        )}
+        <motion.span
+          initial={{ opacity: 0, x: 10 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="hidden sm:inline"
+        >
+          {isPlaying ? '⏸ lofi playing...' : '▶ play lofi'}
+        </motion.span>
+
+        {/* Equalizer animasyonu */}
         {isPlaying && (
-          <div className="absolute -top-1 -right-1 w-2 h-2 bg-orange-400 rounded-full animate-pulse" />
+          <div className="flex gap-[2px] items-center">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <motion.div
+                key={i}
+                variants={barVariants}
+                animate="animate"
+                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: i * 0.15 }}
+                className="w-[2px] h-[12px] bg-orange-400 rounded-sm origin-bottom"
+              />
+            ))}
+          </div>
         )}
-      </button>
+
+        {/* Fallback play icon for mobile */}
+        {!isPlaying && (
+          <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-orange-500"></div>
+        )}
+      </div>
     </>
   )
 }
