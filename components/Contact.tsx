@@ -9,6 +9,7 @@ import { z } from 'zod'
 import { EnvelopeIcon, PhoneIcon, MapPinIcon, PaperAirplaneIcon, ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
+import LofiText from './LofiText'
 // EmailJS kaldırıldı, Netlify Forms kullanılıyor
 
 const contactSchema = z.object({
@@ -141,9 +142,9 @@ export function Contact() {
                 <h3 className="text-2xl font-semibold mb-6">
                   <AnimatedText text={t.contact.connect} />
                 </h3>
-                <p className="text-gray-400 mb-8 leading-relaxed">
+                <LofiText as="p" delay={0.2} hover={false} className="text-gray-400 mb-8 leading-relaxed">
                   {t.contact.connectDescription}
-                </p>
+                </LofiText>
               </div>
 
               {/* Contact Details */}

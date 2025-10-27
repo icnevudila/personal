@@ -7,6 +7,7 @@ import { PhotoIcon } from '@heroicons/react/24/outline'
 import { BriefcaseIcon, SparklesIcon, HeartIcon, CpuChipIcon } from '@heroicons/react/24/outline'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
+import LofiText from './LofiText'
 import { uploadImageToSupabase } from '@/lib/supabase-storage'
 
 export function About() {
@@ -127,17 +128,17 @@ export function About() {
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-start px-4">
             {/* Content */}
             <motion.div variants={itemVariants} className="space-y-4 md:space-y-6 flex flex-col justify-center">
-              <p className="text-base sm:text-lg text-gray-900 dark:text-white leading-relaxed">
+              <LofiText as="p" delay={0.2} hover={false} className="text-base sm:text-lg text-gray-900 dark:text-white leading-relaxed">
                 {t.about.description1}
-              </p>
+              </LofiText>
               
-              <p className="text-base sm:text-lg text-gray-900 dark:text-white leading-relaxed">
+              <LofiText as="p" delay={0.3} hover={false} className="text-base sm:text-lg text-gray-900 dark:text-white leading-relaxed">
                 {t.about.description2}
-              </p>
+              </LofiText>
 
-              <p className="text-base sm:text-lg text-gray-900 dark:text-white leading-relaxed">
+              <LofiText as="p" delay={0.4} hover={false} className="text-base sm:text-lg text-gray-900 dark:text-white leading-relaxed">
                 {t.about.description3}
-              </p>
+              </LofiText>
 
               {/* Caption */}
               <motion.p 
