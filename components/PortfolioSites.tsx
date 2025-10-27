@@ -293,9 +293,9 @@ export function PortfolioSites() {
               onClick={() => setSelectedCategory('')}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-6 py-3 rounded-full font-medium transition-all duration-300 bg-red-600/50 text-gray-300 hover:bg-red-600 hover:text-white backdrop-blur-sm"
+              className="px-3 py-3 rounded-full font-medium transition-all duration-300 bg-red-600/50 text-gray-300 hover:bg-red-600 hover:text-white backdrop-blur-sm"
             >
-              ✕ {language === 'tr' ? 'Temizle' : 'Clear'}
+              ✕
             </motion.button>
           )}
         </motion.div>
