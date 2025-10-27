@@ -162,11 +162,20 @@ export function About() {
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
                     whileHover={{ 
-                      scale: 1.02,
+                      scale: 1.05,
+                      rotateY: 5,
+                      rotateX: -2,
                       transition: { duration: 0.3 }
                     }}
-                    className="group cursor-pointer bg-gray-800/50 border border-gray-700 rounded-xl p-4 md:p-5 hover:border-[#F97316]/50 hover:shadow-lg hover:shadow-orange-400/20 transition-all ease-out duration-300"
+                    style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+                    className="group cursor-pointer bg-gray-800/50 border border-gray-700 rounded-xl p-4 md:p-5 hover:border-[#F97316]/50 hover:shadow-[0_20px_40px_rgba(249,115,22,0.2)] transition-all ease-out duration-300 relative overflow-hidden"
                   >
+                    {/* 3D Glow Effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-[#F97316]/0 via-[#F97316]/10 to-[#F97316]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      initial={false}
+                      whileHover={{ scale: 1.2, rotate: 45 }}
+                    />
                     {/* Icon */}
                     <motion.div
                       className="mb-2 md:mb-3"

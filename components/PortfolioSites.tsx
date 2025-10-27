@@ -310,17 +310,30 @@ export function PortfolioSites() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
+              whileHover={{
+                y: -10,
+                rotateY: 5,
+                rotateX: -3,
+                scale: hoveredSite === site.id ? 1.03 : 1.01
+              }}
+              style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
               viewport={{ once: true }}
               onMouseEnter={() => setHoveredSite(site.id)}
               onMouseLeave={() => setHoveredSite(null)}
               className={`group relative bg-gradient-to-br from-gray-800/60 to-gray-900/40 backdrop-blur-xl rounded-xl overflow-hidden border transition-all duration-500 flex flex-col h-[480px] snap-start ${
                 hoveredSite === site.id 
-                  ? 'border-[#F97316]/60 scale-[1.02] shadow-[0_0_40px_rgba(249,115,22,0.25)] shadow-[0_8px_32px_rgba(249,115,22,0.15)]' 
+                  ? 'border-[#F97316]/60 shadow-[0_20px_60px_rgba(249,115,22,0.3)] z-10' 
                   : hoveredSite 
                     ? 'border-[#F97316]/10 opacity-70' 
-                    : 'border-[#F97316]/20 hover:border-[#F97316]/40 hover:shadow-[0_0_30px_rgba(249,115,22,0.15)] hover:scale-[1.01]'
+                    : 'border-[#F97316]/20 hover:border-[#F97316]/40'
               }`}
             >
+              {/* 3D Glow Effect - Turuncu Gradient */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-[#F97316]/0 via-[#F97316]/15 to-[#F97316]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                initial={false}
+                whileHover={{ scale: 1.2, rotate: 45 }}
+              />
               {/* Gradient Underline Glow */}
               <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#F97316]/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               {/* Live Preview */}

@@ -39,15 +39,34 @@ function SkillCard({ icon: Icon, title, description, delay, isInView }: SkillCar
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
       transition={isReducedMotion ? { duration: 0 } : { duration: 0.5, delay, ease: 'easeOut' }}
-      whileHover={isReducedMotion ? {} : { scale: 1.03 }}
-      className="group relative bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-[#F97316]/40 transition-all duration-300 ease-out hover:shadow-[0_0_20px_rgba(249,115,22,0.10)]"
+      whileHover={isReducedMotion ? {} : { 
+        scale: 1.05, 
+        rotateY: 5, 
+        rotateX: -2,
+        boxShadow: '0 20px 40px rgba(249,115,22,0.2)'
+      }}
+      style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+      className="group relative bg-gray-800/40 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-[#F97316]/40 transition-all duration-300 ease-out hover:shadow-[0_0_30px_rgba(249,115,22,0.20)] overflow-hidden"
     >
-      {/* Icon */}
-      <div className="mb-4">
-        <div className="w-12 h-12 bg-[#F97316]/10 rounded-lg flex items-center justify-center group-hover:bg-[#F97316]/20 transition-colors">
-          <Icon className="w-6 h-6 text-[#F97316]" />
+      {/* 3D Glow Effect */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-br from-[#F97316]/0 via-[#F97316]/20 to-[#F97316]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        initial={false}
+        whileHover={{ scale: 1.2, rotate: 45 }}
+      />
+      {/* Icon with 3D rotation */}
+      <motion.div 
+        className="mb-4 relative z-10"
+        whileHover={{ 
+          rotate: [0, 10, -10, 0],
+          scale: 1.1
+        }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="w-12 h-12 bg-[#F97316]/10 rounded-lg flex items-center justify-center group-hover:bg-[#F97316]/20 transition-colors group-hover:drop-shadow-[0_0_20px_rgba(249,115,22,0.6)]">
+          <Icon className="w-6 h-6 text-[#F97316] group-hover:scale-110 transition-transform" />
         </div>
-      </div>
+      </motion.div>
       
       {/* Title */}
       <h3 className="text-lg sm:text-xl font-bold text-gray-300 mb-2 group-hover:text-[#F97316] transition-colors">

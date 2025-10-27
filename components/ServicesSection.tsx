@@ -343,7 +343,9 @@ export default function ServicesSection() {
                 <motion.div
                   key={service.title}
                   variants={itemVariants}
-                  whileHover={{ y: -5 }}
+                  whileHover={{ y: -8, rotateX: 2, rotateY: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  style={{ perspective: '1000px' }}
                   onClick={() => {
                     const newSet = new Set(expandedServices)
                     if (newSet.has(service.title)) {
@@ -353,9 +355,29 @@ export default function ServicesSection() {
                     }
                     setExpandedServices(newSet)
                   }}
-                  className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-[#F97316]/50 cursor-pointer transition-all group"
+                  className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-[#F97316]/50 cursor-pointer transition-all group relative overflow-hidden"
                 >
-                  <service.icon className="w-12 h-12 text-[#F97316] mb-4 group-hover:scale-110 transition-transform" />
+                  {/* 3D Glow Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-br from-[#F97316]/0 via-[#F97316]/20 to-[#F97316]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    initial={false}
+                    whileHover={{ scale: 1.2, rotate: 45 }}
+                  />
+                  
+                  {/* Animated Shine Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '100%', transition: { duration: 0.6, ease: 'easeInOut' } }}
+                  />
+                  
+                  <motion.div
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.5, ease: 'easeInOut' }}
+                    className="relative z-10"
+                  >
+                    <service.icon className="w-12 h-12 text-[#F97316] mb-4 group-hover:drop-shadow-[0_0_20px_rgba(249,115,22,0.6)] transition-all" />
+                  </motion.div>
                   <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
                   <p className="text-sm text-gray-400 mb-4">{service.description}</p>
                   
@@ -416,13 +438,24 @@ export default function ServicesSection() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ scale: pkg.highlighted ? 1.02 : 1.01 }}
-                  className={`bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border ${
+                  whileHover={{ 
+                    scale: pkg.highlighted ? 1.05 : 1.03,
+                    rotateY: 5,
+                    rotateX: -2,
+                  }}
+                  style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+                  className={`bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border relative overflow-hidden ${
                     pkg.highlighted 
-                      ? 'border-[#F97316] ring-2 ring-[#F97316]/20 scale-105 relative' 
-                      : 'border-gray-700 hover:border-gray-600'
+                      ? 'border-[#F97316] ring-2 ring-[#F97316]/20 scale-105' 
+                      : 'border-gray-700 hover:border-[#F97316]/50'
                   }`}
                 >
+                  {/* 3D Shimmer Effect */}
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F97316]/20 to-transparent opacity-0 group-hover:opacity-100"
+                    initial={{ x: '-100%' }}
+                    whileHover={{ x: '100%', transition: { duration: 0.8, ease: 'easeInOut', repeat: Infinity, repeatDelay: 2 } }}
+                  />
                   {pkg.highlighted && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#F97316] text-white px-4 py-1 rounded-full text-sm font-semibold">
                       Popüler
