@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef, useState, useEffect } from 'react'
-import { CalendarIcon, ClockIcon, ArrowRightIcon, PencilIcon, TrashIcon, PlusIcon, XMarkIcon, CheckIcon, PhotoIcon } from '@heroicons/react/24/outline'
+import { CalendarIcon, ClockIcon, ArrowRightIcon, PencilIcon, TrashIcon, PlusIcon, XMarkIcon, CheckIcon, PhotoIcon, VideoCameraIcon, BellIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
@@ -71,6 +71,63 @@ export function Blog({ isHomePage = false }: BlogProps) {
     }
   }
 
+  // Generate real images from Unsplash based on category
+  const getCategoryImage = (category: string, index: number): string => {
+    const images = {
+      Development: [
+        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop&q=80',
+      ],
+      Design: [
+        'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=800&h=600&fit=crop&q=80',
+      ],
+      Performance: [
+        'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&q=80',
+      ],
+      AI: [
+        'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&q=80',
+      ],
+      'UX/UI': [
+        'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=800&h=600&fit=crop&q=80',
+      ],
+      Technology: [
+        'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop&q=80',
+      ],
+      Tutorial: [
+        'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=600&fit=crop&q=80',
+      ],
+      'Case Study': [
+        'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1550439062-609e1531270e?w=800&h=600&fit=crop&q=80',
+      ],
+    }
+    
+    const categoryImages = images[category as keyof typeof images] || images.Technology
+    return categoryImages[index % categoryImages.length]
+  }
+
   // Generate 100 blog posts
   const generateBlogPosts = (): BlogPost[] => {
     const categories = ['Design', 'Development', 'AI', 'Performance', 'UX/UI', 'Technology', 'Tutorial', 'Case Study']
@@ -98,22 +155,16 @@ export function Blog({ isHomePage = false }: BlogProps) {
     ]
 
     const posts: BlogPost[] = []
+    const today = new Date()
     
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 60; i++) {
       const topic = topics[Math.floor(Math.random() * topics.length)]
       const category = categories[Math.floor(Math.random() * categories.length)]
       
-      // İlk 60 yazı: bugünden başlayarak geçmişe
-      // Sonraki 40 yazı: gelecek 40 gün
-      let date: Date
-      const today = new Date()
-      if (i <= 60) {
-        date = new Date(today.getTime() - (i - 1) * 24 * 60 * 60 * 1000) // Bugünden başlayarak geçmişe
-      } else {
-        date = new Date(today.getTime() + (i - 60) * 24 * 60 * 60 * 1000) // Gelecek günler
-      }
+      // Bugünden başlayarak geçmişe, 1 gün arayla
+      const date = new Date(today.getTime() - (i - 1) * 24 * 60 * 60 * 1000)
       
-      const published = i <= 60 // İlk 60 yazı published
+      const published = true // Tüm yazılar published
       
       posts.push({
         id: i,
@@ -192,7 +243,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
         readTime: `${Math.floor(Math.random() * 10) + 3} dk okuma`,
         category: category,
         featured: i <= 6, // İlk 6 yazı featured
-        image: i <= 6 ? `/portfolio/blog-${i}.jpg` : undefined,
+        image: getCategoryImage(category, i),
         published: published
       })
     }
@@ -204,40 +255,28 @@ Bu yolculukta başarılar dileriz! 🚀`,
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
 
   useEffect(() => {
-    // Load blog posts from JSON file
-    const loadBlogPosts = async () => {
-      try {
-        const response = await fetch('/data/blog.json')
-        const data = await response.json()
-        const jsonPosts = data.posts || []
-        
-        setAllBlogPosts(jsonPosts)
-        
-        // Ana sayfada sadece featured yazıları göster, blog sayfasında hepsini göster
-        if (isHomePage) {
-          setBlogPosts(jsonPosts.filter((post: BlogPost) => post.featured).slice(0, 4))
-        } else {
-          setBlogPosts(jsonPosts)
-        }
-        
-        console.log('JSON posts loaded:', jsonPosts.length)
-        console.log('Featured posts:', jsonPosts.filter((post: BlogPost) => post.featured).length)
-      } catch (error) {
-        console.error('Error loading blog posts:', error)
-        // Fallback to generated posts
-        const generatedPosts = generateBlogPosts()
-        setAllBlogPosts(generatedPosts)
-        
-        if (isHomePage) {
-          setBlogPosts(generatedPosts.filter((post: BlogPost) => post.published !== false).slice(0, 4))
-        } else {
-          setBlogPosts(generatedPosts.filter((post: BlogPost) => post.published !== false))
-        }
-      }
+    // Try to load from localStorage first
+    const savedPosts = localStorage.getItem('blogPosts')
+    let posts: BlogPost[]
+    
+    if (savedPosts) {
+      posts = JSON.parse(savedPosts)
+      setAllBlogPosts(posts)
+      setBlogPosts(posts.filter(post => post.published !== false))
+      console.log('📥 Loaded posts from localStorage:', posts.length)
+    } else {
+      // Always use generated posts for now (100 posts with 60 published)
+      posts = generateBlogPosts()
+      setAllBlogPosts(posts)
+      setBlogPosts(posts.filter(post => post.published !== false))
+      
+      // Save to localStorage
+      localStorage.setItem('blogPosts', JSON.stringify(posts))
+      console.log('📝 Generated posts:', posts.length)
     }
     
-    loadBlogPosts()
-  }, [isHomePage])
+    console.log('Published posts:', posts.filter(post => post.published !== false).length)
+  }, [])
 
   const handleEdit = (post: BlogPost, index: number) => {
     setEditingId(index)
@@ -271,7 +310,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
     const updatedPosts = [...allBlogPosts]
     updatedPosts[index].published = !updatedPosts[index].published
     setAllBlogPosts(updatedPosts)
-    setBlogPosts(updatedPosts.filter((post: BlogPost) => post.published !== false))
+    setBlogPosts(updatedPosts.filter(post => post.published !== false))
     
     // Save to localStorage
     localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
@@ -372,20 +411,6 @@ Bu yolculukta başarılar dileriz! 🚀`,
     return gradients[category as keyof typeof gradients] || 'rgba(107,114,128,0.3)'
   }
 
-  const getCategoryImage = (category: string) => {
-    const images = {
-      Development: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=160&fit=crop&crop=center',
-      Design: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=400&h=160&fit=crop&crop=center',
-      Performance: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=160&fit=crop&crop=center',
-      AI: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=160&fit=crop&crop=center',
-      'UX/UI': 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=400&h=160&fit=crop&crop=center',
-      Technology: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=160&fit=crop&crop=center',
-      Tutorial: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=400&h=160&fit=crop&crop=center',
-      'Case Study': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=160&fit=crop&crop=center',
-    }
-    return images[category as keyof typeof images] || 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=160&fit=crop&crop=center'
-  }
-
   const getCategoryIcon = (category: string) => {
     const icons = {
       Development: '💻',
@@ -411,8 +436,13 @@ Bu yolculukta başarılar dileriz! 🚀`,
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
+  // Filter posts based on homepage or blog page
+  const displayPosts = isHomePage 
+    ? blogPosts.filter(post => post.featured).slice(0, 4)
+    : blogPosts // Show all 60 posts on blog page
+
   return (
-    <section id="blog" className="section-padding">
+    <section id="blog" className="section-padding bg-gray-800/30">
       <div className="container-custom">
         <motion.div
           ref={ref}
@@ -427,7 +457,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-center">
                 <AnimatedText text={t.blog.title} />
             </h2>
-              {isAdmin && (
+              {isAdmin && !isHomePage && (
                 <div className="flex gap-2 md:gap-3">
                   <button
                     onClick={handleAdd}
@@ -444,7 +474,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
                     }}
                     className="px-3 md:px-4 py-2 rounded-lg transition-colors bg-green-500 hover:bg-green-600 text-sm md:text-base"
                   >
-                    <span className="hidden sm:inline">Admin Modu</span>
+                    <span className="hidden sm:inline">{t.blog.adminModeOn}</span>
                     <span className="sm:hidden">Çıkış</span>
                   </button>
                 </div>
@@ -456,178 +486,167 @@ Bu yolculukta başarılar dileriz! 🚀`,
             </p>
           </motion.div>
 
-          {/* Blog Posts */}
-          {isHomePage ? (
-            <motion.div variants={itemVariants} className="mb-8 md:mb-16 px-4">
-              <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8">
-                <AnimatedText text={t.blog.featured} />
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                {blogPosts.filter((post: BlogPost) => post.featured).slice(0, 4).map((post, index) => (
+          {/* Featured Posts */}
+          <motion.div variants={itemVariants} className="mb-8 md:mb-16 px-4">
+            <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8">
+              <AnimatedText text={t.blog.featured} />
+            </h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6">
+              {displayPosts.map((post, index) => (
                 <motion.article
                   key={post.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  whileHover={{ scale: 1.01 }}
-                  className="group cursor-pointer h-full"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+                  transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
+                  className="card card-hover group cursor-pointer h-full"
                 >
-                  {/* Card Container */}
-                  <div className="relative h-full bg-white dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 border border-gray-200 dark:border-transparent rounded-2xl overflow-hidden transition-all duration-300 ease-out hover:shadow-[0_8px_24px_rgba(249,115,22,0.08)] flex flex-col">
-                    
-                    {/* Top Zone - Image Header */}
-                    <div className="h-40 relative overflow-hidden bg-white dark:bg-gray-700">
-                      <img 
-                        src={post.image || getCategoryImage(post.category)}
-                        alt={post.title}
-                        className="w-full h-full object-cover bg-white dark:bg-gray-700"
-                        loading="lazy"
-                        onError={(e) => {
-                          e.currentTarget.src = getCategoryImage(post.category)
-                        }}
-                      />
-                      {/* Category Badge */}
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/10 backdrop-blur-sm text-white border border-white/20">
-                          {getCategoryIcon(post.category)} {post.category}
-                        </span>
-                      </div>
+                  {/* Post Image */}
+                  <div className="relative overflow-hidden rounded-lg mb-3 group-hover:scale-105 transition-transform">
+                    <div className="w-full h-48 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative">
+                      {/* Uploaded Image */}
+                      {post.image ? (
+                        <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                      ) : (
+                        <>
+                          {/* Estetik tasarım */}
+                          <div className="absolute inset-0 opacity-30">
+                            <div className="w-full h-full" style={{
+                              backgroundImage: `linear-gradient(135deg, ${getCategoryGradient(post.category)} 0%, transparent 50%), linear-gradient(-135deg, ${getCategoryGradient(post.category)} 0%, transparent 50%)`,
+                              backgroundSize: '100% 100%'
+                            }} />
+                          </div>
+                          <div className="absolute inset-0 opacity-15">
+                            <div className="w-full h-full" style={{
+                              backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 35px, ${getCategoryGradient(post.category)} 35px, ${getCategoryGradient(post.category)} 36px)`,
+                            }} />
+                          </div>
+                          <div className="absolute inset-0 flex items-center justify-center">
+                            <div className="text-center z-10">
+                              <div className="mb-4">
+                                <span className="text-white font-bold text-6xl drop-shadow-lg">{getCategoryIcon(post.category)}</span>
+                              </div>
+                              <span className="text-gray-200 text-lg font-semibold">{post.category}</span>
+                            </div>
+                          </div>
+                        </>
+                      )}
+                      
+                      {/* Image Upload Button - Admin Only */}
+                      {isAdmin && !isHomePage && (
+                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-10">
+                          <label className="cursor-pointer">
+                            <input
+                              type="file"
+                              accept="image/*"
+                              onChange={async (e) => {
+                                const file = e.target.files?.[0]
+                                if (file) {
+                                  const reader = new FileReader()
+                                  reader.onloadend = async () => {
+                                    const base64String = reader.result as string
+                                    
+                                    console.log('📤 Uploading blog image to Supabase...')
+                                    const result = await uploadImageToSupabase(
+                                      base64String,
+                                      'blog',
+                                      `blog-${post.slug}-${Date.now()}`
+                                    )
+                                    
+                                    console.log('📥 Upload result:', result)
+                                    
+                                    if (result.success && result.url) {
+                                      const updatedPosts = [...blogPosts]
+                                      updatedPosts[blogPosts.indexOf(post)].image = result.url
+                                      setBlogPosts(updatedPosts)
+                                      localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
+                                      alert('Görsel Supabase\'e yüklendi ve herkese görünecek!')
+                                    } else {
+                                      console.error('❌ Upload failed:', result.error)
+                                      const updatedPosts = [...blogPosts]
+                                      updatedPosts[blogPosts.indexOf(post)].image = base64String
+                                      setBlogPosts(updatedPosts)
+                                      localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
+                                      alert('Görsel kaydedildi (sadece sizde görünecek)')
+                                    }
+                                  }
+                                  reader.readAsDataURL(file)
+                                }
+                              }}
+                              className="hidden"
+                            />
+                            <div className="flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors">
+                              <PhotoIcon className="w-5 h-5 text-white" />
+                              <span className="text-white font-medium">
+                                {post.image ? 'Değiştir' : 'Görsel Yükle'}
+                              </span>
+                            </div>
+                          </label>
+                        </div>
+                      )}
+                      
+                      {/* Edit/Delete Buttons - Admin Only */}
+                      {isAdmin && !isHomePage && (
+                        <div className="absolute top-2 right-2 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity z-20">
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              handleEdit(post, allBlogPosts.indexOf(post))
+                            }}
+                            className="p-2 bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors"
+                          >
+                            <PencilIcon className="w-4 h-4 text-white" />
+                          </button>
+                          <button
+                            onClick={(e) => {
+                              e.stopPropagation()
+                              const idx = blogPosts.indexOf(post)
+                              if (idx !== -1) handleDelete(idx)
+                            }}
+                            className="p-2 bg-red-500 hover:bg-red-600 rounded-lg transition-colors"
+                          >
+                            <TrashIcon className="w-4 h-4 text-white" />
+                          </button>
+                        </div>
+                      )}
                     </div>
+                    <div className="absolute top-4 left-4 z-20">
+                      <span className={`px-3 py-1 rounded-full text-sm font-medium border ${getCategoryColor(post.category)}`}>
+                        {post.category}
+                      </span>
+                    </div>
+                  </div>
 
-                    {/* Middle Zone - Text Block */}
-                    <div className="p-6 flex-1 flex flex-col">
-                      <h4 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">
-                        {post.title}
-                      </h4>
-                    <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
+                  {/* Post Content */}
+                  <div className="p-3 flex flex-col flex-grow">
+                    <h4 className="text-lg font-semibold text-white mb-2 group-hover:text-primary-400 transition-colors line-clamp-2">
+                      {post.title}
+                    </h4>
+                    <p className="text-gray-400 text-sm mb-3 leading-relaxed line-clamp-3 flex-grow">
                       {post.excerpt}
                     </p>
                     
                     {/* Post Meta */}
-                    <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-500 mb-4">
-                      <div className="flex items-center space-x-4">
-                        <div className="flex items-center space-x-1">
-                          <CalendarIcon className="w-4 h-4" />
-                          <span>{new Date(post.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <ClockIcon className="w-4 h-4" />
-                          <span>{post.readTime}</span>
-                        </div>
+                    <div className="flex items-center text-xs text-gray-500 mb-3 space-x-3">
+                      <div className="flex items-center space-x-1">
+                        <CalendarIcon className="w-3 h-3" />
+                        <span>{new Date(post.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <ClockIcon className="w-3 h-3" />
+                        <span>{post.readTime}</span>
                       </div>
                     </div>
 
                     {/* Read More */}
-                    <Link href={`/blog/${post.slug}`} className="flex items-center text-primary-500 font-medium mt-auto">
+                    <Link href={`/blog/${post.slug}`} className="flex items-center justify-center text-primary-500 font-medium group-hover:text-primary-400 transition-colors text-sm mt-auto pt-2 border-t border-gray-700">
                       <span>{t.blog.readMore}</span>
-                      <ArrowRightIcon className="w-4 h-4 ml-2" />
+                      <ArrowRightIcon className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                     </Link>
                   </div>
-                </div>
-              </motion.article>
+                </motion.article>
               ))}
             </div>
           </motion.div>
-          ) : (
-            <motion.div variants={itemVariants} className="mb-8 md:mb-16 px-4">
-              <h3 className="text-xl md:text-2xl font-semibold mb-6 md:mb-8">
-                <AnimatedText text={t.blog.allPosts} />
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-                {currentPosts.map((post, index) => (
-                  <motion.article
-                    key={post.slug}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="group cursor-pointer h-full"
-                  >
-                    {/* Card Container */}
-                    <div className="relative h-full bg-white dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-900 border border-gray-200 dark:border-transparent rounded-2xl overflow-hidden flex flex-col">
-                      
-                      {/* Top Zone - Image Header */}
-                      <div className="h-40 relative overflow-hidden bg-white dark:bg-gray-700">
-                        <img 
-                          src={post.image || getCategoryImage(post.category)}
-                          alt={post.title}
-                          className="w-full h-full object-cover bg-white dark:bg-gray-700"
-                          loading="lazy"
-                          onError={(e) => {
-                            e.currentTarget.src = getCategoryImage(post.category)
-                          }}
-                        />
-                        {/* Category Badge */}
-                        <div className="absolute top-4 left-4">
-                          <span className="px-3 py-1 rounded-full text-xs font-medium bg-white/10 backdrop-blur-sm text-white border border-white/20">
-                            {getCategoryIcon(post.category)} {post.category}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Middle Zone - Text Block */}
-                      <div className="p-6 flex-1 flex flex-col">
-                      <h4 className="text-xl font-semibold text-slate-900 dark:text-white mb-3">
-                        {post.title}
-                      </h4>
-                      <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-                        {post.excerpt}
-                      </p>
-                      
-                      {/* Post Meta */}
-                      <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex items-center space-x-1">
-                            <CalendarIcon className="w-4 h-4" />
-                            <span>{new Date(post.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <ClockIcon className="w-4 h-4" />
-                            <span>{post.readTime}</span>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Read More */}
-                      <Link href={`/blog/${post.slug}`} className="flex items-center text-primary-500 font-medium group-hover:text-primary-400 transition-colors mt-auto">
-                        <span>{t.blog.readMore}</span>
-                        <ArrowRightIcon className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                      </Link>
-                    </div>
-                  </div>
-                </motion.article>
-                ))}
-              </div>
-              {totalPages > 1 && (
-                <div className="flex justify-center mt-12">
-                  <nav className="inline-flex -space-x-px rounded-md shadow-sm">
-                    <button
-                      onClick={() => handlePageChange(currentPage - 1)}
-                      disabled={currentPage === 1}
-                      className="px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      Previous
-                    </button>
-                    {Array.from({ length: totalPages }, (_, i) => (
-                      <button
-                        key={i + 1}
-                        onClick={() => handlePageChange(i + 1)}
-                        className={`px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${currentPage === i + 1 ? 'z-10 bg-primary-500 text-white border-primary-500' : ''}`}
-                      >
-                        {i + 1}
-                      </button>
-                    ))}
-                    <button
-                      onClick={() => handlePageChange(currentPage + 1)}
-                      disabled={currentPage === totalPages}
-                      className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-                    >
-                      Next
-                    </button>
-                  </nav>
-                </div>
-              )}
-            </motion.div>
-          )}
 
           {/* View All Posts Button - Only on Homepage */}
           {isHomePage && (
@@ -642,24 +661,6 @@ Bu yolculukta başarılar dileriz! 🚀`,
                   className="btn-secondary"
                 >
                   Tüm Yazıları Gör
-                </motion.button>
-              </Link>
-            </motion.div>
-          )}
-
-          {/* Back to Home Button - Only on Blog Page */}
-          {!isHomePage && (
-            <motion.div 
-              variants={itemVariants}
-              className="text-center mt-12"
-            >
-              <Link href="/">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-secondary"
-                >
-                  Ana Sayfaya Dön
                 </motion.button>
               </Link>
             </motion.div>
@@ -729,11 +730,6 @@ Bu yolculukta başarılar dileriz! 🚀`,
                   <option value="Development">Development</option>
                   <option value="Design">Design</option>
                   <option value="Performance">Performance</option>
-                  <option value="AI">AI</option>
-                  <option value="UX/UI">UX/UI</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Tutorial">Tutorial</option>
-                  <option value="Case Study">Case Study</option>
                 </select>
               </div>
 
@@ -823,11 +819,6 @@ Bu yolculukta başarılar dileriz! 🚀`,
                   <option value="Development">Development</option>
                   <option value="Design">Design</option>
                   <option value="Performance">Performance</option>
-                  <option value="AI">AI</option>
-                  <option value="UX/UI">UX/UI</option>
-                  <option value="Technology">Technology</option>
-                  <option value="Tutorial">Tutorial</option>
-                  <option value="Case Study">Case Study</option>
                 </select>
               </div>
 
@@ -893,6 +884,121 @@ Bu yolculukta başarılar dileriz! 🚀`,
           </motion.div>
         </div>
       )}
+
+      {/* YouTube Channel Section - Only on Homepage */}
+      {isHomePage && (
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mt-20"
+      >
+        <div className="text-center mb-12">
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, type: 'spring', stiffness: 200 }}
+            className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-500/20 to-red-600/10 rounded-2xl mb-6"
+          >
+            <VideoCameraIcon className="w-10 h-10 text-red-500" />
+          </motion.div>
+          <h2 className="text-3xl font-bold mb-4 text-white">
+            {t.services.youtubeSection.title}
+          </h2>
+          <p className="text-lg text-[#F97316] mb-2 font-semibold">
+            {t.services.youtubeSection.subtitle}
+          </p>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            {t.services.youtubeSection.description}
+          </p>
+        </div>
+
+        <div className="max-w-6xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border-2 border-dashed border-gray-700 relative overflow-hidden"
+          >
+            {/* Animated background effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-red-500/5 via-orange-500/5 to-red-500/5 animate-pulse"></div>
+            
+            <div className="relative z-10">
+              {/* YouTube Placeholder */}
+              <div className="aspect-video bg-gray-900 rounded-2xl mb-6 relative overflow-hidden">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <motion.div
+                    animate={{ scale: [1, 1.1, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="text-center"
+                  >
+                    <VideoCameraIcon className="w-24 h-24 text-red-500 mx-auto mb-4" />
+                    <div className="px-6 py-3 bg-red-500 text-white rounded-full font-semibold text-lg">
+                      {t.services.youtubeSection.comingSoon}
+                    </div>
+                  </motion.div>
+                </div>
+              </div>
+
+              {/* Video Grid Preview */}
+              <div className="grid md:grid-cols-3 gap-4 mb-6">
+                {t.services.youtubeSection.videos.map((video: any, index: number) => (
+                  <motion.div
+                    key={video.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                    whileHover={{ scale: 1.03, y: -5 }}
+                    className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-700/50 cursor-pointer group relative"
+                  >
+                    {/* Thumbnail Placeholder */}
+                    <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                      <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/80 text-white text-xs rounded">
+                        {video.duration}
+                      </div>
+                      <VideoCameraIcon className="w-12 h-12 text-gray-600" />
+                    </div>
+                    
+                    {/* Video Info */}
+                    <div className="p-3">
+                      <h4 className="text-sm font-semibold text-white mb-1 line-clamp-2 group-hover:text-red-400 transition-colors">
+                        {video.title}
+                      </h4>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-red-500 hover:bg-red-600 text-white rounded-xl font-semibold transition-colors flex items-center justify-center gap-2 shadow-lg shadow-red-500/20"
+                >
+                  <VideoCameraIcon className="w-5 h-5" />
+                  {t.services.youtubeSection.subscribeButton}
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-gray-700 hover:bg-gray-600 text-white rounded-xl font-semibold border border-gray-600 transition-colors flex items-center justify-center gap-2"
+                >
+                  <BellIcon className="w-5 h-5" />
+                  {t.services.youtubeSection.notifyButton}
+                </motion.button>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.div>
+      )}
     </section>
   )
 }
+

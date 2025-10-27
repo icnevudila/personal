@@ -1,5 +1,6 @@
 'use client'
 
+import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useRef, useCallback } from 'react'
 import { 
@@ -17,7 +18,9 @@ import {
   ShieldCheckIcon,
   LightBulbIcon,
   CodeBracketIcon,
-  RocketLaunchIcon
+  RocketLaunchIcon,
+  VideoCameraIcon,
+  BellIcon
 } from '@heroicons/react/24/outline'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
@@ -64,6 +67,9 @@ const itemVariants = {
 }
 
 export default function ServicesSection() {
+  const { language } = useLanguage()
+  const t = require('@/lib/translations').translations[language]
+  
   const [openFaq, setOpenFaq] = useState<number | null>(0)
   const [expandedServices, setExpandedServices] = useState<Set<string>>(new Set())
   const [activeProcessStep, setActiveProcessStep] = useState(0)
@@ -78,229 +84,26 @@ export default function ServicesSection() {
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   const fileInputRef = useRef<HTMLInputElement>(null)
 
-  const services: ServiceCard[] = [
-    {
-      icon: GlobeAltIcon,
-      title: 'Web Tasarım Hizmetleri',
-      description: 'Responsive ve SEO uyumlu kurumsal siteler, landing page\'ler ve portfolyo siteleri.',
-      features: [
-        'Kurumsal Web Sitesi',
-        'Landing Page',
-        'Blog Sitesi',
-        'Portfolio Sitesi',
-        'Kurumsal İntranet',
-        'Gelir Paylaşımlı Site'
-      ],
-      examples: 'Kahve eşliğinde sıfırdan prod\'a ☕'
-    },
-    {
-      icon: ShoppingBagIcon,
-      title: 'E-ticaret Çözümleri',
-      description: 'Tam özellikli e-ticaret platformları, pazar yeri entegrasyonları ve stok yönetimi.',
-      features: [
-        'E-ticaret Sitesi',
-        'Pazar Yeri Entegrasyonu',
-        'Stok Yönetimi',
-        'Admin Panel',
-        'Ödeme Entegrasyonları',
-        'Ürün Yönetimi'
-      ],
-      examples: 'Sepette kalmaz, satar geçer 📦'
-    },
-    {
-      icon: DevicePhoneMobileIcon,
-      title: 'Mobil Uygulama Tasarımı',
-      description: 'iOS ve Android için modern, kullanıcı dostu arayüz tasarımları ve prototipler.',
-      features: [
-        'Mobil Uygulama UI',
-        'Web Uygulaması',
-        'PWA Tasarımı',
-        'Prototip & Wireframe',
-        'Design System',
-        'Kullanıcı Testi'
-      ],
-      examples: 'Cebe sığar ama güç verir 📱'
-    },
-    {
-      icon: PaintBrushIcon,
-      title: 'Marka & Logo Tasarımı',
-      description: 'Güçlü marka kimliği, logo tasarımları ve kurumsal görsel dil oluşturma.',
-      features: [
-        'Logo Tasarımı',
-        'Marka Kimliği',
-        'Görsel Dil',
-        'Sunum Dosyaları',
-        'Renk Paleti',
-        'Tipografi'
-      ],
-      examples: 'Markanı konuşturur ✨'
-    },
-    {
-      icon: ChartBarIcon,
-      title: 'UI/UX & Analiz',
-      description: 'Kullanıcı araştırması, UX haritalama, A/B test ve kullanılabilirlik analizi.',
-      features: [
-        'User Research',
-        'UX Haritalama',
-        'A/B Testing',
-        'Kullanılabilirlik Analizi',
-        'User Flow',
-        'Wireframe'
-      ],
-      examples: 'Kullanıcı mutluluğu garantisi 😊'
-    },
-    {
-      icon: CommandLineIcon,
-      title: 'Full-Stack Geliştirme',
-      description: 'React, Next.js ve modern teknolojilerle tam özellikli web uygulamaları.',
-      features: [
-        'Frontend Development',
-        'Backend API',
-        'Database Tasarımı',
-        'API Entegrasyonları',
-        'Deployment',
-        'Bakım & Destek'
-      ],
-      examples: 'Kod ile dostluk kuralım 💻'
-    }
-  ]
+  const services: ServiceCard[] = t.services.serviceCards
+  // Map icons to serviceCards
+  services[0].icon = GlobeAltIcon
+  services[1].icon = ShoppingBagIcon
+  services[2].icon = DevicePhoneMobileIcon
+  services[3].icon = PaintBrushIcon
+  services[4].icon = ChartBarIcon
+  services[5].icon = CommandLineIcon
 
-  const packages: Package[] = [
-    {
-      name: 'Basit Site',
-      price: 'Başlangıç',
-      duration: '7–10 gün',
-      features: [
-        'Responsive tasarım',
-        'SEO optimizasyonu',
-        'CMS entegrasyonu',
-        'Form & iletişim',
-        'Güvenlik sertifikası',
-        'Teknik destek'
-      ]
-    },
-    {
-      name: 'Kurumsal Site',
-      price: 'Orta seviye',
-      duration: '10–14 gün',
-      features: [
-        'Özel tasarım',
-        'Gelişmiş SEO',
-        'Analytics entegrasyonu',
-        'Performans optimizasyonu',
-        'Ödeme entegrasyonları',
-        'Genişletilmiş destek'
-      ],
-      highlighted: true
-    },
-    {
-      name: 'E-ticaret Platform',
-      price: 'İleri seviye',
-      duration: '14–21 gün',
-      features: [
-        'Tam özellikli e-ticaret',
-        'Stok yönetimi',
-        'Ödeme sistemleri',
-        'API entegrasyonları',
-        'Güvenlik & yedekleme',
-        'Kapsamlı destek'
-      ]
-    }
-  ]
+  const packages: Package[] = t.services.packages
+  packages[1].highlighted = true
 
-  const faqs: FAQ[] = [
-    {
-      question: 'Proje teslim süresi ne kadar?',
-      answer: 'Proje tipine göre 7 ile 21 gün arasında değişir. Starter paketler 7–10 gün, Pro paketler 10–14 gün, Scale paketler ise 14–21 gün içinde teslim edilir.'
-    },
-    {
-      question: 'Revizyon hakkım var mı?',
-      answer: 'Evet! Starter paket 1 revizyon, Pro paket 3 revizyon, Scale pakette sınırsız revizyon hakkı bulunmaktadır. Tüm revizyonlar teslim sonrası 30 gün içinde kullanılmalıdır.'
-    },
-    {
-      question: 'İçerikleri kim hazırlar?',
-      answer: 'Kopya yazım ve görsel içerikleri siz hazırlarsınız. Gerekirse içerik danışmanlığı veriyorum. Yazıların düzenlenmesi ve SEO optimizasyonu hizmetimize dahil.'
-    },
-    {
-      question: 'Domain ve hosting dahil mi?',
-      answer: 'Domain ve hosting size aittir. İsterseniz yönlendirme ve kurulum desteği veriyorum. Size önerdiğim güvenilir hosting sağlayıcılar var.'
-    },
-    {
-      question: 'Bakım hizmeti ne kadar?',
-      answer: 'İlk 30 gün ücretsiz bakım dahil. Sonrasında aylık 2-5K TL arası bakım paketleri sunuyorum. Minimum güvenlik güncellemeleri, yedekleme ve teknik destek dahil.'
-    }
-  ]
+  const faqs: FAQ[] = t.services.faqSection.items
 
-  const processSteps = [
-    {
-      icon: LightBulbIcon,
-      title: 'Keşif',
-      description: 'İhtiyaçlarınızı dinliyor, hedeflerinizi analiz ediyoruz.',
-      details: {
-        title: 'Kapsamlı Keşif & Analiz',
-        checklist: [
-          'Proje hedefleri ve KPI belirleme',
-          'Rakip analizi ve market araştırması',
-          'Kullanıcı journey mapping',
-          'Teknik gereksinimlerin değerlendirilmesi',
-          'İçerik stratejisi oluşturma'
-        ],
-        duration: '3-5 gün',
-        output: 'Detaylı proje roadmap ve teknik öneriler'
-      }
-    },
-    {
-      icon: PaintBrushIcon,
-      title: 'Tasarım',
-      description: 'Müşteri onayıyla tasarım sürecini başlatıyoruz.',
-      details: {
-        title: 'Yaratıcı Tasarım & Prototipleme',
-        checklist: [
-          'Wireframe ve user flow tasarımı',
-          'UI mockup ve prototip geliştirme',
-          'Brand guideline uyumu',
-          'Responsive breakpointleri',
-          'Müşteri onayı ve iterasyon'
-        ],
-        duration: '4-7 gün',
-        output: 'Onaylanmış tasarım dosyaları ve design system'
-      }
-    },
-    {
-      icon: CodeBracketIcon,
-      title: 'Geliştirme',
-      description: 'Modern teknolojilerle canlı ortama hazırlıyoruz.',
-      details: {
-        title: 'Modern Teknolojilerle Geliştirme',
-        checklist: [
-          'Frontend framework (Next.js, React)',
-          'Backend API ve database kurulumu',
-          'Üçüncü parti entegrasyonlar',
-          'SEO optimizasyonu',
-          'Performance ve security audit'
-        ],
-        duration: '5-14 gün',
-        output: 'Production-ready kod ve staging environment'
-      }
-    },
-    {
-      icon: RocketLaunchIcon,
-      title: 'Yayın',
-      description: 'Test ve optimizasyondan sonra canlıya alıyoruz.',
-      details: {
-        title: 'Launch & Optimizasyon',
-        checklist: [
-          'Son test ve bug fix işlemleri',
-          'Domain ve hosting konfigürasyonu',
-          'SSL kurulumu ve güvenlik ayarları',
-          'Analytics ve monitoring setup',
-          'Canlıya alma ve smoke test'
-        ],
-        duration: '2-3 gün',
-        output: 'Canlı ve optimize edilmiş web sitesi'
-      }
-    }
-  ]
+  const processSteps = [...t.services.processSection.steps]
+  // Map icons to steps
+  processSteps[0].icon = LightBulbIcon
+  processSteps[1].icon = PaintBrushIcon
+  processSteps[2].icon = CodeBracketIcon
+  processSteps[3].icon = RocketLaunchIcon
 
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index)
@@ -349,11 +152,11 @@ export default function ServicesSection() {
             className="text-center mb-16"
           >
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-white leading-tight">
-              Hızlı, ölçülebilir ve{' '}
-              <span className="text-[#F97316]">şık web deneyimleri</span>
+              {t.services.heroSection.title}{' '}
+              <span className="text-[#F97316]">{t.services.heroSection.titleHighlight}</span>
             </h1>
             <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-              Modern tasarım ve gelişmiş teknolojilerle projenizi hayata geçirin
+              {t.services.heroSection.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.button
@@ -362,7 +165,7 @@ export default function ServicesSection() {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-[#F97316] text-white rounded-xl font-semibold hover:bg-[#ea6707] transition-colors flex items-center justify-center gap-2"
               >
-                Teklif Al
+                {t.services.heroSection.button1}
                 <ArrowRightIcon className="w-5 h-5" />
               </motion.button>
               <motion.a
@@ -371,7 +174,7 @@ export default function ServicesSection() {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-gray-800 text-white rounded-xl font-semibold border border-gray-700 hover:border-[#F97316] transition-colors"
               >
-                Projelerime Bakın
+                {t.services.heroSection.button2}
               </motion.a>
             </div>
           </motion.div>
@@ -385,7 +188,7 @@ export default function ServicesSection() {
             className="mb-20"
           >
             <h2 className="text-3xl font-bold mb-12 text-center text-white">
-              Hizmetlerimiz
+              {t.services.servicesTitle}
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {services.map((service, index) => (
@@ -404,14 +207,8 @@ export default function ServicesSection() {
                     }
                     setExpandedServices(newSet)
                   }}
-                  className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-[#F97316]/50 cursor-pointer transition-all group relative overflow-hidden"
+                  className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-gray-600 cursor-pointer transition-all group relative overflow-hidden"
                 >
-                  {/* 3D Glow Effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-[#F97316]/0 via-[#F97316]/20 to-[#F97316]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    initial={false}
-                    whileHover={{ scale: 1.2, rotate: 45 }}
-                  />
                   
                   {/* Animated Shine Effect */}
                   <motion.div
@@ -425,7 +222,7 @@ export default function ServicesSection() {
                     transition={{ duration: 0.5, ease: 'easeInOut' }}
                     className="relative z-10"
                   >
-                    <service.icon className="w-12 h-12 text-[#F97316] mb-4 group-hover:drop-shadow-[0_0_20px_rgba(249,115,22,0.6)] transition-all" />
+                    <service.icon className="w-12 h-12 text-[#F97316] mb-4 transition-all" />
                   </motion.div>
                   <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
                   <p className="text-sm text-gray-400 mb-4">{service.description}</p>
@@ -456,7 +253,7 @@ export default function ServicesSection() {
 
                   {!expandedServices.has(service.title) && (
                     <div className="text-sm text-[#F97316] mt-4 flex items-center gap-1 group-hover:gap-2 transition-all">
-                      Detayları Gör <ArrowRightIcon className="w-4 h-4" />
+                      {t.services.seeDetails} <ArrowRightIcon className="w-4 h-4" />
                     </div>
                   )}
                 </motion.div>
@@ -473,10 +270,10 @@ export default function ServicesSection() {
             className="mb-20"
           >
             <h2 className="text-3xl font-bold mb-4 text-center text-white">
-              Paket & Fiyatlar
+              {t.services.pricingSection.title}
             </h2>
             <p className="text-center text-gray-400 mb-12">
-              Projenizin ihtiyacına göre seçin, başlangıç fiyatları
+              {t.services.pricingSection.subtitle}
             </p>
             
             <div className="grid md:grid-cols-3 gap-6">
@@ -493,25 +290,19 @@ export default function ServicesSection() {
                     rotateX: -2,
                   }}
                   style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
-                  className={`bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border relative overflow-hidden ${
+                  className={`bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border relative ${
                     pkg.highlighted 
-                      ? 'border-[#F97316] ring-2 ring-[#F97316]/20 scale-105' 
-                      : 'border-gray-700 hover:border-[#F97316]/50'
+                      ? 'border-[#F97316] scale-105' 
+                      : 'border-gray-700'
                   }`}
                 >
-                  {/* 3D Shimmer Effect */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F97316]/20 to-transparent opacity-0 group-hover:opacity-100"
-                    initial={{ x: '-100%' }}
-                    whileHover={{ x: '100%', transition: { duration: 0.8, ease: 'easeInOut', repeat: Infinity, repeatDelay: 2 } }}
-                  />
-                  {pkg.highlighted && (
-                    <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#F97316] text-white px-4 py-1 rounded-full text-sm font-semibold">
-                      Popüler
-                    </div>
-                  )}
-                  <h3 className="text-2xl font-bold text-white mb-2">{pkg.name}</h3>
-                  <div className="mb-6">
+                {pkg.highlighted && (
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#F97316] text-white px-6 py-2 rounded-full text-xs font-bold shadow-lg z-10 border-2 border-gray-800">
+                    {t.services.pricingSection.popular}
+                  </div>
+                )}
+                <h3 className="text-2xl font-bold text-white mb-2">{pkg.name}</h3>
+                <div className="mb-6">
                     <span className="text-4xl font-bold text-[#F97316]">{pkg.price}</span>
                     <span className="text-gray-400 ml-2">{pkg.duration}</span>
                   </div>
@@ -534,7 +325,7 @@ export default function ServicesSection() {
                         : 'bg-gray-700 text-white hover:bg-gray-600'
                     }`}
                   >
-                    Teklif Al
+                    {t.services.pricingSection.button}
                   </motion.button>
                 </motion.div>
               ))}
@@ -551,10 +342,10 @@ export default function ServicesSection() {
           >
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 text-white">
-                Çalışma Sürecimiz
+                {t.services.processSection.mainTitle}
               </h2>
               <p className="text-gray-400 max-w-2xl mx-auto">
-                4 adımda projenizi canlıya alıyoruz. Her aşama şeffaf, ölçülebilir ve veriye dayalı.
+                {t.services.processSection.mainSubtitle}
               </p>
             </div>
 
@@ -581,17 +372,15 @@ export default function ServicesSection() {
                     whileTap={{ scale: 0.98 }}
                     className={`relative group bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border transition-all duration-300 overflow-hidden text-center ${
                       activeProcessStep === index 
-                        ? 'border-[#F97316] shadow-[0_0_30px_rgba(249,115,22,0.3)]' 
-                        : 'border-gray-700/50 hover:border-[#F97316]/50'
+                        ? 'border-[#F97316]' 
+                        : 'border-gray-700/50'
                     }`}
                   >
 
                     {/* Icon */}
-                    <div className="w-20 h-20 bg-gradient-to-br from-[#F97316]/20 to-[#F97316]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition-all">
-                      <step.icon className={`w-10 h-10 transition-all ${
-                        activeProcessStep === index 
-                          ? 'text-[#F97316] scale-110 drop-shadow-[0_0_20px_rgba(249,115,22,0.6)]' 
-                          : 'text-[#F97316]'
+                    <div className="w-20 h-20 bg-gradient-to-br from-[#F97316]/20 to-[#F97316]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 transition-all">
+                      <step.icon className={`w-10 h-10 text-[#F97316] transition-all ${
+                        activeProcessStep === index ? 'scale-110' : ''
                       }`} />
                     </div>
 
@@ -621,29 +410,29 @@ export default function ServicesSection() {
                   <div className="max-w-4xl mx-auto">
                     <div className="flex items-center gap-4 mb-8">
                       <div className="w-16 h-16 bg-gradient-to-br from-[#F97316]/20 to-[#F97316]/10 rounded-2xl flex items-center justify-center">
-                        <processSteps[activeProcessStep].icon className="w-10 h-10 text-[#F97316]" />
+                        {React.createElement(processSteps[activeProcessStep].icon, { className: "w-10 h-10 text-[#F97316]" })}
                       </div>
                       <div>
                         <h3 className="text-2xl font-bold text-white mb-2">
                           {processSteps[activeProcessStep].details.title}
                         </h3>
                         <p className="text-gray-400">
-                          Süre: {processSteps[activeProcessStep].details.duration}
+                          {t.services.processSection.durationLabel}: {processSteps[activeProcessStep].details.duration}
                         </p>
                       </div>
                     </div>
 
                     {/* Checklist */}
                     <div className="mb-8">
-                      <h4 className="text-lg font-bold text-white mb-4">Bu Aşamada Neler Yapıyoruz?</h4>
+                      <h4 className="text-lg font-bold text-white mb-4">{t.services.processSection.checklistTitle}</h4>
                       <div className="grid md:grid-cols-2 gap-4">
-                        {processSteps[activeProcessStep].details.checklist.map((item, idx) => (
+                        {processSteps[activeProcessStep].details.checklist.map((item: string, idx: number) => (
                           <motion.div
                             key={idx}
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: idx * 0.1 }}
-                            className="flex items-start gap-3 p-4 bg-gray-900/50 rounded-xl border border-gray-700/50 hover:border-[#F97316]/50 transition-colors"
+                            className="flex items-start gap-3 p-4 bg-gray-900/50 rounded-xl border border-gray-700/50 transition-colors"
                           >
                             <CheckIcon className="w-6 h-6 text-[#F97316] mt-0.5 flex-shrink-0" />
                             <span className="text-gray-300">{item}</span>
@@ -654,7 +443,7 @@ export default function ServicesSection() {
 
                     {/* Output */}
                     <div className="bg-gradient-to-r from-[#F97316]/10 to-transparent border-l-4 border-[#F97316] p-6 rounded-xl">
-                      <p className="text-sm font-semibold text-[#F97316] mb-2">📦 Bu Aşamanın Çıktısı</p>
+                      <p className="text-sm font-semibold text-[#F97316] mb-2">{t.services.processSection.outputTitle}</p>
                       <p className="text-white">{processSteps[activeProcessStep].details.output}</p>
                     </div>
                   </div>
@@ -672,18 +461,25 @@ export default function ServicesSection() {
             className="mb-20"
           >
             <h2 className="text-3xl font-bold mb-4 text-center text-white">
-              Garantiler
+              {t.services.guaranteesSection.title}
             </h2>
             <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
-              Projeniz için sunduğumuz güvenlik ve destek garantileri
+              {t.services.guaranteesSection.subtitle}
             </p>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { icon: ShieldCheckIcon, title: 'Lighthouse 90+ Hedefi', desc: 'Performans, erişilebilirlik ve SEO skorları garanti altında', color: 'from-blue-500 to-cyan-400' },
-                { icon: ClockIcon, title: '30 Gün Ücretsiz Bakım', desc: 'Canlı sonrası ilk ay tamamen ücretsiz destek', color: 'from-[#F97316] to-orange-400' },
-                { icon: CheckIcon, title: 'Revizyon Hakkı', desc: 'Paketinize göre sınırlı veya sınırsız revizyon', color: 'from-green-500 to-emerald-400' }
-              ].map((item, index) => (
+                { icon: ShieldCheckIcon, color: 'from-blue-500 to-cyan-400' },
+                { icon: ClockIcon, color: 'from-[#F97316] to-orange-400' },
+                { icon: CheckIcon, color: 'from-green-500 to-emerald-400' }
+              ].map((item, index) => {
+                const guaranteeItem = t.services.guaranteesSection.items[index]
+                return {
+                  ...item,
+                  title: guaranteeItem.title,
+                  desc: guaranteeItem.desc
+                }
+              }).map((item, index) => (
                 <motion.div
                   key={item.title}
                   initial={{ opacity: 0, y: 30 }}
@@ -733,7 +529,7 @@ export default function ServicesSection() {
             className="mb-20"
           >
             <h2 className="text-3xl font-bold mb-12 text-center text-white">
-              Sıkça Sorulan Sorular
+              {t.services.faqSection.title}
             </h2>
             
             <div className="space-y-4 max-w-3xl mx-auto">
@@ -789,10 +585,10 @@ export default function ServicesSection() {
           >
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4 text-white">
-                Teklif Alın
+                {t.services.formSection.title}
               </h2>
               <p className="text-gray-400 max-w-2xl mx-auto">
-                Projenizi detaylarıyla paylaşın, size özel bir teklif hazırlayalım
+                {t.services.formSection.subtitle}
               </p>
             </div>
 
@@ -801,10 +597,9 @@ export default function ServicesSection() {
               className="bg-gray-800/50 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-gray-700/50 max-w-2xl mx-auto"
             >
               <div className="grid md:grid-cols-2 gap-6 mb-6">
-                {/* İsim */}
                 <div>
                   <label htmlFor="name" className="block text-sm font-semibold text-white mb-2">
-                    İsim *
+                    {t.services.formSection.nameLabel} *
                   </label>
                   <input
                     type="text"
@@ -813,14 +608,13 @@ export default function ServicesSection() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#F97316] transition-colors"
-                    placeholder="Adınız"
+                    placeholder={t.services.formSection.namePlaceholder}
                   />
                 </div>
 
-                {/* Email */}
                 <div>
                   <label htmlFor="email" className="block text-sm font-semibold text-white mb-2">
-                    Email *
+                    {t.services.formSection.emailLabel} *
                   </label>
                   <input
                     type="email"
@@ -829,14 +623,13 @@ export default function ServicesSection() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#F97316] transition-colors"
-                    placeholder="email@ornek.com"
+                    placeholder={t.services.formSection.emailPlaceholder}
                   />
                 </div>
 
-                {/* Telefon */}
                 <div>
                   <label htmlFor="phone" className="block text-sm font-semibold text-white mb-2">
-                    Telefon
+                    {t.services.formSection.phoneLabel}
                   </label>
                   <input
                     type="tel"
@@ -844,14 +637,13 @@ export default function ServicesSection() {
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                     className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#F97316] transition-colors"
-                    placeholder="+90 (555) 000 00 00"
+                    placeholder={t.services.formSection.phonePlaceholder}
                   />
                 </div>
 
-                {/* Proje Tipi */}
                 <div>
                   <label htmlFor="projectType" className="block text-sm font-semibold text-white mb-2">
-                    Proje Tipi *
+                    {t.services.formSection.projectTypeLabel} *
                   </label>
                   <select
                     id="projectType"
@@ -860,20 +652,19 @@ export default function ServicesSection() {
                     onChange={(e) => setFormData({ ...formData, projectType: e.target.value })}
                     className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-white focus:outline-none focus:border-[#F97316] transition-colors"
                   >
-                    <option value="">Seçiniz</option>
-                    <option value="web">Web Sitesi</option>
-                    <option value="ecommerce">E-ticaret</option>
-                    <option value="mobile">Mobil Uygulama</option>
-                    <option value="brand">Marka & Logo</option>
-                    <option value="other">Diğer</option>
+                    <option value="">{t.services.formSection.selectPlaceholder}</option>
+                    <option value="web">{t.services.formSection.projectTypes.web}</option>
+                    <option value="ecommerce">{t.services.formSection.projectTypes.ecommerce}</option>
+                    <option value="mobile">{t.services.formSection.projectTypes.mobile}</option>
+                    <option value="brand">{t.services.formSection.projectTypes.brand}</option>
+                    <option value="other">{t.services.formSection.projectTypes.other}</option>
                   </select>
                 </div>
               </div>
 
-              {/* Mesaj */}
               <div className="mb-6">
                 <label htmlFor="message" className="block text-sm font-semibold text-white mb-2">
-                  Proje Detayları *
+                  {t.services.formSection.messageLabel} *
                 </label>
                 <textarea
                   id="message"
@@ -882,7 +673,7 @@ export default function ServicesSection() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-[#F97316] transition-colors resize-none"
-                  placeholder="Projenizi kısaca anlatın, özel istekleriniz varsa belirtin..."
+                  placeholder={t.services.formSection.messagePlaceholder}
                 />
               </div>
 
@@ -898,19 +689,19 @@ export default function ServicesSection() {
                   {formStatus === 'sending' && (
                     <>
                       <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      Gönderiliyor...
+                      {t.services.formSection.sendingButton}
+                    </>
+                  )}
+                  {formStatus === 'idle' && (
+                    <>
+                      {t.services.formSection.sendButton}
+                      <ArrowRightIcon className="w-5 h-5" />
                     </>
                   )}
                   {formStatus === 'success' && (
                     <>
                       <CheckIcon className="w-5 h-5" />
-                      Gönderildi!
-                    </>
-                  )}
-                  {formStatus === 'idle' && (
-                    <>
-                      Teklif İste
-                      <ArrowRightIcon className="w-5 h-5" />
+                      {t.services.formSection.successButton}
                     </>
                   )}
                 </motion.button>
@@ -921,7 +712,7 @@ export default function ServicesSection() {
                     animate={{ opacity: 1, x: 0 }}
                     className="text-sm text-green-400"
                   >
-                    En kısa sürede size döneceğim! 🎉
+                    {t.services.formSection.successQuickMessage}
                   </motion.p>
                 )}
               </div>
@@ -937,10 +728,10 @@ export default function ServicesSection() {
             className="text-center bg-gradient-to-r from-gray-800 to-gray-900 rounded-3xl p-12 border border-[#F97316]/20"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              Projenizi 24 saat içinde planlayalım
+              {t.services.formSection.ctaTitle}
             </h2>
             <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
-              Hemen teklif alın ve projenizi hayata geçirin
+              {t.services.formSection.ctaSubtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
@@ -949,7 +740,7 @@ export default function ServicesSection() {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-[#F97316] text-white rounded-xl font-semibold hover:bg-[#ea6707] transition-colors inline-flex items-center justify-center gap-2"
               >
-                Teklif Formu
+                {t.services.formSection.ctaButton1}
                 <ArrowRightIcon className="w-5 h-5" />
               </motion.a>
               <motion.a
@@ -960,7 +751,7 @@ export default function ServicesSection() {
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-gray-700 text-white rounded-xl font-semibold border border-gray-600 hover:border-[#F97316] transition-colors"
               >
-                WhatsApp
+                {t.services.formSection.ctaButton2}
               </motion.a>
             </div>
           </motion.div>

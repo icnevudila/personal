@@ -178,7 +178,8 @@ export const translations = {
       slugPlaceholder: 'yazi-url-adresi',
       authorPlaceholder: 'Yazar adı',
       featuredLabel: 'Öne Çıkan',
-      featuredDesc: 'Ana sayfada göster'
+      featuredDesc: 'Ana sayfada göster',
+      adminModeOn: 'Admin Modu: Açık'
     },
     education: {
       title: 'Sürekli Öğreniyorum',
@@ -206,6 +207,311 @@ export const translations = {
       title: 'Hizmetlerim',
       subtitle: 'Web sitelerinden mobil uygulamalara, ihtiyacınız olan her türlü dijital çözüm.',
       ctaText: 'Projenizin başarıya ulaşması için burada olacağım. Nasıl başlayabiliriz?',
+      heroSection: {
+        title: 'Hızlı, ölçülebilir ve',
+        titleHighlight: 'şık web deneyimleri',
+        subtitle: 'Modern tasarım ve gelişmiş teknolojilerle projenizi hayata geçirin',
+        button1: 'Teklif Al',
+        button2: 'Projelerime Bakın'
+      },
+      servicesTitle: 'Hizmetlerimiz',
+      seeDetails: 'Detayları Gör',
+      pricingSection: {
+        title: 'Paket & Fiyatlar',
+        subtitle: 'Projenizin ihtiyacına göre seçin, başlangıç fiyatları',
+        button: 'Teklif Al',
+        popular: 'Popüler'
+      },
+      processSection: {
+        mainTitle: 'Çalışma Sürecimiz',
+        mainSubtitle: '4 adımda projenizi canlıya alıyoruz. Her aşama şeffaf, ölçülebilir ve veriye dayalı.',
+        stepsTitle: 'Süreç Adımları',
+        durationLabel: 'Süre',
+        checklistTitle: 'Bu Aşamada Neler Yapıyoruz?',
+        outputTitle: '📦 Bu Aşamanın Çıktısı',
+        steps: [
+          {
+            title: 'Keşif',
+            description: 'İhtiyaçlarınızı dinliyor, hedeflerinizi analiz ediyoruz.',
+            details: {
+              title: 'Kapsamlı Keşif & Analiz',
+              checklist: [
+                'Proje hedefleri ve KPI belirleme',
+                'Rakip analizi ve market araştırması',
+                'Kullanıcı journey mapping',
+                'Teknik gereksinimlerin değerlendirilmesi',
+                'İçerik stratejisi oluşturma'
+              ],
+              duration: '3-5 gün',
+              output: 'Detaylı proje roadmap ve teknik öneriler'
+            }
+          },
+          {
+            title: 'Tasarım',
+            description: 'Müşteri onayıyla tasarım sürecini başlatıyoruz.',
+            details: {
+              title: 'Yaratıcı Tasarım & Prototipleme',
+              checklist: [
+                'Wireframe ve user flow tasarımı',
+                'UI mockup ve prototip geliştirme',
+                'Brand guideline uyumu',
+                'Responsive breakpointleri',
+                'Müşteri onayı ve iterasyon'
+              ],
+              duration: '4-7 gün',
+              output: 'Onaylanmış tasarım dosyaları ve design system'
+            }
+          },
+          {
+            title: 'Geliştirme',
+            description: 'Modern teknolojilerle canlı ortama hazırlıyoruz.',
+            details: {
+              title: 'Modern Teknolojilerle Geliştirme',
+              checklist: [
+                'Frontend framework (Next.js, React)',
+                'Backend API ve database kurulumu',
+                'Üçüncü parti entegrasyonlar',
+                'SEO optimizasyonu',
+                'Performance ve security audit'
+              ],
+              duration: '5-14 gün',
+              output: 'Production-ready kod ve staging environment'
+            }
+          },
+          {
+            title: 'Yayın',
+            description: 'Test ve optimizasyondan sonra canlıya alıyoruz.',
+            details: {
+              title: 'Launch & Optimizasyon',
+              checklist: [
+                'Son test ve bug fix işlemleri',
+                'Domain ve hosting konfigürasyonu',
+                'SSL kurulumu ve güvenlik ayarları',
+                'Analytics ve monitoring setup',
+                'Canlıya alma ve smoke test'
+              ],
+              duration: '2-3 gün',
+              output: 'Canlı ve optimize edilmiş web sitesi'
+            }
+          }
+        ]
+      },
+      formSection: {
+        title: 'Teklif Alın',
+        subtitle: 'Projenizi detaylarıyla paylaşın, size özel bir teklif hazırlayalım',
+        nameLabel: 'İsim',
+        namePlaceholder: 'Adınız',
+        emailLabel: 'Email',
+        emailPlaceholder: 'email@ornek.com',
+        phoneLabel: 'Telefon',
+        phonePlaceholder: '+90 (555) 000 00 00',
+        projectTypeLabel: 'Proje Tipi',
+        selectPlaceholder: 'Seçiniz',
+        projectTypes: {
+          web: 'Web Sitesi',
+          ecommerce: 'E-ticaret',
+          mobile: 'Mobil Uygulama',
+          brand: 'Marka & Logo',
+          other: 'Diğer'
+        },
+        messageLabel: 'Proje Detayları',
+        messagePlaceholder: 'Projenizi kısaca anlatın, özel istekleriniz varsa belirtin...',
+        attachLabel: 'Dosya Ekle (opsiyonel)',
+        sendButton: 'Teklif İste',
+        sendingButton: 'Gönderiliyor...',
+        successButton: '✓ Gönderildi',
+        successMessage: 'Mesajınız ulaştı! En kısa sürede geri dönüş yapacağım.',
+        successQuickMessage: 'En kısa sürede size döneceğim! 🎉',
+        scrollToForm: 'Hemen Teklif Al',
+        ctaTitle: 'Projenizi 24 saat içinde planlayalım',
+        ctaSubtitle: 'Hemen teklif alın ve projenizi hayata geçirin',
+        ctaButton1: 'Teklif Formu',
+        ctaButton2: 'WhatsApp'
+      },
+      guaranteesSection: {
+        title: 'Garantiler',
+        subtitle: 'Projeniz için sunduğumuz güvenlik ve destek garantileri',
+        items: [
+          { title: 'Lighthouse 90+ Hedefi', desc: 'Performans, erişilebilirlik ve SEO skorları garanti altında' },
+          { title: '30 Gün Ücretsiz Bakım', desc: 'Canlı sonrası ilk ay tamamen ücretsiz destek' },
+          { title: 'Revizyon Hakkı', desc: 'Paketinize göre sınırlı veya sınırsız revizyon' }
+        ]
+      },
+      youtubeSection: {
+        title: 'YouTube Kanalım',
+        subtitle: 'Yakında geliyor...',
+        description: 'Tasarım ve geliştirme dünyasından ipuçları, tutorial\'lar ve proje incelemeleri.',
+        comingSoon: 'Yakında',
+        notifyButton: 'Bildirimleri Aç',
+        subscribeButton: 'Abone Ol',
+        videos: [
+          {
+            id: 'video-1',
+            title: 'Web Tasarımında Sadelik Prensipleri',
+            thumbnail: '/youtube/coming-soon-1.jpg',
+            duration: '12:34'
+          },
+          {
+            id: 'video-2',
+            title: 'Next.js ile Modern Web Geliştirme',
+            thumbnail: '/youtube/coming-soon-2.jpg',
+            duration: '18:22'
+          },
+          {
+            id: 'video-3',
+            title: 'UI/UX Tasarım İpuçları',
+            thumbnail: '/youtube/coming-soon-3.jpg',
+            duration: '15:45'
+          }
+        ]
+      },
+      faqSection: {
+        title: 'Sıkça Sorulan Sorular',
+        subtitle: 'Merak ettikleriniz burada yanıt buluyor',
+        items: [
+          {
+            question: 'Ne kadar sürer bir proje?',
+            answer: 'Basit bir web sitesi 1-2 hafta sürer. E-ticaret ve karmaşık projeler 4-12 hafta arası değişir. Hızlı iletişim ve düzenli güncellemelerle, her aşamada nerede olduğunuzu bilirsiniz.'
+          },
+          {
+            question: 'Fiyatlar nasıl belirleniyor?',
+            answer: 'Her proje benzersizdir. İhtiyaçlarınıza göre özel fiyatlandırma yapıyorum. Başlangıç paketim 15K TL\'den, kurumsal çözümler 150K TL\'ye kadar değişiyor. Detaylı teklif için iletişime geçelim.'
+          },
+          {
+            question: 'İçerikleri kim hazırlar?',
+            answer: 'Kopya yazım ve görsel içerikleri siz hazırlarsınız. Gerekirse içerik danışmanlığı veriyorum. Yazıların düzenlenmesi ve SEO optimizasyonu hizmetimize dahil.'
+          },
+          {
+            question: 'Domain ve hosting dahil mi?',
+            answer: 'Domain ve hosting size aittir. İsterseniz yönlendirme ve kurulum desteği veriyorum. Size önerdiğim güvenilir hosting sağlayıcılar var.'
+          },
+          {
+            question: 'Bakım hizmeti ne kadar?',
+            answer: 'İlk 30 gün ücretsiz bakım dahil. Sonrasında aylık 2-5K TL arası bakım paketleri sunuyorum. Minimum güvenlik güncellemeleri, yedekleme ve teknik destek dahil.'
+          }
+        ]
+      },
+      packages: [
+        {
+          name: 'Basit Site',
+          price: 'Başlangıç',
+          duration: '7–10 gün',
+          features: [
+            'Responsive tasarım',
+            'SEO optimizasyonu',
+            'CMS entegrasyonu',
+            'Form & iletişim',
+            'Güvenlik sertifikası',
+            'Teknik destek'
+          ]
+        },
+        {
+          name: 'Kurumsal Site',
+          price: 'Orta seviye',
+          duration: '10–14 gün',
+          features: [
+            'Özel tasarım',
+            'Gelişmiş SEO',
+            'Analytics entegrasyonu',
+            'Performans optimizasyonu',
+            'Ödeme entegrasyonları',
+            'Genişletilmiş destek'
+          ]
+        },
+        {
+          name: 'E-ticaret Platform',
+          price: 'İleri seviye',
+          duration: '14–21 gün',
+          features: [
+            'Tam özellikli e-ticaret',
+            'Stok yönetimi',
+            'Ödeme sistemleri',
+            'API entegrasyonları',
+            'Güvenlik & yedekleme',
+            'Kapsamlı destek'
+          ]
+        }
+      ],
+      serviceCards: [
+        {
+          title: 'Web Tasarım Hizmetleri',
+          description: 'Responsive ve SEO uyumlu kurumsal siteler, landing page\'ler ve portfolyo siteleri.',
+          features: [
+            'Kurumsal Web Sitesi',
+            'Landing Page',
+            'Blog Sitesi',
+            'Portfolio Sitesi',
+            'Kurumsal İntranet',
+            'Gelir Paylaşımlı Site'
+          ],
+          examples: 'Kahve eşliğinde sıfırdan prod\'a ☕'
+        },
+        {
+          title: 'E-ticaret Çözümleri',
+          description: 'Tam özellikli e-ticaret platformları, pazar yeri entegrasyonları ve stok yönetimi.',
+          features: [
+            'E-ticaret Sitesi',
+            'Pazar Yeri Entegrasyonu',
+            'Stok Yönetimi',
+            'Admin Panel',
+            'Ödeme Entegrasyonları',
+            'Ürün Yönetimi'
+          ],
+          examples: 'Sepette kalmaz, satar geçer 📦'
+        },
+        {
+          title: 'Mobil Uygulama Tasarımı',
+          description: 'iOS ve Android için modern, kullanıcı dostu arayüz tasarımları ve prototipler.',
+          features: [
+            'Mobil Uygulama UI',
+            'Web Uygulaması',
+            'PWA Tasarımı',
+            'Prototip & Wireframe',
+            'Design System',
+            'Kullanıcı Testi'
+          ],
+          examples: 'Cebe sığar ama güç verir 📱'
+        },
+        {
+          title: 'Marka & Logo Tasarımı',
+          description: 'Güçlü marka kimliği, logo tasarımları ve kurumsal görsel dil oluşturma.',
+          features: [
+            'Logo Tasarımı',
+            'Marka Kimliği',
+            'Görsel Dil',
+            'Sunum Dosyaları',
+            'Renk Paleti',
+            'Tipografi'
+          ],
+          examples: 'Markanı konuşturur ✨'
+        },
+        {
+          title: 'UI/UX & Analiz',
+          description: 'Kullanıcı araştırması, UX haritalama, A/B test ve kullanılabilirlik analizi.',
+          features: [
+            'User Research',
+            'UX Haritalama',
+            'A/B Testing',
+            'Kullanılabilirlik Analizi',
+            'User Flow',
+            'Wireframe'
+          ],
+          examples: 'Kullanıcı mutluluğu garantisi 😊'
+        },
+        {
+          title: 'Full-Stack Geliştirme',
+          description: 'React, Next.js ve modern teknolojilerle tam özellikli web uygulamaları.',
+          features: [
+            'Frontend Development',
+            'Backend API',
+            'Database Tasarımı',
+            'API Entegrasyonları',
+            'Deployment',
+            'Bakım & Destek'
+          ],
+          examples: 'Kod ile dostluk kuralım 💻'
+        }
+      ],
       categories: [
         {
           title: 'Web Tasarım Hizmetleri',
@@ -507,7 +813,8 @@ export const translations = {
       slugPlaceholder: 'post-url-address',
       authorPlaceholder: 'Author name',
       featuredLabel: 'Featured',
-      featuredDesc: 'Show on homepage'
+      featuredDesc: 'Show on homepage',
+      adminModeOn: 'Admin Mode: On'
     },
     education: {
       title: 'Always Learning',
@@ -535,6 +842,311 @@ export const translations = {
       title: 'My Services',
       subtitle: 'From websites to mobile apps, all kinds of digital solutions you need.',
       ctaText: 'I\'ll be here to make your project successful. How can we get started?',
+      heroSection: {
+        title: 'Fast, measurable and',
+        titleHighlight: 'elegant web experiences',
+        subtitle: 'Bring your project to life with modern design and advanced technologies',
+        button1: 'Get Offer',
+        button2: 'View My Projects'
+      },
+      servicesTitle: 'Our Services',
+      seeDetails: 'See Details',
+      pricingSection: {
+        title: 'Packages & Pricing',
+        subtitle: 'Choose according to your project needs, starting prices',
+        button: 'Get Offer',
+        popular: 'Popular'
+      },
+      processSection: {
+        mainTitle: 'Our Work Process',
+        mainSubtitle: 'We bring your project to life in 4 steps. Every stage is transparent, measurable, and data-driven.',
+        stepsTitle: 'Process Steps',
+        durationLabel: 'Duration',
+        checklistTitle: 'What Do We Do at This Stage?',
+        outputTitle: '📦 The Output of This Stage',
+        steps: [
+          {
+            title: 'Discovery',
+            description: 'We listen to your needs and analyze your goals.',
+            details: {
+              title: 'Comprehensive Discovery & Analysis',
+              checklist: [
+                'Project goals and KPI setting',
+                'Competitor analysis and market research',
+                'User journey mapping',
+                'Technical requirements evaluation',
+                'Content strategy creation'
+              ],
+              duration: '3-5 days',
+              output: 'Detailed project roadmap and technical recommendations'
+            }
+          },
+          {
+            title: 'Design',
+            description: 'We start the design process with client approval.',
+            details: {
+              title: 'Creative Design & Prototyping',
+              checklist: [
+                'Wireframe and user flow design',
+                'UI mockup and prototype development',
+                'Brand guideline compliance',
+                'Responsive breakpoints',
+                'Client approval and iteration'
+              ],
+              duration: '4-7 days',
+              output: 'Approved design files and design system'
+            }
+          },
+          {
+            title: 'Development',
+            description: 'We prepare for production with modern technologies.',
+            details: {
+              title: 'Development with Modern Technologies',
+              checklist: [
+                'Frontend framework (Next.js, React)',
+                'Backend API and database setup',
+                'Third-party integrations',
+                'SEO optimization',
+                'Performance and security audit'
+              ],
+              duration: '5-14 days',
+              output: 'Production-ready code and staging environment'
+            }
+          },
+          {
+            title: 'Launch',
+            description: 'We go live after testing and optimization.',
+            details: {
+              title: 'Launch & Optimization',
+              checklist: [
+                'Final testing and bug fix procedures',
+                'Domain and hosting configuration',
+                'SSL installation and security settings',
+                'Analytics and monitoring setup',
+                'Going live and smoke test'
+              ],
+              duration: '2-3 days',
+              output: 'Live and optimized website'
+            }
+          }
+        ]
+      },
+      formSection: {
+        title: 'Get an Offer',
+        subtitle: 'Share your project details, let us prepare a special offer for you',
+        nameLabel: 'Name',
+        namePlaceholder: 'Your name',
+        emailLabel: 'Email',
+        emailPlaceholder: 'email@example.com',
+        phoneLabel: 'Phone',
+        phonePlaceholder: '+1 (555) 000 00 00',
+        projectTypeLabel: 'Project Type',
+        selectPlaceholder: 'Select',
+        projectTypes: {
+          web: 'Website',
+          ecommerce: 'E-commerce',
+          mobile: 'Mobile App',
+          brand: 'Brand & Logo',
+          other: 'Other'
+        },
+        messageLabel: 'Project Details',
+        messagePlaceholder: 'Briefly describe your project, mention any special requests...',
+        attachLabel: 'Attach File (optional)',
+        sendButton: 'Request Offer',
+        sendingButton: 'Sending...',
+        successButton: '✓ Sent',
+        successMessage: 'Your message has been received! I will respond as soon as possible.',
+        successQuickMessage: 'I will get back to you as soon as possible! 🎉',
+        scrollToForm: 'Get Offer Now',
+        ctaTitle: 'Let\'s plan your project in 24 hours',
+        ctaSubtitle: 'Get an offer now and bring your project to life',
+        ctaButton1: 'Offer Form',
+        ctaButton2: 'WhatsApp'
+      },
+      guaranteesSection: {
+        title: 'Guarantees',
+        subtitle: 'Security and support guarantees we offer for your project',
+        items: [
+          { title: 'Lighthouse 90+ Target', desc: 'Performance, accessibility, and SEO scores are guaranteed' },
+          { title: '30 Days Free Maintenance', desc: 'Completely free support for the first month after going live' },
+          { title: 'Revision Right', desc: 'Limited or unlimited revisions according to your package' }
+        ]
+      },
+      youtubeSection: {
+        title: 'My YouTube Channel',
+        subtitle: 'Coming soon...',
+        description: 'Tips, tutorials and project reviews from the world of design and development.',
+        comingSoon: 'Coming Soon',
+        notifyButton: 'Turn on Notifications',
+        subscribeButton: 'Subscribe',
+        videos: [
+          {
+            id: 'video-1',
+            title: 'Simplicity Principles in Web Design',
+            thumbnail: '/youtube/coming-soon-1.jpg',
+            duration: '12:34'
+          },
+          {
+            id: 'video-2',
+            title: 'Modern Web Development with Next.js',
+            thumbnail: '/youtube/coming-soon-2.jpg',
+            duration: '18:22'
+          },
+          {
+            id: 'video-3',
+            title: 'UI/UX Design Tips',
+            thumbnail: '/youtube/coming-soon-3.jpg',
+            duration: '15:45'
+          }
+        ]
+      },
+      faqSection: {
+        title: 'Frequently Asked Questions',
+        subtitle: 'Your questions find answers here',
+        items: [
+          {
+            question: 'How long does a project take?',
+            answer: 'A simple website takes 1-2 weeks. E-commerce and complex projects vary from 4-12 weeks. With fast communication and regular updates, you\'ll know where you are at every stage.'
+          },
+          {
+            question: 'How are prices determined?',
+            answer: 'Every project is unique. I do custom pricing according to your needs. My starter package starts from 15K TL, corporate solutions vary up to 150K TL. Let\'s get in touch for a detailed quote.'
+          },
+          {
+            question: 'Who prepares the content?',
+            answer: 'You prepare the copywriting and visual content. I provide content consulting if needed. Text editing and SEO optimization are included in our service.'
+          },
+          {
+            question: 'Is domain and hosting included?',
+            answer: 'Domain and hosting belong to you. I provide redirection and setup support if you wish. I have reliable hosting providers I recommend to you.'
+          },
+          {
+            question: 'How much is the maintenance service?',
+            answer: 'The first 30 days are free maintenance included. After that, I offer maintenance packages ranging from 2-5K TL per month. Minimum security updates, backup and technical support included.'
+          }
+        ]
+      },
+      packages: [
+        {
+          name: 'Simple Site',
+          price: 'Starter',
+          duration: '7–10 days',
+          features: [
+            'Responsive design',
+            'SEO optimization',
+            'CMS integration',
+            'Form & contact',
+            'Security certificate',
+            'Technical support'
+          ]
+        },
+        {
+          name: 'Corporate Site',
+          price: 'Mid level',
+          duration: '10–14 days',
+          features: [
+            'Custom design',
+            'Advanced SEO',
+            'Analytics integration',
+            'Performance optimization',
+            'Payment integrations',
+            'Extended support'
+          ]
+        },
+        {
+          name: 'E-commerce Platform',
+          price: 'Advanced level',
+          duration: '14–21 days',
+          features: [
+            'Full-featured e-commerce',
+            'Inventory management',
+            'Payment systems',
+            'API integrations',
+            'Security & backup',
+            'Comprehensive support'
+          ]
+        }
+      ],
+      serviceCards: [
+        {
+          title: 'Web Design Services',
+          description: 'Responsive and SEO-compliant corporate sites, landing pages and portfolio sites.',
+          features: [
+            'Corporate Website',
+            'Landing Page',
+            'Blog Site',
+            'Portfolio Site',
+            'Corporate Intranet',
+            'Revenue Share Site'
+          ],
+          examples: 'From zero to prod with coffee ☕'
+        },
+        {
+          title: 'E-commerce Solutions',
+          description: 'Full-featured e-commerce platforms, marketplace integrations and inventory management.',
+          features: [
+            'E-commerce Site',
+            'Marketplace Integration',
+            'Inventory Management',
+            'Admin Panel',
+            'Payment Integrations',
+            'Product Management'
+          ],
+          examples: 'Doesn\'t stay in cart, sells and goes 📦'
+        },
+        {
+          title: 'Mobile App Design',
+          description: 'Modern, user-friendly interface designs and prototypes for iOS and Android.',
+          features: [
+            'Mobile App UI',
+            'Web Application',
+            'PWA Design',
+            'Prototype & Wireframe',
+            'Design System',
+            'User Testing'
+          ],
+          examples: 'Fits in pocket but powerful 📱'
+        },
+        {
+          title: 'Brand & Logo Design',
+          description: 'Strong brand identity, logo designs and corporate visual language creation.',
+          features: [
+            'Logo Design',
+            'Brand Identity',
+            'Visual Language',
+            'Presentation Files',
+            'Color Palette',
+            'Typography'
+          ],
+          examples: 'Let your brand speak ✨'
+        },
+        {
+          title: 'UI/UX & Analysis',
+          description: 'User research, UX mapping, A/B testing and usability analysis.',
+          features: [
+            'User Research',
+            'UX Mapping',
+            'A/B Testing',
+            'Usability Analysis',
+            'User Flow',
+            'Wireframe'
+          ],
+          examples: 'Guaranteed user happiness 😊'
+        },
+        {
+          title: 'Full-Stack Development',
+          description: 'Full-featured web applications with React, Next.js and modern technologies.',
+          features: [
+            'Frontend Development',
+            'Backend API',
+            'Database Design',
+            'API Integrations',
+            'Deployment',
+            'Maintenance & Support'
+          ],
+          examples: 'Let\'s be friends with code 💻'
+        }
+      ],
       categories: [
         {
           title: 'Web Design Services',
