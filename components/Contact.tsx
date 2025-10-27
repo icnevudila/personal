@@ -318,7 +318,7 @@ export function Contact() {
             whileTap={{ scale: 0.95 }}
             className="inline-block px-8 py-4 border-2 border-[#F97316] text-[#F97316] hover:bg-[#F97316] hover:text-white font-semibold rounded-full transition-all duration-300 hover:shadow-[0_0_24px_rgba(249,115,22,0.3)]"
           >
-            Görüşme Ayarla
+            {t.contact.letsTalkProject}
           </motion.a>
         </motion.div>
       </div>

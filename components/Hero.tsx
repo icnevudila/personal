@@ -102,17 +102,17 @@ export function Hero() {
         if (data.success) {
           setHeroImage(data.url)
           localStorage.setItem('heroImage', data.url)
-          alert('Fotoğraf başarıyla yüklendi ve herkese görünecek!')
+          alert(t.hero.uploadSuccess)
         } else {
           setHeroImage(base64String)
           localStorage.setItem('heroImage', base64String)
-          alert('Fotoğraf kaydedildi (sadece sizde görünecek)')
+          alert(t.hero.uploadLocalSuccess)
         }
       } catch (error) {
         console.error('Upload error:', error)
         setHeroImage(base64String)
         localStorage.setItem('heroImage', base64String)
-        alert('Fotoğraf kaydedildi (sadece sizde görünecek)')
+        alert(t.hero.uploadLocalSuccess)
       }
     }
     reader.readAsDataURL(file)
@@ -196,7 +196,7 @@ export function Hero() {
                         <div className="flex items-center gap-2 px-4 py-2 bg-[#F97316] hover:bg-[#ea6707] rounded-lg transition-colors">
                           <PhotoIcon className="w-5 h-5 text-white" />
                           <span className="text-white font-medium">
-                            {heroImage && heroImage.startsWith('data:') ? 'Değiştir' : 'Görsel Yükle'}
+                            {heroImage && heroImage.startsWith('data:') ? t.hero.changeImage : t.hero.uploadImage}
                           </span>
                         </div>
                       </label>
