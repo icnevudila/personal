@@ -7,6 +7,7 @@ import { PortfolioSites } from '@/components/PortfolioSites'
 import { Blog } from '@/components/Blog'
 import { Contact } from '@/components/Contact'
 import { QuoteButton } from '@/components/QuoteButton'
+import { LofiPlayer } from '@/components/LofiPlayer'
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <Blog isHomePage={true} />
       <Contact />
       <QuoteButton />
+      <LofiPlayer />
     </>
   )
 }
