@@ -3,267 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Atelier Luna - Size Uygun Mekanlar</title>
-    <link rel="stylesheet" href="../styles/global.css">
+    <title>Atelier Luna - Interior Design Studio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Atelier Luna Specific Styles */
-        .hero {
-            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 50%, #cbd5e1 100%);
-            color: #1e293b;
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(ellipse at 30% 20%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
-                radial-gradient(ellipse at 70% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
-            animation: breathe 12s infinite ease-in-out;
-            z-index: 0;
-        }
-        @keyframes breathe {
-            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
-            50% { transform: scale(1.1) rotate(2deg); opacity: 0.6; }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: #1e293b; background: #fafafa; overflow-x: hidden; }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 25% 25%, rgba(120, 113, 108, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
-            animation: texture-flow 8s ease-in-out infinite;
-        }
+        /* Navigation */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(255,255,255,0.95); backdrop-filter: blur(20px); padding: 1.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.05); transition: all 0.3s; }
+        nav.scrolled { padding: 1rem 0; box-shadow: 0 2px 20px rgba(0,0,0,0.05); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 3rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #1e293b; font-family: 'Playfair Display', serif; }
+        .nav-links { display: flex; gap: 3rem; }
+        .nav-link { color: #475569; text-decoration: none; font-weight: 500; position: relative; transition: all 0.3s; }
+        .nav-link::after { content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #78716c, #F97316); transition: width 0.3s; }
+        .nav-link:hover { color: #1e293b; }
+        .nav-link:hover::after { width: 100%; }
         
-        @keyframes texture-flow {
-            0%, 100% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.02); }
-        }
+        /* Hero */
+        .hero { min-height: 100vh; background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 50%, #cbd5e1 100%); display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 80px; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 50%, rgba(249, 115, 22, 0.08) 0%, transparent 50%); animation: breathe 8s ease-in-out infinite; }
+        @keyframes breathe { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.1); } }
         
-        .hero-title {
-            background: linear-gradient(135deg, #f8fafc 0%, #78716c 50%, #F97316 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
+        .hero-content { max-width: 1400px; margin: 0 auto; padding: 0 3rem; position: relative; z-index: 2; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 5.5rem; font-weight: 700; margin-bottom: 1.5rem; color: #1e293b; line-height: 1.1; }
+        .hero-subtitle { font-size: 1.4rem; color: #64748b; margin-bottom: 3rem; max-width: 600px; line-height: 1.6; }
+        .hero-cta { display: flex; gap: 1.5rem; }
+        .btn-primary { padding: 1.2rem 3rem; background: #1e293b; color: white; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; display: inline-block; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .btn-secondary { padding: 1.2rem 3rem; background: transparent; color: #1e293b; border: 2px solid #1e293b; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s; }
+        .btn-secondary:hover { background: #1e293b; color: white; }
         
-        .texture-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    45deg,
-                    transparent,
-                    transparent 2px,
-                    rgba(120, 113, 108, 0.03) 2px,
-                    rgba(120, 113, 108, 0.03) 4px
-                );
-            pointer-events: none;
-        }
+        /* Section */
+        .section { padding: 8rem 0; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 3rem; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; text-align: center; margin-bottom: 4rem; color: #1e293b; }
         
-        .about-section {
-            background: linear-gradient(135deg, rgba(120, 113, 108, 0.05) 0%, rgba(249, 115, 22, 0.02) 100%);
-            border-radius: 24px;
-            padding: 4rem 2rem;
-            margin: 4rem 0;
-            position: relative;
-        }
+        /* Services */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 3rem; margin-top: 4rem; }
+        .service-card { background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: all 0.4s; cursor: pointer; position: relative; overflow: hidden; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 100%; background: linear-gradient(135deg, #F97316, #ea6707); transition: width 0.4s; z-index: 0; }
+        .service-card:hover::before { width: 100%; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(249, 115, 22, 0.2); }
+        .service-icon { font-size: 3rem; margin-bottom: 1.5rem; position: relative; z-index: 1; }
+        .service-card h3 { font-size: 1.5rem; margin-bottom: 1rem; position: relative; z-index: 1; font-family: 'Playfair Display', serif; }
+        .service-card p { color: #64748b; line-height: 1.7; position: relative; z-index: 1; }
+        .service-card:hover h3, .service-card:hover p { color: white; }
         
-        .about-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 30% 30%, rgba(120, 113, 108, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 70%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
-            border-radius: 24px;
-        }
+        /* Portfolio Grid */
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 2rem; margin-top: 4rem; }
+        .portfolio-item { aspect-ratio: 16/10; background: #e2e8f0; border-radius: 20px; overflow: hidden; position: relative; cursor: pointer; transition: all 0.4s; }
+        .portfolio-item:hover { transform: scale(1.02); box-shadow: 0 20px 40px rgba(0,0,0,0.2); }
+        .portfolio-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.7) 100%); display: flex; align-items: flex-end; padding: 2rem; transition: all 0.3s; }
+        .portfolio-item:hover .portfolio-overlay { background: linear-gradient(180deg, transparent 0%, rgba(249, 115, 22, 0.8) 100%); }
         
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin: 4rem 0;
-        }
-        
-        .service-card {
-            background: rgba(120, 113, 108, 0.05);
-            border: 1px solid rgba(120, 113, 108, 0.2);
-            border-radius: 20px;
-            padding: 2.5rem;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(120, 113, 108, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-        
-        .service-card:hover::before {
-            left: 100%;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-8px);
-            border-color: #78716c;
-            box-shadow: 0 25px 50px rgba(120, 113, 108, 0.2);
-        }
-        
-        .service-icon {
-            width: 70px;
-            height: 70px;
-            background: linear-gradient(135deg, #78716c, #F97316);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .curved-layout {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(ellipse at 50% 0%, rgba(120, 113, 108, 0.1) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        
-        .testimonial {
-            background: rgba(120, 113, 108, 0.05);
-            border-left: 4px solid #78716c;
-            padding: 3rem;
-            border-radius: 0 20px 20px 0;
-            margin: 4rem 0;
-            position: relative;
-        }
-        
-        .testimonial::before {
-            content: '"';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            font-size: 4rem;
-            color: #78716c;
-            opacity: 0.3;
-            font-family: serif;
-        }
-        
-        .testimonial-text {
-            font-size: 1.3rem;
-            font-style: italic;
-            color: var(--text-primary);
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 2;
-        }
-        
-        .testimonial-author {
-            color: #78716c;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        .cta-section {
-            background: linear-gradient(135deg, rgba(120, 113, 108, 0.1) 0%, rgba(249, 115, 22, 0.1) 100%);
-            border-radius: 24px;
-            padding: 4rem 2rem;
-            text-align: center;
-            margin: 4rem 0;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                radial-gradient(circle at 20% 20%, rgba(120, 113, 108, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.05) 0%, transparent 50%);
-            animation: texture-flow 4s ease-in-out infinite;
-        }
-        
-        .signature {
-            color: #F97316;
-        }
+        /* Footer */
+        footer { background: #1e293b; color: white; padding: 4rem 0; text-align: center; }
         
         @media (max-width: 768px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .cta-section {
-                padding: 2rem 1rem;
-            }
-            
-            .testimonial {
-                padding: 2rem;
-            }
+            .hero h1 { font-size: 3rem; }
+            .nav-links { display: none; }
+            .services-grid, .portfolio-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">Size Uygun Mekanlar.</h1>
-                <p class="hero-subtitle">Doğal, yerinde, duygusal.</p>
-                <a href="#interiors" class="btn btn-primary">Mekanları İncele</a>
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">Atelier Luna</div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Ana Sayfa</a>
+                <a href="#about" class="nav-link">Hakkımızda</a>
+                <a href="#services" class="nav-link">Hizmetler</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#contact" class="nav-link">İletişim</a>
             </div>
         </div>
-        <div class="texture-overlay"></div>
-        <div class="curved-layout"></div>
-    </section>
+    </nav>
 
-    <!-- About Section -->
-    <section class="section">
-        <div class="container">
-            <div class="about-section">
-                <div class="text-center" style="position: relative; z-index: 2;">
-                    <h2>Huzur veren evler — yaşam için tasarlandı.</h2>
-                    <p>Atelier Luna, kişiliğinizi yansıtan ve huzur ile refahı destekleyen iç mekanlar yaratır.</p>
-                </div>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Size Uygun<br>Mekanlar.</h1>
+            <p class="hero-subtitle">Huzur veren evler, yaşam için tasarlandı. Atelier Luna kişiliğinizi yansıtan ve huzur ile refahı destekleyen iç mekanlar yaratır.</p>
+            <div class="hero-cta">
+                <a href="#portfolio" class="btn-primary">Projeleri İncele</a>
+                <a href="#contact" class="btn-secondary">İletişime Geçin</a>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section class="section">
+    <section class="section" id="about">
         <div class="container">
-            <h2 class="text-center mb-4">Yaklaşımımız</h2>
+            <h2 class="section-title">Hikayemiz</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.2rem; color: #475569; line-height: 1.8;">
+                    Atelier Luna olarak, yaşam alanlarınızı dönüştürmeye odaklanıyoruz. 
+                    Doğal malzemeler, sıcak renkler ve yumuşak dokularla iç mekanlarınızı sadece güzel değil, 
+                    aynı zamanda sığınacak bir yer haline getiriyoruz.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="services" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Yaklaşımımız</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">🏠</div>
@@ -284,72 +128,171 @@
         </div>
     </section>
 
-    <!-- Testimonial Section -->
-    <section class="section">
+    <section class="section" id="portfolio">
         <div class="container">
-            <div class="testimonial">
-                <p class="testimonial-text">"Atelier Luna evimizi bir yuva haline getirdi. Her oda artık bir sığınak gibi hissettiriyor."</p>
-                <p class="testimonial-author">— Maria & James Thompson, Ev Sahipleri</p>
+            <h2 class="section-title">Projelerimiz</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-overlay">
+                        <div>
+                            <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem;">Evrensel Sığınak</h3>
+                            <p style="color: rgba(255,255,255,0.9);">Modern konut projesi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-overlay">
+                        <div>
+                            <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem;">Şehir Vahası</h3>
+                            <p style="color: rgba(255,255,255,0.9);">Loft dönüşümü</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-overlay">
+                        <div>
+                            <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem;">Yatak Odası Kaçışı</h3>
+                            <p style="color: rgba(255,255,255,0.9);">Sığınak tasarımı</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-overlay">
+                        <div>
+                            <h3 style="color: white; font-size: 1.5rem; margin-bottom: 0.5rem;">Mutfak Ritüeli</h3>
+                            <p style="color: rgba(255,255,255,0.9);">Mutfağı yaşam alanına dönüştürme</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="section">
+    <!-- Testimonials Section -->
+    <section class="section" style="background: linear-gradient(135deg, #f0f4f8, #ffffff);">
         <div class="container">
-            <div class="cta-section">
-                <h2>Sığınağınızı yaratmaya hazır mısınız?</h2>
-                <p>Gerçekten kim olduğunuzu yansıtan bir mekan tasarlayalım.</p>
-                <a href="#contact" class="btn btn-primary">Projenizi Başlatın</a>
+            <h2 class="section-title">Müşteri Yorumları</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <p style="font-style: italic; margin-bottom: 2rem; line-height: 1.8;">"Atelier Luna evimizi bir yuva haline getirdi. Her oda artık bir sığınak gibi hissettiriyor. Mükemmel iş çıkardılar!"</p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 60px; height: 60px; background: #e2e8f0; border-radius: 50%;"></div>
+                        <div>
+                            <h4 style="font-weight: 600;">Maria Thompson</h4>
+                            <p style="color: #64748b;">Ev Sahibi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <p style="font-style: italic; margin-bottom: 2rem; line-height: 1.8;">"Profesyonel, yaratıcı ve ihtiyaçlarımızı mükemmel şekilde anlayan bir ekip. Kesinlikle tavsiye ederim."</p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 60px; height: 60px; background: #e2e8f0; border-radius: 50%;"></div>
+                        <div>
+                            <h4 style="font-weight: 600;">James Wilson</h4>
+                            <p style="color: #64748b;">İşletme Sahibi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <p style="font-style: italic; margin-bottom: 2rem; line-height: 1.8;">"Tasarım yaklaşımları benzersiz. Evimiz artık hem güzel hem de huzur dolu. Teşekkürler Atelier Luna!"</p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 60px; height: 60px; background: #e2e8f0; border-radius: 50%;"></div>
+                        <div>
+                            <h4 style="font-weight: 600;">Sarah Martinez</h4>
+                            <p style="color: #64748b;">Yaratıcı Direktör</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="section" style="border-top: 1px solid rgba(120, 113, 108, 0.2);">
-        <div class="container text-center">
-            <p style="color: var(--text-muted);">© 2024 Atelier Luna. All rights reserved.</p>
+    <!-- Stats Section -->
+    <section class="section" style="background: #1e293b; color: white;">
+        <div class="container">
+            <div class="services-grid">
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; font-weight: 700; margin-bottom: 1rem; color: #F97316;">150+</div>
+                    <div style="font-size: 1.2rem; color: #94a3b8;">Tamamlanan Proje</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; font-weight: 700; margin-bottom: 1rem; color: #F97316;">50+</div>
+                    <div style="font-size: 1.2rem; color: #94a3b8;">Mutlu Müşteri</div>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 4rem; font-weight: 700; margin-bottom: 1rem; color: #F97316;">8</div>
+                    <div style="font-size: 1.2rem; color: #94a3b8;">Yıllık Deneyim</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact" style="background: #f8fafc;">
+        <div class="container" style="text-align: center;">
+            <h2 class="section-title">Projenizi Başlatalım</h2>
+            <p style="font-size: 1.2rem; color: #475569; margin-bottom: 3rem;">Sığınağınızı yaratmak için hazır mısınız?</p>
+            <div class="hero-cta" style="justify-content: center;">
+                <a href="mailto:hello@atelierluna.com" class="btn-primary">İletişime Geçin</a>
+                <a href="tel:+905453651319" class="btn-secondary">Aramıza Katılın</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Atelier Luna. Tüm hakları saklıdır.</p>
         </div>
     </footer>
 
-    <!-- icnevudila Signature -->
-    <div class="signature" style="position: fixed; bottom: 24px; right: 24px; z-index: 1000; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.05em; color: #F97316; opacity: 0.7; cursor: pointer; transition: all 0.3s ease; text-decoration: none; user-select: none;" onmouseover="this.style.opacity='1'; this.style.textShadow='0 0 10px rgba(249, 115, 22, 0.4)'; this.style.transform='scale(1.05)'" onmouseout="this.style.opacity='0.7'; this.style.textShadow='none'; this.style.transform='scale(1)'" onclick="window.location.href='/portfolio'"         title="icnevudila tarafından tasarlandı">
+    <div style="position: fixed; bottom: 24px; right: 24px; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 14px; color: #F97316; opacity: 0.7; cursor: pointer; transition: all 0.3s;" 
+         onmouseover="this.style.opacity='1'" 
+         onmouseout="this.style.opacity='0.7'"
+         onclick="window.location.href='/portfolio'">
         icnevudila
     </div>
 
     <script>
-        // Smooth scrolling for anchor links
+        // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
 
+        // Fade in on scroll
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    entry.target.style.animation = 'fadeInUp 0.6s ease-out forwards';
                 }
             });
         }, observerOptions);
-
-        // Observe all service cards
-        document.querySelectorAll('.service-card').forEach(card => {
-            observer.observe(card);
+        
+        document.querySelectorAll('.service-card, .portfolio-item').forEach(el => {
+            el.style.opacity = '0';
+            observer.observe(el);
         });
     </script>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </body>
 </html>

@@ -97,7 +97,7 @@
             <div class="hero-left">
                 <h1>Denge Buradan<br>Başlar</h1>
                 <p class="hero-subtitle">Zihin, beden ve ruhu beslemek için tasarlanmış bütünsel sağlık programları. Sağlıklı ve mutlu yaşamın kapılarını aralıyoruz.</p>
-                <button class="cta-button">Yolculuğa Başla</button>
+                <a href="#features" class="cta-button" style="display: inline-block; text-decoration: none;">Yolculuğa Başla</a>
                 <div class="wellness-stats">
                     <div class="stat">
                         <span class="stat-number">8K+</span>
@@ -123,7 +123,7 @@
         </div>
     </div>
 
-    <div class="features">
+    <div class="features" id="features">
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🧘</div>
@@ -143,7 +143,55 @@
         </div>
     </div>
 
-    <icnevudila-signature accent-color="#10b981" tooltip-text="Designed by icnevudila - Wellness"></icnevudila-signature>
-    <script src="../components/Signature.jsx" defer></script>
+    <!-- Testimonials Section -->
+    <div style="padding: 8rem 0; background: linear-gradient(180deg, rgba(4, 120, 87, 0.9), rgba(6, 95, 70, 0.95));">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 3rem;">
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 4rem; color: #ffffff; font-family: 'Poppins', sans-serif; font-weight: 700;">Müşteri Yorumları</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 3rem;">
+                <div style="background: rgba(16, 185, 129, 0.15); border: 3px solid rgba(16, 185, 129, 0.3); padding: 3.5rem; border-radius: 25px;">
+                    <p style="font-style: italic; margin-bottom: 2rem; color: #a7f3d0; line-height: 1.8;">"BloomPath yaşamımı dönüştürdü. Zihinsel ve fiziksel sağlığım artık her zamankinden iyi!"</p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 60px; height: 60px; background: rgba(16, 185, 129, 0.4); border-radius: 50%;"></div>
+                        <div>
+                            <h4 style="color: #ffffff; font-weight: 700; font-family: 'Poppins', sans-serif;">Maya Patel</h4>
+                            <p style="color: #a7f3d0;">Üye</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: rgba(16, 185, 129, 0.15); border: 3px solid rgba(16, 185, 129, 0.3); padding: 3.5rem; border-radius: 25px;">
+                    <p style="font-style: italic; margin-bottom: 2rem; color: #a7f3d0; line-height: 1.8;">"Bütünsel yaklaşımları muhteşem. Hem bedensel hem ruhsal iyileşme sağladılar."</p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 60px; height: 60px; background: rgba(16, 185, 129, 0.4); border-radius: 50%;"></div>
+                        <div>
+                            <h4 style="color: #ffffff; font-weight: 700; font-family: 'Poppins', sans-serif;">Daniel Wright</h4>
+                            <p style="color: #a7f3d0;">Üye</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- icnevudila Signature -->
+    <div style="position: fixed; bottom: 24px; right: 24px; z-index: 1000; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.05em; color: #10b981; opacity: 0.7; cursor: pointer; transition: all 0.3s ease;" 
+         onmouseover="this.style.opacity='1'; this.style.textShadow='0 0 10px rgba(16,185,129,0.4)'; this.style.transform='scale(1.05)'" 
+         onmouseout="this.style.opacity='0.7'; this.style.textShadow='none'; this.style.transform='scale(1)'" 
+         onclick="window.location.href='/portfolio'"
+         title="icnevudila tarafından tasarlandı">
+        icnevudila
+    </div>
+
+    <script>
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

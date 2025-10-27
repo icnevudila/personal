@@ -97,7 +97,7 @@
             <div class="hero-left">
                 <h1>Gelecek Daha<br>Akıllı Çalışır</h1>
                 <p class="hero-subtitle">İşletmelerin çalışma ve büyüme biçimini dönüştüren devrim niteliğinde yapay zeka çözümleri.</p>
-                <button class="cta-button">Hemen Başla</button>
+                <a href="#features" class="cta-button" style="display: inline-block; text-decoration: none;">Hemen Başla</a>
                 <div class="startup-stats">
                     <div class="stat">
                         <span class="stat-number">₺5M+</span>
@@ -123,7 +123,7 @@
         </div>
     </div>
 
-    <div class="features">
+    <div class="features" id="features">
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon">🤖</div>
@@ -143,7 +143,65 @@
         </div>
     </div>
 
-    <icnevudila-signature accent-color="#6366f1" tooltip-text="Designed by icnevudila - Tech Startup"></icnevudila-signature>
-    <script src="../components/Signature.jsx" defer></script>
+    <!-- Testimonials Section -->
+    <div style="padding: 8rem 0; background: linear-gradient(180deg, rgba(55, 48, 163, 0.9), rgba(30, 27, 75, 0.95));">
+        <div style="max-width: 1400px; margin: 0 auto; padding: 0 3rem;">
+            <h2 style="text-align: center; font-size: 3rem; margin-bottom: 4rem; color: #ffffff; font-family: 'Rajdhani', sans-serif; text-transform: uppercase;">Müşteri Görüşleri</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: rgba(99, 102, 241, 0.15); border: 2px solid rgba(99, 102, 241, 0.3); padding: 2.5rem; border-radius: 20px;">
+                    <p style="font-style: italic; margin-bottom: 2rem; color: #a5b4fc; line-height: 1.8;">"NovaAI işimizi tamamen dönüştürdü. %300 verimlilik artışı gördük. Kesinlikle öneriyorum!"</p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 60px; height: 60px; background: #6366f1; border-radius: 50%;"></div>
+                        <div>
+                            <h4 style="color: #ffffff; font-weight: 600;">Michael Chen</h4>
+                            <p style="color: #a5b4fc;">CEO, Tech Corp</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: rgba(99, 102, 241, 0.15); border: 2px solid rgba(99, 102, 241, 0.3); padding: 2.5rem; border-radius: 20px;">
+                    <p style="font-style: italic; margin-bottom: 2rem; color: #a5b4fc; line-height: 1.8;">"AI çözümleri beklediğimizden çok daha iyi. Ekip harika, destek mükemmel. 5/5 yıldız!"</p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 60px; height: 60px; background: #6366f1; border-radius: 50%;"></div>
+                        <div>
+                            <h4 style="color: #ffffff; font-weight: 600;">Sophia Anderson</h4>
+                            <p style="color: #a5b4fc;">CTO, DataSystems</p>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: rgba(99, 102, 241, 0.15); border: 2px solid rgba(99, 102, 241, 0.3); padding: 2.5rem; border-radius: 20px;">
+                    <p style="font-style: italic; margin-bottom: 2rem; color: #a5b4fc; line-height: 1.8;">"En iyi yatırımımız. ROI 6 ay içinde çok fazla pozitif. Harika platform!"</p>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 60px; height: 60px; background: #6366f1; border-radius: 50%;"></div>
+                        <div>
+                            <h4 style="color: #ffffff; font-weight: 600;">David Park</h4>
+                            <p style="color: #a5b4fc;">Founder, StartupX</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- icnevudila Signature -->
+    <div style="position: fixed; bottom: 24px; right: 24px; z-index: 1000; font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0.05em; color: #6366f1; opacity: 0.7; cursor: pointer; transition: all 0.3s ease;" 
+         onmouseover="this.style.opacity='1'; this.style.textShadow='0 0 10px rgba(99,102,241,0.4)'; this.style.transform='scale(1.05)'" 
+         onmouseout="this.style.opacity='0.7'; this.style.textShadow='none'; this.style.transform='scale(1)'" 
+         onclick="window.location.href='/portfolio'"
+         title="icnevudila tarafından tasarlandı">
+        icnevudila
+    </div>
+
+    <script>
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

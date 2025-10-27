@@ -4,6 +4,7 @@ export const translations = {
       home: 'Ana Sayfa',
       about: 'Hakkımda',
       skills: 'Yetenekler',
+      services: 'Hizmetler',
       portfolio: 'Portfolyo',
       blog: 'Blog',
       contact: 'İletişim',
@@ -201,6 +202,81 @@ export const translations = {
         'GitHub Copilot'
       ],
     },
+    services: {
+      title: 'Hizmetlerim',
+      subtitle: 'Web sitelerinden mobil uygulamalara, ihtiyacınız olan her türlü dijital çözüm.',
+      ctaText: 'Projenizin başarıya ulaşması için burada olacağım. Nasıl başlayabiliriz?',
+      categories: [
+        {
+          title: 'Web Tasarım Hizmetleri',
+          description: 'Her türlü web sitesi tasarımı ve geliştirme.',
+          icon: 'globe',
+          services: [
+            { name: 'Kurumsal Web Sitesi', desc: 'Markanızı güçlendirecek profesyonel kurumsal siteler' },
+            { name: 'Landing Page', desc: 'Dönüşüm odaklı tek sayfa tasarımları' },
+            { name: 'Blog Sitesi', desc: 'İçerik yönetimi ve SEO uyumlu blog platformları' },
+            { name: 'Portfolio Sitesi', desc: 'Yaratıcı işlerinizi sergileyin' },
+            { name: 'Gelir Paylaşımlı Site', desc: 'Ortaklık ve affiliate odaklı siteler' },
+            { name: 'Kurumsal İntranet', desc: 'Şirket içi bilgi ve dokümantasyon sistemleri' }
+          ]
+        },
+        {
+          title: 'E-ticaret Çözümleri',
+          description: 'Online satış için eksiksiz e-ticaret platformları.',
+          icon: 'shopping',
+          services: [
+            { name: 'E-ticaret Sitesi', desc: 'Ürün kataloğu, sepet ve ödeme entegrasyonları' },
+            { name: 'Pazar Yeri Entegrasyonu', desc: 'Amazon, Trendyol gibi platformlara entegrasyon' },
+            { name: 'Stok Yönetimi', desc: 'Otomatik stok takibi ve bildirimler' },
+            { name: 'Admin Panel', desc: 'Kolay yönetim için dashboard ve ayarlar' }
+          ]
+        },
+        {
+          title: 'Uygulama Tasarımı',
+          description: 'Mobil ve web uygulamaları için arayüz tasarımı.',
+          icon: 'mobile',
+          services: [
+            { name: 'Mobil Uygulama UI', desc: 'iOS ve Android için modern arayüz tasarımları' },
+            { name: 'Web Uygulaması', desc: 'Dashboard, admin panel ve SaaS arayüzleri' },
+            { name: 'PWA Tasarımı', desc: 'Progressive Web App için responsive ve offline destekli' },
+            { name: 'Prototip & Wireframe', desc: 'Konseptten gerçeğe tasarım süreci' }
+          ]
+        },
+        {
+          title: 'Marka & Logo Tasarımı',
+          description: 'Güçlü marka kimliği oluşturan tasarımlar.',
+          icon: 'brand',
+          services: [
+            { name: 'Logo Tasarımı', desc: 'Unutulmaz ve yaratıcı logo tasarımları' },
+            { name: 'Marka Kimliği', desc: 'Renk paleti, tipografi ve kurumsal kimlik' },
+            { name: 'Görsel Dil', desc: 'İllüstrasyon, ikon seti ve görsel dil' },
+            { name: 'Sunum Dosyaları', desc: 'PowerPoint, Keynote ve tasarım dosyaları' }
+          ]
+        },
+        {
+          title: 'UI/UX & Analiz',
+          description: 'Kullanıcı deneyimi odaklı tasarım çözümleri.',
+          icon: 'design',
+          services: [
+            { name: 'User Research', desc: 'Kullanıcı davranışı analizi ve ihtiyaç belirleme' },
+            { name: 'UX Haritalama', desc: 'User flow, sitemap ve wireframe oluşturma' },
+            { name: 'A/B Testing', desc: 'Farklı tasarım varyasyonlarını test etme' },
+            { name: 'Kullanılabilirlik Analizi', desc: 'Mevcut siteler için UX değerlendirmesi' }
+          ]
+        },
+        {
+          title: 'Geliştirme & Teknik',
+          description: 'Modern teknolojilerle full-stack geliştirme.',
+          icon: 'code',
+          services: [
+            { name: 'Frontend Geliştirme', desc: 'React, Next.js, TypeScript ile modern web' },
+            { name: 'Backend API', desc: 'Database, authentication ve API geliştirme' },
+            { name: 'Database Tasarımı', desc: 'PostgreSQL, Supabase ve optimizasyon' },
+            { name: 'API Entegrasyonları', desc: 'Üçüncü parti servis entegrasyonları' }
+          ]
+        }
+      ]
+    },
     footer: {
       emailPlaceholder: 'E-posta adresiniz',
       subscribe: 'Abone Ol',
@@ -249,6 +325,7 @@ export const translations = {
       home: 'Home',
       about: 'About',
       skills: 'Skills',
+      services: 'Services',
       portfolio: 'Portfolio',
       blog: 'Blog',
       contact: 'Contact',
@@ -453,6 +530,81 @@ export const translations = {
         'Leonardo AI',
         'GitHub Copilot'
       ],
+    },
+    services: {
+      title: 'My Services',
+      subtitle: 'From websites to mobile apps, all kinds of digital solutions you need.',
+      ctaText: 'I\'ll be here to make your project successful. How can we get started?',
+      categories: [
+        {
+          title: 'Web Design Services',
+          description: 'All types of website design and development.',
+          icon: 'globe',
+          services: [
+            { name: 'Corporate Website', desc: 'Professional corporate sites to strengthen your brand' },
+            { name: 'Landing Page', desc: 'Conversion-focused single-page designs' },
+            { name: 'Blog Site', desc: 'SEO-friendly blog platforms with content management' },
+            { name: 'Portfolio Site', desc: 'Showcase your creative work' },
+            { name: 'Revenue Share Site', desc: 'Partnership and affiliate-focused sites' },
+            { name: 'Corporate Intranet', desc: 'Internal information and documentation systems' }
+          ]
+        },
+        {
+          title: 'E-commerce Solutions',
+          description: 'Complete e-commerce platforms for online sales.',
+          icon: 'shopping',
+          services: [
+            { name: 'E-commerce Site', desc: 'Product catalog, cart and payment integrations' },
+            { name: 'Marketplace Integration', desc: 'Integration with platforms like Amazon, eBay' },
+            { name: 'Inventory Management', desc: 'Automatic stock tracking and notifications' },
+            { name: 'Admin Panel', desc: 'Dashboard and settings for easy management' }
+          ]
+        },
+        {
+          title: 'App Design',
+          description: 'Interface design for mobile and web applications.',
+          icon: 'mobile',
+          services: [
+            { name: 'Mobile App UI', desc: 'Modern interface designs for iOS and Android' },
+            { name: 'Web Application', desc: 'Dashboard, admin panel and SaaS interfaces' },
+            { name: 'PWA Design', desc: 'Responsive and offline-capable Progressive Web App' },
+            { name: 'Prototype & Wireframe', desc: 'Design process from concept to reality' }
+          ]
+        },
+        {
+          title: 'Brand & Logo Design',
+          description: 'Designs that create a strong brand identity.',
+          icon: 'brand',
+          services: [
+            { name: 'Logo Design', desc: 'Unforgettable and creative logo designs' },
+            { name: 'Brand Identity', desc: 'Color palette, typography and corporate identity' },
+            { name: 'Visual Language', desc: 'Illustration, icon set and visual language' },
+            { name: 'Presentation Files', desc: 'PowerPoint, Keynote and design files' }
+          ]
+        },
+        {
+          title: 'UI/UX & Analysis',
+          description: 'User experience-focused design solutions.',
+          icon: 'design',
+          services: [
+            { name: 'User Research', desc: 'User behavior analysis and need identification' },
+            { name: 'UX Mapping', desc: 'User flow, sitemap and wireframe creation' },
+            { name: 'A/B Testing', desc: 'Testing different design variations' },
+            { name: 'Usability Analysis', desc: 'UX evaluation for existing sites' }
+          ]
+        },
+        {
+          title: 'Development & Technical',
+          description: 'Full-stack development with modern technologies.',
+          icon: 'code',
+          services: [
+            { name: 'Frontend Development', desc: 'Modern web with React, Next.js, TypeScript' },
+            { name: 'Backend API', desc: 'Database, authentication and API development' },
+            { name: 'Database Design', desc: 'PostgreSQL, Supabase and optimization' },
+            { name: 'API Integrations', desc: 'Third-party service integrations' }
+          ]
+        }
+      ]
     },
     footer: {
       emailPlaceholder: 'Your email address',
