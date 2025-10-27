@@ -50,7 +50,6 @@ export function PortfolioSites() {
       try {
         const response = await fetch('/portfolio-sites.json')
         const data = await response.json()
-        console.log('Portfolio sites loaded:', data)
         setPortfolioSites(data)
       } catch (error) {
         console.error('Portfolio sites yüklenirken hata:', error)
