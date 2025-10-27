@@ -27,6 +27,7 @@ export function PortfolioSites() {
   const [showPreviewModal, setShowPreviewModal] = useState(false)
   const [selectedPreviewUrl, setSelectedPreviewUrl] = useState('')
   const [selectedPreviewTitle, setSelectedPreviewTitle] = useState('')
+  const [isOpen, setIsOpen] = useState(false)
 
   // Emotional taglines for each category
   const getEmotionalTagline = (category: string) => {
@@ -290,13 +291,34 @@ export function PortfolioSites() {
           ))}
         </motion.div>
 
+        {/* Mobile: Collapsible Portfolio Section */}
+        <div className="md:hidden mb-6">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-full flex items-center justify-between p-4 bg-gray-800/50 rounded-xl hover:bg-gray-700/50 transition-colors border border-orange-500/20"
+          >
+            <span className="text-orange-500 font-medium">
+              {language === 'tr' ? '📂 Siteleri Görmek İçin Tıklayın' : '📂 Click to View Sites'}
+            </span>
+            <motion.div
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="text-orange-500"
+            >
+              ▼
+            </motion.div>
+          </button>
+        </div>
+
         {/* Portfolio Grid */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 scroll-smooth snap-y snap-mandatory"
+          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 scroll-smooth snap-y snap-mandatory ${
+            isOpen ? 'max-h-none' : 'max-h-0 overflow-hidden'
+          } md:max-h-none`}
           style={{ 
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gridAutoRows: 'minmax(480px, auto)',
