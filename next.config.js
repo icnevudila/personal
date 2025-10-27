@@ -17,20 +17,19 @@ const nextConfig = {
   experimental: {
     optimizePackageImports: ['framer-motion', '@heroicons/react'],
     // optimizeCss: true, // Temporarily disabled due to critters error
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
   },
   // Performance optimizations
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
-  swcMinify: true,
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
   // Preload and prefetch optimizations
   async rewrites() {
     return [

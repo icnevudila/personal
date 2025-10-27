@@ -71,6 +71,13 @@ export const metadata: Metadata = {
     google: 'your-google-verification-code',
   },
   category: 'technology',
+  twitter: {
+    card: 'summary_large_image',
+    title: 'icnevudila — Creative Web Designer Portfolio',
+    description: 'Sade, zekice ve insana yakın tasarımlar. Modern dijital deneyimler.',
+    images: ['/og-image.jpg'],
+    creator: '@icnevudila',
+  },
 }
 
 export const viewport = {
