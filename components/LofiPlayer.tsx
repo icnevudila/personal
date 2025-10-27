@@ -11,20 +11,15 @@ const lofiStations = [
 
 export function LofiPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
-  const [currentStation, setCurrentStation] = useState(3) // Peaceful Vibes
-  const [isMuted, setIsMuted] = useState(false)
-
-  // Auto-play on mount
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsPlaying(true)
-      setIsMuted(false)
-    }, 2000)
-    return () => clearTimeout(timer)
-  }, [])
+  const [currentStation] = useState(3) // Peaceful Vibes
+  const [isMuted, setIsMuted] = useState(true) // Start muted
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying)
+    if (!isPlaying) {
+      // Unmute when starting to play
+      setTimeout(() => setIsMuted(false), 500)
+    }
   }
 
   const currentYoutubeId = lofiStations[currentStation].youtubeId
@@ -34,7 +29,7 @@ export function LofiPlayer() {
       {/* Hidden iframe that plays the music */}
       {typeof window !== 'undefined' && (
         <iframe
-          key={`${currentYoutubeId}-${isPlaying}-${isMuted}`}
+          key={`${currentYoutubeId}-${isPlaying}`}
           src={`https://www.youtube.com/embed/${currentYoutubeId}?autoplay=${isPlaying ? 1 : 0}&loop=1&playlist=${currentYoutubeId}&controls=0&mute=${isMuted ? 1 : 0}`}
           style={{ 
             position: 'fixed', 
