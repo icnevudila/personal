@@ -5,6 +5,7 @@ import { PhotoIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect, useRef } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
+import LofiText from './LofiText'
 import Image from 'next/image'
 
 export function Hero() {
@@ -224,16 +225,11 @@ export function Hero() {
           {/* Right Side - Text Content */}
           <div className="order-1 lg:order-2 text-center lg:text-left">
           {/* Greeting */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-2 flex justify-center lg:justify-start"
-          >
-            <span className="text-base text-gray-400">
+          <div className="mb-2 flex justify-center lg:justify-start">
+            <LofiText as="span" delay={0} className="text-base text-gray-400" hover={false}>
               {t.hero.greeting}
-            </span>
-          </motion.div>
+            </LofiText>
+          </div>
 
           {/* Name */}
           <motion.h1
@@ -261,24 +257,27 @@ export function Hero() {
           </motion.h1>
 
           {/* Title */}
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#f1f5f9] mb-6 sm:mb-8 flex justify-center lg:justify-start font-medium"
-          >
-            {t.hero.title}
-          </motion.h2>
+          <div className="flex justify-center lg:justify-start">
+            <LofiText 
+              as="h2" 
+              delay={0.2} 
+              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-[#f1f5f9] mb-6 sm:mb-8 font-medium"
+            >
+              {t.hero.title}
+            </LofiText>
+          </div>
 
           {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed text-center lg:text-left font-medium"
-          >
-            {t.hero.description}
-          </motion.p>
+          <div className="flex justify-center lg:justify-start">
+            <LofiText 
+              as="p" 
+              delay={0.3} 
+              className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed text-center lg:text-left font-medium"
+              hover={false}
+            >
+              {t.hero.description}
+            </LofiText>
+          </div>
 
           </div>
         </div>
