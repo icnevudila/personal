@@ -18,7 +18,8 @@ export function LofiPlayer() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsPlaying(true)
-    }, 1500)
+      setIsMuted(false)
+    }, 2000)
     return () => clearTimeout(timer)
   }, [])
 
