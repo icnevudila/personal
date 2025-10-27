@@ -21,13 +21,12 @@ interface PortfolioSite {
 export function PortfolioSites() {
   const { t, language } = useLanguage()
   const [portfolioSites, setPortfolioSites] = useState<PortfolioSite[]>([])
-  const [selectedCategory, setSelectedCategory] = useState<string>('all')
+  const [selectedCategory, setSelectedCategory] = useState<string>('')
   const [isLoading, setIsLoading] = useState(true)
   const [hoveredSite, setHoveredSite] = useState<string | null>(null)
   const [showPreviewModal, setShowPreviewModal] = useState(false)
   const [selectedPreviewUrl, setSelectedPreviewUrl] = useState('')
   const [selectedPreviewTitle, setSelectedPreviewTitle] = useState('')
-  const [isOpen, setIsOpen] = useState(false)
 
   // Emotional taglines for each category
   const getEmotionalTagline = (category: string) => {
@@ -189,7 +188,7 @@ export function PortfolioSites() {
 
   const categories = ['all', ...Array.from(new Set(portfolioSites.map(site => site.category)))]
   
-  const filteredSites = selectedCategory === 'all' 
+  const filteredSites = selectedCategory === '' || selectedCategory === 'all'
     ? portfolioSites 
     : portfolioSites.filter(site => site.category === selectedCategory)
 
@@ -289,28 +288,17 @@ export function PortfolioSites() {
               }
             </motion.button>
           ))}
-        </motion.div>
-
-        {/* Mobile: Collapsible Portfolio Section */}
-        <div className="md:hidden mb-6">
-          <motion.button
-            onClick={() => setIsOpen(!isOpen)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="w-full flex items-center justify-between px-6 py-3 rounded-full font-medium transition-all duration-300 bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 hover:text-white backdrop-blur-sm"
-          >
-            <span className="text-sm">
-              {language === 'tr' ? 'Tüm Siteleri Göster' : 'Show All Sites'}
-            </span>
-            <motion.div
-              animate={{ rotate: isOpen ? 180 : 0 }}
-              transition={{ duration: 0.3 }}
-              className="text-gray-400"
+          {selectedCategory && (
+            <motion.button
+              onClick={() => setSelectedCategory('')}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-6 py-3 rounded-full font-medium transition-all duration-300 bg-red-600/50 text-gray-300 hover:bg-red-600 hover:text-white backdrop-blur-sm"
             >
-              ▼
-            </motion.div>
-          </motion.button>
-        </div>
+              ✕ {language === 'tr' ? 'Temizle' : 'Clear'}
+            </motion.button>
+          )}
+        </motion.div>
 
         {/* Portfolio Grid */}
         <motion.div
@@ -319,8 +307,10 @@ export function PortfolioSites() {
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
           className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 scroll-smooth snap-y snap-mandatory ${
-            isOpen ? 'max-h-none' : 'max-h-0 overflow-hidden'
-          } md:max-h-none`}
+            selectedCategory === '' 
+              ? 'max-h-0 overflow-hidden md:max-h-none' 
+              : 'max-h-none'
+          }`}
           style={{ 
             gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
             gridAutoRows: 'minmax(480px, auto)',
@@ -475,7 +465,7 @@ export function PortfolioSites() {
         </motion.div>
 
         {/* Featured Section */}
-        {selectedCategory === 'all' && (
+        {(selectedCategory === 'all' || selectedCategory === '') && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
