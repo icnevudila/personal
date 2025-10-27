@@ -492,7 +492,7 @@ export default function ServicesSection() {
             </div>
           </motion.div>
 
-          {/* 5. SÜREÇ */}
+          {/* 5. SÜREÇ - Premium Timeline */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -500,55 +500,161 @@ export default function ServicesSection() {
             transition={{ duration: 0.6 }}
             className="mb-20"
           >
-            <h2 className="text-3xl font-bold mb-4 text-center text-white">
-              Çalışma Sürecimiz
-            </h2>
-            <p className="text-center text-gray-400 mb-12">
-              4 adımda projenizi canlıya alıyoruz
-            </p>
+            <div className="text-center mb-12">
+              <h2 className="text-3xl font-bold mb-4 text-white">
+                Çalışma Sürecimiz
+              </h2>
+              <p className="text-gray-400 max-w-2xl mx-auto">
+                4 adımda projenizi canlıya alıyoruz. Her aşama şeffaf, ölçülebilir ve veriye dayalı.
+              </p>
+            </div>
 
-            <div className="grid md:grid-cols-4 gap-6">
-              {processSteps.map((step, index) => (
-                <motion.div
-                  key={step.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-gray-800/30 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 text-center"
-                >
-                  <div className="w-16 h-16 bg-[#F97316]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <step.icon className="w-8 h-8 text-[#F97316]" />
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-2">{step.title}</h3>
-                  <p className="text-sm text-gray-400">{step.description}</p>
-                </motion.div>
-              ))}
+            <div className="relative max-w-6xl mx-auto">
+              {/* Timeline Line */}
+              <motion.div 
+                className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-[#F97316]/20 via-[#F97316]/50 to-[#F97316]/20"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1, ease: 'easeInOut' }}
+                style={{ transformOrigin: 'left' }}
+              />
+
+              <div className="grid md:grid-cols-4 gap-6 relative">
+                {processSteps.map((step, index) => (
+                  <motion.div
+                    key={step.title}
+                    initial={{ opacity: 0, y: 40, scale: 0.8 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: index * 0.15,
+                      type: 'spring',
+                      stiffness: 100
+                    }}
+                    whileHover={{ 
+                      y: -10,
+                      rotateY: 5,
+                      scale: 1.05,
+                      transition: { duration: 0.3 }
+                    }}
+                    style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+                    className="relative group bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-[#F97316]/50 text-center cursor-pointer transition-all duration-300 overflow-hidden"
+                  >
+                    {/* 3D Glow Effect */}
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-[#F97316]/0 via-[#F97316]/10 to-[#F97316]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      initial={false}
+                      whileHover={{ scale: 1.2, rotate: 45 }}
+                    />
+
+                    {/* Step Number Badge */}
+                    <motion.div
+                      className="absolute -top-3 -left-3 w-8 h-8 bg-[#F97316] rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg"
+                      whileHover={{ rotate: 360, scale: 1.2 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      {index + 1}
+                    </motion.div>
+
+                    {/* Icon Container with 3D Animation */}
+                    <motion.div
+                      className="relative mb-6"
+                      whileHover={{ 
+                        rotate: [0, 10, -10, 0],
+                        scale: 1.1
+                      }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <div className="w-20 h-20 bg-gradient-to-br from-[#F97316]/20 to-[#F97316]/10 rounded-2xl flex items-center justify-center mx-auto group-hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition-all">
+                        <step.icon className="w-10 h-10 text-[#F97316] group-hover:scale-110 transition-transform" />
+                      </div>
+                    </motion.div>
+
+                    {/* Content */}
+                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#F97316] transition-colors">
+                      {step.title}
+                    </h3>
+                    <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                      {step.description}
+                    </p>
+
+                    {/* Arrow (Desktop only) */}
+                    {index < processSteps.length - 1 && (
+                      <div className="hidden md:block absolute top-1/2 -right-6 translate-y-[-50%]">
+                        <motion.div
+                          animate={{ x: [0, 10, 0] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                        >
+                          <ArrowRightIcon className="w-12 h-12 text-[#F97316]/30" />
+                        </motion.div>
+                      </div>
+                    )}
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
 
-          {/* 6. GARANTİ & RİSK AZALTMA */}
+          {/* 6. GARANTİ & RİSK AZALTMA - Premium Cards */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-20 grid md:grid-cols-3 gap-6"
+            className="mb-20"
           >
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
-              <ShieldCheckIcon className="w-10 h-10 text-[#F97316] mb-3" />
-              <h3 className="text-lg font-bold text-white mb-2">Lighthouse 90+ Hedefi</h3>
-              <p className="text-sm text-gray-400">Performans, erişilebilirlik ve SEO skorları garanti altında</p>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
-              <ClockIcon className="w-10 h-10 text-[#F97316] mb-3" />
-              <h3 className="text-lg font-bold text-white mb-2">30 Gün Ücretsiz Bakım</h3>
-              <p className="text-sm text-gray-400">Canlı sonrası ilk ay tamamen ücretsiz destek</p>
-            </div>
-            <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
-              <CheckIcon className="w-10 h-10 text-[#F97316] mb-3" />
-              <h3 className="text-lg font-bold text-white mb-2">Revizyon Hakkı</h3>
-              <p className="text-sm text-gray-400">Paketinize göre sınırlı veya sınırsız revizyon</p>
+            <h2 className="text-3xl font-bold mb-4 text-center text-white">
+              Garantiler
+            </h2>
+            <p className="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+              Projeniz için sunduğumuz güvenlik ve destek garantileri
+            </p>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                { icon: ShieldCheckIcon, title: 'Lighthouse 90+ Hedefi', desc: 'Performans, erişilebilirlik ve SEO skorları garanti altında', color: 'from-blue-500 to-cyan-400' },
+                { icon: ClockIcon, title: '30 Gün Ücretsiz Bakım', desc: 'Canlı sonrası ilk ay tamamen ücretsiz destek', color: 'from-[#F97316] to-orange-400' },
+                { icon: CheckIcon, title: 'Revizyon Hakkı', desc: 'Paketinize göre sınırlı veya sınırsız revizyon', color: 'from-green-500 to-emerald-400' }
+              ].map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ 
+                    y: -8,
+                    rotateY: 3,
+                    scale: 1.02,
+                    transition: { duration: 0.3 }
+                  }}
+                  style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+                  className="group relative bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-[#F97316]/50 cursor-pointer transition-all duration-300 overflow-hidden"
+                >
+                  {/* 3D Glow Effect */}
+                  <motion.div
+                    className={`absolute inset-0 bg-gradient-to-br ${item.color}/0 via-${item.color}/10 to-${item.color}/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+                    initial={false}
+                    whileHover={{ scale: 1.2, rotate: 45 }}
+                  />
+
+                  <motion.div
+                    whileHover={{ rotate: 360, scale: 1.2 }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-4"
+                  >
+                    <item.icon className="w-12 h-12 text-[#F97316] group-hover:drop-shadow-[0_0_20px_rgba(249,115,22,0.6)] transition-all" />
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#F97316] transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                    {item.desc}
+                  </p>
+                </motion.div>
+              ))}
             </div>
           </motion.div>
 
