@@ -43,6 +43,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isVisible, setIsVisible] = useState(true)
+  const [showMusicHint, setShowMusicHint] = useState(false)
 
   useEffect(() => {
     // Load logo from localStorage
@@ -153,11 +154,26 @@ export function Navbar() {
             </div>
             
             {/* Right side - Logo and Controls */}
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 relative">
               <span className="text-lg font-bold text-white hidden lg:block">
                 ic<span className="text-orange-500">ne</span>vudila
               </span>
-              <LofiPlayer />
+              <div 
+                className="relative"
+                onMouseEnter={() => setShowMusicHint(true)}
+                onMouseLeave={() => setShowMusicHint(false)}
+              >
+                <LofiPlayer />
+                {showMusicHint && (
+                  <motion.p
+                    initial={{ opacity: 0, y: -5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="absolute top-[52px] right-0 text-xs text-gray-500 hover:text-orange-400 transition-all duration-700 cursor-pointer whitespace-nowrap z-50"
+                  >
+                    ♪ click for lofi
+                  </motion.p>
+                )}
+              </div>
               <ThemeToggle />
               <LanguageSwitcher />
             </div>
