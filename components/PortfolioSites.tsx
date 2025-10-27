@@ -293,21 +293,38 @@ export function PortfolioSites() {
 
         {/* Mobile: Collapsible Portfolio Section */}
         <div className="md:hidden mb-6">
-          <button
+          <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full flex items-center justify-between p-4 bg-gray-800/50 rounded-xl hover:bg-gray-700/50 transition-colors border border-orange-500/20"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full flex items-center justify-between p-4 bg-gradient-to-r from-orange-500/20 via-orange-500/15 to-orange-500/20 rounded-xl hover:from-orange-500/30 hover:via-orange-500/25 hover:to-orange-500/30 transition-all duration-300 border border-orange-500/40 shadow-lg hover:shadow-orange-500/20 backdrop-blur-sm"
           >
-            <span className="text-orange-500 font-medium">
-              {language === 'tr' ? '📂 Siteleri Görmek İçin Tıklayın' : '📂 Click to View Sites'}
-            </span>
+            <div className="flex items-center gap-3">
+              <motion.div
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+                className="text-2xl"
+              >
+                🎨
+              </motion.div>
+              <span className="text-orange-400 font-semibold text-sm">
+                {language === 'tr' ? 'Siteleri Görmek İçin Tıklayın' : 'Click to View Sites'}
+              </span>
+            </div>
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
               transition={{ duration: 0.3 }}
-              className="text-orange-500"
+              className="text-orange-400 text-xl"
             >
               ▼
             </motion.div>
-          </button>
+          </motion.button>
         </div>
 
         {/* Portfolio Grid */}
