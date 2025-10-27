@@ -30,10 +30,29 @@ html[data-theme="light"] {
 
   /* Smooth theme transitions */
   * {
-    transition: background-color 0.2s ease, 
-                color 0.2s ease, 
-                border-color 0.2s ease,
-                box-shadow 0.2s ease;
+    transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+                border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Theme transition overlay for smooth fade */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: currentColor;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+  }
+  
+  body.transitioning::before {
+    opacity: 0.05;
   }
   
   /* Fast transitions for interactive elements */

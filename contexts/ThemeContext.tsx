@@ -33,8 +33,17 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   }, [theme])
 
   const toggleTheme = () => {
+    // Add transition class for smooth animation
+    document.body.classList.add('transitioning')
+    
     setTheme(prev => {
       const newTheme = prev === 'light' ? 'dark' : 'light'
+      
+      // Remove transition class after animation
+      setTimeout(() => {
+        document.body.classList.remove('transitioning')
+      }, 400)
+      
       return newTheme
     })
   }
