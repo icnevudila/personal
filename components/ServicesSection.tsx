@@ -66,6 +66,7 @@ const itemVariants = {
 export default function ServicesSection() {
   const [openFaq, setOpenFaq] = useState<number | null>(0)
   const [expandedServices, setExpandedServices] = useState<Set<string>>(new Set())
+  const [activeProcessStep, setActiveProcessStep] = useState(0)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -234,22 +235,70 @@ export default function ServicesSection() {
     {
       icon: LightBulbIcon,
       title: 'Keşif',
-      description: 'İhtiyaçlarınızı dinliyor, hedeflerinizi analiz ediyoruz.'
+      description: 'İhtiyaçlarınızı dinliyor, hedeflerinizi analiz ediyoruz.',
+      details: {
+        title: 'Kapsamlı Keşif & Analiz',
+        checklist: [
+          'Proje hedefleri ve KPI belirleme',
+          'Rakip analizi ve market araştırması',
+          'Kullanıcı journey mapping',
+          'Teknik gereksinimlerin değerlendirilmesi',
+          'İçerik stratejisi oluşturma'
+        ],
+        duration: '3-5 gün',
+        output: 'Detaylı proje roadmap ve teknik öneriler'
+      }
     },
     {
       icon: PaintBrushIcon,
       title: 'Tasarım',
-      description: 'Müşteri onayıyla tasarım sürecini başlatıyoruz.'
+      description: 'Müşteri onayıyla tasarım sürecini başlatıyoruz.',
+      details: {
+        title: 'Yaratıcı Tasarım & Prototipleme',
+        checklist: [
+          'Wireframe ve user flow tasarımı',
+          'UI mockup ve prototip geliştirme',
+          'Brand guideline uyumu',
+          'Responsive breakpoint'leri',
+          'Müşteri onayı ve iterasyon'
+        ],
+        duration: '4-7 gün',
+        output: 'Onaylanmış tasarım dosyaları ve design system'
+      }
     },
     {
       icon: CodeBracketIcon,
       title: 'Geliştirme',
-      description: 'Modern teknolojilerle canlı ortama hazırlıyoruz.'
+      description: 'Modern teknolojilerle canlı ortama hazırlıyoruz.',
+      details: {
+        title: 'Modern Teknolojilerle Geliştirme',
+        checklist: [
+          'Frontend framework (Next.js, React)',
+          'Backend API ve database kurulumu',
+          'Üçüncü parti entegrasyonlar',
+          'SEO optimizasyonu',
+          'Performance ve security audit'
+        ],
+        duration: '5-14 gün',
+        output: 'Production-ready kod ve staging environment'
+      }
     },
     {
       icon: RocketLaunchIcon,
       title: 'Yayın',
-      description: 'Test ve optimizasyondan sonra canlıya alıyoruz.'
+      description: 'Test ve optimizasyondan sonra canlıya alıyoruz.',
+      details: {
+        title: 'Launch & Optimizasyon',
+        checklist: [
+          'Son test ve bug fix işlemleri',
+          'Domain ve hosting konfigürasyonu',
+          'SSL kurulumu ve güvenlik ayarları',
+          'Analytics ve monitoring setup',
+          'Canlıya alma ve smoke test'
+        ],
+        duration: '2-3 gün',
+        output: 'Canlı ve optimize edilmiş web sitesi'
+      }
     }
   ]
 
@@ -509,91 +558,108 @@ export default function ServicesSection() {
               </p>
             </div>
 
-            <div className="relative max-w-6xl mx-auto">
-              {/* Timeline Line */}
-              <motion.div 
-                className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-[#F97316]/20 via-[#F97316]/50 to-[#F97316]/20"
-                initial={{ scaleX: 0 }}
-                whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, ease: 'easeInOut' }}
-                style={{ transformOrigin: 'left' }}
-              />
-
-              <div className="grid md:grid-cols-4 gap-6 relative">
+            <div className="max-w-6xl mx-auto">
+              {/* Process Steps Buttons */}
+              <div className="grid md:grid-cols-4 gap-4 mb-12">
                 {processSteps.map((step, index) => (
-                  <motion.div
+                  <motion.button
                     key={step.title}
-                    initial={{ opacity: 0, y: 40, scale: 0.8 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    onClick={() => setActiveProcessStep(index)}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ 
                       duration: 0.6, 
-                      delay: index * 0.15,
+                      delay: index * 0.1,
                       type: 'spring',
                       stiffness: 100
                     }}
                     whileHover={{ 
-                      y: -10,
-                      rotateY: 5,
-                      scale: 1.05,
-                      transition: { duration: 0.3 }
+                      y: -5,
+                      scale: 1.03
                     }}
-                    style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
-                    className="relative group bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-[#F97316]/50 text-center cursor-pointer transition-all duration-300 overflow-hidden"
+                    whileTap={{ scale: 0.98 }}
+                    className={`relative group bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border transition-all duration-300 overflow-hidden text-center ${
+                      activeProcessStep === index 
+                        ? 'border-[#F97316] shadow-[0_0_30px_rgba(249,115,22,0.3)]' 
+                        : 'border-gray-700/50 hover:border-[#F97316]/50'
+                    }`}
                   >
-                    {/* 3D Glow Effect */}
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-[#F97316]/0 via-[#F97316]/10 to-[#F97316]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      initial={false}
-                      whileHover={{ scale: 1.2, rotate: 45 }}
-                    />
 
-                    {/* Step Number Badge */}
-                    <motion.div
-                      className="absolute -top-3 -left-3 w-8 h-8 bg-[#F97316] rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg"
-                      whileHover={{ rotate: 360, scale: 1.2 }}
-                      transition={{ duration: 0.6 }}
-                    >
-                      {index + 1}
-                    </motion.div>
-
-                    {/* Icon Container with 3D Animation */}
-                    <motion.div
-                      className="relative mb-6"
-                      whileHover={{ 
-                        rotate: [0, 10, -10, 0],
-                        scale: 1.1
-                      }}
-                      transition={{ duration: 0.5 }}
-                    >
-                      <div className="w-20 h-20 bg-gradient-to-br from-[#F97316]/20 to-[#F97316]/10 rounded-2xl flex items-center justify-center mx-auto group-hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition-all">
-                        <step.icon className="w-10 h-10 text-[#F97316] group-hover:scale-110 transition-transform" />
-                      </div>
-                    </motion.div>
+                    {/* Icon */}
+                    <div className="w-20 h-20 bg-gradient-to-br from-[#F97316]/20 to-[#F97316]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:shadow-[0_0_30px_rgba(249,115,22,0.4)] transition-all">
+                      <step.icon className={`w-10 h-10 transition-all ${
+                        activeProcessStep === index 
+                          ? 'text-[#F97316] scale-110 drop-shadow-[0_0_20px_rgba(249,115,22,0.6)]' 
+                          : 'text-[#F97316]'
+                      }`} />
+                    </div>
 
                     {/* Content */}
-                    <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#F97316] transition-colors">
+                    <h3 className={`text-xl font-bold mb-3 transition-colors ${
+                      activeProcessStep === index ? 'text-[#F97316]' : 'text-white'
+                    }`}>
                       {step.title}
                     </h3>
-                    <p className="text-sm text-gray-400 group-hover:text-gray-300 transition-colors">
+                    <p className="text-sm text-gray-400">
                       {step.description}
                     </p>
-
-                    {/* Arrow (Desktop only) */}
-                    {index < processSteps.length - 1 && (
-                      <div className="hidden md:block absolute top-1/2 -right-6 translate-y-[-50%]">
-                        <motion.div
-                          animate={{ x: [0, 10, 0] }}
-                          transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                        >
-                          <ArrowRightIcon className="w-12 h-12 text-[#F97316]/30" />
-                        </motion.div>
-                      </div>
-                    )}
-                  </motion.div>
+                  </motion.button>
                 ))}
               </div>
+
+              {/* Dynamic Content Area */}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeProcessStep}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="bg-gray-800/50 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-gray-700/50"
+                >
+                  <div className="max-w-4xl mx-auto">
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="w-16 h-16 bg-gradient-to-br from-[#F97316]/20 to-[#F97316]/10 rounded-2xl flex items-center justify-center">
+                        <processSteps[activeProcessStep].icon className="w-10 h-10 text-[#F97316]" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-white mb-2">
+                          {processSteps[activeProcessStep].details.title}
+                        </h3>
+                        <p className="text-gray-400">
+                          Süre: {processSteps[activeProcessStep].details.duration}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Checklist */}
+                    <div className="mb-8">
+                      <h4 className="text-lg font-bold text-white mb-4">Bu Aşamada Neler Yapıyoruz?</h4>
+                      <div className="grid md:grid-cols-2 gap-4">
+                        {processSteps[activeProcessStep].details.checklist.map((item, idx) => (
+                          <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="flex items-start gap-3 p-4 bg-gray-900/50 rounded-xl border border-gray-700/50 hover:border-[#F97316]/50 transition-colors"
+                          >
+                            <CheckIcon className="w-6 h-6 text-[#F97316] mt-0.5 flex-shrink-0" />
+                            <span className="text-gray-300">{item}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Output */}
+                    <div className="bg-gradient-to-r from-[#F97316]/10 to-transparent border-l-4 border-[#F97316] p-6 rounded-xl">
+                      <p className="text-sm font-semibold text-[#F97316] mb-2">📦 Bu Aşamanın Çıktısı</p>
+                      <p className="text-white">{processSteps[activeProcessStep].details.output}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </motion.div>
 
