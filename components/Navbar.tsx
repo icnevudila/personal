@@ -249,7 +249,12 @@ export function Navbar() {
                   </motion.div>
                 ))}
                 
-                <div className="pt-6 border-t border-gray-700/50 mt-6">
+                <div className="pt-6 border-t border-gray-700/50 mt-6 space-y-3">
+                  <div className="flex items-center justify-center gap-3">
+                    <div onClick={handleMobileMenuClose}>
+                      <LofiPlayer />
+                    </div>
+                  </div>
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex-1" onClick={handleMobileMenuClose}>
                       <ThemeToggle />
