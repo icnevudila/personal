@@ -295,26 +295,17 @@ export function PortfolioSites() {
         <div className="md:hidden mb-6">
           <motion.button
             onClick={() => setIsOpen(!isOpen)}
-            whileHover={{ scale: 1.01, y: -2 }}
-            whileTap={{ scale: 0.99 }}
-            className="w-full flex items-center justify-between p-4 bg-gray-800/50 rounded-xl hover:bg-gray-700/50 transition-all duration-300 border border-gray-700/50 hover:border-orange-500/50 shadow-md hover:shadow-lg backdrop-blur-sm group"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full flex items-center justify-between px-6 py-3 rounded-full font-medium transition-all duration-300 bg-gray-800/50 text-gray-300 hover:bg-gray-700/50 hover:text-white backdrop-blur-sm"
           >
-            <div className="flex items-center gap-2">
-              <motion.div
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                className="text-orange-500 text-lg"
-              >
-                ▶
-              </motion.div>
-              <span className="text-gray-300 group-hover:text-orange-400 font-medium text-sm transition-colors">
-                {language === 'tr' ? 'Siteleri Görmek İçin Tıklayın' : 'Click to View Sites'}
-              </span>
-            </div>
+            <span className="text-sm">
+              {language === 'tr' ? 'Tüm Siteleri Göster' : 'Show All Sites'}
+            </span>
             <motion.div
               animate={{ rotate: isOpen ? 180 : 0 }}
               transition={{ duration: 0.3 }}
-              className="text-orange-500"
+              className="text-gray-400"
             >
               ▼
             </motion.div>
