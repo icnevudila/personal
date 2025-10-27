@@ -14,6 +14,11 @@ export function LofiPlayer() {
   const [currentStation] = useState(3) // Peaceful Vibes
   const [isMuted, setIsMuted] = useState(false)
   const [volume, setVolume] = useState(30) // Lower volume (30% instead of 100%)
+  const [isMounted, setIsMounted] = useState(false)
+
+  useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying)
@@ -24,7 +29,7 @@ export function LofiPlayer() {
   return (
     <>
       {/* Hidden iframe that plays the music */}
-      {typeof window !== 'undefined' && (
+      {isMounted && (
         <iframe
           key={`${currentYoutubeId}-${isPlaying}`}
           src={`https://www.youtube.com/embed/${currentYoutubeId}?autoplay=${isPlaying ? 1 : 0}&loop=1&playlist=${currentYoutubeId}&controls=0&mute=${isMuted ? 1 : 0}&volume=${volume}`}
