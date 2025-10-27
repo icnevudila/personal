@@ -22,17 +22,6 @@ export function LofiPlayer() {
 
   const currentYoutubeId = lofiStations[currentStation].youtubeId
 
-  const barVariants = {
-    animate: {
-      scaleY: [1, 1.8, 1],
-      transition: {
-        duration: 1.2,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      },
-    },
-  }
-
   return (
     <>
       {/* Hidden iframe that plays the music */}
@@ -56,7 +45,7 @@ export function LofiPlayer() {
 
       {/* Mini Lofi Player */}
       <div 
-        className="relative flex items-center gap-2 cursor-pointer select-none text-xs text-gray-400 hover:text-orange-400 transition-all duration-500 px-2 py-1 rounded-lg hover:bg-gray-800/20"
+        className="relative flex items-center gap-2 cursor-pointer select-none text-xs text-orange-500 hover:text-orange-400 transition-all duration-500 px-2 py-1 rounded-lg hover:bg-gray-800/20"
         onClick={togglePlay}
       >
         <motion.span
@@ -68,24 +57,16 @@ export function LofiPlayer() {
           {isPlaying ? '⏸ lofi playing...' : '▶ play lofi'}
         </motion.span>
 
-        {/* Equalizer animasyonu */}
-        {isPlaying && (
-          <div className="flex gap-[2px] items-center">
-            {[1, 2, 3, 4, 5].map((i) => (
-              <motion.div
-                key={i}
-                variants={barVariants}
-                animate="animate"
-                transition={{ duration: 1.2, repeat: Infinity, ease: 'easeInOut', delay: i * 0.15 }}
-                className="w-[2px] h-[12px] bg-orange-400 rounded-sm origin-bottom"
-              />
-            ))}
-          </div>
-        )}
-
         {/* Fallback play icon for mobile */}
         {!isPlaying && (
           <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[8px] border-l-orange-500"></div>
+        )}
+
+        {isPlaying && (
+          <div className="flex gap-1 items-center">
+            <div className="w-1 h-3 bg-orange-500 rounded-sm"></div>
+            <div className="w-1 h-3 bg-orange-500 rounded-sm"></div>
+          </div>
         )}
       </div>
     </>
