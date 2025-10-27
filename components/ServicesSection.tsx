@@ -259,7 +259,7 @@ export default function ServicesSection() {
           'Wireframe ve user flow tasarımı',
           'UI mockup ve prototip geliştirme',
           'Brand guideline uyumu',
-          'Responsive breakpoint'leri',
+          'Responsive breakpointleri',
           'Müşteri onayı ve iterasyon'
         ],
         duration: '4-7 gün',
