@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { PlayIcon, PauseIcon } from '@heroicons/react/24/outline'
 
 const lofiStations = [
   { id: 1, title: 'Lofi Hip Hop Radio', youtubeId: 'jfKfPfyJRdk' },
@@ -50,17 +49,22 @@ export function LofiPlayer() {
         />
       )}
 
-      {/* Minimal Triangle Button */}
+      {/* Play/Pause Button - Right Triangle */}
       <button
         onClick={togglePlay}
-        className="relative group"
+        className="relative group w-8 h-8 flex items-center justify-center"
         aria-label={isPlaying ? 'Pause' : 'Play'}
       >
-        <div className="w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-b-[12px] border-b-orange-500 group-hover:border-b-orange-400 transition-colors">
-          {isPlaying && (
-            <PauseIcon className="absolute -top-[14px] left-1/2 -translate-x-1/2 w-3 h-3 text-white" />
-          )}
-        </div>
+        {isPlaying ? (
+          // Pause icon
+          <div className="flex gap-1 items-center">
+            <div className="w-1 h-3 bg-orange-500 rounded-sm"></div>
+            <div className="w-1 h-3 bg-orange-500 rounded-sm"></div>
+          </div>
+        ) : (
+          // Play icon - Right triangle
+          <div className="w-0 h-0 border-t-[6px] border-t-transparent border-b-[6px] border-b-transparent border-l-[10px] border-l-orange-500 group-hover:border-l-orange-400 ml-1 transition-colors"></div>
+        )}
         {isPlaying && (
           <div className="absolute -top-1 -right-1 w-2 h-2 bg-orange-400 rounded-full animate-pulse" />
         )}
