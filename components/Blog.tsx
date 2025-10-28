@@ -9,19 +9,29 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
 import { uploadImageToSupabase } from '@/lib/supabase-storage'
 import { getAllBlogPosts, saveBlogPost } from '@/lib/blog-database'
+import { 
+  getBlogPosts, 
+  getYouTubeChannel, 
+  getYouTubeVideos,
+  type BlogPost as SupabaseBlogPost,
+  type YouTubeChannel as SupabaseYouTubeChannel,
+  type YouTubeVideo as SupabaseYouTubeVideo
+} from '@/lib/supabase-cms'
 
 interface BlogPost {
-  id?: number
+  id?: string
   title: string
   excerpt: string
   date: string
-  readTime: string
+  read_time: string
   slug: string
   category: string
   featured?: boolean
   content?: string
   image?: string
   published?: boolean
+  created_at?: string
+  updated_at?: string
 }
 
 interface BlogProps {
@@ -259,43 +269,66 @@ Bu yolculukta başarılar dileriz! 🚀`,
     return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()) // Tarihe göre sırala
   }
 
-  const [allBlogPosts, setAllBlogPosts] = useState<BlogPost[]>(generateBlogPosts())
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
-  const [youtubeChannel, setYoutubeChannel] = useState({
-    channelName: 'icnevudila',
-    channelUrl: 'https://youtube.com/@icnevudila',
-    subscriberCount: '0',
-    isActive: true,
-    videos: [
-      { id: 1, title: 'Web Tasarımı Temelleri', duration: '15:30', thumbnail: '', url: '' },
-      { id: 2, title: 'React ile Modern UI', duration: '22:15', thumbnail: '', url: '' },
-      { id: 3, title: 'CSS Grid Masterclass', duration: '18:45', thumbnail: '', url: '' }
-    ]
-  })
+  const [allBlogPosts, setAllBlogPosts] = useState<SupabaseBlogPost[]>([])
+  const [blogPosts, setBlogPosts] = useState<SupabaseBlogPost[]>([])
+  const [youtubeChannel, setYoutubeChannel] = useState<SupabaseYouTubeChannel | null>(null)
+  const [youtubeVideos, setYoutubeVideos] = useState<SupabaseYouTubeVideo[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Always generate fresh posts with correct image paths
-    const posts = generateBlogPosts()
-    setAllBlogPosts(posts)
-    setBlogPosts(posts.filter(post => post.published !== false))
-    
-    // Save fresh posts to localStorage (this will overwrite old data)
-    localStorage.setItem('blogPosts', JSON.stringify(posts))
-    console.log('📝 Generated fresh posts with correct image paths:', posts.length)
-    console.log('Published posts:', posts.filter(post => post.published !== false).length)
-    console.log('🔍 First few posts image paths:', posts.slice(0, 3).map(p => ({ title: p.title, image: p.image })))
-    
-    // Load YouTube channel data
-    const savedYoutubeChannel = localStorage.getItem('youtubeChannel')
-    if (savedYoutubeChannel) {
+    const loadData = async () => {
+      setLoading(true)
       try {
-        const parsed = JSON.parse(savedYoutubeChannel)
-        console.log('📺 Loaded YouTube channel:', parsed)
-        setYoutubeChannel(parsed)
-      } catch (e) {
-        console.error('Error parsing YouTube channel:', e)
+        // Load blog posts from Supabase
+        const postsData = await getBlogPosts()
+        setAllBlogPosts(postsData)
+        setBlogPosts(postsData)
+        
+        // Load YouTube channel from Supabase
+        const youtubeChannelData = await getYouTubeChannel()
+        setYoutubeChannel(youtubeChannelData)
+        
+        if (youtubeChannelData) {
+          const videosData = await getYouTubeVideos(youtubeChannelData.id)
+          setYoutubeVideos(videosData)
+        }
+        
+        console.log('📊 Loaded data from Supabase:', {
+          blogPosts: postsData.length,
+          youtubeChannel: youtubeChannelData?.channel_name,
+          videos: youtubeChannelData ? await getYouTubeVideos(youtubeChannelData.id) : []
+        })
+        
+      } catch (error) {
+        console.error('Error loading data from Supabase:', error)
+        // Fallback to localStorage if Supabase fails
+        const savedBlogPosts = localStorage.getItem('blogPosts')
+        if (savedBlogPosts) {
+          try {
+            const parsed = JSON.parse(savedBlogPosts)
+            setAllBlogPosts(parsed)
+            setBlogPosts(parsed.filter((post: any) => post.published !== false))
+          } catch (e) {
+            console.error('Error parsing blog posts:', e)
+          }
+        }
+        
+        // Fallback YouTube data
+        const savedYoutubeChannel = localStorage.getItem('youtubeChannel')
+        if (savedYoutubeChannel) {
+          try {
+            const parsed = JSON.parse(savedYoutubeChannel)
+            setYoutubeChannel(parsed)
+          } catch (e) {
+            console.error('Error parsing YouTube channel:', e)
+          }
+        }
+      } finally {
+        setLoading(false)
       }
     }
+    
+    loadData()
   }, [])
 
   const handleEdit = (post: BlogPost, index: number) => {
@@ -464,13 +497,21 @@ Bu yolculukta başarılar dileriz! 🚀`,
   return (
     <section id="blog" className="section-padding bg-gray-800/30">
       <div className="container-custom">
-        <motion.div
-          ref={ref}
-          variants={containerVariants}
-          initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
-          className="max-w-6xl mx-auto"
-        >
+        {loading ? (
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
+              <p className="text-gray-400">İçerikler yükleniyor...</p>
+            </div>
+          </div>
+        ) : (
+          <motion.div
+            ref={ref}
+            variants={containerVariants}
+            initial="hidden"
+            animate={isInView ? 'visible' : 'hidden'}
+            className="max-w-6xl mx-auto"
+          >
           {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-8 md:mb-16 px-4">
             <div className="flex flex-col md:flex-row items-center justify-center mb-4 md:mb-6 gap-4">
@@ -662,7 +703,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
                       </div>
                       <div className="flex items-center space-x-1">
                         <ClockIcon className="w-3 h-3" />
-                        <span>{post.readTime}</span>
+                        <span>{post.read_time}</span>
                       </div>
                     </div>
 
@@ -934,13 +975,13 @@ Bu yolculukta başarılar dileriz! 🚀`,
             <VideoCameraIcon className="w-10 h-10 text-red-500" />
           </motion.div>
           <h2 className="text-3xl font-bold mb-4 text-white">
-            {youtubeChannel.isActive ? `${youtubeChannel.channelName} YouTube` : t.services.youtubeSection.title}
+            {youtubeChannel?.is_active ? `${youtubeChannel.channel_name} YouTube` : t.services.youtubeSection.title}
           </h2>
           <p className="text-lg text-[#F97316] mb-2 font-semibold">
-            {youtubeChannel.isActive ? `${youtubeChannel.subscriberCount} Abone` : t.services.youtubeSection.subtitle}
+            {youtubeChannel?.is_active ? `${youtubeChannel.subscriber_count} Abone` : t.services.youtubeSection.subtitle}
           </p>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            {youtubeChannel.isActive ? 'En son videolarımı izleyin ve kanalıma abone olun!' : t.services.youtubeSection.description}
+            {youtubeChannel?.is_active ? 'En son videolarımı izleyin ve kanalıma abone olun!' : t.services.youtubeSection.description}
           </p>
         </div>
 
@@ -974,8 +1015,8 @@ Bu yolculukta başarılar dileriz! 🚀`,
 
               {/* Video Grid Preview */}
               <div className="grid md:grid-cols-3 gap-4 mb-6">
-                {youtubeChannel.isActive && youtubeChannel.videos.length > 0 ? (
-                  youtubeChannel.videos.map((video, index) => (
+                {youtubeChannel?.is_active && youtubeVideos.length > 0 ? (
+                  youtubeVideos.map((video, index) => (
                     <motion.div
                       key={video.id}
                       initial={{ opacity: 0, y: 20 }}
@@ -1039,19 +1080,19 @@ Bu yolculukta başarılar dileriz! 🚀`,
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-red-500 hover:bg-red-600 text-white rounded-xl font-semibold transition-colors flex items-center justify-center gap-2 shadow-lg shadow-red-500/20"
-                  onClick={() => window.open(youtubeChannel.isActive ? youtubeChannel.channelUrl : 'https://youtube.com/@icnevudila', '_blank')}
+                  onClick={() => window.open(youtubeChannel?.is_active ? youtubeChannel.channel_url : 'https://youtube.com/@icnevudila', '_blank')}
                 >
                   <VideoCameraIcon className="w-5 h-5" />
-                  {youtubeChannel.isActive ? `${youtubeChannel.channelName} Kanalına Git` : t.services.youtubeSection.subscribeButton}
+                  {youtubeChannel?.is_active ? `${youtubeChannel.channel_name} Kanalına Git` : t.services.youtubeSection.subscribeButton}
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-gray-700 hover:bg-gray-600 text-white rounded-xl font-semibold border border-gray-600 transition-colors flex items-center justify-center gap-2"
-                  onClick={() => window.open(youtubeChannel.isActive ? youtubeChannel.channelUrl : 'https://youtube.com/@icnevudila', '_blank')}
+                  onClick={() => window.open(youtubeChannel?.is_active ? youtubeChannel.channel_url : 'https://youtube.com/@icnevudila', '_blank')}
                 >
                   <BellIcon className="w-5 h-5" />
-                  {youtubeChannel.isActive ? 'Abone Ol' : t.services.youtubeSection.notifyButton}
+                  {youtubeChannel?.is_active ? 'Abone Ol' : t.services.youtubeSection.notifyButton}
                 </motion.button>
               </div>
             </div>

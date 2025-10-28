@@ -7,6 +7,29 @@ import { AuthGuard } from './AuthGuard'
 import { useAuth } from '@/contexts/AuthContext'
 import { uploadImageToCloudinary } from '@/lib/cloudinary-storage'
 import { saveBlogPost } from '@/lib/blog-database'
+import { 
+  getBlogPosts, 
+  getAllBlogPosts, 
+  createBlogPost, 
+  updateBlogPost, 
+  deleteBlogPost,
+  getYouTubeChannel,
+  getYouTubeVideos,
+  updateYouTubeChannel,
+  createYouTubeVideo,
+  updateYouTubeVideo,
+  deleteYouTubeVideo,
+  getProjects,
+  createProject,
+  updateProject,
+  deleteProject,
+  getSiteSettings,
+  updateSiteSetting,
+  type BlogPost as SupabaseBlogPost,
+  type YouTubeChannel as SupabaseYouTubeChannel,
+  type YouTubeVideo as SupabaseYouTubeVideo,
+  type Project as SupabaseProject
+} from '@/lib/supabase-cms'
 
 interface Project {
   id: number
@@ -31,10 +54,10 @@ interface BlogPost {
 
 function AdminPanel() {
   const { user, signOut } = useAuth()
-  const [projects, setProjects] = useState<Project[]>([])
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
-  const [editingId, setEditingId] = useState<number | null>(null)
-  const [formData, setFormData] = useState<Partial<Project>>({})
+  const [projects, setProjects] = useState<SupabaseProject[]>([])
+  const [blogPosts, setBlogPosts] = useState<SupabaseBlogPost[]>([])
+  const [editingId, setEditingId] = useState<string | null>(null)
+  const [formData, setFormData] = useState<Partial<SupabaseProject>>({})
   const [showAddForm, setShowAddForm] = useState(false)
   const [localStorageCount, setLocalStorageCount] = useState(0)
   const [heroImage, setHeroImage] = useState<string>('')
@@ -44,173 +67,157 @@ function AdminPanel() {
   const [activeTab, setActiveTab] = useState<'projects' | 'blog' | 'youtube' | 'settings'>('projects')
   
   // YouTube Management States
-  const [youtubeChannel, setYoutubeChannel] = useState({
-    channelName: 'icnevudila',
-    channelUrl: 'https://youtube.com/@icnevudila',
-    subscriberCount: '0',
-    isActive: true,
-    videos: [
-      { id: 1, title: 'Web Tasarımı Temelleri', duration: '15:30', thumbnail: '', url: '' },
-      { id: 2, title: 'React ile Modern UI', duration: '22:15', thumbnail: '', url: '' },
-      { id: 3, title: 'CSS Grid Masterclass', duration: '18:45', thumbnail: '', url: '' }
-    ]
-  })
+  const [youtubeChannel, setYoutubeChannel] = useState<SupabaseYouTubeChannel | null>(null)
+  const [youtubeVideos, setYoutubeVideos] = useState<SupabaseYouTubeVideo[]>([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Load projects from localStorage or fallback to default
+    const loadData = async () => {
+      setLoading(true)
+      try {
+        // Load projects from Supabase
+        const projectsData = await getProjects()
+        setProjects(projectsData)
+        setLocalStorageCount(projectsData.length)
+        
+        // Load blog posts from Supabase
+        const blogPostsData = await getAllBlogPosts()
+        setBlogPosts(blogPostsData)
+        
+        // Load YouTube channel from Supabase
+        const youtubeChannelData = await getYouTubeChannel()
+        setYoutubeChannel(youtubeChannelData)
+        
+        if (youtubeChannelData) {
+          const videosData = await getYouTubeVideos(youtubeChannelData.id)
+          setYoutubeVideos(videosData)
+        }
+        
+        // Load site settings from Supabase
+        const siteSettings = await getSiteSettings()
+        setSiteLogo(siteSettings.site_logo || '')
+        setSiteFavicon(siteSettings.site_favicon || '')
+        setHeroImage(siteSettings.hero_image || '')
+        setAboutImage(siteSettings.about_image || '')
+        
+        console.log('📊 Loaded data from Supabase:', {
+          projects: projectsData.length,
+          blogPosts: blogPostsData.length,
+          youtubeChannel: youtubeChannelData?.channel_name,
+          videos: youtubeChannelData ? await getYouTubeVideos(youtubeChannelData.id) : []
+        })
+        
+      } catch (error) {
+        console.error('Error loading data:', error)
+        // Fallback to localStorage if Supabase fails
     const saved = localStorage.getItem('projects')
     if (saved) {
       const parsed = JSON.parse(saved)
-      console.log('📊 Loaded projects from localStorage:', parsed)
       setProjects(parsed)
       setLocalStorageCount(parsed.length)
-    } else {
-      // Fetch from data file on first load
-      fetch('/data-projects.json')
-        .then(res => res.json())
-        .then(data => {
-          console.log('📊 Loaded projects from file:', data.projects)
-          setProjects(data.projects)
-          setLocalStorageCount(data.projects.length)
-          localStorage.setItem('projects', JSON.stringify(data.projects))
-        })
-    }
-    
-    // Load blog posts from localStorage
-    const savedBlogPosts = localStorage.getItem('blogPosts')
-    if (savedBlogPosts) {
-      try {
-        const parsed = JSON.parse(savedBlogPosts)
-        console.log('📝 Loaded blog posts from localStorage:', parsed)
-        setBlogPosts(parsed)
-      } catch (e) {
-        console.error('Error parsing blog posts:', e)
+        }
+      } finally {
+        setLoading(false)
       }
     }
     
-    // Load hero image
-    const savedHeroImage = localStorage.getItem('heroImage')
-    if (savedHeroImage) {
-      console.log('🖼️ Loaded hero image:', savedHeroImage.substring(0, 50) + '...')
-      setHeroImage(savedHeroImage)
-    }
-    
-    // Load about image
-    const savedAboutImage = localStorage.getItem('aboutImage')
-    if (savedAboutImage) {
-      console.log('🖼️ Loaded about image:', savedAboutImage.substring(0, 50) + '...')
-      setAboutImage(savedAboutImage)
-    }
-    
-    // Load site logo
-    const savedLogo = localStorage.getItem('siteLogo')
-    if (savedLogo) {
-      console.log('🖼️ Loaded site logo:', savedLogo.substring(0, 50) + '...')
-      setSiteLogo(savedLogo)
-    }
-    
-    // Load site favicon
-    const savedFavicon = localStorage.getItem('siteFavicon')
-    if (savedFavicon) {
-      console.log('🖼️ Loaded site favicon:', savedFavicon.substring(0, 50) + '...')
-      setSiteFavicon(savedFavicon)
-    }
-    
-    // Load YouTube channel data
-    const savedYoutubeChannel = localStorage.getItem('youtubeChannel')
-    if (savedYoutubeChannel) {
-      try {
-        const parsed = JSON.parse(savedYoutubeChannel)
-        console.log('📺 Loaded YouTube channel:', parsed)
-        setYoutubeChannel(parsed)
-      } catch (e) {
-        console.error('Error parsing YouTube channel:', e)
-      }
-    }
+    loadData()
   }, [])
 
-  const saveProjects = (newProjects: Project[]) => {
+  const saveProjects = async (newProjects: SupabaseProject[]) => {
     console.log('Saving projects:', newProjects)
-    localStorage.setItem('projects', JSON.stringify(newProjects))
     setProjects(newProjects)
-    // Force re-render
-    setTimeout(() => {
-      console.log('Projects updated in state')
-    }, 100)
+    setLocalStorageCount(newProjects.length)
   }
 
-  const saveYoutubeChannel = (newChannel: typeof youtubeChannel) => {
+  const saveYoutubeChannel = async (newChannel: SupabaseYouTubeChannel) => {
     console.log('Saving YouTube channel:', newChannel)
-    localStorage.setItem('youtubeChannel', JSON.stringify(newChannel))
-    setYoutubeChannel(newChannel)
+    if (newChannel.id) {
+      const updated = await updateYouTubeChannel(newChannel.id, newChannel)
+      if (updated) {
+        setYoutubeChannel(updated)
+      }
+    }
   }
 
-  const addYoutubeVideo = () => {
+  const addYoutubeVideo = async () => {
+    if (!youtubeChannel) return
+    
     const newVideo = {
-      id: Date.now(),
+      channel_id: youtubeChannel.id,
       title: 'Yeni Video',
       duration: '00:00',
       thumbnail: '',
       url: ''
     }
-    const updatedChannel = {
-      ...youtubeChannel,
-      videos: [...youtubeChannel.videos, newVideo]
+    
+    const created = await createYouTubeVideo(newVideo)
+    if (created) {
+      const updatedVideos = [...youtubeVideos, created]
+      setYoutubeVideos(updatedVideos)
     }
-    saveYoutubeChannel(updatedChannel)
   }
 
-  const updateYoutubeVideo = (id: number, field: string, value: string) => {
-    const updatedVideos = youtubeChannel.videos.map(video =>
-      video.id === id ? { ...video, [field]: value } : video
-    )
-    const updatedChannel = { ...youtubeChannel, videos: updatedVideos }
-    saveYoutubeChannel(updatedChannel)
+  const updateYoutubeVideo = async (id: string, field: string, value: string) => {
+    const updated = await updateYouTubeVideo(id, { [field]: value })
+    if (updated) {
+      const updatedVideos = youtubeVideos.map(video =>
+        video.id === id ? updated : video
+      )
+      setYoutubeVideos(updatedVideos)
+    }
   }
 
-  const deleteYoutubeVideo = (id: number) => {
-    const updatedVideos = youtubeChannel.videos.filter(video => video.id !== id)
-    const updatedChannel = { ...youtubeChannel, videos: updatedVideos }
-    saveYoutubeChannel(updatedChannel)
+  const deleteYoutubeVideo = async (id: string) => {
+    const success = await deleteYouTubeVideo(id)
+    if (success) {
+      const updatedVideos = youtubeVideos.filter(video => video.id !== id)
+      setYoutubeVideos(updatedVideos)
+    }
   }
 
-  const handleEdit = (project: Project) => {
+  const handleEdit = (project: SupabaseProject) => {
     setEditingId(project.id)
     setFormData(project)
   }
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (editingId) {
-      const updated = projects.map(p => 
-        p.id === editingId 
-          ? { 
-              ...p, 
-              ...formData, 
-              id: editingId,
-              image: formData.image || p.image,
-              technologies: formData.technologies || p.technologies || []
-            } as Project 
-          : p
-      )
-      saveProjects(updated)
-      alert('Proje başarıyla güncellendi!')
-    } else {
-      const newProject = {
-        ...formData,
-        id: Date.now(),
-        technologies: formData.technologies || []
-      } as Project
-      saveProjects([...projects, newProject])
+      const updated = await updateProject(editingId, formData)
+      if (updated) {
+        const updatedProjects = projects.map(p => 
+          p.id === editingId ? updated : p
+        )
+        setProjects(updatedProjects)
+        setEditingId(null)
+        setFormData({})
+        alert('Proje güncellendi!')
+      }
+    } else if (showAddForm) {
+      const newProject = await createProject({
+        title: formData.title || '',
+        description: formData.description || '',
+        image: formData.image || '',
+        technologies: formData.technologies || [],
+        featured: formData.featured || false
+      })
+      
+      if (newProject) {
+        setProjects([...projects, newProject])
       setShowAddForm(false)
+        setFormData({})
       alert('Yeni proje eklendi!')
     }
-    setEditingId(null)
-    setFormData({})
+    }
   }
 
-  const handleDelete = (id: number) => {
+  const handleDelete = async (id: string) => {
     if (confirm('Bu projeyi silmek istediğinizden emin misiniz?')) {
-      saveProjects(projects.filter(p => p.id !== id))
+      const success = await deleteProject(id)
+      if (success) {
+        setProjects(projects.filter(p => p.id !== id))
+        alert('Proje silindi!')
+      }
     }
   }
 
@@ -223,6 +230,15 @@ function AdminPanel() {
   return (
     <div className="min-h-screen bg-gray-900 text-white py-12">
       <div className="container mx-auto px-4 max-w-6xl">
+        {loading ? (
+          <div className="flex items-center justify-center min-h-[400px]">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500 mx-auto mb-4"></div>
+              <p className="text-gray-400">Veriler yükleniyor...</p>
+            </div>
+          </div>
+        ) : (
+          <>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -289,7 +305,7 @@ function AdminPanel() {
                   : 'border-transparent text-gray-400 hover:text-gray-300'
               }`}
             >
-              📺 YouTube ({youtubeChannel.videos.length})
+              📺 YouTube ({youtubeVideos.length})
             </button>
             <button
               onClick={() => setActiveTab('settings')}
@@ -309,7 +325,7 @@ function AdminPanel() {
               <div className="text-2xl font-bold text-white">
                 {activeTab === 'projects' ? projects.length : 
                  activeTab === 'blog' ? blogPosts.length :
-                 activeTab === 'youtube' ? youtubeChannel.videos.length : 0}
+                 activeTab === 'youtube' ? youtubeVideos.length : 0}
               </div>
               <div className="text-sm text-gray-400">
                 {activeTab === 'projects' ? 'Toplam Proje' : 
@@ -366,47 +382,53 @@ function AdminPanel() {
               
               <div className="space-y-6">
                 {/* Channel Info */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Kanal Adı</label>
-                    <input
-                      type="text"
-                      value={youtubeChannel.channelName}
-                      onChange={(e) => saveYoutubeChannel({...youtubeChannel, channelName: e.target.value})}
-                      className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Kanal URL</label>
-                    <input
-                      type="url"
-                      value={youtubeChannel.channelUrl}
-                      onChange={(e) => saveYoutubeChannel({...youtubeChannel, channelUrl: e.target.value})}
-                      className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Abone Sayısı</label>
-                    <input
-                      type="text"
-                      value={youtubeChannel.subscriberCount}
-                      onChange={(e) => saveYoutubeChannel({...youtubeChannel, subscriberCount: e.target.value})}
-                      className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
-                      placeholder="örn: 1.2K"
-                    />
-                  </div>
-                  <div className="flex items-center">
-                    <label className="flex items-center">
+                {youtubeChannel ? (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Kanal Adı</label>
                       <input
-                        type="checkbox"
-                        checked={youtubeChannel.isActive}
-                        onChange={(e) => saveYoutubeChannel({...youtubeChannel, isActive: e.target.checked})}
-                        className="mr-2"
+                        type="text"
+                        value={youtubeChannel.channel_name}
+                        onChange={(e) => saveYoutubeChannel({...youtubeChannel, channel_name: e.target.value})}
+                        className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
                       />
-                      <span className="text-sm">Kanal Aktif</span>
-                    </label>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Kanal URL</label>
+                      <input
+                        type="url"
+                        value={youtubeChannel.channel_url}
+                        onChange={(e) => saveYoutubeChannel({...youtubeChannel, channel_url: e.target.value})}
+                        className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium mb-2">Abone Sayısı</label>
+                      <input
+                        type="text"
+                        value={youtubeChannel.subscriber_count}
+                        onChange={(e) => saveYoutubeChannel({...youtubeChannel, subscriber_count: e.target.value})}
+                        className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                        placeholder="örn: 1.2K"
+                      />
+                    </div>
+                    <div className="flex items-center">
+                      <label className="flex items-center">
+                        <input
+                          type="checkbox"
+                          checked={youtubeChannel.is_active}
+                          onChange={(e) => saveYoutubeChannel({...youtubeChannel, is_active: e.target.checked})}
+                          className="mr-2"
+                        />
+                        <span className="text-sm">Kanal Aktif</span>
+                      </label>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="text-center py-8">
+                    <p className="text-gray-400">YouTube kanalı yükleniyor...</p>
+                  </div>
+                )}
 
                 {/* Videos Management */}
                 <div>
@@ -422,7 +444,7 @@ function AdminPanel() {
                   </div>
 
                   <div className="space-y-4">
-                    {youtubeChannel.videos.map((video) => (
+                    {youtubeVideos.map((video) => (
                       <div key={video.id} className="bg-gray-800 rounded-lg p-4 border border-gray-700">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                           <div>
@@ -448,7 +470,7 @@ function AdminPanel() {
                             <label className="block text-sm font-medium mb-2">Video URL</label>
                             <input
                               type="url"
-                              value={video.url}
+                              value={video.url || ''}
                               onChange={(e) => updateYoutubeVideo(video.id, 'url', e.target.value)}
                               className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm"
                               placeholder="https://youtube.com/watch?v=..."
@@ -1143,7 +1165,9 @@ function AdminPanel() {
                                     localStorage.setItem('blogPosts', JSON.stringify(updatedPosts))
                                     
                                     // Save to Supabase Database (everyone can see)
-                                    await saveBlogPost(updatedPosts[index])
+                                    await updateBlogPost(updatedPosts[index].id, {
+                                      image: result.url
+                                    })
                                     
                                     alert('Görsel Cloudinary\'e yüklendi ve herkese görünecek!')
                                   } else {
@@ -1183,7 +1207,7 @@ function AdminPanel() {
                       <p className="text-gray-400 text-sm mb-2 line-clamp-2">{post.excerpt}</p>
                       <div className="flex items-center gap-4 text-xs text-gray-500">
                         <span>{new Date(post.date).toLocaleDateString('tr-TR')}</span>
-                        <span>{post.readTime}</span>
+                        <span>{post.read_time}</span>
                       </div>
                     </div>
                   </motion.div>
