@@ -74,16 +74,19 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
 }
 
 export const getAllBlogPosts = async (): Promise<BlogPost[]> => {
+  console.log('🔍 Fetching all blog posts...')
   const { data, error } = await supabase
     .from('blog_posts')
     .select('*')
-    .order('date', { ascending: false })
+    .order('created_at', { ascending: false })
 
   if (error) {
-    console.error('Error fetching all blog posts:', error)
+    console.error('❌ Error fetching all blog posts:', error)
+    console.error('❌ Error details:', JSON.stringify(error, null, 2))
     return []
   }
 
+  console.log('✅ Blog posts fetched successfully:', data?.length || 0, 'posts')
   return data || []
 }
 
@@ -264,16 +267,19 @@ export const deleteYouTubeVideo = async (id: string): Promise<boolean> => {
 
 // Projects Functions
 export const getProjects = async (): Promise<Project[]> => {
+  console.log('🔍 Fetching projects...')
   const { data, error } = await supabase
     .from('projects')
     .select('*')
     .order('created_at', { ascending: false })
 
   if (error) {
-    console.error('Error fetching projects:', error)
+    console.error('❌ Error fetching projects:', error)
+    console.error('❌ Error details:', JSON.stringify(error, null, 2))
     return []
   }
 
+  console.log('✅ Projects fetched successfully:', data?.length || 0, 'projects')
   return data || []
 }
 
@@ -346,15 +352,20 @@ export const subscribeToProjects = (callback: (payload: any) => void) => {
 
 // Site Settings Functions
 export const getSiteSettings = async (): Promise<SiteSetting[]> => {
+  console.log('🔍 Fetching site settings...')
   const { data, error } = await supabase
     .from('site_settings')
     .select('*')
     .order('key')
 
   if (error) {
+    console.error('❌ Error fetching site settings:', error)
+    console.error('❌ Error details:', JSON.stringify(error, null, 2))
     console.log('📝 Supabase not configured, using fallback site settings')
     return []
   }
+
+  console.log('✅ Site settings fetched successfully:', data?.length || 0, 'settings')
   return data || []
 }
 
