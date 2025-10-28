@@ -16,7 +16,7 @@ export function About() {
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   const [aboutImage, setAboutImage] = useState<string>('https://res.cloudinary.com/dqiwrytdx/image/upload/v1761406379/hero/about-profile-1761406376606.jpg')
   const [showUpload, setShowUpload] = useState(false)
-  const [isAdmin, setIsAdmin] = useState(false)
+  // Admin functionality removed for security
 
   useEffect(() => {
     const saved = localStorage.getItem('aboutImage')
@@ -35,36 +35,7 @@ export function About() {
     return () => clearInterval(interval)
   }, [])
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-
-    const reader = new FileReader()
-    reader.onloadend = async () => {
-      const base64String = reader.result as string
-      
-      console.log('📤 Uploading about image to Supabase...')
-      const result = await uploadImageToSupabase(
-        base64String,
-        'hero',
-        `about-profile-${Date.now()}`
-      )
-      
-      console.log('📥 Upload result:', result)
-      
-      if (result.success && result.url) {
-        setAboutImage(result.url)
-        localStorage.setItem('aboutImage', result.url)
-        alert('About görseli Supabase\'e yüklendi ve herkese görünecek!')
-      } else {
-        console.error('❌ Upload failed:', result.error)
-        setAboutImage(base64String)
-        localStorage.setItem('aboutImage', base64String)
-        alert('Fotoğraf kaydedildi (sadece sizde görünecek)')
-      }
-    }
-    reader.readAsDataURL(file)
-  }
+  // Upload function removed for security
 
   const containerVariants = {
     hidden: { opacity: 0 },
