@@ -4,14 +4,22 @@ import { useState, useEffect } from 'react'
 import { CalendarIcon, ClockIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
-import { 
-  getBlogPosts, 
-  getYouTubeChannel, 
-  getYouTubeVideos,
-  type BlogPost as SupabaseBlogPost,
-  type YouTubeChannel as SupabaseYouTubeChannel,
-  type YouTubeVideo as SupabaseYouTubeVideo
-} from '@/lib/supabase-cms'
+
+interface BlogPost {
+  id: string
+  title: string
+  excerpt: string
+  content?: string
+  slug: string
+  category: string
+  image?: string
+  date: string
+  read_time: string
+  featured: boolean
+  published: boolean
+  created_at: string
+  updated_at: string
+}
 
 interface BlogProps {
   isHomePage?: boolean
@@ -20,9 +28,7 @@ interface BlogProps {
 export function Blog({ isHomePage = false }: BlogProps) {
   const { t } = useLanguage()
   
-  const [blogPosts, setBlogPosts] = useState<SupabaseBlogPost[]>([])
-  const [youtubeChannel, setYoutubeChannel] = useState<SupabaseYouTubeChannel | null>(null)
-  const [youtubeVideos, setYoutubeVideos] = useState<SupabaseYouTubeVideo[]>([])
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -31,83 +37,65 @@ export function Blog({ isHomePage = false }: BlogProps) {
       console.log('🔄 Blog component loading data...')
       
       try {
-        // Load blog posts from Supabase
-        const postsData = await getBlogPosts()
-        console.log('📊 Supabase posts:', postsData.length)
-        
-        // Eğer Supabase'den veri gelmiyorsa fallback kullan
-        if (postsData.length === 0) {
-          console.log('📝 No Supabase data, using fallback')
-          setBlogPosts([
-            {
-              id: '1',
-              title: 'Web Tasarımı Temelleri',
-              excerpt: 'Modern web tasarımının temel prensiplerini öğrenin.',
-              content: 'Bu kapsamlı rehberde modern web tasarımının temel prensiplerini öğreneceksiniz.',
-              slug: 'web-tasarimi-temelleri',
-              category: 'Design',
-              image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&q=80',
-              date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-              read_time: '5 min',
-              featured: true,
-              published: true,
-              created_at: new Date().toISOString(),
-              updated_at: new Date().toISOString()
-            },
-            {
-              id: '2',
-              title: 'React ile Modern UI',
-              excerpt: 'React kullanarak modern ve responsive kullanıcı arayüzleri geliştirin.',
-              content: 'React ile modern UI geliştirme teknikleri ve en iyi uygulamalar.',
-              slug: 'react-modern-ui',
-              category: 'Development',
-              image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop&q=80',
-              date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
-              read_time: '7 min',
-              featured: true,
-              published: true,
-              created_at: new Date().toISOString(),
-              updated_at: new Date().toISOString()
-            },
-            {
-              id: '3',
-              title: 'JavaScript ES6+ Özellikleri',
-              excerpt: 'Modern JavaScript özelliklerini öğrenin ve kodunuzu daha verimli hale getirin.',
-              content: 'ES6+ JavaScript özellikleri ve modern geliştirme teknikleri.',
-              slug: 'javascript-es6-features',
-              category: 'Development',
-              image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=600&fit=crop&q=80',
-              date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-              read_time: '6 min',
-              featured: false,
-              published: true,
-              created_at: new Date().toISOString(),
-              updated_at: new Date().toISOString()
-            }
-          ])
-        } else {
+        // Supabase'den veri çekmeyi dene
+        const response = await fetch('/api/blog-posts')
+        if (response.ok) {
+          const postsData = await response.json()
+          console.log('📊 Supabase posts:', postsData.length)
           setBlogPosts(postsData)
+        } else {
+          throw new Error('API error')
         }
-        
-        // Load YouTube channel data
-        const youtubeChannelData = await getYouTubeChannel()
-        console.log('📺 YouTube channel:', youtubeChannelData?.channel_name)
-        setYoutubeChannel(youtubeChannelData)
-        
-        if (youtubeChannelData) {
-          const videosData = await getYouTubeVideos(youtubeChannelData.id)
-          console.log('📺 YouTube videos:', videosData.length)
-          setYoutubeVideos(videosData)
-        }
-        
-        console.log('📊 Loaded data from Supabase:', {
-          blogPosts: postsData.length,
-          youtubeChannel: youtubeChannelData?.channel_name,
-          videos: youtubeChannelData ? await getYouTubeVideos(youtubeChannelData.id) : []
-        })
-        
       } catch (error) {
-        console.log('📝 Error loading data, using fallback')
+        console.log('📝 Supabase error, using fallback')
+        // Fallback veriler
+        setBlogPosts([
+          {
+            id: '1',
+            title: 'Web Tasarımı Temelleri',
+            excerpt: 'Modern web tasarımının temel prensiplerini öğrenin.',
+            content: 'Bu kapsamlı rehberde modern web tasarımının temel prensiplerini öğreneceksiniz.',
+            slug: 'web-tasarimi-temelleri',
+            category: 'Design',
+            image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&q=80',
+            date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+            read_time: '5 min',
+            featured: true,
+            published: true,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          },
+          {
+            id: '2',
+            title: 'React ile Modern UI',
+            excerpt: 'React kullanarak modern ve responsive kullanıcı arayüzleri geliştirin.',
+            content: 'React ile modern UI geliştirme teknikleri ve en iyi uygulamalar.',
+            slug: 'react-modern-ui',
+            category: 'Development',
+            image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop&q=80',
+            date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+            read_time: '7 min',
+            featured: true,
+            published: true,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          },
+          {
+            id: '3',
+            title: 'JavaScript ES6+ Özellikleri',
+            excerpt: 'Modern JavaScript özelliklerini öğrenin ve kodunuzu daha verimli hale getirin.',
+            content: 'ES6+ JavaScript özellikleri ve modern geliştirme teknikleri.',
+            slug: 'javascript-es6-features',
+            category: 'Development',
+            image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=600&fit=crop&q=80',
+            date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+            read_time: '6 min',
+            featured: false,
+            published: true,
+            created_at: new Date().toISOString(),
+            updated_at: new Date().toISOString()
+          }
+        ])
       } finally {
         setLoading(false)
         console.log('✅ Blog loading completed')
