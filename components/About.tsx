@@ -23,16 +23,7 @@ export function About() {
     if (saved) {
       setAboutImage(saved)
     }
-    const adminMode = localStorage.getItem('adminMode')
-    setIsAdmin(adminMode === 'true')
-    
-    // Check admin mode every second for same-tab updates
-    const interval = setInterval(() => {
-      const adminMode = localStorage.getItem('adminMode')
-      setIsAdmin(adminMode === 'true')
-    }, 1000)
-    
-    return () => clearInterval(interval)
+    // Admin functionality removed for security
   }, [])
 
   // Upload function removed for security
@@ -202,29 +193,7 @@ export function About() {
                     </>
                   )}
                   
-                  {/* Upload Button - Admin Only */}
-                  {isAdmin && showUpload && (
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="absolute inset-0 bg-black/50 flex items-center justify-center z-20"
-                    >
-                      <label className="cursor-pointer">
-                        <input
-                          type="file"
-                          accept="image/*"
-                          onChange={handleImageUpload}
-                          className="hidden"
-                        />
-                        <div className="flex items-center gap-2 px-4 py-2 bg-[#F97316] hover:bg-[#ea6707] rounded-lg transition-colors">
-                          <PhotoIcon className="w-5 h-5" />
-                          <span className="text-white font-medium">
-                            {aboutImage ? 'Değiştir' : 'Görsel Yükle'}
-                          </span>
-                        </div>
-                      </label>
-                    </motion.div>
-                  )}
+                  {/* Upload functionality removed for security */}
                 </div>
                 
                 {/* Floating elements */}

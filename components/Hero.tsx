@@ -90,15 +90,7 @@ export function Hero() {
 
     loadHeroData()
     
-    const adminMode = localStorage.getItem('adminMode')
-    setIsAdmin(adminMode === 'true')
-    
-    const interval = setInterval(() => {
-      const adminMode = localStorage.getItem('adminMode')
-      setIsAdmin(adminMode === 'true')
-    }, 1000)
-    
-    return () => clearInterval(interval)
+    // Admin functionality removed for security
   }, [])
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -214,25 +206,7 @@ export function Hero() {
                     )}
                   </div>
                   
-                  {/* Upload Button - Admin Only */}
-                  {isAdmin && (
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover/profile:opacity-100 transition-opacity duration-300 flex items-center justify-center z-30 rounded-full">
-                      <label className="cursor-pointer z-40">
-                        <input
-                          type="file"
-                          accept="image/*"
-                          onChange={handleImageUpload}
-                          className="hidden"
-                        />
-                        <div className="flex items-center gap-2 px-4 py-2 bg-[#F97316] hover:bg-[#ea6707] rounded-lg transition-colors">
-                          <PhotoIcon className="w-5 h-5 text-white" />
-                          <span className="text-white font-medium">
-                            {heroImage && heroImage.startsWith('data:') ? t.hero.changeImage : t.hero.uploadImage}
-                          </span>
-                        </div>
-                      </label>
-                    </div>
-                  )}
+                  {/* Upload functionality removed for security */}
                 </div>
               </div>
 
