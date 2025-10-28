@@ -7,6 +7,7 @@ import { useLanguage } from '@/contexts/LanguageContext'
 import { AnimatedText } from './AnimatedText'
 import LofiText from './LofiText'
 import Image from 'next/image'
+import { getSiteSetting, updateSiteSetting } from '@/lib/supabase-cms'
 
 export function Hero() {
   const { t } = useLanguage()
@@ -64,10 +65,30 @@ export function Hero() {
   const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
-    const savedHeroImage = localStorage.getItem('heroImage')
-    if (savedHeroImage) {
-      setHeroImage(savedHeroImage)
+    const loadHeroData = async () => {
+      try {
+        // Supabase'den hero_image ayarını çek
+        const heroImageFromSupabase = await getSiteSetting('hero_image')
+        if (heroImageFromSupabase) {
+          setHeroImage(heroImageFromSupabase)
+          localStorage.setItem('heroImage', heroImageFromSupabase)
+        } else {
+          // Fallback: localStorage'dan çek
+          const savedHeroImage = localStorage.getItem('heroImage')
+          if (savedHeroImage) {
+            setHeroImage(savedHeroImage)
+          }
+        }
+      } catch (error) {
+        console.log('Hero image yüklenemedi, fallback kullanılıyor')
+        const savedHeroImage = localStorage.getItem('heroImage')
+        if (savedHeroImage) {
+          setHeroImage(savedHeroImage)
+        }
+      }
     }
+
+    loadHeroData()
     
     const adminMode = localStorage.getItem('adminMode')
     setIsAdmin(adminMode === 'true')
@@ -103,6 +124,15 @@ export function Hero() {
         if (data.success) {
           setHeroImage(data.url)
           localStorage.setItem('heroImage', data.url)
+          
+          // Supabase'e kaydet
+          try {
+            await updateSiteSetting('hero_image', data.url)
+            console.log('Hero image Supabase\'e kaydedildi')
+          } catch (error) {
+            console.log('Supabase\'e kaydetme hatası:', error)
+          }
+          
           alert(t.hero.uploadSuccess)
         } else {
           setHeroImage(base64String)

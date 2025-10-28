@@ -52,7 +52,7 @@ export interface Project {
 export interface SiteSetting {
   id: string
   key: string
-  value?: string
+  value: string
   created_at: string
   updated_at: string
 }
@@ -66,7 +66,7 @@ export const getBlogPosts = async (): Promise<BlogPost[]> => {
     .order('date', { ascending: false })
 
   if (error) {
-    console.error('Error fetching blog posts:', error)
+    console.log('📝 Supabase not configured, using fallback data')
     return []
   }
 
@@ -157,7 +157,7 @@ export const getYouTubeChannel = async (): Promise<YouTubeChannel | null> => {
     .single()
 
   if (error) {
-    console.error('Error fetching YouTube channel:', error)
+    console.log('📝 YouTube channel not configured')
     return null
   }
 
@@ -172,7 +172,7 @@ export const getYouTubeVideos = async (channelId: string): Promise<YouTubeVideo[
     .order('created_at', { ascending: false })
 
   if (error) {
-    console.error('Error fetching YouTube videos:', error)
+    console.log('📝 YouTube videos not configured')
     return []
   }
 
@@ -300,38 +300,6 @@ export const deleteProject = async (id: string): Promise<boolean> => {
   return true
 }
 
-// Site Settings Functions
-export const getSiteSettings = async (): Promise<Record<string, string>> => {
-  const { data, error } = await supabase
-    .from('site_settings')
-    .select('key, value')
-
-  if (error) {
-    console.error('Error fetching site settings:', error)
-    return {}
-  }
-
-  const settings: Record<string, string> = {}
-  data?.forEach(setting => {
-    settings[setting.key] = setting.value || ''
-  })
-
-  return settings
-}
-
-export const updateSiteSetting = async (key: string, value: string): Promise<boolean> => {
-  const { error } = await supabase
-    .from('site_settings')
-    .upsert({ key, value })
-
-  if (error) {
-    console.error('Error updating site setting:', error)
-    return false
-  }
-
-  return true
-}
-
 // Real-time subscriptions
 export const subscribeToBlogPosts = (callback: (payload: any) => void) => {
   return supabase
@@ -351,5 +319,52 @@ export const subscribeToProjects = (callback: (payload: any) => void) => {
   return supabase
     .channel('projects_changes')
     .on('postgres_changes', { event: '*', schema: 'public', table: 'projects' }, callback)
+    .subscribe()
+}
+
+// Site Settings Functions
+export const getSiteSettings = async (): Promise<SiteSetting[]> => {
+  const { data, error } = await supabase
+    .from('site_settings')
+    .select('*')
+    .order('key')
+
+  if (error) {
+    console.log('📝 Supabase not configured, using fallback site settings')
+    return []
+  }
+  return data || []
+}
+
+export const getSiteSetting = async (key: string): Promise<string | null> => {
+  const { data, error } = await supabase
+    .from('site_settings')
+    .select('value')
+    .eq('key', key)
+    .single()
+
+  if (error) {
+    console.log(`📝 Site setting '${key}' not found`)
+    return null
+  }
+  return data?.value || null
+}
+
+export const updateSiteSetting = async (key: string, value: string): Promise<boolean> => {
+  const { error } = await supabase
+    .from('site_settings')
+    .upsert({ key, value })
+
+  if (error) {
+    console.error('Error updating site setting:', error)
+    return false
+  }
+  return true
+}
+
+export const subscribeToSiteSettings = (callback: (payload: any) => void) => {
+  return supabase
+    .channel('site_settings_changes')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'site_settings' }, callback)
     .subscribe()
 }

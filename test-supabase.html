@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Bağlantı Testi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #f97316;
+            margin-bottom: 10px;
+        }
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid #334155;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            color: #e2e8f0;
+            font-family: 'Courier New', monospace;
+            margin-top: 8px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #94a3b8;
+        }
+        button {
+            background: #f97316;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 12px;
+        }
+        button:hover {
+            background: #ea580c;
+        }
+        .success {
+            background: #059669;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+        .error {
+            background: #dc2626;
+            padding: 16px;
+            border-radius: 8px;
+            margin-top: 16px;
+        }
+        code {
+            background: #0f172a;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #34d399;
+        }
+        .info {
+            background: #0369a1;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Supabase Bağlantı Testi</h1>
+        
+        <div class="info">
+            <h3>📋 Bilgi</h3>
+            <p>Bu sayfa Supabase bağlantınızı test eder ve gerekli environment variables için değerleri gösterir.</p>
+        </div>
+
+        <div class="card">
+            <h2>1️⃣ Supabase Bilgilerinizi Girin</h2>
+            <label>NEXT_PUBLIC_SUPABASE_URL:</label>
+            <input type="text" id="url" placeholder="https://abcdefgh.supabase.co">
+            
+            <label>NEXT_PUBLIC_SUPABASE_ANON_KEY:</label>
+            <textarea id="key" rows="3" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."></textarea>
+            
+            <button onclick="testConnection()">🔍 Bağlantıyı Test Et</button>
+            
+            <div id="result"></div>
+        </div>
+
+        <div class="card">
+            <h2>2️⃣ .env.local Dosyasını Oluşturma</h2>
+            <p>Test başarılı olduğunda, aşağıdaki içeriği kopyalayın ve proje kök dizininde <code>.env.local</code> dosyası oluşturun:</p>
+            <textarea id="envContent" readonly rows="8" style="min-height: 200px;"># Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+
+# Admin Credentials
+NEXT_PUBLIC_ADMIN_PASSWORD=icnevudila2024
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://icnevudila.xyz</textarea>
+            
+            <button onclick="copyEnv()">📋 Kopyala</button>
+        </div>
+
+        <div class="card">
+            <h2>3️⃣ PowerShell Komutu (Opsiyonel)</h2>
+            <p>Veya PowerShell'de şu komutu çalıştırabilirsiniz:</p>
+            <pre id="psCommand" style="background: #0f172a; padding: 16px; border-radius: 8px; overflow-x: auto;">@"
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=YOUR_URL_HERE
+NEXT_PUBLIC_SUPABASE_ANON_KEY=YOUR_KEY_HERE
+
+# Admin Credentials
+NEXT_PUBLIC_ADMIN_PASSWORD=icnevudila2024
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://icnevudila.xyz
+"@ | Out-File -FilePath .env.local -Encoding utf8</pre>
+            
+            <button onclick="updatePsCommand()">🔄 PowerShell Komutunu Güncelle</button>
+        </div>
+    </div>
+
+    <script>
+        function testConnection() {
+            const url = document.getElementById('url').value;
+            const key = document.getElementById('key').value;
+            const resultDiv = document.getElementById('result');
+            
+            if (!url || !key) {
+                resultDiv.innerHTML = '<div class="error">❌ Lütfen tüm alanları doldurun!</div>';
+                return;
+            }
+            
+            resultDiv.innerHTML = '<div>⏳ Bağlantı test ediliyor...</div>';
+            
+            // Test connection using Supabase JS
+            fetch(`${url}/rest/v1/blog_posts?select=id&limit=1`, {
+                headers: {
+                    'apikey': key,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Connection failed');
+            })
+            .then(data => {
+                resultDiv.innerHTML = '<div class="success">✅ Bağlantı başarılı! Veritabanınıza erişim sağlandı.</div>';
+                
+                // Update env content
+                updateEnvContent();
+            })
+            .catch(error => {
+                resultDiv.innerHTML = `<div class="error">❌ Bağlantı başarısız: ${error.message}<br><br>Lütfen URL ve KEY değerlerini kontrol edin!</div>`;
+            });
+        }
+        
+        function updateEnvContent() {
+            const url = document.getElementById('url').value;
+            const key = document.getElementById('key').value;
+            
+            const envContent = `# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=${url}
+NEXT_PUBLIC_SUPABASE_ANON_KEY=${key}
+
+# Admin Credentials
+NEXT_PUBLIC_ADMIN_PASSWORD=icnevudila2024
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://icnevudila.xyz`;
+            
+            document.getElementById('envContent').value = envContent;
+        }
+        
+        function copyEnv() {
+            const envContent = document.getElementById('envContent');
+            envContent.select();
+            document.execCommand('copy');
+            alert('✅ Kopyalandı! Artık .env.local dosyasına yapıştırabilirsiniz.');
+        }
+        
+        function updatePsCommand() {
+            const url = document.getElementById('url').value;
+            const key = document.getElementById('key').value;
+            
+            const psCmd = `@"
+# Supabase Configuration
+NEXT_PUBLIC_SUPABASE_URL=${url}
+NEXT_PUBLIC_SUPABASE_ANON_KEY=${key}
+
+# Admin Credentials
+NEXT_PUBLIC_ADMIN_PASSWORD=icnevudila2024
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://icnevudila.xyz
+"@ | Out-File -FilePath .env.local -Encoding utf8`;
+            
+            document.getElementById('psCommand').textContent = psCmd;
+            alert('✅ PowerShell komutu güncellendi!');
+        }
+    </script>
+</body>
+</html>
