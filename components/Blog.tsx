@@ -4,6 +4,14 @@ import { useState, useEffect } from 'react'
 import { CalendarIcon, ClockIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { 
+  getBlogPosts, 
+  getYouTubeChannel, 
+  getYouTubeVideos,
+  type BlogPost as SupabaseBlogPost,
+  type YouTubeChannel as SupabaseYouTubeChannel,
+  type YouTubeVideo as SupabaseYouTubeVideo
+} from '@/lib/supabase-cms'
 
 interface BlogPost {
   id: string
@@ -28,7 +36,9 @@ interface BlogProps {
 export function Blog({ isHomePage = false }: BlogProps) {
   const { t } = useLanguage()
   
-  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
+  const [blogPosts, setBlogPosts] = useState<SupabaseBlogPost[]>([])
+  const [youtubeChannel, setYoutubeChannel] = useState<SupabaseYouTubeChannel | null>(null)
+  const [youtubeVideos, setYoutubeVideos] = useState<SupabaseYouTubeVideo[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -37,65 +47,83 @@ export function Blog({ isHomePage = false }: BlogProps) {
       console.log('🔄 Blog component loading data...')
       
       try {
-        // Supabase'den veri çekmeyi dene
-        const response = await fetch('/api/blog-posts')
-        if (response.ok) {
-          const postsData = await response.json()
-          console.log('📊 Supabase posts:', postsData.length)
-          setBlogPosts(postsData)
+        // Load blog posts from Supabase
+        const postsData = await getBlogPosts()
+        console.log('📊 Supabase posts:', postsData.length)
+        
+        // Eğer Supabase'den veri gelmiyorsa fallback kullan
+        if (postsData.length === 0) {
+          console.log('📝 No Supabase data, using fallback')
+          setBlogPosts([
+            {
+              id: '1',
+              title: 'Web Tasarımı Temelleri',
+              excerpt: 'Modern web tasarımının temel prensiplerini öğrenin.',
+              content: 'Bu kapsamlı rehberde modern web tasarımının temel prensiplerini öğreneceksiniz.',
+              slug: 'web-tasarimi-temelleri',
+              category: 'Design',
+              image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&q=80',
+              date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+              read_time: '5 min',
+              featured: true,
+              published: true,
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            },
+            {
+              id: '2',
+              title: 'React ile Modern UI',
+              excerpt: 'React kullanarak modern ve responsive kullanıcı arayüzleri geliştirin.',
+              content: 'React ile modern UI geliştirme teknikleri ve en iyi uygulamalar.',
+              slug: 'react-modern-ui',
+              category: 'Development',
+              image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop&q=80',
+              date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
+              read_time: '7 min',
+              featured: true,
+              published: true,
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            },
+            {
+              id: '3',
+              title: 'JavaScript ES6+ Özellikleri',
+              excerpt: 'Modern JavaScript özelliklerini öğrenin ve kodunuzu daha verimli hale getirin.',
+              content: 'ES6+ JavaScript özellikleri ve modern geliştirme teknikleri.',
+              slug: 'javascript-es6-features',
+              category: 'Development',
+              image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=600&fit=crop&q=80',
+              date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+              read_time: '6 min',
+              featured: false,
+              published: true,
+              created_at: new Date().toISOString(),
+              updated_at: new Date().toISOString()
+            }
+          ])
         } else {
-          throw new Error('API error')
+          setBlogPosts(postsData)
         }
+        
+        // Load YouTube channel data
+        const youtubeChannelData = await getYouTubeChannel()
+        console.log('📺 YouTube channel:', youtubeChannelData?.channel_name)
+        setYoutubeChannel(youtubeChannelData)
+        
+        if (youtubeChannelData) {
+          const videosData = await getYouTubeVideos(youtubeChannelData.id)
+          console.log('📺 YouTube videos:', videosData.length)
+          setYoutubeVideos(videosData)
+        }
+        
+        console.log('📊 Loaded data from Supabase:', {
+          blogPosts: postsData.length,
+          youtubeChannel: youtubeChannelData?.channel_name,
+          videos: youtubeChannelData ? await getYouTubeVideos(youtubeChannelData.id) : []
+        })
+        
       } catch (error) {
-        console.log('📝 Supabase error, using fallback')
-        // Fallback veriler
-        setBlogPosts([
-          {
-            id: '1',
-            title: 'Web Tasarımı Temelleri',
-            excerpt: 'Modern web tasarımının temel prensiplerini öğrenin.',
-            content: 'Bu kapsamlı rehberde modern web tasarımının temel prensiplerini öğreneceksiniz.',
-            slug: 'web-tasarimi-temelleri',
-            category: 'Design',
-            image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&q=80',
-            date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
-            read_time: '5 min',
-            featured: true,
-            published: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          },
-          {
-            id: '2',
-            title: 'React ile Modern UI',
-            excerpt: 'React kullanarak modern ve responsive kullanıcı arayüzleri geliştirin.',
-            content: 'React ile modern UI geliştirme teknikleri ve en iyi uygulamalar.',
-            slug: 'react-modern-ui',
-            category: 'Development',
-            image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=600&fit=crop&q=80',
-            date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
-            read_time: '7 min',
-            featured: true,
-            published: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          },
-          {
-            id: '3',
-            title: 'JavaScript ES6+ Özellikleri',
-            excerpt: 'Modern JavaScript özelliklerini öğrenin ve kodunuzu daha verimli hale getirin.',
-            content: 'ES6+ JavaScript özellikleri ve modern geliştirme teknikleri.',
-            slug: 'javascript-es6-features',
-            category: 'Development',
-            image: 'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800&h=600&fit=crop&q=80',
-            date: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
-            read_time: '6 min',
-            featured: false,
-            published: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
-          }
-        ])
+        console.log('📝 Error loading data, using fallback')
       } finally {
         setLoading(false)
         console.log('✅ Blog loading completed')
@@ -110,12 +138,6 @@ export function Blog({ isHomePage = false }: BlogProps) {
     ? blogPosts.filter(post => post.featured).slice(0, 4)
     : blogPosts
 
-  console.log('🎯 Display posts:', { 
-    isHomePage, 
-    totalPosts: blogPosts.length, 
-    featuredPosts: blogPosts.filter(post => post.featured).length,
-    displayPosts: displayPosts.length 
-  })
 
   return (
     <section id="blog" className="section-padding bg-gray-800/30">
@@ -140,12 +162,6 @@ export function Blog({ isHomePage = false }: BlogProps) {
               </p>
             </div>
 
-            {/* Debug Info */}
-            <div className="text-center mb-4 p-4 bg-blue-900/20 rounded-lg">
-              <p className="text-blue-400 text-sm">
-                Debug: {displayPosts.length} blog yazısı yüklendi (Featured: {blogPosts.filter(post => post.featured).length})
-              </p>
-            </div>
 
             {/* Featured Posts */}
             <div className="mb-8 md:mb-16 px-4">
@@ -156,7 +172,7 @@ export function Blog({ isHomePage = false }: BlogProps) {
                 {displayPosts.map((post, index) => (
                   <article
                     key={post.slug}
-                    className="bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-orange-500 transition-colors group cursor-pointer h-full"
+                    className="bg-gray-800 rounded-lg p-4 border border-gray-700 hover:border-orange-500 transition-colors group cursor-pointer flex flex-col"
                   >
                     {/* Post Image */}
                     <div className="relative overflow-hidden rounded-lg mb-3 group-hover:scale-105 transition-transform">
@@ -176,7 +192,7 @@ export function Blog({ isHomePage = false }: BlogProps) {
                     </div>
 
                     {/* Post Content */}
-                    <div className="flex flex-col h-full">
+                    <div className="flex flex-col flex-grow">
                       {/* Category */}
                       <div className="mb-2">
                         <span className="inline-block px-2 py-1 text-xs font-medium bg-[#F97316]/20 text-[#F97316] rounded-full">
@@ -195,7 +211,7 @@ export function Blog({ isHomePage = false }: BlogProps) {
                       </p>
                       
                       {/* Post Meta */}
-                      <div className="flex items-center text-xs text-gray-500 mb-3 space-x-3">
+                      <div className="flex items-center text-xs text-gray-500 mb-4 space-x-3">
                         <div className="flex items-center space-x-1">
                           <CalendarIcon className="w-3 h-3" />
                           <span>{post.date ? new Date(post.date).toLocaleDateString('tr-TR', { year: 'numeric', month: 'short', day: 'numeric' }) : 'Tarih Yok'}</span>
@@ -219,18 +235,18 @@ export function Blog({ isHomePage = false }: BlogProps) {
                   </article>
                 ))}
               </div>
+              
+              {/* View All Posts Button - Only on Homepage */}
+              {isHomePage && (
+                <div className="text-center mt-8">
+                  <Link href="/blog">
+                    <button className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-semibold transition-colors">
+                      Tüm Yazıları Gör
+                    </button>
+                  </Link>
+                </div>
+              )}
             </div>
-
-            {/* View All Posts Button - Only on Homepage */}
-            {isHomePage && (
-              <div className="text-center mt-12">
-                <Link href="/blog">
-                  <button className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-lg font-semibold transition-colors">
-                    Tüm Yazıları Gör
-                  </button>
-                </Link>
-              </div>
-            )}
           </div>
         )}
       </div>

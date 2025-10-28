@@ -119,18 +119,40 @@ export const createBlogPost = async (post: Omit<BlogPost, 'id' | 'created_at' | 
 }
 
 export const updateBlogPost = async (id: string, updates: Partial<BlogPost>): Promise<BlogPost | null> => {
+  console.log('🔄 Updating blog post:', id, updates)
+  
+  // Clean the updates object - remove undefined values and ensure correct types
+  const cleanUpdates: any = {}
+  
+  if (updates.title !== undefined) cleanUpdates.title = String(updates.title)
+  if (updates.content !== undefined) cleanUpdates.content = String(updates.content)
+  if (updates.excerpt !== undefined) cleanUpdates.excerpt = String(updates.excerpt)
+  if (updates.slug !== undefined) cleanUpdates.slug = String(updates.slug)
+  if (updates.published !== undefined) cleanUpdates.published = Boolean(updates.published)
+  if (updates.featured !== undefined) cleanUpdates.featured = Boolean(updates.featured)
+  if (updates.tags !== undefined) cleanUpdates.tags = Array.isArray(updates.tags) ? updates.tags : []
+  
+  // Always update the updated_at timestamp
+  cleanUpdates.updated_at = new Date().toISOString()
+  
+  console.log('🧹 Cleaned updates:', cleanUpdates)
+
   const { data, error } = await supabase
     .from('blog_posts')
-    .update(updates)
+    .update(cleanUpdates)
     .eq('id', id)
     .select()
     .single()
 
   if (error) {
-    console.error('Error updating blog post:', error)
+    console.error('❌ Error updating blog post:', error)
+    console.error('❌ Error details:', JSON.stringify(error, null, 2))
+    console.error('❌ Update data:', JSON.stringify(cleanUpdates, null, 2))
+    console.error('❌ Blog post ID:', id)
     return null
   }
 
+  console.log('✅ Blog post updated successfully:', data)
   return data
 }
 

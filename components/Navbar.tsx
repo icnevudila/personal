@@ -132,7 +132,7 @@ export function Navbar() {
                   <button
                     key={item.name}
                     onClick={() => handleNavClick(item.href)}
-                    className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-200 relative group"
+                    className="text-gray-300 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors duration-200 relative group"
                   >
                     <span className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#F97316] after:transition-all after:duration-300 group-hover:after:w-full">
                       {item.name}
@@ -143,7 +143,7 @@ export function Navbar() {
                     key={item.name}
                     href={item.href}
                     prefetch={true}
-                    className="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition-colors duration-200 relative group"
+                    className="text-gray-300 hover:text-orange-500 px-3 py-2 text-sm font-medium transition-colors duration-200 relative group"
                   >
                     <span className="relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#F97316] after:transition-all after:duration-300 group-hover:after:w-full">
                       {item.name}
