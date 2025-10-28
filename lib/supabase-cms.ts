@@ -130,7 +130,7 @@ export const updateBlogPost = async (id: string, updates: Partial<BlogPost>): Pr
   if (updates.slug !== undefined) cleanUpdates.slug = String(updates.slug)
   if (updates.published !== undefined) cleanUpdates.published = Boolean(updates.published)
   if (updates.featured !== undefined) cleanUpdates.featured = Boolean(updates.featured)
-  if (updates.tags !== undefined) cleanUpdates.tags = Array.isArray((updates as any).tags) ? (updates as any).tags : []
+  if ('tags' in updates && updates.tags !== undefined) cleanUpdates.tags = Array.isArray(updates.tags) ? updates.tags : []
   
   // Always update the updated_at timestamp
   cleanUpdates.updated_at = new Date().toISOString()
