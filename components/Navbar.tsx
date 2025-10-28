@@ -179,8 +179,9 @@ export function Navbar() {
             </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="md:hidden relative z-50">
+          {/* Mobile menu button and controls */}
+          <div className="md:hidden relative z-50 flex items-center justify-between w-full">
+            {/* Coffee Menu Button */}
             <button
               onClick={() => {
                 setIsOpen(!isOpen)
@@ -208,6 +209,24 @@ export function Navbar() {
                 </div>
               )}
             </button>
+            
+            {/* Lofi Player - Mobile - Tam Sağda */}
+            <div 
+              className="relative"
+              onMouseEnter={() => setShowMusicHint(true)}
+              onMouseLeave={() => setShowMusicHint(false)}
+            >
+              <LofiPlayer />
+              {showMusicHint && (
+                <motion.p
+                  initial={{ opacity: 0, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute top-[52px] right-0 text-xs text-gray-500 hover:text-orange-400 transition-all duration-700 cursor-pointer whitespace-nowrap z-50"
+                >
+                  ♪ click for lofi
+                </motion.p>
+              )}
+            </div>
           </div>
         </div>
       </div>

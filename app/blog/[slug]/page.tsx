@@ -26,6 +26,71 @@ export default function BlogDetail() {
   const [post, setPost] = useState<BlogPost | null>(null)
   const [loading, setLoading] = useState(true)
 
+  // Generate category-specific images using Unsplash API
+  const getCategoryImage = (category: string, index: number): string => {
+    const categoryImages = {
+      Development: [
+        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop&q=80'
+      ],
+      Design: [
+        'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=600&fit=crop&q=80'
+      ],
+      AI: [
+        'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&q=80'
+      ],
+      Performance: [
+        'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop&q=80'
+      ],
+      'UX/UI': [
+        'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=600&fit=crop&q=80'
+      ],
+      Technology: [
+        'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop&q=80'
+      ],
+      Tutorial: [
+        'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&q=80'
+      ],
+      'Case Study': [
+        'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1550439062-609e1531270e?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80'
+      ],
+    }
+    
+    const images = categoryImages[category as keyof typeof categoryImages] || categoryImages.Tutorial
+    return images[index % images.length]
+  }
+
   useEffect(() => {
     // Generate the same blog posts as in Blog component
     const generateBlogPosts = (): BlogPost[] => {
@@ -147,7 +212,7 @@ Bu yolculukta başarılar dileriz! 🚀`,
           readTime: `${Math.floor(Math.random() * 10) + 3} dk okuma`,
           category: category,
           featured: i <= 6,
-          image: i <= 6 ? `/portfolio/blog-${i}.jpg` : undefined,
+          image: i <= 6 ? getCategoryImage(category, i) : undefined,
           published: published
         })
       }

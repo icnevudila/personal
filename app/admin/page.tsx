@@ -41,7 +41,20 @@ function AdminPanel() {
   const [aboutImage, setAboutImage] = useState<string>('')
   const [siteLogo, setSiteLogo] = useState<string>('')
   const [siteFavicon, setSiteFavicon] = useState<string>('')
-  const [activeTab, setActiveTab] = useState<'projects' | 'blog' | 'settings'>('projects')
+  const [activeTab, setActiveTab] = useState<'projects' | 'blog' | 'youtube' | 'settings'>('projects')
+  
+  // YouTube Management States
+  const [youtubeChannel, setYoutubeChannel] = useState({
+    channelName: 'icnevudila',
+    channelUrl: 'https://youtube.com/@icnevudila',
+    subscriberCount: '0',
+    isActive: true,
+    videos: [
+      { id: 1, title: 'Web Tasarımı Temelleri', duration: '15:30', thumbnail: '', url: '' },
+      { id: 2, title: 'React ile Modern UI', duration: '22:15', thumbnail: '', url: '' },
+      { id: 3, title: 'CSS Grid Masterclass', duration: '18:45', thumbnail: '', url: '' }
+    ]
+  })
 
   useEffect(() => {
     // Load projects from localStorage or fallback to default
@@ -102,6 +115,18 @@ function AdminPanel() {
       console.log('🖼️ Loaded site favicon:', savedFavicon.substring(0, 50) + '...')
       setSiteFavicon(savedFavicon)
     }
+    
+    // Load YouTube channel data
+    const savedYoutubeChannel = localStorage.getItem('youtubeChannel')
+    if (savedYoutubeChannel) {
+      try {
+        const parsed = JSON.parse(savedYoutubeChannel)
+        console.log('📺 Loaded YouTube channel:', parsed)
+        setYoutubeChannel(parsed)
+      } catch (e) {
+        console.error('Error parsing YouTube channel:', e)
+      }
+    }
   }, [])
 
   const saveProjects = (newProjects: Project[]) => {
@@ -112,6 +137,41 @@ function AdminPanel() {
     setTimeout(() => {
       console.log('Projects updated in state')
     }, 100)
+  }
+
+  const saveYoutubeChannel = (newChannel: typeof youtubeChannel) => {
+    console.log('Saving YouTube channel:', newChannel)
+    localStorage.setItem('youtubeChannel', JSON.stringify(newChannel))
+    setYoutubeChannel(newChannel)
+  }
+
+  const addYoutubeVideo = () => {
+    const newVideo = {
+      id: Date.now(),
+      title: 'Yeni Video',
+      duration: '00:00',
+      thumbnail: '',
+      url: ''
+    }
+    const updatedChannel = {
+      ...youtubeChannel,
+      videos: [...youtubeChannel.videos, newVideo]
+    }
+    saveYoutubeChannel(updatedChannel)
+  }
+
+  const updateYoutubeVideo = (id: number, field: string, value: string) => {
+    const updatedVideos = youtubeChannel.videos.map(video =>
+      video.id === id ? { ...video, [field]: value } : video
+    )
+    const updatedChannel = { ...youtubeChannel, videos: updatedVideos }
+    saveYoutubeChannel(updatedChannel)
+  }
+
+  const deleteYoutubeVideo = (id: number) => {
+    const updatedVideos = youtubeChannel.videos.filter(video => video.id !== id)
+    const updatedChannel = { ...youtubeChannel, videos: updatedVideos }
+    saveYoutubeChannel(updatedChannel)
   }
 
   const handleEdit = (project: Project) => {
@@ -222,6 +282,16 @@ function AdminPanel() {
               📝 Blog ({blogPosts.length})
             </button>
             <button
+              onClick={() => setActiveTab('youtube')}
+              className={`px-6 py-3 font-medium transition-colors border-b-2 ${
+                activeTab === 'youtube'
+                  ? 'border-primary-500 text-primary-500'
+                  : 'border-transparent text-gray-400 hover:text-gray-300'
+              }`}
+            >
+              📺 YouTube ({youtubeChannel.videos.length})
+            </button>
+            <button
               onClick={() => setActiveTab('settings')}
               className={`px-6 py-3 font-medium transition-colors border-b-2 ${
                 activeTab === 'settings'
@@ -237,10 +307,14 @@ function AdminPanel() {
           <div className="grid grid-cols-3 gap-4 mt-6">
             <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
               <div className="text-2xl font-bold text-white">
-                {activeTab === 'projects' ? projects.length : blogPosts.length}
+                {activeTab === 'projects' ? projects.length : 
+                 activeTab === 'blog' ? blogPosts.length :
+                 activeTab === 'youtube' ? youtubeChannel.videos.length : 0}
               </div>
               <div className="text-sm text-gray-400">
-                {activeTab === 'projects' ? 'Toplam Proje' : 'Toplam Blog'}
+                {activeTab === 'projects' ? 'Toplam Proje' : 
+                 activeTab === 'blog' ? 'Toplam Blog' :
+                 activeTab === 'youtube' ? 'Toplam Video' : 'Ayarlar'}
               </div>
             </div>
             <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
@@ -280,7 +354,124 @@ function AdminPanel() {
         </motion.div>
 
         {/* Content based on active tab */}
-        {activeTab === 'settings' ? (
+        {activeTab === 'youtube' ? (
+          <>
+            {/* YouTube Channel Management */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mb-8 card"
+            >
+              <h2 className="text-2xl font-semibold mb-4">YouTube Kanalı Yönetimi</h2>
+              
+              <div className="space-y-6">
+                {/* Channel Info */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Kanal Adı</label>
+                    <input
+                      type="text"
+                      value={youtubeChannel.channelName}
+                      onChange={(e) => saveYoutubeChannel({...youtubeChannel, channelName: e.target.value})}
+                      className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Kanal URL</label>
+                    <input
+                      type="url"
+                      value={youtubeChannel.channelUrl}
+                      onChange={(e) => saveYoutubeChannel({...youtubeChannel, channelUrl: e.target.value})}
+                      className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Abone Sayısı</label>
+                    <input
+                      type="text"
+                      value={youtubeChannel.subscriberCount}
+                      onChange={(e) => saveYoutubeChannel({...youtubeChannel, subscriberCount: e.target.value})}
+                      className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white"
+                      placeholder="örn: 1.2K"
+                    />
+                  </div>
+                  <div className="flex items-center">
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={youtubeChannel.isActive}
+                        onChange={(e) => saveYoutubeChannel({...youtubeChannel, isActive: e.target.checked})}
+                        className="mr-2"
+                      />
+                      <span className="text-sm">Kanal Aktif</span>
+                    </label>
+                  </div>
+                </div>
+
+                {/* Videos Management */}
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <h3 className="text-xl font-semibold">Videolar</h3>
+                    <button
+                      onClick={addYoutubeVideo}
+                      className="flex items-center gap-2 px-4 py-2 bg-primary-500 hover:bg-primary-600 rounded-lg transition-colors"
+                    >
+                      <PlusIcon className="w-5 h-5" />
+                      Video Ekle
+                    </button>
+                  </div>
+
+                  <div className="space-y-4">
+                    {youtubeChannel.videos.map((video) => (
+                      <div key={video.id} className="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <div>
+                            <label className="block text-sm font-medium mb-2">Video Başlığı</label>
+                            <input
+                              type="text"
+                              value={video.title}
+                              onChange={(e) => updateYoutubeVideo(video.id, 'title', e.target.value)}
+                              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-2">Süre</label>
+                            <input
+                              type="text"
+                              value={video.duration}
+                              onChange={(e) => updateYoutubeVideo(video.id, 'duration', e.target.value)}
+                              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm"
+                              placeholder="15:30"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium mb-2">Video URL</label>
+                            <input
+                              type="url"
+                              value={video.url}
+                              onChange={(e) => updateYoutubeVideo(video.id, 'url', e.target.value)}
+                              className="w-full px-3 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white text-sm"
+                              placeholder="https://youtube.com/watch?v=..."
+                            />
+                          </div>
+                        </div>
+                        <div className="mt-4 flex justify-end">
+                          <button
+                            onClick={() => deleteYoutubeVideo(video.id)}
+                            className="flex items-center gap-2 px-3 py-2 bg-red-500 hover:bg-red-600 rounded-lg transition-colors text-sm"
+                          >
+                            <TrashIcon className="w-4 h-4" />
+                            Sil
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        ) : activeTab === 'settings' ? (
           <>
             {/* Site Logo Upload */}
             <motion.div

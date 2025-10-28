@@ -71,61 +71,69 @@ export function Blog({ isHomePage = false }: BlogProps) {
     }
   }
 
-  // Generate real images from Unsplash based on category
+  // Generate category-specific images using Unsplash API
   const getCategoryImage = (category: string, index: number): string => {
-    const images = {
+    const categoryImages = {
       Development: [
         'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop&q=80'
       ],
       Design: [
         'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1567521464027-f127ff144326?w=800&h=600&fit=crop&q=80',
-      ],
-      Performance: [
-        'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=600&fit=crop&q=80'
       ],
       AI: [
         'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&q=80'
+      ],
+      Performance: [
+        'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=800&h=600&fit=crop&q=80'
       ],
       'UX/UI': [
-        'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?w=800&h=600&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1586717791821-3f44a563fa4c?w=800&h=600&fit=crop&q=80'
       ],
       Technology: [
         'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=600&fit=crop&q=80'
       ],
       Tutorial: [
         'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop&q=80'
       ],
       'Case Study': [
         'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&q=80',
         'https://images.unsplash.com/photo-1550439062-609e1531270e?w=800&h=600&fit=crop&q=80',
+        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&q=80'
       ],
     }
     
-    const categoryImages = images[category as keyof typeof images] || images.Technology
-    return categoryImages[index % categoryImages.length]
+    const images = categoryImages[category as keyof typeof categoryImages] || categoryImages.Tutorial
+    return images[index % images.length]
   }
 
   // Generate 100 blog posts
@@ -253,29 +261,41 @@ Bu yolculukta başarılar dileriz! 🚀`,
 
   const [allBlogPosts, setAllBlogPosts] = useState<BlogPost[]>(generateBlogPosts())
   const [blogPosts, setBlogPosts] = useState<BlogPost[]>([])
+  const [youtubeChannel, setYoutubeChannel] = useState({
+    channelName: 'icnevudila',
+    channelUrl: 'https://youtube.com/@icnevudila',
+    subscriberCount: '0',
+    isActive: true,
+    videos: [
+      { id: 1, title: 'Web Tasarımı Temelleri', duration: '15:30', thumbnail: '', url: '' },
+      { id: 2, title: 'React ile Modern UI', duration: '22:15', thumbnail: '', url: '' },
+      { id: 3, title: 'CSS Grid Masterclass', duration: '18:45', thumbnail: '', url: '' }
+    ]
+  })
 
   useEffect(() => {
-    // Try to load from localStorage first
-    const savedPosts = localStorage.getItem('blogPosts')
-    let posts: BlogPost[]
+    // Always generate fresh posts with correct image paths
+    const posts = generateBlogPosts()
+    setAllBlogPosts(posts)
+    setBlogPosts(posts.filter(post => post.published !== false))
     
-    if (savedPosts) {
-      posts = JSON.parse(savedPosts)
-      setAllBlogPosts(posts)
-      setBlogPosts(posts.filter(post => post.published !== false))
-      console.log('📥 Loaded posts from localStorage:', posts.length)
-    } else {
-      // Always use generated posts for now (100 posts with 60 published)
-      posts = generateBlogPosts()
-      setAllBlogPosts(posts)
-      setBlogPosts(posts.filter(post => post.published !== false))
-      
-      // Save to localStorage
-      localStorage.setItem('blogPosts', JSON.stringify(posts))
-      console.log('📝 Generated posts:', posts.length)
-    }
-    
+    // Save fresh posts to localStorage (this will overwrite old data)
+    localStorage.setItem('blogPosts', JSON.stringify(posts))
+    console.log('📝 Generated fresh posts with correct image paths:', posts.length)
     console.log('Published posts:', posts.filter(post => post.published !== false).length)
+    console.log('🔍 First few posts image paths:', posts.slice(0, 3).map(p => ({ title: p.title, image: p.image })))
+    
+    // Load YouTube channel data
+    const savedYoutubeChannel = localStorage.getItem('youtubeChannel')
+    if (savedYoutubeChannel) {
+      try {
+        const parsed = JSON.parse(savedYoutubeChannel)
+        console.log('📺 Loaded YouTube channel:', parsed)
+        setYoutubeChannel(parsed)
+      } catch (e) {
+        console.error('Error parsing YouTube channel:', e)
+      }
+    }
   }, [])
 
   const handleEdit = (post: BlogPost, index: number) => {
@@ -505,7 +525,16 @@ Bu yolculukta başarılar dileriz! 🚀`,
                     <div className="w-full h-48 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative">
                       {/* Uploaded Image */}
                       {post.image ? (
-                        <img src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                        <img 
+                          src={post.image} 
+                          alt={post.title} 
+                          className="w-full h-full object-cover" 
+                          onError={(e) => {
+                            console.log('❌ Image failed to load:', post.image)
+                            e.currentTarget.style.display = 'none'
+                          }}
+                          onLoad={() => console.log('✅ Image loaded successfully:', post.image)}
+                        />
                       ) : (
                         <>
                           {/* Estetik tasarım */}
@@ -905,13 +934,13 @@ Bu yolculukta başarılar dileriz! 🚀`,
             <VideoCameraIcon className="w-10 h-10 text-red-500" />
           </motion.div>
           <h2 className="text-3xl font-bold mb-4 text-white">
-            {t.services.youtubeSection.title}
+            {youtubeChannel.isActive ? `${youtubeChannel.channelName} YouTube` : t.services.youtubeSection.title}
           </h2>
           <p className="text-lg text-[#F97316] mb-2 font-semibold">
-            {t.services.youtubeSection.subtitle}
+            {youtubeChannel.isActive ? `${youtubeChannel.subscriberCount} Abone` : t.services.youtubeSection.subtitle}
           </p>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            {t.services.youtubeSection.description}
+            {youtubeChannel.isActive ? 'En son videolarımı izleyin ve kanalıma abone olun!' : t.services.youtubeSection.description}
           </p>
         </div>
 
@@ -945,33 +974,63 @@ Bu yolculukta başarılar dileriz! 🚀`,
 
               {/* Video Grid Preview */}
               <div className="grid md:grid-cols-3 gap-4 mb-6">
-                {t.services.youtubeSection.videos.map((video: any, index: number) => (
-                  <motion.div
-                    key={video.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                    whileHover={{ scale: 1.03, y: -5 }}
-                    className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-700/50 cursor-pointer group relative"
-                  >
-                    {/* Thumbnail Placeholder */}
-                    <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                      <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/80 text-white text-xs rounded">
-                        {video.duration}
+                {youtubeChannel.isActive && youtubeChannel.videos.length > 0 ? (
+                  youtubeChannel.videos.map((video, index) => (
+                    <motion.div
+                      key={video.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                      whileHover={{ scale: 1.03, y: -5 }}
+                      className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-700/50 cursor-pointer group relative"
+                    >
+                      {/* Thumbnail Placeholder */}
+                      <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/80 text-white text-xs rounded">
+                          {video.duration}
+                        </div>
+                        <VideoCameraIcon className="w-12 h-12 text-gray-600" />
                       </div>
-                      <VideoCameraIcon className="w-12 h-12 text-gray-600" />
-                    </div>
-                    
-                    {/* Video Info */}
-                    <div className="p-3">
-                      <h4 className="text-sm font-semibold text-white mb-1 line-clamp-2 group-hover:text-red-400 transition-colors">
-                        {video.title}
-                      </h4>
-                    </div>
-                  </motion.div>
-                ))}
+                      
+                      {/* Video Info */}
+                      <div className="p-3">
+                        <h4 className="text-sm font-semibold text-white mb-1 line-clamp-2 group-hover:text-red-400 transition-colors">
+                          {video.title}
+                        </h4>
+                      </div>
+                    </motion.div>
+                  ))
+                ) : (
+                  t.services.youtubeSection.videos.map((video: any, index: number) => (
+                    <motion.div
+                      key={video.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                      whileHover={{ scale: 1.03, y: -5 }}
+                      className="bg-gray-900/50 rounded-xl overflow-hidden border border-gray-700/50 cursor-pointer group relative"
+                    >
+                      {/* Thumbnail Placeholder */}
+                      <div className="aspect-video bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                        <div className="absolute bottom-2 right-2 px-2 py-1 bg-black/80 text-white text-xs rounded">
+                          {video.duration}
+                        </div>
+                        <VideoCameraIcon className="w-12 h-12 text-gray-600" />
+                      </div>
+                      
+                      {/* Video Info */}
+                      <div className="p-3">
+                        <h4 className="text-sm font-semibold text-white mb-1 line-clamp-2 group-hover:text-red-400 transition-colors">
+                          {video.title}
+                        </h4>
+                      </div>
+                    </motion.div>
+                  ))
+                )}
               </div>
 
               {/* Action Buttons */}
@@ -980,17 +1039,19 @@ Bu yolculukta başarılar dileriz! 🚀`,
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-red-500 hover:bg-red-600 text-white rounded-xl font-semibold transition-colors flex items-center justify-center gap-2 shadow-lg shadow-red-500/20"
+                  onClick={() => window.open(youtubeChannel.isActive ? youtubeChannel.channelUrl : 'https://youtube.com/@icnevudila', '_blank')}
                 >
                   <VideoCameraIcon className="w-5 h-5" />
-                  {t.services.youtubeSection.subscribeButton}
+                  {youtubeChannel.isActive ? `${youtubeChannel.channelName} Kanalına Git` : t.services.youtubeSection.subscribeButton}
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="px-8 py-4 bg-gray-700 hover:bg-gray-600 text-white rounded-xl font-semibold border border-gray-600 transition-colors flex items-center justify-center gap-2"
+                  onClick={() => window.open(youtubeChannel.isActive ? youtubeChannel.channelUrl : 'https://youtube.com/@icnevudila', '_blank')}
                 >
                   <BellIcon className="w-5 h-5" />
-                  {t.services.youtubeSection.notifyButton}
+                  {youtubeChannel.isActive ? 'Abone Ol' : t.services.youtubeSection.notifyButton}
                 </motion.button>
               </div>
             </div>

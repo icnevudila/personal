@@ -10,7 +10,7 @@
       "readTime": "5 dk okuma",
       "category": "Design",
       "featured": true,
-      "image": "/portfolio/blog-1.jpg"
+      "image": "/portfolio/blog.jpg"
     },
     {
       "id": 2,
@@ -22,7 +22,7 @@
       "readTime": "7 dk okuma",
       "category": "Development",
       "featured": true,
-      "image": "/portfolio/blog-2.jpg"
+      "image": "/portfolio/blog.jpg"
     },
     {
       "id": 3,
@@ -34,7 +34,7 @@
       "readTime": "6 dk okuma",
       "category": "AI",
       "featured": true,
-      "image": "/portfolio/blog-3.jpg"
+      "image": "/portfolio/blog.jpg"
     },
     {
       "id": 4,
@@ -46,7 +46,7 @@
       "readTime": "8 dk okuma",
       "category": "Performance",
       "featured": true,
-      "image": "/portfolio/blog-4.jpg"
+      "image": "/portfolio/blog.jpg"
     },
     {
       "id": 5,
@@ -58,7 +58,7 @@
       "readTime": "9 dk okuma",
       "category": "UX/UI",
       "featured": true,
-      "image": "/portfolio/blog-5.jpg"
+      "image": "/portfolio/blog.jpg"
     },
     {
       "id": 6,
@@ -70,7 +70,7 @@
       "readTime": "7 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-6.jpg"
+      "image": "/portfolio/blog.jpg"
     },
     {
       "id": 7,
@@ -82,7 +82,7 @@
       "readTime": "6 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-7.jpg"
+      "image": "/portfolio/blog.jpg"7.jpg"
     },
     {
       "id": 8,
@@ -94,7 +94,7 @@
       "readTime": "8 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-8.jpg"
+      "image": "/portfolio/blog.jpg"8.jpg"
     },
     {
       "id": 9,
@@ -106,7 +106,7 @@
       "readTime": "10 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-9.jpg"
+      "image": "/portfolio/blog.jpg"9.jpg"
     },
     {
       "id": 10,
@@ -118,7 +118,7 @@
       "readTime": "9 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-10.jpg"
+      "image": "/portfolio/blog.jpg"10.jpg"
     },
     {
       "id": 11,
@@ -130,7 +130,7 @@
       "readTime": "7 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-11.jpg"
+      "image": "/portfolio/blog.jpg"11.jpg"
     },
     {
       "id": 12,
@@ -142,7 +142,7 @@
       "readTime": "8 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-12.jpg"
+      "image": "/portfolio/blog.jpg"12.jpg"
     },
     {
       "id": 13,
@@ -154,7 +154,7 @@
       "readTime": "10 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-13.jpg"
+      "image": "/portfolio/blog.jpg"13.jpg"
     },
     {
       "id": 14,
@@ -166,7 +166,7 @@
       "readTime": "6 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-14.jpg"
+      "image": "/portfolio/blog.jpg"14.jpg"
     },
     {
       "id": 15,
@@ -178,7 +178,7 @@
       "readTime": "9 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-15.jpg"
+      "image": "/portfolio/blog.jpg"15.jpg"
     },
     {
       "id": 16,
@@ -190,7 +190,7 @@
       "readTime": "7 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-16.jpg"
+      "image": "/portfolio/blog.jpg"16.jpg"
     },
     {
       "id": 17,
@@ -202,7 +202,7 @@
       "readTime": "8 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-17.jpg"
+      "image": "/portfolio/blog.jpg"17.jpg"
     },
     {
       "id": 18,
@@ -214,7 +214,7 @@
       "readTime": "11 dk okuma",
       "category": "UX/UI",
       "featured": false,
-      "image": "/portfolio/blog-18.jpg"
+      "image": "/portfolio/blog.jpg"18.jpg"
     },
     {
       "id": 19,
@@ -226,7 +226,7 @@
       "readTime": "9 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-19.jpg"
+      "image": "/portfolio/blog.jpg"19.jpg"
     },
     {
       "id": 20,
@@ -238,7 +238,7 @@
       "readTime": "10 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-20.jpg"
+      "image": "/portfolio/blog.jpg"20.jpg"
     },
     {
       "id": 21,
@@ -250,7 +250,7 @@
       "readTime": "12 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-21.jpg"
+      "image": "/portfolio/blog.jpg"21.jpg"
     },
     {
       "id": 22,
@@ -262,7 +262,7 @@
       "readTime": "9 dk okuma",
       "category": "UX/UI",
       "featured": false,
-      "image": "/portfolio/blog-22.jpg"
+      "image": "/portfolio/blog.jpg"22.jpg"
     },
     {
       "id": 23,
@@ -274,7 +274,7 @@
       "readTime": "11 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-23.jpg"
+      "image": "/portfolio/blog.jpg"23.jpg"
     },
     {
       "id": 24,
@@ -286,7 +286,7 @@
       "readTime": "8 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-24.jpg"
+      "image": "/portfolio/blog.jpg"24.jpg"
     },
     {
       "id": 25,
@@ -298,7 +298,7 @@
       "readTime": "10 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-25.jpg"
+      "image": "/portfolio/blog.jpg"25.jpg"
     },
     {
       "id": 26,
@@ -310,7 +310,7 @@
       "readTime": "9 dk okuma",
       "category": "UX/UI",
       "featured": false,
-      "image": "/portfolio/blog-26.jpg"
+      "image": "/portfolio/blog.jpg"26.jpg"
     },
     {
       "id": 27,
@@ -322,7 +322,7 @@
       "readTime": "11 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-27.jpg"
+      "image": "/portfolio/blog.jpg"27.jpg"
     },
     {
       "id": 28,
@@ -334,7 +334,7 @@
       "readTime": "7 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-28.jpg"
+      "image": "/portfolio/blog.jpg"28.jpg"
     },
     {
       "id": 29,
@@ -346,7 +346,7 @@
       "readTime": "8 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-29.jpg"
+      "image": "/portfolio/blog.jpg"29.jpg"
     },
     {
       "id": 30,
@@ -358,7 +358,7 @@
       "readTime": "9 dk okuma",
       "category": "UX/UI",
       "featured": false,
-      "image": "/portfolio/blog-30.jpg"
+      "image": "/portfolio/blog.jpg"30.jpg"
     },
     {
       "id": 31,
@@ -370,7 +370,7 @@
       "readTime": "10 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-31.jpg"
+      "image": "/portfolio/blog.jpg"31.jpg"
     },
     {
       "id": 32,
@@ -382,7 +382,7 @@
       "readTime": "8 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-32.jpg"
+      "image": "/portfolio/blog.jpg"32.jpg"
     },
     {
       "id": 33,
@@ -394,7 +394,7 @@
       "readTime": "11 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-33.jpg"
+      "image": "/portfolio/blog.jpg"33.jpg"
     },
     {
       "id": 34,
@@ -406,7 +406,7 @@
       "readTime": "9 dk okuma",
       "category": "UX/UI",
       "featured": false,
-      "image": "/portfolio/blog-34.jpg"
+      "image": "/portfolio/blog.jpg"34.jpg"
     },
     {
       "id": 35,
@@ -418,7 +418,7 @@
       "readTime": "10 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-35.jpg"
+      "image": "/portfolio/blog.jpg"35.jpg"
     },
     {
       "id": 36,
@@ -430,7 +430,7 @@
       "readTime": "7 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-36.jpg"
+      "image": "/portfolio/blog.jpg"36.jpg"
     },
     {
       "id": 37,
@@ -442,7 +442,7 @@
       "readTime": "12 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-37.jpg"
+      "image": "/portfolio/blog.jpg"37.jpg"
     },
     {
       "id": 38,
@@ -454,7 +454,7 @@
       "readTime": "8 dk okuma",
       "category": "UX/UI",
       "featured": false,
-      "image": "/portfolio/blog-38.jpg"
+      "image": "/portfolio/blog.jpg"38.jpg"
     },
     {
       "id": 39,
@@ -466,7 +466,7 @@
       "readTime": "11 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-39.jpg"
+      "image": "/portfolio/blog.jpg"39.jpg"
     },
     {
       "id": 40,
@@ -478,7 +478,7 @@
       "readTime": "9 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-40.jpg"
+      "image": "/portfolio/blog.jpg"40.jpg"
     },
     {
       "id": 41,
@@ -490,7 +490,7 @@
       "readTime": "12 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-41.jpg"
+      "image": "/portfolio/blog.jpg"41.jpg"
     },
     {
       "id": 42,
@@ -502,7 +502,7 @@
       "readTime": "10 dk okuma",
       "category": "UX/UI",
       "featured": false,
-      "image": "/portfolio/blog-42.jpg"
+      "image": "/portfolio/blog.jpg"42.jpg"
     },
     {
       "id": 43,
@@ -514,7 +514,7 @@
       "readTime": "9 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-43.jpg"
+      "image": "/portfolio/blog.jpg"43.jpg"
     },
     {
       "id": 44,
@@ -526,7 +526,7 @@
       "readTime": "8 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-44.jpg"
+      "image": "/portfolio/blog.jpg"44.jpg"
     },
     {
       "id": 45,
@@ -538,7 +538,7 @@
       "readTime": "11 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-45.jpg"
+      "image": "/portfolio/blog.jpg"45.jpg"
     },
     {
       "id": 46,
@@ -550,7 +550,7 @@
       "readTime": "10 dk okuma",
       "category": "UX/UI",
       "featured": false,
-      "image": "/portfolio/blog-46.jpg"
+      "image": "/portfolio/blog.jpg"46.jpg"
     },
     {
       "id": 47,
@@ -562,7 +562,7 @@
       "readTime": "12 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-47.jpg"
+      "image": "/portfolio/blog.jpg"47.jpg"
     },
     {
       "id": 48,
@@ -574,7 +574,7 @@
       "readTime": "9 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-48.jpg"
+      "image": "/portfolio/blog.jpg"48.jpg"
     },
     {
       "id": 49,
@@ -586,7 +586,7 @@
       "readTime": "11 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-49.jpg"
+      "image": "/portfolio/blog.jpg"49.jpg"
     },
     {
       "id": 50,
@@ -598,7 +598,7 @@
       "readTime": "8 dk okuma",
       "category": "UX/UI",
       "featured": false,
-      "image": "/portfolio/blog-50.jpg"
+      "image": "/portfolio/blog.jpg"50.jpg"
     },
     {
       "id": 51,
@@ -610,7 +610,7 @@
       "readTime": "10 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-51.jpg"
+      "image": "/portfolio/blog.jpg"51.jpg"
     },
     {
       "id": 52,
@@ -622,7 +622,7 @@
       "readTime": "9 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-52.jpg"
+      "image": "/portfolio/blog.jpg"52.jpg"
     },
     {
       "id": 53,
@@ -634,7 +634,7 @@
       "readTime": "11 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-53.jpg"
+      "image": "/portfolio/blog.jpg"53.jpg"
     },
     {
       "id": 54,
@@ -646,7 +646,7 @@
       "readTime": "8 dk okuma",
       "category": "UX/UI",
       "featured": false,
-      "image": "/portfolio/blog-54.jpg"
+      "image": "/portfolio/blog.jpg"54.jpg"
     },
     {
       "id": 55,
@@ -658,7 +658,7 @@
       "readTime": "12 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-55.jpg"
+      "image": "/portfolio/blog.jpg"55.jpg"
     },
     {
       "id": 56,
@@ -670,7 +670,7 @@
       "readTime": "9 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-56.jpg"
+      "image": "/portfolio/blog.jpg"56.jpg"
     },
     {
       "id": 57,
@@ -682,7 +682,7 @@
       "readTime": "13 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-57.jpg"
+      "image": "/portfolio/blog.jpg"57.jpg"
     },
     {
       "id": 58,
@@ -694,7 +694,7 @@
       "readTime": "10 dk okuma",
       "category": "UX/UI",
       "featured": false,
-      "image": "/portfolio/blog-58.jpg"
+      "image": "/portfolio/blog.jpg"58.jpg"
     },
     {
       "id": 59,
@@ -706,7 +706,7 @@
       "readTime": "14 dk okuma",
       "category": "Development",
       "featured": false,
-      "image": "/portfolio/blog-59.jpg"
+      "image": "/portfolio/blog.jpg"59.jpg"
     },
     {
       "id": 60,
@@ -718,7 +718,729 @@
       "readTime": "11 dk okuma",
       "category": "Design",
       "featured": false,
-      "image": "/portfolio/blog-60.jpg"
+      "image": "/portfolio/blog.jpg"60.jpg"
     }
   ]
+}
+
+      "id": 31,
+
+      "title": "Docker Containerization: 31. Adımda Uzmanlaşma",
+
+      "slug": "docker-containerization-31",
+
+      "excerpt": "Docker Containerization konusunda 31. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# Docker Containerization: 31. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Docker Containerization konusunda 31. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-20",
+
+      "readTime": "10 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-31.jpg"
+
+    },
+
+    {
+
+      "id": 32,
+
+      "title": "Logo Design Principles: 32. Adımda Uzmanlaşma",
+
+      "slug": "logo-design-principles-32",
+
+      "excerpt": "Logo Design Principles konusunda 32. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Design alanında uzmanlaşın.",
+
+      "content": "# Logo Design Principles: 32. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Logo Design Principles konusunda 32. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-19",
+
+      "readTime": "8 dk okuma",
+
+      "category": "Design",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-32.jpg"
+
+    },
+
+    {
+
+      "id": 33,
+
+      "title": "Agile Methodology: 33. Adımda Uzmanlaşma",
+
+      "slug": "agile-methodology-33",
+
+      "excerpt": "Agile Methodology konusunda 33. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# Agile Methodology: 33. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Agile Methodology konusunda 33. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-18",
+
+      "readTime": "11 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-33.jpg"
+
+    },
+
+    {
+
+      "id": 34,
+
+      "title": "Usability Testing: 34. Adımda Uzmanlaşma",
+
+      "slug": "usability-testing-34",
+
+      "excerpt": "Usability Testing konusunda 34. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile UX/UI alanında uzmanlaşın.",
+
+      "content": "# Usability Testing: 34. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Usability Testing konusunda 34. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-17",
+
+      "readTime": "9 dk okuma",
+
+      "category": "UX/UI",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-34.jpg"
+
+    },
+
+    {
+
+      "id": 35,
+
+      "title": "GraphQL API: 35. Adımda Uzmanlaşma",
+
+      "slug": "graphql-api-35",
+
+      "excerpt": "GraphQL API konusunda 35. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# GraphQL API: 35. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde GraphQL API konusunda 35. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-16",
+
+      "readTime": "10 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-35.jpg"
+
+    },
+
+    {
+
+      "id": 36,
+
+      "title": "Icon Design: 36. Adımda Uzmanlaşma",
+
+      "slug": "icon-design-36",
+
+      "excerpt": "Icon Design konusunda 36. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Design alanında uzmanlaşın.",
+
+      "content": "# Icon Design: 36. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Icon Design konusunda 36. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-15",
+
+      "readTime": "7 dk okuma",
+
+      "category": "Design",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-36.jpg"
+
+    },
+
+    {
+
+      "id": 37,
+
+      "title": "CI/CD Pipeline: 37. Adımda Uzmanlaşma",
+
+      "slug": "cicd-pipeline-37",
+
+      "excerpt": "CI/CD Pipeline konusunda 37. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# CI/CD Pipeline: 37. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde CI/CD Pipeline konusunda 37. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-14",
+
+      "readTime": "12 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-37.jpg"
+
+    },
+
+    {
+
+      "id": 38,
+
+      "title": "Prototyping Methods: 38. Adımda Uzmanlaşma",
+
+      "slug": "prototyping-methods-38",
+
+      "excerpt": "Prototyping Methods konusunda 38. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile UX/UI alanında uzmanlaşın.",
+
+      "content": "# Prototyping Methods: 38. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Prototyping Methods konusunda 38. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-13",
+
+      "readTime": "8 dk okuma",
+
+      "category": "UX/UI",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-38.jpg"
+
+    },
+
+    {
+
+      "id": 39,
+
+      "title": "MongoDB Database: 39. Adımda Uzmanlaşma",
+
+      "slug": "mongodb-database-39",
+
+      "excerpt": "MongoDB Database konusunda 39. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# MongoDB Database: 39. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde MongoDB Database konusunda 39. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-12",
+
+      "readTime": "11 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-39.jpg"
+
+    },
+
+    {
+
+      "id": 40,
+
+      "title": "Print Design: 40. Adımda Uzmanlaşma",
+
+      "slug": "print-design-40",
+
+      "excerpt": "Print Design konusunda 40. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Design alanında uzmanlaşın.",
+
+      "content": "# Print Design: 40. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Print Design konusunda 40. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-11",
+
+      "readTime": "9 dk okuma",
+
+      "category": "Design",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-40.jpg"
+
+    },
+
+    {
+
+      "id": 41,
+
+      "title": "Kubernetes Orchestration: 41. Adımda Uzmanlaşma",
+
+      "slug": "kubernetes-orchestration-41",
+
+      "excerpt": "Kubernetes Orchestration konusunda 41. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# Kubernetes Orchestration: 41. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Kubernetes Orchestration konusunda 41. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-10",
+
+      "readTime": "12 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-41.jpg"
+
+    },
+
+    {
+
+      "id": 42,
+
+      "title": "User Journey Mapping: 42. Adımda Uzmanlaşma",
+
+      "slug": "user-journey-mapping-42",
+
+      "excerpt": "User Journey Mapping konusunda 42. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile UX/UI alanında uzmanlaşın.",
+
+      "content": "# User Journey Mapping: 42. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde User Journey Mapping konusunda 42. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-09",
+
+      "readTime": "10 dk okuma",
+
+      "category": "UX/UI",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-42.jpg"
+
+    },
+
+    {
+
+      "id": 43,
+
+      "title": "Redis Caching: 43. Adımda Uzmanlaşma",
+
+      "slug": "redis-caching-43",
+
+      "excerpt": "Redis Caching konusunda 43. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# Redis Caching: 43. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Redis Caching konusunda 43. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-08",
+
+      "readTime": "9 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-43.jpg"
+
+    },
+
+    {
+
+      "id": 44,
+
+      "title": "Packaging Design: 44. Adımda Uzmanlaşma",
+
+      "slug": "packaging-design-44",
+
+      "excerpt": "Packaging Design konusunda 44. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Design alanında uzmanlaşın.",
+
+      "content": "# Packaging Design: 44. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Packaging Design konusunda 44. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-07",
+
+      "readTime": "8 dk okuma",
+
+      "category": "Design",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-44.jpg"
+
+    },
+
+    {
+
+      "id": 45,
+
+      "title": "Scrum Framework: 45. Adımda Uzmanlaşma",
+
+      "slug": "scrum-framework-45",
+
+      "excerpt": "Scrum Framework konusunda 45. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# Scrum Framework: 45. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Scrum Framework konusunda 45. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-06",
+
+      "readTime": "11 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-45.jpg"
+
+    },
+
+    {
+
+      "id": 46,
+
+      "title": "A/B Testing: 46. Adımda Uzmanlaşma",
+
+      "slug": "ab-testing-46",
+
+      "excerpt": "A/B Testing konusunda 46. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile UX/UI alanında uzmanlaşın.",
+
+      "content": "# A/B Testing: 46. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde A/B Testing konusunda 46. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-05",
+
+      "readTime": "10 dk okuma",
+
+      "category": "UX/UI",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-46.jpg"
+
+    },
+
+    {
+
+      "id": 47,
+
+      "title": "Elasticsearch Search: 47. Adımda Uzmanlaşma",
+
+      "slug": "elasticsearch-search-47",
+
+      "excerpt": "Elasticsearch Search konusunda 47. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# Elasticsearch Search: 47. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Elasticsearch Search konusunda 47. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-04",
+
+      "readTime": "12 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-47.jpg"
+
+    },
+
+    {
+
+      "id": 48,
+
+      "title": "Motion Graphics: 48. Adımda Uzmanlaşma",
+
+      "slug": "motion-graphics-48",
+
+      "excerpt": "Motion Graphics konusunda 48. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Design alanında uzmanlaşın.",
+
+      "content": "# Motion Graphics: 48. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Motion Graphics konusunda 48. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-03",
+
+      "readTime": "9 dk okuma",
+
+      "category": "Design",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-48.jpg"
+
+    },
+
+    {
+
+      "id": 49,
+
+      "title": "Micro Frontends: 49. Adımda Uzmanlaşma",
+
+      "slug": "micro-frontends-49",
+
+      "excerpt": "Micro Frontends konusunda 49. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# Micro Frontends: 49. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Micro Frontends konusunda 49. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-02",
+
+      "readTime": "11 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-49.jpg"
+
+    },
+
+    {
+
+      "id": 50,
+
+      "title": "Card Sorting: 50. Adımda Uzmanlaşma",
+
+      "slug": "card-sorting-50",
+
+      "excerpt": "Card Sorting konusunda 50. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile UX/UI alanında uzmanlaşın.",
+
+      "content": "# Card Sorting: 50. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Card Sorting konusunda 50. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-11-01",
+
+      "readTime": "8 dk okuma",
+
+      "category": "UX/UI",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-50.jpg"
+
+    },
+
+    {
+
+      "id": 51,
+
+      "title": "WebAssembly Performance: 51. Adımda Uzmanlaşma",
+
+      "slug": "webassembly-performance-51",
+
+      "excerpt": "WebAssembly Performance konusunda 51. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# WebAssembly Performance: 51. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde WebAssembly Performance konusunda 51. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-10-31",
+
+      "readTime": "10 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-51.jpg"
+
+    },
+
+    {
+
+      "id": 52,
+
+      "title": "3D Design Principles: 52. Adımda Uzmanlaşma",
+
+      "slug": "3d-design-principles-52",
+
+      "excerpt": "3D Design Principles konusunda 52. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Design alanında uzmanlaşın.",
+
+      "content": "# 3D Design Principles: 52. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde 3D Design Principles konusunda 52. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-10-30",
+
+      "readTime": "9 dk okuma",
+
+      "category": "Design",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-52.jpg"
+
+    },
+
+    {
+
+      "id": 53,
+
+      "title": "Progressive Web Apps: 53. Adımda Uzmanlaşma",
+
+      "slug": "progressive-web-apps-53",
+
+      "excerpt": "Progressive Web Apps konusunda 53. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# Progressive Web Apps: 53. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Progressive Web Apps konusunda 53. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-10-29",
+
+      "readTime": "11 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-53.jpg"
+
+    },
+
+    {
+
+      "id": 54,
+
+      "title": "Heuristic Evaluation: 54. Adımda Uzmanlaşma",
+
+      "slug": "heuristic-evaluation-54",
+
+      "excerpt": "Heuristic Evaluation konusunda 54. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile UX/UI alanında uzmanlaşın.",
+
+      "content": "# Heuristic Evaluation: 54. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Heuristic Evaluation konusunda 54. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-10-28",
+
+      "readTime": "8 dk okuma",
+
+      "category": "UX/UI",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-54.jpg"
+
+    },
+
+    {
+
+      "id": 55,
+
+      "title": "Serverless Architecture: 55. Adımda Uzmanlaşma",
+
+      "slug": "serverless-architecture-55",
+
+      "excerpt": "Serverless Architecture konusunda 55. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# Serverless Architecture: 55. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Serverless Architecture konusunda 55. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-10-27",
+
+      "readTime": "12 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-55.jpg"
+
+    },
+
+    {
+
+      "id": 56,
+
+      "title": "Environmental Design: 56. Adımda Uzmanlaşma",
+
+      "slug": "environmental-design-56",
+
+      "excerpt": "Environmental Design konusunda 56. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Design alanında uzmanlaşın.",
+
+      "content": "# Environmental Design: 56. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Environmental Design konusunda 56. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-10-26",
+
+      "readTime": "9 dk okuma",
+
+      "category": "Design",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-56.jpg"
+
+    },
+
+    {
+
+      "id": 57,
+
+      "title": "Machine Learning Integration: 57. Adımda Uzmanlaşma",
+
+      "slug": "machine-learning-integration-57",
+
+      "excerpt": "Machine Learning Integration konusunda 57. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# Machine Learning Integration: 57. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Machine Learning Integration konusunda 57. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-10-25",
+
+      "readTime": "13 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-57.jpg"
+
+    },
+
+    {
+
+      "id": 58,
+
+      "title": "Service Design: 58. Adımda Uzmanlaşma",
+
+      "slug": "service-design-58",
+
+      "excerpt": "Service Design konusunda 58. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile UX/UI alanında uzmanlaşın.",
+
+      "content": "# Service Design: 58. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Service Design konusunda 58. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-10-24",
+
+      "readTime": "10 dk okuma",
+
+      "category": "UX/UI",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-58.jpg"
+
+    },
+
+    {
+
+      "id": 59,
+
+      "title": "Blockchain Development: 59. Adımda Uzmanlaşma",
+
+      "slug": "blockchain-development-59",
+
+      "excerpt": "Blockchain Development konusunda 59. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Development alanında uzmanlaşın.",
+
+      "content": "# Blockchain Development: 59. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Blockchain Development konusunda 59. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-10-23",
+
+      "readTime": "14 dk okuma",
+
+      "category": "Development",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-59.jpg"
+
+    },
+
+    {
+
+      "id": 60,
+
+      "title": "Design Thinking: 60. Adımda Uzmanlaşma",
+
+      "slug": "design-thinking-60",
+
+      "excerpt": "Design Thinking konusunda 60. seviyeye ulaşmak için bilmeniz gereken temel prensipler ve uygulamalar. Bu kapsamlı rehber ile Design alanında uzmanlaşın.",
+
+      "content": "# Design Thinking: 60. Adımda Uzmanlaşma\n\nBu kapsamlı rehberde Design Thinking konusunda 60. seviyeye ulaşmak için bilmeniz gereken tüm detayları bulacaksınız.",
+
+      "date": "2024-10-22",
+
+      "readTime": "11 dk okuma",
+
+      "category": "Design",
+
+      "featured": false,
+
+      "image": "/portfolio/blog-60.jpg"
+
+    }
+
+  ]
+
 }
